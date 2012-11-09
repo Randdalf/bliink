@@ -1,0 +1,192 @@
+﻿Build started 09/11/2012 17:12:33.
+     1>Project "C:\Users\Alex\My Code\bliink\game\missionchooser\swarm_sdk_missionchooser.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating ".\Debug\.\MissionChooser.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       PreBuildEvent:
+         if EXIST "C:\Program Files (x86)\Steam\SteamApps\sourcemods\swarmsdktemplate\bin\.\MissionChooser.dll" for /f "delims=" %%A in ('attrib "C:\Program Files (x86)\Steam\SteamApps\sourcemods\swarmsdktemplate\bin\.\MissionChooser.dll"') do set valveTmpIsReadOnly="%%A"
+         set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%
+         if "%valveTmpIsReadOnlyLetter%"=="R" del /q "C:\Users\Alex\My Code\bliink\game\missionchooser\Debug\"MissionChooser.dll
+         if exist ..\..\devtools\bin\vpccrccheck.exe ..\..\devtools\bin\vpccrccheck.exe -crc2 test_swarm.vcproj
+         if ERRORLEVEL 1 exit 1
+         
+         :VCEnd
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\common /I..\..\public /I..\..\public\tier0 /I..\..\public\tier1 /I. /Ivgui /Ivgui\dialogs /ITileSource /Ikeyvalues_editor /ZI /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _WIN32 /D _DEBUG /D DEBUG /D _WINDOWS /D _USRDLL /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D DLLNAME=missionchooser /D VPCGAME=swarm /D VPCGAMECAPS=SWARM /D _DLL_EXT=.dll /D COMPILER_MSVC32 /D VPCGAME=swarm /D VPCGAMECAPS=SWARM /D _DLL_EXT=.dll /D COMPILER_MSVC /D MEMOVERRIDE_MODULE=missionchooser /D _DLL_EXT=.dll /D VPCGAME=swarm /D VPCGAMECAPS=SWARM /D _DLL_EXT=.dll /D DLLNAME=missionchooser /D VPCGAME=swarm /D VPCGAMECAPS=SWARM /D _DLL_EXT=.dll /D _WINDLL /D _MBCS /GF /Gm /RTC1 /MTd /GS- /arch:SSE2 /fp:fast /Zc:wchar_t /Zc:forScope /GR /Fo".\Debug\.\\" /Fd".\Debug\.\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt asw_key_values_database.cpp asw_location_grid.cpp asw_map_builder.cpp asw_mission_chooser.cpp asw_mission_chooser_source_local.cpp asw_mission_text_database.cpp asw_npcs.cpp asw_random_missions.cpp asw_spawn_selection.cpp asw_system.cpp ..\..\public\chunkfile.cpp ..\..\common\debug_dll_check.cpp ..\..\public\tier0\memoverride.cpp tile_check.cpp VMFExporter.cpp TileSource\LevelTheme.cpp TileSource\MapLayout.cpp TileSource\Room.cpp TileSource\RoomTemplate.cpp TileSource\TagList.cpp keyvalues_editor\kv_combo_leaf_panel.cpp keyvalues_editor\kv_editor.cpp keyvalues_editor\kv_editor_base_panel.cpp keyvalues_editor\kv_editor_frame.cpp keyvalues_editor\kv_fit_children_panel.cpp keyvalues_editor\kv_leaf_panel.cpp keyvalues_editor\kv_node_panel.cpp vgui\location_editor\location_editor_frame.cpp vgui\location_editor\location_layout_panel.cpp vgui\location_editor\mission_txt_leaf_panel.cpp vgui\mission_editor\theme_room_picker.cpp layout_system\tilegen_actions.cpp layout_system\tilegen_class_factories.cpp layout_system\tilegen_enum.cpp layout_system\tilegen_expressions.cpp layout_system\tilegen_layout_system.cpp layout_system\tilegen_listeners.cpp layout_system\tilegen_mission_preprocessor.cpp layout_system\tilegen_ranges.cpp layout_system\tilegen_rule.cpp layout_system_editor\layout_system_kv_editor.cpp layout_system_editor\mission_panel.cpp layout_system_editor\node_panel.cpp layout_system_editor\rule_instance_node_panel.cpp layout_system_editor\rule_instance_parameter_panel.cpp layout_system_editor\state_node_panel.cpp vgui\MapLayoutPanel.cpp vgui\missionchooser_tgaimagepanel.cpp vgui\npc_spawns_panel.cpp vgui\PlacedRoomTemplatePanel.cpp vgui\RoomTemplateListPanel.cpp vgui\RoomTemplatePanel.cpp vgui\ScrollingWindow.cpp vgui\tilegen_pages.cpp vgui\ToggleExitsPanel.cpp ..\..\public\vgui_controls\vgui_controls.cpp vgui\dialogs\ExitEditDialog.cpp vgui\dialogs\RoomTemplateEditDialog.cpp vgui\dialogs\ThemeEditDialog.cpp vgui\dialogs\ThemesDialog.cpp vgui\dialogs\TileGenDialog.cpp /MP 
+     1>cl : Command line warning D9030: '/Gm' is incompatible with multiprocessing; ignoring /MP switch
+         TileGenDialog.cpp
+         ThemesDialog.cpp
+         ThemeEditDialog.cpp
+         RoomTemplateEditDialog.cpp
+         ExitEditDialog.cpp
+         vgui_controls.cpp
+         ToggleExitsPanel.cpp
+         tilegen_pages.cpp
+         ScrollingWindow.cpp
+         RoomTemplatePanel.cpp
+         RoomTemplateListPanel.cpp
+         PlacedRoomTemplatePanel.cpp
+         npc_spawns_panel.cpp
+         missionchooser_tgaimagepanel.cpp
+         MapLayoutPanel.cpp
+         state_node_panel.cpp
+         rule_instance_parameter_panel.cpp
+         rule_instance_node_panel.cpp
+         node_panel.cpp
+         mission_panel.cpp
+         Generating Code...
+         Compiling...
+         layout_system_kv_editor.cpp
+         tilegen_rule.cpp
+         tilegen_ranges.cpp
+         tilegen_mission_preprocessor.cpp
+         tilegen_listeners.cpp
+         tilegen_layout_system.cpp
+         tilegen_expressions.cpp
+         tilegen_enum.cpp
+         tilegen_class_factories.cpp
+         tilegen_actions.cpp
+         theme_room_picker.cpp
+         mission_txt_leaf_panel.cpp
+         location_layout_panel.cpp
+         location_editor_frame.cpp
+         kv_node_panel.cpp
+         kv_leaf_panel.cpp
+         kv_fit_children_panel.cpp
+         kv_editor_frame.cpp
+         kv_editor_base_panel.cpp
+         kv_editor.cpp
+         Generating Code...
+         Compiling...
+         kv_combo_leaf_panel.cpp
+         TagList.cpp
+         RoomTemplate.cpp
+         Room.cpp
+         MapLayout.cpp
+         LevelTheme.cpp
+         VMFExporter.cpp
+         tile_check.cpp
+         memoverride.cpp
+         debug_dll_check.cpp
+         chunkfile.cpp
+         asw_system.cpp
+         asw_spawn_selection.cpp
+         asw_random_missions.cpp
+         asw_npcs.cpp
+         asw_mission_text_database.cpp
+         asw_mission_chooser_source_local.cpp
+         asw_mission_chooser.cpp
+         asw_map_builder.cpp
+         asw_location_grid.cpp
+         Generating Code...
+         Compiling...
+         asw_key_values_database.cpp
+         Generating Code...
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:".\Debug\.\missionchooser.dll" /INCREMENTAL /NOLOGO /LIBPATH:..\..\lib\common\. /LIBPATH:..\..\lib\public\. kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:libc /NODEFAULTLIB:libcd /NODEFAULTLIB:libcmtd /MANIFEST:NO /DEBUG /PDB:".\Debug\.\MissionChooser.pdb" /MAP:".\Debug\.\MissionChooser.map" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\Debug\.\MissionChooser.lib" /MACHINE:X86 /DLL .\Debug\.\asw_key_values_database.obj
+         .\Debug\.\asw_location_grid.obj
+         .\Debug\.\asw_map_builder.obj
+         .\Debug\.\asw_mission_chooser.obj
+         .\Debug\.\asw_mission_chooser_source_local.obj
+         .\Debug\.\asw_mission_text_database.obj
+         .\Debug\.\asw_npcs.obj
+         .\Debug\.\asw_random_missions.obj
+         .\Debug\.\asw_spawn_selection.obj
+         .\Debug\.\asw_system.obj
+         .\Debug\.\chunkfile.obj
+         .\Debug\.\debug_dll_check.obj
+         .\Debug\.\memoverride.obj
+         .\Debug\.\tile_check.obj
+         .\Debug\.\VMFExporter.obj
+         .\Debug\.\LevelTheme.obj
+         .\Debug\.\MapLayout.obj
+         .\Debug\.\Room.obj
+         .\Debug\.\RoomTemplate.obj
+         .\Debug\.\TagList.obj
+         .\Debug\.\kv_combo_leaf_panel.obj
+         .\Debug\.\kv_editor.obj
+         .\Debug\.\kv_editor_base_panel.obj
+         .\Debug\.\kv_editor_frame.obj
+         .\Debug\.\kv_fit_children_panel.obj
+         .\Debug\.\kv_leaf_panel.obj
+         .\Debug\.\kv_node_panel.obj
+         .\Debug\.\location_editor_frame.obj
+         .\Debug\.\location_layout_panel.obj
+         .\Debug\.\mission_txt_leaf_panel.obj
+         .\Debug\.\theme_room_picker.obj
+         .\Debug\.\tilegen_actions.obj
+         .\Debug\.\tilegen_class_factories.obj
+         .\Debug\.\tilegen_enum.obj
+         .\Debug\.\tilegen_expressions.obj
+         .\Debug\.\tilegen_layout_system.obj
+         .\Debug\.\tilegen_listeners.obj
+         .\Debug\.\tilegen_mission_preprocessor.obj
+         .\Debug\.\tilegen_ranges.obj
+         .\Debug\.\tilegen_rule.obj
+         .\Debug\.\layout_system_kv_editor.obj
+         .\Debug\.\mission_panel.obj
+         .\Debug\.\node_panel.obj
+         .\Debug\.\rule_instance_node_panel.obj
+         .\Debug\.\rule_instance_parameter_panel.obj
+         .\Debug\.\state_node_panel.obj
+         .\Debug\.\MapLayoutPanel.obj
+         .\Debug\.\missionchooser_tgaimagepanel.obj
+         .\Debug\.\npc_spawns_panel.obj
+         .\Debug\.\PlacedRoomTemplatePanel.obj
+         .\Debug\.\RoomTemplateListPanel.obj
+         .\Debug\.\RoomTemplatePanel.obj
+         .\Debug\.\ScrollingWindow.obj
+         .\Debug\.\tilegen_pages.obj
+         .\Debug\.\ToggleExitsPanel.obj
+         .\Debug\.\vgui_controls.obj
+         .\Debug\.\ExitEditDialog.obj
+         .\Debug\.\RoomTemplateEditDialog.obj
+         .\Debug\.\ThemeEditDialog.obj
+         .\Debug\.\ThemesDialog.obj
+         .\Debug\.\TileGenDialog.obj
+         ..\..\lib\public\bitmap.lib
+         ..\..\lib\public\dmxloader.lib
+         ..\..\lib\public\fgdlib.lib
+         ..\..\lib\public\interfaces.lib
+         ..\..\lib\common\jpeglib.lib
+         ..\..\lib\public\mathlib.lib
+         ..\..\lib\public\matsys_controls.lib
+         ..\..\lib\public\steam_api.lib
+         ..\..\lib\public\tier0.lib
+         ..\..\lib\public\tier1.lib
+         ..\..\lib\public\tier2.lib
+         ..\..\lib\public\tier3.lib
+         ..\..\lib\public\vbsp2lib.lib
+         ..\..\lib\public\vgui_controls.lib
+         ..\..\lib\public\vstdlib.lib
+         ..\..\lib\public\vtf.lib
+            Creating library .\Debug\.\MissionChooser.lib and object .\Debug\.\MissionChooser.exp
+         swarm_sdk_missionchooser.vcxproj -> C:\Users\Alex\My Code\bliink\game\missionchooser\.\Debug\.\MissionChooser.dll
+       PostBuildEvent:
+         Description: Publishing to C:\Program Files (x86)\Steam\SteamApps\sourcemods\swarmsdktemplate\bin\.
+         if exist "C:\Program Files (x86)\Steam\SteamApps\sourcemods\swarmsdktemplate\bin\." goto ValveStart
+         mkdir "C:\Program Files (x86)\Steam\SteamApps\sourcemods\swarmsdktemplate\bin\."
+         :ValveStart
+         copy "C:\Users\Alex\My Code\bliink\game\missionchooser\Debug\"MissionChooser.dll "C:\Program Files (x86)\Steam\SteamApps\sourcemods\swarmsdktemplate\bin\.\MissionChooser.dll"
+         if ERRORLEVEL 1 goto BuildEventFailed
+         if exist "C:\Users\Alex\My Code\bliink\game\missionchooser\Debug\"MissionChooser.map copy "C:\Users\Alex\My Code\bliink\game\missionchooser\Debug\"MissionChooser.map "C:\Program Files (x86)\Steam\SteamApps\sourcemods\swarmsdktemplate\bin\.\MissionChooser.map"
+         copy "C:\Users\Alex\My Code\bliink\game\missionchooser\Debug\"MissionChooser.pdb "C:\Program Files (x86)\Steam\SteamApps\sourcemods\swarmsdktemplate\bin\.\MissionChooser.pdb"
+         if ERRORLEVEL 1 goto BuildEventFailed
+         goto BuildEventOK
+         :BuildEventFailed
+         echo *** ERROR! PostBuildStep FAILED for MissionChooser! EXE or DLL is probably running. ***
+         del /q "C:\Users\Alex\My Code\bliink\game\missionchooser\Debug\"MissionChooser.dll
+         exit 1
+         :BuildEventOK
+         
+         :VCEnd
+                 1 file(s) copied.
+                 1 file(s) copied.
+                 1 file(s) copied.
+       FinalizeBuildStatus:
+         Deleting file ".\Debug\.\MissionChooser.unsuccessfulbuild".
+         Touching ".\Debug\.\MissionChooser.lastbuildstate".
+     1>Done Building Project "C:\Users\Alex\My Code\bliink\game\missionchooser\swarm_sdk_missionchooser.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:01:22.48
