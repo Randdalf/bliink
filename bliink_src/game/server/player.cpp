@@ -4759,7 +4759,7 @@ CBaseEntity	*g_pLastSpawn = NULL;
 //			is the entity that will be returned. Otherwise, the first entity of
 //			the given classname is returned.
 // Input  : pszClassName - should be "info_player_start", "info_player_coop", or
-//			"info_player_deathmatch"
+//			"info_player_spawn"
 //-----------------------------------------------------------------------------
 CBaseEntity *FindPlayerStart(const char *pszClassName)
 {
@@ -4796,7 +4796,7 @@ CBaseEntity *CBasePlayer::EntSelectSpawnPoint()
 
 	player = edict();
 
-// choose a info_player_deathmatch point
+// choose a info_player_spawn point
 	if (g_pGameRules->IsCoOp())
 	{
 		pSpot = gEntList.FindEntityByClassname( g_pLastSpawn, "info_player_coop");
@@ -4811,9 +4811,9 @@ CBaseEntity *CBasePlayer::EntSelectSpawnPoint()
 		pSpot = g_pLastSpawn;
 		// Randomize the start spot
 		for ( int i = random->RandomInt(1,5); i > 0; i-- )
-			pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_deathmatch" );
+			pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_spawn" );
 		if ( !pSpot )  // skip over the null point
-			pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_deathmatch" );
+			pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_spawn" );
 
 		CBaseEntity *pFirstSpot = pSpot;
 
@@ -4826,7 +4826,7 @@ CBaseEntity *CBasePlayer::EntSelectSpawnPoint()
 				{
 					if ( pSpot->GetLocalOrigin() == vec3_origin )
 					{
-						pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_deathmatch" );
+						pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_spawn" );
 						continue;
 					}
 
@@ -4835,7 +4835,7 @@ CBaseEntity *CBasePlayer::EntSelectSpawnPoint()
 				}
 			}
 			// increment pSpot
-			pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_deathmatch" );
+			pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_spawn" );
 		} while ( pSpot != pFirstSpot ); // loop if we're not back to the start
 
 		// we haven't found a place to spawn yet,  so kill any guy at the first spawn point and spawn there

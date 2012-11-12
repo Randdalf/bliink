@@ -48,25 +48,7 @@ public:
 	bool	IsSniperZoomed( void ) const;
 	bool	IsDucking( void ) const; 
 
-#if defined ( SDK_USE_PLAYERCLASSES )
-	void	SetDesiredPlayerClass( int playerclass );
-	int		DesiredPlayerClass( void );
-
-	void	SetPlayerClass( int playerclass );
-	int		PlayerClass( void );
-#endif
-
 	CWeaponSDKBase* GetActiveSDKWeapon() const;
-
-#if defined ( SDK_USE_PRONE )
-	void	StartGoingProne( void );
-	void	StandUpFromProne( void );
-	bool	IsProne() const;
-	bool	IsGettingUpFromProne() const;	
-	bool	IsGoingProne() const;
-	void	SetProne( bool bProne, bool bNoAnimation = false );
-	bool	CanChangePosition( void );
-#endif
 
 	bool	IsJumping( void ) { return m_bJumping; }
 	void	SetJumping( bool bJumping );
@@ -87,16 +69,6 @@ public:
 
 private:
 
-#if defined ( SDK_USE_PRONE )
-	CNetworkVar( bool, m_bProne );
-#endif
-
-#if defined ( SDK_USE_PLAYERCLASSES )
-	CNetworkVar( int, m_iPlayerClass );
-	CNetworkVar( int, m_iDesiredPlayerClass );
-#endif
-
-
 #if defined ( SDK_USE_SPRINTING )
 	CNetworkVar( bool, m_bIsSprinting );
 	bool m_bGaveSprintPenalty;
@@ -107,15 +79,6 @@ private:
 #endif // SDK_USE_STAMINA || SDK_USE_SPRINTING
 
 public:
-
-#ifdef SDK_USE_PRONE
-	float m_flNextProneCheck; // Prevent it switching their prone state constantly.
-
-	CNetworkVar( float, m_flUnProneTime );
-	CNetworkVar( float, m_flGoProneTime );
-	CNetworkVar( bool, m_bForceProneChange );
-#endif
-
 	bool m_bJumping;
 
 	float m_flLastViewAnimationTime;

@@ -102,10 +102,6 @@ public:
 // Not Shared, but public.
 public:
 
-#if defined ( SDK_USE_TEAMS )
-	bool CanShowTeamMenu();
-#endif // SDK_USE_TEAMS
-
 #if defined ( SDK_USE_PLAYERCLASSES )
 	bool CanShowClassMenu();
 #endif // SDK_USE_PLAYERCLASSES

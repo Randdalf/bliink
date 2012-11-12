@@ -60,11 +60,7 @@ BEGIN_DATADESC(CSpawnPoint)
 
 END_DATADESC();
 
-	LINK_ENTITY_TO_CLASS( info_player_deathmatch, CSpawnPoint );
-#if defined( SDK_USE_TEAMS )
-	LINK_ENTITY_TO_CLASS( info_player_blue, CSpawnPoint );
-	LINK_ENTITY_TO_CLASS( info_player_red, CSpawnPoint );
-#endif
+	LINK_ENTITY_TO_CLASS( info_player_spawn, CSpawnPoint );
 
 #endif
 
@@ -79,11 +75,6 @@ BEGIN_NETWORK_TABLE_NOBASE( CSDKGameRules, DT_SDKGameRules )
 		SendPropFloat( SENDINFO( m_flGameStartTime ), 32, SPROP_NOSCALE ),
 #endif
 END_NETWORK_TABLE()
-
-#if defined ( SDK_USE_PLAYERCLASSES )
-	ConVar mp_allowrandomclass( "mp_allowrandomclass", "1", FCVAR_REPLICATED, "Allow players to select random class" );
-#endif
-
 
 LINK_ENTITY_TO_CLASS( sdk_gamerules, CSDKGameRulesProxy );
 IMPLEMENT_NETWORKCLASS_ALIASED( SDKGameRulesProxy, DT_SDKGameRulesProxy )
@@ -142,11 +133,6 @@ static CSDKViewVectors g_SDKViewVectors(
 	Vector( 10,  10,  10 ),		//VEC_OBS_HULL_MAX
 													
 	Vector( 0, 0, 14 )			//VEC_DEAD_VIEWHEIGHT
-#if defined ( SDK_USE_PRONE )			
-	,Vector(-16, -16, 0 ),		//VEC_PRONE_HULL_MIN
-	Vector( 16,  16, 24 ),		//VEC_PRONE_HULL_MAX
-	Vector( 0,	0, 10 )			//VEC_PRONE_VIEW
-#endif
 );
 
 const CViewVectors* CSDKGameRules::GetViewVectors() const
@@ -253,11 +239,6 @@ CSDKGameRules::CSDKGameRules()
 
 	m_bLevelInitialized = false;
 
-#if defined ( SDK_USE_TEAMS )
-	m_iSpawnPointCount_Blue = 0;
-	m_iSpawnPointCount_Red = 0;
-#endif // SDK_USE_TEAMS
-
 	m_flGameStartTime = 0;
 
 }
@@ -278,41 +259,6 @@ void CSDKGameRules::CheckLevelInitialized()
 {
 	if ( !m_bLevelInitialized )
 	{
-#if defined ( SDK_USE_TEAMS )
-		// Count the number of spawn points for each team
-		// This determines the maximum number of players allowed on each
-
-		CBaseEntity* ent = NULL;
-
-		m_iSpawnPointCount_Blue		= 0;
-		m_iSpawnPointCount_Red		= 0;
-
-		while ( ( ent = gEntList.FindEntityByClassname( ent, "info_player_blue" ) ) != NULL )
-		{
-			if ( IsSpawnPointValid( ent, NULL ) )
-			{
-				m_iSpawnPointCount_Blue++;
-			}
-			else
-			{
-				Warning("Invalid blue spawnpoint at (%.1f,%.1f,%.1f)\n",
-					ent->GetAbsOrigin()[0],ent->GetAbsOrigin()[2],ent->GetAbsOrigin()[2] );
-			}
-		}
-
-		while ( ( ent = gEntList.FindEntityByClassname( ent, "info_player_red" ) ) != NULL )
-		{
-			if ( IsSpawnPointValid( ent, NULL ) ) 
-			{
-				m_iSpawnPointCount_Red++;
-			}
-			else
-			{
-				Warning("Invalid red spawnpoint at (%.1f,%.1f,%.1f)\n",
-					ent->GetAbsOrigin()[0],ent->GetAbsOrigin()[2],ent->GetAbsOrigin()[2] );
-			}
-		}
-#endif // SDK_USE_TEAMS
 		m_bLevelInitialized = true;
 	}
 }
@@ -533,11 +479,7 @@ void TestSpawnPointType( const char *pEntClassName )
 
 void TestSpawns()
 {
-	TestSpawnPointType( "info_player_deathmatch" );
-#if defined ( SDK_USE_TEAMS )
-	TestSpawnPointType( "info_player_blue" );
-	TestSpawnPointType( "info_player_red" );
-#endif // SDK_USE_TEAMS
+	TestSpawnPointType( "info_player_spawn" );
 }
 ConCommand cc_TestSpawns( "map_showspawnpoints", TestSpawns, "Dev - test the spawn points, draws for 60 seconds", FCVAR_CHEAT );
 
@@ -592,273 +534,17 @@ void CSDKGameRules::PlayerSpawn( CBasePlayer *p )
 
 	if( team != TEAM_SPECTATOR )
 	{
-#if defined ( SDK_USE_PLAYERCLASSES )
-		if( pPlayer->m_Shared.DesiredPlayerClass() == PLAYERCLASS_RANDOM )
-		{
-			ChooseRandomClass( pPlayer );
-			ClientPrint( pPlayer, HUD_PRINTTALK, "#game_now_as", GetPlayerClassName( pPlayer->m_Shared.PlayerClass(), team ) );
-		}
-		else
-		{
-			pPlayer->m_Shared.SetPlayerClass( pPlayer->m_Shared.DesiredPlayerClass() );
-		}
-
-		int playerclass = pPlayer->m_Shared.PlayerClass();
-
-		if( playerclass != PLAYERCLASS_UNDEFINED )
-		{
-			//Assert( PLAYERCLASS_UNDEFINED < playerclass && playerclass < NUM_PLAYERCLASSES );
-
-			CSDKTeam *pTeam = GetGlobalSDKTeam( team );
-			const CSDKPlayerClassInfo &pClassInfo = pTeam->GetPlayerClassInfo( playerclass );
-
-			Assert( pClassInfo.m_iTeam == team );
-
-			pPlayer->SetModel( pClassInfo.m_szPlayerModel );
-			pPlayer->SetHitboxSet( 0 );
-
-			char buf[64];
-			int bufsize = sizeof(buf);
-
-			//Give weapons
-
-			// Primary weapon
-			Q_snprintf( buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iPrimaryWeapon) );
-			CBaseEntity *pPrimaryWpn = pPlayer->GiveNamedItem( buf );
-			Assert( pPrimaryWpn );
-
-			// Secondary weapon
-			CBaseEntity *pSecondaryWpn = NULL;
-			if ( pClassInfo.m_iSecondaryWeapon != WEAPON_NONE )
-			{
-				Q_snprintf( buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iSecondaryWeapon) );
-				pSecondaryWpn = pPlayer->GiveNamedItem( buf );
-			}
-
-			// Melee weapon
-			if ( pClassInfo.m_iMeleeWeapon )
-			{
-				Q_snprintf( buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iMeleeWeapon) );
-				pPlayer->GiveNamedItem( buf );
-			}
-
-			CWeaponSDKBase *pWpn = NULL;
-
-			// Primary Ammo
-			pWpn = dynamic_cast<CWeaponSDKBase *>(pPrimaryWpn);
-
-			if( pWpn )
-			{
-				int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
-				int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
-				pPlayer->GiveAmmo( iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1 );
-			}
-
-			// Secondary Ammo
-			if ( pSecondaryWpn )
-			{
-				pWpn = dynamic_cast<CWeaponSDKBase *>(pSecondaryWpn);
-
-				if( pWpn )
-				{
-					int iNumClip = pWpn->GetSDKWpnData().m_iDefaultAmmoClips - 1;	//account for one clip in the gun
-					int iClipSize = pWpn->GetSDKWpnData().iMaxClip1;
-					pPlayer->GiveAmmo( iNumClip * iClipSize, pWpn->GetSDKWpnData().szAmmo1 );
-				}
-			}				
-
-			// Grenade Type 1
-			if ( pClassInfo.m_iGrenType1 != WEAPON_NONE )
-			{
-				Q_snprintf( buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iGrenType1) );
-				CBaseEntity *pGrenade = pPlayer->GiveNamedItem( buf );
-				Assert( pGrenade );
-				
-				pWpn = dynamic_cast<CWeaponSDKBase *>(pGrenade);
-
-				if( pWpn )
-				{
-					pPlayer->GiveAmmo( pClassInfo.m_iNumGrensType1 - 1, pWpn->GetSDKWpnData().szAmmo1 );
-				}
-			}
-
-			// Grenade Type 2
-			if ( pClassInfo.m_iGrenType2 != WEAPON_NONE )
-			{
-				Q_snprintf( buf, bufsize, "weapon_%s", WeaponIDToAlias(pClassInfo.m_iGrenType2) );
-				CBaseEntity *pGrenade2 = pPlayer->GiveNamedItem( buf );
-				Assert( pGrenade2 );
-				
-				pWpn = dynamic_cast<CWeaponSDKBase *>(pGrenade2);
-
-				if( pWpn )
-				{
-					pPlayer->GiveAmmo( pClassInfo.m_iNumGrensType2 - 1, pWpn->GetSDKWpnData().szAmmo1 );
-				}
-			}
-
-			pPlayer->Weapon_Switch( (CBaseCombatWeapon *)pPrimaryWpn );
-
-//			DevMsg("setting spawn armor to: %d\n", pClassInfo.m_iArmor );
-			pPlayer->SetSpawnArmorValue( pClassInfo.m_iArmor );
-
-		}
-		else
-		{
-//			Assert( !"Player spawning with PLAYERCLASS_UNDEFINED" );
-			pPlayer->SetModel( SDK_PLAYER_MODEL );
-		}
-#else
+		pPlayer->SetModel( SDK_PLAYER_MODEL );
 		pPlayer->GiveDefaultItems();
-#endif // SDK_USE_PLAYERCLASSES
 		pPlayer->SetMaxSpeed( 600 );
 	}
 }
-#if defined ( SDK_USE_PLAYERCLASSES )
-void CSDKGameRules::ChooseRandomClass( CSDKPlayer *pPlayer )
-{
-	int i;
-	int numChoices = 0;
-	int choices[16];
-	int firstclass = 0;
-
-	CSDKTeam *pTeam = GetGlobalSDKTeam( pPlayer->GetTeamNumber() );
-
-	int lastclass = pTeam->GetNumPlayerClasses();
-
-	int previousClass = pPlayer->m_Shared.PlayerClass();
-
-	// Compile a list of the classes that aren't full
-	for( i=firstclass;i<lastclass;i++ )
-	{
-		// don't join the same class twice in a row
-		if ( i == previousClass )
-			continue;
-
-		if( CanPlayerJoinClass( pPlayer, i ) )
-		{	
-			choices[numChoices] = i;
-			numChoices++;
-		}
-	}
-
-	// If ALL the classes are full
-	if( numChoices == 0 )
-	{
-		Msg( "Random class found that all classes were full - ignoring class limits for this spawn\n" );
-
-		pPlayer->m_Shared.SetPlayerClass( random->RandomFloat( firstclass, lastclass ) );
-	}
-	else
-	{
-		// Choose a slot randomly
-		i = random->RandomInt( 0, numChoices-1 );
-
-		// We are now the class that was in that slot
-		pPlayer->m_Shared.SetPlayerClass( choices[i] );
-	}
-}
-bool CSDKGameRules::CanPlayerJoinClass( CSDKPlayer *pPlayer, int cls )
-{
-	if( cls == PLAYERCLASS_RANDOM )
-	{
-		return mp_allowrandomclass.GetBool();
-	}
-
-	if( ReachedClassLimit( pPlayer->GetTeamNumber(), cls ) )
-		return false;
-
-	return true;
-}
-
-bool CSDKGameRules::ReachedClassLimit( int team, int cls )
-{
-	Assert( cls != PLAYERCLASS_UNDEFINED );
-	Assert( cls != PLAYERCLASS_RANDOM );
-
-	// get the cvar
-	int iClassLimit = GetClassLimit( team, cls );
-
-	// count how many are active
-	int iClassExisting = CountPlayerClass( team, cls );
-
-	if( iClassLimit > -1 && iClassExisting >= iClassLimit )
-	{
-		return true;
-	}
-
-	return false;
-}
-
-int CSDKGameRules::CountPlayerClass( int team, int cls )
-{
-	int num = 0;
-	CSDKPlayer *pSDKPlayer;
-
-	for ( int i = 1; i <= gpGlobals->maxClients; i++ )
-	{
-		pSDKPlayer = ToSDKPlayer( UTIL_PlayerByIndex( i ) );
-
-		if (pSDKPlayer == NULL)
-			continue;
-
-		if (FNullEnt( pSDKPlayer->edict() ))
-			continue;
-
-		if( pSDKPlayer->GetTeamNumber() != team )
-			continue;
-
-		if( pSDKPlayer->m_Shared.DesiredPlayerClass() == cls )
-			num++;
-	}
-
-	return num;
-}
-
-int CSDKGameRules::GetClassLimit( int team, int cls )
-{
-	CSDKTeam *pTeam = GetGlobalSDKTeam( team );
-
-	Assert( pTeam );
-
-	const CSDKPlayerClassInfo &pClassInfo = pTeam->GetPlayerClassInfo( cls );
-
-	int iClassLimit;
-
-	ConVar *pLimitCvar = ( ConVar * )cvar->FindVar( pClassInfo.m_szLimitCvar );
-
-	Assert( pLimitCvar );
-
-	if( pLimitCvar )
-		iClassLimit = pLimitCvar->GetInt();
-	else
-		iClassLimit = -1;
-
-	return iClassLimit;
-}
-
-bool CSDKGameRules::IsPlayerClassOnTeam( int cls, int team )
-{
-	if( cls == PLAYERCLASS_RANDOM )
-		return true;
-
-	CSDKTeam *pTeam = GetGlobalSDKTeam( team );
-
-	return ( cls >= 0 && cls < pTeam->GetNumPlayerClasses() );
-}
-
-#endif // SDK_USE_PLAYERCLASSES
 
 void CSDKGameRules::InitTeams( void )
 {
 	Assert( g_Teams.Count() == 0 );
 
 	g_Teams.Purge();	// just in case
-
-#if defined ( SDK_USE_PLAYERCLASSES )
-	// clear the player class data
-	ResetFilePlayerClassInfoDatabase();
-#endif // SDK_USE_PLAYERCLASSES
 
 	// Create the team managers
 
@@ -873,21 +559,6 @@ void CSDKGameRules::InitTeams( void )
 	Assert( pSpectator );
 	pSpectator->Init( pszTeamNames[TEAM_SPECTATOR], TEAM_SPECTATOR );
 	g_Teams.AddToTail( pSpectator );
-
-	//Tony; don't create these two managers unless teams are being used!
-#if defined ( SDK_USE_TEAMS )
-	//Tony; create the blue team
-	CTeam *pBlue = static_cast<CTeam*>(CreateEntityByName( "sdk_team_blue" ));
-	Assert( pBlue );
-	pBlue->Init( pszTeamNames[SDK_TEAM_BLUE], SDK_TEAM_BLUE );
-	g_Teams.AddToTail( pBlue );
-
-	//Tony; create the red team
-	CTeam *pRed = static_cast<CTeam*>(CreateEntityByName( "sdk_team_red" ));
-	Assert( pRed );
-	pRed->Init( pszTeamNames[SDK_TEAM_RED], SDK_TEAM_RED );
-	g_Teams.AddToTail( pRed );
-#endif 
 }
 
 /* create some proxy entities that we use for transmitting data */
@@ -906,135 +577,9 @@ void CSDKGameRules::CreateStandardEntities()
 int CSDKGameRules::SelectDefaultTeam()
 {
 	int team = TEAM_UNASSIGNED;
-
-#if defined ( SDK_USE_TEAMS )
-	CSDKTeam *pBlue = GetGlobalSDKTeam(SDK_TEAM_BLUE);
-	CSDKTeam *pRed = GetGlobalSDKTeam(SDK_TEAM_RED);
-
-	int iNumBlue = pBlue->GetNumPlayers();
-	int iNumRed = pRed->GetNumPlayers();
-
-	int iBluePoints = pBlue->GetScore();
-	int iRedPoints  = pRed->GetScore();
-
-	// Choose the team that's lacking players
-	if ( iNumBlue < iNumRed )
-	{
-		team = SDK_TEAM_BLUE;
-	}
-	else if ( iNumBlue > iNumRed )
-	{
-		team = SDK_TEAM_RED;
-	}
-	// choose the team with fewer points
-	else if ( iBluePoints < iRedPoints )
-	{
-		team = SDK_TEAM_BLUE;
-	}
-	else if ( iBluePoints > iRedPoints )
-	{
-		team = SDK_TEAM_RED;
-	}
-	else
-	{
-		// Teams and scores are equal, pick a random team
-		team = ( random->RandomInt(0,1) == 0 ) ? SDK_TEAM_BLUE : SDK_TEAM_RED;		
-	}
-
-	if ( TeamFull( team ) )
-	{
-		// Pick the opposite team
-		if ( team == SDK_TEAM_BLUE )
-		{
-			team = SDK_TEAM_RED;
-		}
-		else
-		{
-			team = SDK_TEAM_BLUE;
-		}
-
-		// No choices left
-		if ( TeamFull( team ) )
-			return TEAM_UNASSIGNED;
-	}
-#endif // SDK_USE_TEAMS
 	return team;
 }
-#if defined ( SDK_USE_TEAMS )
-//Tony; we only check this when using teams, unassigned can never get full.
-bool CSDKGameRules::TeamFull( int team_id )
-{
-	switch ( team_id )
-	{
-	case SDK_TEAM_BLUE:
-		{
-			int iNumBlue = GetGlobalSDKTeam(SDK_TEAM_BLUE)->GetNumPlayers();
-			return iNumBlue >= m_iSpawnPointCount_Blue;
-		}
-	case SDK_TEAM_RED:
-		{
-			int iNumRed = GetGlobalSDKTeam(SDK_TEAM_RED)->GetNumPlayers();
-			return iNumRed >= m_iSpawnPointCount_Red;
-		}
-	}
-	return false;
-}
 
-//checks to see if the desired team is stacked, returns true if it is
-bool CSDKGameRules::TeamStacked( int iNewTeam, int iCurTeam  )
-{
-	//players are allowed to change to their own team
-	if(iNewTeam == iCurTeam)
-		return false;
-
-#if defined ( SDK_USE_TEAMS )
-	int iTeamLimit = mp_limitteams.GetInt();
-
-	// Tabulate the number of players on each team.
-	int iNumBlue = GetGlobalTeam( SDK_TEAM_BLUE )->GetNumPlayers();
-	int iNumRed = GetGlobalTeam( SDK_TEAM_RED )->GetNumPlayers();
-
-	switch ( iNewTeam )
-	{
-	case SDK_TEAM_BLUE:
-		if( iCurTeam != TEAM_UNASSIGNED && iCurTeam != TEAM_SPECTATOR )
-		{
-			if((iNumBlue + 1) > (iNumRed + iTeamLimit - 1))
-				return true;
-			else
-				return false;
-		}
-		else
-		{
-			if((iNumBlue + 1) > (iNumRed + iTeamLimit))
-				return true;
-			else
-				return false;
-		}
-		break;
-	case SDK_TEAM_RED:
-		if( iCurTeam != TEAM_UNASSIGNED && iCurTeam != TEAM_SPECTATOR )
-		{
-			if((iNumRed + 1) > (iNumBlue + iTeamLimit - 1))
-				return true;
-			else
-				return false;
-		}
-		else
-		{
-			if((iNumRed + 1) > (iNumBlue + iTeamLimit))
-				return true;
-			else
-				return false;
-		}
-		break;
-	}
-#endif // SDK_USE_TEAMS
-
-	return false;
-}
-
-#endif // SDK_USE_TEAMS
 //-----------------------------------------------------------------------------
 // Purpose: determine the class name of the weapon that got a kill
 //-----------------------------------------------------------------------------
@@ -1166,29 +711,6 @@ bool CSDKGameRules::ShouldCollide( int collisionGroup0, int collisionGroup1 )
 
 	return BaseClass::ShouldCollide( collisionGroup0, collisionGroup1 ); 
 }
-
-//Tony; keep this in shared space.
-#if defined ( SDK_USE_PLAYERCLASSES )
-const char *CSDKGameRules::GetPlayerClassName( int cls, int team )
-{
-	CSDKTeam *pTeam = GetGlobalSDKTeam( team );
-
-	if( cls == PLAYERCLASS_RANDOM )
-	{
-		return "#class_random";
-	}
-
-	if( cls < 0 || cls >= pTeam->GetNumPlayerClasses() )
-	{
-		Assert( false );
-		return NULL;
-	}
-
-	const CSDKPlayerClassInfo &pClassInfo = pTeam->GetPlayerClassInfo( cls );
-
-	return pClassInfo.m_szPrintName;
-}
-#endif
 
 //-----------------------------------------------------------------------------
 // Purpose: Init CS ammo definitions

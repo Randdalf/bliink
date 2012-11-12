@@ -48,11 +48,6 @@ public:
 	bool	HandleDucking( Activity &idealActivity );
 	bool	HandleSwimming( Activity &idealActivity );
 
-#if defined ( SDK_USE_PRONE )
-	bool	HandleProne( Activity &idealActivity );
-	bool	HandleProneTransition( Activity &idealActivity );
-#endif
-
 //#if defined ( SDK_USE_SPRINTING )
 	bool	HandleSprinting( Activity &idealActivity );
 //#endif
@@ -66,11 +61,6 @@ private:
 	
 	CSDKPlayer   *m_pSDKPlayer;
 	bool		m_bInAirWalk;
-#if defined ( SDK_USE_PRONE )
-	Activity	m_iProneActivity;
-	bool		m_bProneTransition;
-	bool		m_bProneTransitionFirstFrame;
-#endif
 
 	float		m_flHoldDeployedPoseUntilTime;
 };

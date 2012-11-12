@@ -691,6 +691,11 @@ void MainMenu::OnCommand( const char *command )
 	{
 		engine->ClientCmd("opencreatemultiplayerdialog");
 	}
+	else if( !Q_strcmp( command, "BliinkStartGame" ) )
+	{
+		// Alex; Bliink default map
+		engine->ClientCmd("map test_map");
+	}
 	else if( !Q_strcmp( command, "OpenCreditsPage" ) )
 	{
 		CBaseModPanel::GetSingleton().OpenWindow( WT_CREDITSPAGE, this, true );

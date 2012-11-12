@@ -1532,12 +1532,6 @@
     <ClCompile Include="sdk\te_firebullets.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
-    <ClCompile Include="..\shared\sdk\sdk_basegrenade_projectile.cpp">
-      <Filter>Source Files\SDK\Shared</Filter>
-    </ClCompile>
-    <ClCompile Include="..\shared\sdk\sdk_fx_shared.cpp">
-      <Filter>Source Files\SDK\Shared</Filter>
-    </ClCompile>
     <ClCompile Include="..\shared\sdk\sdk_gamemovement.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
@@ -1594,6 +1588,12 @@
     </ClCompile>
     <ClCompile Include="..\shared\predicted_viewmodel.cpp">
       <Filter>Source Files\From HL2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shared\sdk\sdk_basegrenade_projectile.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shared\sdk\sdk_fx_shared.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3244,9 +3244,6 @@
     <ClInclude Include="sdk\te_firebullets.h">
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
-    <ClInclude Include="..\shared\sdk\sdk_basegrenade_projectile.h">
-      <Filter>Source Files\SDK\Shared</Filter>
-    </ClInclude>
     <ClInclude Include="..\shared\sdk\sdk_fx_shared.h">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClInclude>
@@ -3288,6 +3285,9 @@
     </ClInclude>
     <ClInclude Include="..\shared\predicted_viewmodel.h">
       <Filter>Source Files\From HL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shared\sdk\sdk_basegrenade_projectile.h">
+      <Filter>Source Files\SDK\Shared</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

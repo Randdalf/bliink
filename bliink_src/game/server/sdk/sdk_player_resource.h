@@ -26,9 +26,6 @@ public:
 
 protected:
 //	CNetworkArray( int, m_iObjScore, MAX_PLAYERS+1 );
-#if defined ( SDK_USE_PLAYERCLASSES )
-	CNetworkArray( int, m_iPlayerClass, MAX_PLAYERS+1 );
-#endif
 };
 
 #endif // SDK_PLAYER_RESOURCE_H

@@ -74,10 +74,6 @@ public:
 	enum
 	{
 		MAP_ICON_PLAYER = 0,
-#if defined ( SDK_USE_TEAMS )
-		MAP_ICON_BLUE,
-		MAP_ICON_RED,
-#endif
 		MAP_ICON_COUNT
 	};
 

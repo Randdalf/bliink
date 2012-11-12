@@ -29,10 +29,6 @@ ConVar SDK_ShowStateTransitions( "sdk_ShowStateTransitions", "-2", FCVAR_CHEAT, 
 
 
 EHANDLE g_pLastDMSpawn;
-#if defined ( SDK_USE_TEAMS )
-EHANDLE g_pLastBlueSpawn;
-EHANDLE g_pLastRedSpawn;
-#endif
 // -------------------------------------------------------------------------------- //
 // Player animation event. Sent to the client when a player fires, jumps, reloads, etc..
 // -------------------------------------------------------------------------------- //
@@ -88,10 +84,6 @@ PRECACHE_REGISTER(player);
 
 // specific to the local player
 BEGIN_SEND_TABLE_NOBASE( CSDKPlayerShared, DT_SDKSharedLocalPlayerExclusive )
-#if defined ( SDK_USE_PLAYERCLASSES )
-	SendPropInt( SENDINFO( m_iPlayerClass), 4 ),
-	SendPropInt( SENDINFO( m_iDesiredPlayerClass ), 4 ),
-#endif
 END_SEND_TABLE()
 
 BEGIN_SEND_TABLE_NOBASE( CSDKPlayerShared, DT_SDKPlayerShared )
@@ -99,11 +91,6 @@ BEGIN_SEND_TABLE_NOBASE( CSDKPlayerShared, DT_SDKPlayerShared )
 	SendPropFloat( SENDINFO( m_flStamina ), 0, SPROP_NOSCALE | SPROP_CHANGES_OFTEN ),
 #endif
 
-#if defined ( SDK_USE_PRONE )
-	SendPropBool( SENDINFO( m_bProne ) ),
-	SendPropTime( SENDINFO( m_flGoProneTime ) ),
-	SendPropTime( SENDINFO( m_flUnProneTime ) ),
-#endif
 #if defined ( SDK_USE_SPRINTING )
 	SendPropBool( SENDINFO( m_bIsSprinting ) ),
 #endif
@@ -308,7 +295,6 @@ void CSDKPlayer::Precache()
 //Tony; this is where default items go when not using playerclasses!
 void CSDKPlayer::GiveDefaultItems()
 {
-#if !defined ( SDK_USE_PLAYERCLASSES )
 	if ( State_Get() == STATE_ACTIVE )
 	{
 		CBasePlayer::GiveAmmo( 30,	"pistol");
@@ -322,7 +308,6 @@ void CSDKPlayer::GiveDefaultItems()
 		GiveNamedItem( "weapon_crowbar" );
 		GiveNamedItem( "weapon_grenade" );
 	}
-#endif
 }
 #define SDK_PUSHAWAY_THINK_CONTEXT	"SDKPushawayThink"
 void CSDKPlayer::SDKPushawayThink(void)
@@ -354,14 +339,6 @@ void CSDKPlayer::Spawn()
 	BaseClass::Spawn();
 #if defined ( SDK_USE_STAMINA ) || defined ( SDK_USE_SPRINTING )
 	m_Shared.SetStamina( 100 );
-#endif
-
-#if defined ( SDK_USE_TEAMS )
-	m_bTeamChanged	= false;
-#endif
-
-#if defined ( SDK_USE_PRONE )
-	InitProne();
 #endif
 
 #if defined ( SDK_USE_SPRINTING )
@@ -423,31 +400,9 @@ CBaseEntity* CSDKPlayer::EntSelectSpawnPoint()
 
 	switch( GetTeamNumber() )
 	{
-#if defined ( SDK_USE_TEAMS )
-	case SDK_TEAM_BLUE:
-		{
-			pSpawnPointName = "info_player_blue";
-			pSpot = g_pLastBlueSpawn;
-			if ( SelectSpawnSpot( pSpawnPointName, pSpot ) )
-			{
-				g_pLastBlueSpawn = pSpot;
-			}
-		}
-		break;
-	case SDK_TEAM_RED:
-		{
-			pSpawnPointName = "info_player_red";
-			pSpot = g_pLastRedSpawn;
-			if ( SelectSpawnSpot( pSpawnPointName, pSpot ) )
-			{
-				g_pLastRedSpawn = pSpot;
-			}
-		}		
-		break;
-#endif // SDK_USE_TEAMS
 	case TEAM_UNASSIGNED:
 		{
-			pSpawnPointName = "info_player_deathmatch";
+			pSpawnPointName = "info_player_spawn";
 			pSpot = g_pLastDMSpawn;
 			if ( SelectSpawnSpot( pSpawnPointName, pSpot ) )
 			{
@@ -470,67 +425,7 @@ CBaseEntity* CSDKPlayer::EntSelectSpawnPoint()
 	}
 
 	return pSpot;
-} 
-
-//-----------------------------------------------------------------------------
-// Purpose: Put the player in the specified team
-//-----------------------------------------------------------------------------
-//Tony; if we're not using actual teams, we don't need to override this.
-#if defined ( SDK_USE_TEAMS )
-void CSDKPlayer::ChangeTeam( int iTeamNum )
-{
-	if ( !GetGlobalTeam( iTeamNum ) )
-	{
-		Warning( "CSDKPlayer::ChangeTeam( %d ) - invalid team index.\n", iTeamNum );
-		return;
-	}
-
-	int iOldTeam = GetTeamNumber();
-
-	// if this is our current team, just abort
-	if ( iTeamNum == iOldTeam )
-		return;
-	
-	m_bTeamChanged = true;
-
-	// do the team change:
-	BaseClass::ChangeTeam( iTeamNum );
-
-	// update client state 
-	if ( iTeamNum == TEAM_UNASSIGNED )
-	{
-		State_Transition( STATE_OBSERVER_MODE );
-	}
-	else if ( iTeamNum == TEAM_SPECTATOR )
-	{
-		RemoveAllItems( true );
-		
-		State_Transition( STATE_OBSERVER_MODE );
-	}
-	else // active player
-	{
-		if ( !IsDead() )
-		{
-			// Kill player if switching teams while alive
-			CommitSuicide();
-
-			// add 1 to frags to balance out the 1 subtracted for killing yourself
-			IncrementFragCount( 1 );
-		}
-
-		if( iOldTeam == TEAM_SPECTATOR )
-			SetMoveType( MOVETYPE_NONE );
-//Tony; pop up the class menu if we're using classes, otherwise just spawn.
-#if defined ( SDK_USE_PLAYERCLASSES )
-		// Put up the class selection menu.
-		State_Transition( STATE_PICKINGCLASS );
-#else
-		State_Transition( STATE_ACTIVE );
-#endif
-	}
 }
-
-#endif // SDK_USE_TEAMS
 
 //-----------------------------------------------------------------------------
 // Purpose: 
@@ -539,9 +434,6 @@ void CSDKPlayer::CommitSuicide( bool bExplode /* = false */, bool bForce /*= fal
 {
 	// Don't suicide if we haven't picked a class for the first time, or we're not in active state
 	if (
-#if defined ( SDK_USE_PLAYERCLASSES )
-		m_Shared.PlayerClass() == PLAYERCLASS_UNDEFINED || 
-#endif
 		State_Get() != STATE_ACTIVE 
 		)
 		return;
@@ -1007,23 +899,6 @@ bool CSDKPlayer::ClientCommand( const CCommand &args )
 	}
 	else if( !Q_strncmp( pcmd, "cls_", 4 ) )
 	{
-#if defined ( SDK_USE_PLAYERCLASSES )
-		CSDKTeam *pTeam = GetGlobalSDKTeam( GetTeamNumber() );
-
-		Assert( pTeam );
-
-		int iClassIndex = PLAYERCLASS_UNDEFINED;
-
-		if( pTeam->IsClassOnTeam( pcmd, iClassIndex ) )
-		{
-			HandleCommand_JoinClass( iClassIndex );
-		}
-		else
-		{
-			DevMsg( "player tried to join a class that isn't on this team ( %s )\n", pcmd );
-			ShowClassSelectMenu();
-		}
-#endif
 		return true;
 	}
 	else if ( FStrEq( pcmd, "spectate" ) )
@@ -1037,45 +912,21 @@ bool CSDKPlayer::ClientCommand( const CCommand &args )
 		// player just closed MOTD dialog
 		if ( m_iPlayerState == STATE_WELCOME )
 		{
-//Tony; using teams, go to picking team.
-#if defined( SDK_USE_TEAMS )
-			State_Transition( STATE_PICKINGTEAM );
-//Tony; not using teams, but we are using classes, so go straight to class picking.
-#elif !defined ( SDK_USE_TEAMS ) && defined ( SDK_USE_PLAYERCLASSES )
-			State_Transition( STATE_PICKINGCLASS );
-//Tony; not using teams or classes, go straight to active.
-#else
 			State_Transition( STATE_ACTIVE );
-#endif
 		}
 		
 		return true;
 	}
 	else if ( FStrEq( pcmd, "joinclass" ) ) 
 	{
-#if defined ( SDK_USE_PLAYERCLASSES )
-		if ( args.ArgC() < 2 )
-		{
-			Warning( "Player sent bad joinclass syntax\n" );
-		}
-
-		int iClass = atoi( args[1] );
-		HandleCommand_JoinClass( iClass );
-#endif
 		return true;
 	}
 	else if ( FStrEq( pcmd, "menuopen" ) )
 	{
-#if defined ( SDK_USE_PLAYERCLASSES )
-		SetClassMenuOpen( true );
-#endif
 		return true;
 	}
 	else if ( FStrEq( pcmd, "menuclosed" ) )
 	{
-#if defined ( SDK_USE_PLAYERCLASSES )
-		SetClassMenuOpen( false );
-#endif
 		return true;
 	}
 	else if ( FStrEq( pcmd, "drop" ) )
@@ -1099,14 +950,6 @@ bool CSDKPlayer::HandleCommand_JoinTeam( int team )
 		return false;
 	}
 
-#if defined ( SDK_USE_TEAMS )
-	// If we already died and changed teams once, deny
-	if( m_bTeamChanged && team != TEAM_SPECTATOR && iOldTeam != TEAM_SPECTATOR )
-	{
-		ClientPrint( this, HUD_PRINTCENTER, "game_switch_teams_once" );
-		return true;
-	}
-#endif
 	if ( team == TEAM_UNASSIGNED )
 	{
 		// Attempt to auto-select a team, may set team to T, CT or SPEC
@@ -1124,22 +967,6 @@ bool CSDKPlayer::HandleCommand_JoinTeam( int team )
 
 	if ( team == iOldTeam )
 		return true;	// we wouldn't change the team
-
-#if defined ( SDK_USE_TEAMS )
-	if ( mp->TeamFull( team ) )
-	{
-		if ( team == SDK_TEAM_BLUE )
-		{
-			ClientPrint( this, HUD_PRINTTALK, "#BlueTeam_Full" );
-		}
-		else if ( team == SDK_TEAM_RED )
-		{
-			ClientPrint( this, HUD_PRINTTALK, "#RedTeam_Full" );
-		}
-		ShowViewPortPanel( PANEL_TEAM );
-		return false;
-	}
-#endif
 
 	if ( team == TEAM_SPECTATOR )
 	{
@@ -1160,151 +987,11 @@ bool CSDKPlayer::HandleCommand_JoinTeam( int team )
 
 	// Player is switching to a new team (It is possible to switch to the
 	// same team just to choose a new appearance)
-#if defined ( SDK_USE_TEAMS )
-	if (mp->TeamStacked( team, GetTeamNumber() ))//players are allowed to change to their own team so they can just change their model
-	{
-		// The specified team is full
-		ClientPrint( 
-			this,
-			HUD_PRINTCENTER,
-			( team == SDK_TEAM_BLUE ) ?	"#BlueTeam_full" : "#RedTeam_full" );
-
-		ShowViewPortPanel( PANEL_TEAM );
-		return false;
-	}
-#endif
 	// Switch their actual team...
 	ChangeTeam( team );
 
-#if defined ( SDK_USE_PLAYERCLASSES )
-	// Force them to choose a new class
-	m_Shared.SetDesiredPlayerClass( PLAYERCLASS_UNDEFINED );
-	m_Shared.SetPlayerClass( PLAYERCLASS_UNDEFINED );
-#endif
 	return true;
 }
-
-#if defined ( SDK_USE_PLAYERCLASSES )
-//Tony; we don't have to check anything special for SDK_USE_TEAMS here; it's all pretty generic, except for the one assert.
-bool CSDKPlayer::HandleCommand_JoinClass( int iClass )
-{
-	Assert( GetTeamNumber() != TEAM_SPECTATOR );
-#if defined ( SDK_USE_TEAMS )
-	Assert( GetTeamNumber() != TEAM_UNASSIGNED );
-#endif
-
-	if( GetTeamNumber() == TEAM_SPECTATOR )
-		return false;
-
-	if( iClass == PLAYERCLASS_UNDEFINED )
-		return false;	//they typed in something weird
-
-	int iOldPlayerClass = m_Shared.DesiredPlayerClass();
-
-	// See if we're joining the class we already are
-	if( iClass == iOldPlayerClass )
-		return true;
-
-	if( !SDKGameRules()->IsPlayerClassOnTeam( iClass, GetTeamNumber() ) )
-		return false;
-
-	const char *classname = SDKGameRules()->GetPlayerClassName( iClass, GetTeamNumber() );
-
-	if( SDKGameRules()->CanPlayerJoinClass( this, iClass ) )
-	{
-		m_Shared.SetDesiredPlayerClass( iClass );	//real class value is set when the player spawns
-
-//Tony; don't do this until we have a spawn timer!!
-//		if( State_Get() == STATE_PICKINGCLASS )
-//			State_Transition( STATE_OBSERVER_MODE );
-
-		if( iClass == PLAYERCLASS_RANDOM )
-		{
-			if( IsAlive() )
-			{
-				ClientPrint(this, HUD_PRINTTALK, "#game_respawn_asrandom" );
-			}
-			else
-			{
-				ClientPrint(this, HUD_PRINTTALK, "#game_spawn_asrandom" );
-			}
-		}
-		else
-		{
-			if( IsAlive() )
-			{
-				ClientPrint(this, HUD_PRINTTALK, "#game_respawn_as", classname );
-			}
-			else
-			{
-				ClientPrint(this, HUD_PRINTTALK, "#game_spawn_as", classname );
-			}
-		}
-
-		IGameEvent * event = gameeventmanager->CreateEvent( "player_changeclass" );
-		if ( event )
-		{
-			event->SetInt( "userid", GetUserID() );
-			event->SetInt( "class", iClass );
-
-			gameeventmanager->FireEvent( event );
-		}
-	}
-	else
-	{
-		ClientPrint(this, HUD_PRINTTALK, "#game_class_limit", classname );
-		ShowClassSelectMenu();
-	}
-
-	// Incase we don't get the class menu message before the spawn timer
-	// comes up, fake that we've closed the menu.
-	SetClassMenuOpen( false );
-
-	//Tony; TODO; this is temp, I may integrate with the teamplayroundrules; If I do, there will be wavespawn too.
-	if ( State_Get() == STATE_PICKINGCLASS /*|| IsDead()*/ )	//Tony; undone, don't transition if dead; only go into active state at this point if we were picking class.
-		State_Transition( STATE_ACTIVE ); //Done picking stuff and we're in the pickingclass state, or dead, so we can spawn now.
-
-	return true;
-}
-
-void CSDKPlayer::ShowClassSelectMenu()
-{
-#if defined ( SDK_USE_TEAMS )
-	if ( GetTeamNumber() == SDK_TEAM_BLUE )
-	{
-		ShowViewPortPanel( PANEL_CLASS_BLUE );
-	}
-	else if ( GetTeamNumber() == SDK_TEAM_RED	)
-	{
-		ShowViewPortPanel( PANEL_CLASS_RED );
-	}
-
-#else
-	if ( GetTeamNumber() == TEAM_UNASSIGNED )
-		ShowViewPortPanel( PANEL_CLASS_NOTEAMS );
-#endif
-}
-void CSDKPlayer::SetClassMenuOpen( bool bOpen )
-{
-	m_bIsClassMenuOpen = bOpen;
-}
-
-bool CSDKPlayer::IsClassMenuOpen( void )
-{
-	return m_bIsClassMenuOpen;
-}
-#endif // SDK_USE_PLAYERCLASSES
-
-#if defined ( SDK_USE_PRONE )
-//-----------------------------------------------------------------------------
-// Purpose: Initialize prone at spawn.
-//-----------------------------------------------------------------------------
-void CSDKPlayer::InitProne( void )
-{
-	m_Shared.SetProne( false, true );
-	m_bUnProneToDuck = false;
-}
-#endif // SDK_USE_PRONE
 
 #if defined ( SDK_USE_SPRINTING )
 void CSDKPlayer::InitSprinting( void )
@@ -1378,12 +1065,6 @@ CSDKPlayerStateInfo* CSDKPlayer::State_LookupInfo( SDKPlayerState state )
 	{
 		{ STATE_ACTIVE,			"STATE_ACTIVE",			&CSDKPlayer::State_Enter_ACTIVE, NULL, &CSDKPlayer::State_PreThink_ACTIVE },
 		{ STATE_WELCOME,		"STATE_WELCOME",		&CSDKPlayer::State_Enter_WELCOME, NULL, &CSDKPlayer::State_PreThink_WELCOME },
-#if defined ( SDK_USE_TEAMS )
-		{ STATE_PICKINGTEAM,	"STATE_PICKINGTEAM",	&CSDKPlayer::State_Enter_PICKINGTEAM, NULL,	&CSDKPlayer::State_PreThink_WELCOME },
-#endif
-#if defined ( SDK_USE_PLAYERCLASSES )
-		{ STATE_PICKINGCLASS,	"STATE_PICKINGCLASS",	&CSDKPlayer::State_Enter_PICKINGCLASS, NULL,	&CSDKPlayer::State_PreThink_WELCOME },
-#endif
 		{ STATE_DEATH_ANIM,		"STATE_DEATH_ANIM",		&CSDKPlayer::State_Enter_DEATH_ANIM,	NULL, &CSDKPlayer::State_PreThink_DEATH_ANIM },
 		{ STATE_OBSERVER_MODE,	"STATE_OBSERVER_MODE",	&CSDKPlayer::State_Enter_OBSERVER_MODE,	NULL, &CSDKPlayer::State_PreThink_OBSERVER_MODE }
 	};
@@ -1559,11 +1240,6 @@ void CSDKPlayer::State_PreThink_DEATH_ANIM()
 	//Tony; if we're now dead, and not changing classes, spawn
 	if ( m_lifeState == LIFE_DEAD )
 	{
-#if defined ( SDK_USE_PLAYERCLASSES )
-		//Tony; if the class menu is open, don't respawn them, wait till they're done.
-		if (IsClassMenuOpen())
-			return;
-#endif
 		State_Transition( STATE_ACTIVE );
 	}
 }
@@ -1643,24 +1319,6 @@ void CSDKPlayer::State_PreThink_OBSERVER_MODE()
 	}
 }
 
-#if defined ( SDK_USE_PLAYERCLASSES )
-void CSDKPlayer::State_Enter_PICKINGCLASS()
-{
-	ShowClassSelectMenu();
-	PhysObjectSleep();
-
-}
-#endif // SDK_USE_PLAYERCLASSES
-
-#if defined ( SDK_USE_TEAMS )
-void CSDKPlayer::State_Enter_PICKINGTEAM()
-{
-	ShowViewPortPanel( PANEL_TEAM );
-	PhysObjectSleep();
-
-}
-#endif // SDK_USE_TEAMS
-
 void CSDKPlayer::State_Enter_ACTIVE()
 {
 	SetMoveType( MOVETYPE_WALK );
@@ -1678,10 +1336,6 @@ void CSDKPlayer::State_PreThink_ACTIVE()
 
 int CSDKPlayer::GetPlayerStance()
 {
-#if defined ( SDK_USE_PRONE )
-	if (m_Shared.IsProne() || ( m_Shared.IsGoingProne() || m_Shared.IsGettingUpFromProne() ))
-		return PINFO_STANCE_PRONE;
-#endif
 
 #if defined ( SDK_USE_SPRINTING )
 	if (IsSprinting())

@@ -96,30 +96,10 @@ void CSDKSpectatorGUI::ApplySchemeSettings(vgui::IScheme *pScheme)
 //-----------------------------------------------------------------------------
 void CSDKSpectatorGUI::UpdateSpectatorPlayerList()
 {
-#if defined ( SDK_USE_TEAMS )
-	C_SDKTeam *blue = GetGlobalSDKTeam( SDK_TEAM_BLUE );
-	if ( blue )
-	{
-		wchar_t frags[ 10 ];
-		_snwprintf( frags, sizeof( frags ), L"%i",  blue->Get_Score()  );
-
-		SetLabelText( "BlueScoreValue", frags );
-	}
-
-	C_SDKTeam *red = GetGlobalSDKTeam( SDK_TEAM_RED );
-	if ( red )
-	{
-		wchar_t frags[ 10 ];
-		_snwprintf( frags, sizeof( frags ), L"%i", red->Get_Score()  );
-		
-		SetLabelText( "RedScoreValue", frags );
-	}
-#else
 	m_pBlueLabel->SetVisible( false );
 	m_pBlueScore->SetVisible( false );
 	m_pRedLabel->SetVisible( false );
 	m_pRedScore->SetVisible( false );
-#endif
 }
 
 bool CSDKSpectatorGUI::NeedsUpdate( void )

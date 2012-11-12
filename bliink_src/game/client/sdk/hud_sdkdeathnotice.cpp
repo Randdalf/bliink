@@ -45,12 +45,6 @@ private:
 	void AddAdditionalMsg( int iKillerID, int iVictimID, const char *pMsgKey );
 
 	CHudTexture		*m_iconDomination;
-
-#if defined ( SDK_USE_TEAMS )
-	CPanelAnimationVar( Color, m_clrBlueText, "TeamBlue", "153 204 255 255" );
-	CPanelAnimationVar( Color, m_clrRedText, "TeamRed", "255 64 64 255" );
-#endif
-
 };
 
 DECLARE_HUDELEMENT( SDKHudDeathNotice );
@@ -170,14 +164,6 @@ Color SDKHudDeathNotice::GetTeamColor( int iTeamNumber, bool localplayerinvolved
 {
 	switch ( iTeamNumber )
 	{
-#if defined ( SDK_USE_TEAMS )
-	case SDK_TEAM_BLUE:
-		return m_clrBlueText;
-		break;
-	case SDK_TEAM_RED:
-		return m_clrRedText;
-		break;
-#endif
 	case TEAM_UNASSIGNED:		
 		return Color( 255, 255, 255, 255 );
 		break;

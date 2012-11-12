@@ -39,54 +39,8 @@
 #include "sdk_scoreboard.h"
 #include "sdk_textwindow.h"
 #include "sdk_spectatorgui.h"
-#if defined ( SDK_USE_PLAYERCLASSES )
-#include "sdk_classmenu.h"
-#endif
-#if defined ( SDK_USE_TEAMS )
-#include "sdk_teammenu.h"
-#endif
 
 #include "clientmode_sdk.h"
-#if defined ( SDK_USE_TEAMS )
-CON_COMMAND_F( changeteam, "Choose a new team", FCVAR_SERVER_CAN_EXECUTE|FCVAR_CLIENTCMD_CAN_EXECUTE )
-{
-	C_SDKPlayer *pPlayer = C_SDKPlayer::GetLocalSDKPlayer();
-
-	if ( pPlayer && pPlayer->CanShowTeamMenu() )
-	{
-		GetViewPortInterface()->ShowPanel( PANEL_TEAM, true );
-	}
-}
-#endif // SDK_USE_TEAMS
-
-#if defined ( SDK_USE_PLAYERCLASSES )
-CON_COMMAND_F( changeclass, "Choose a new class", FCVAR_SERVER_CAN_EXECUTE|FCVAR_CLIENTCMD_CAN_EXECUTE )
-{
-	C_SDKPlayer *pPlayer = C_SDKPlayer::GetLocalSDKPlayer();
-
-	if ( pPlayer && pPlayer->CanShowClassMenu())
-	{
-		switch( pPlayer->GetTeamNumber() )
-		{
-#if defined ( SDK_USE_TEAMS )
-		case SDK_TEAM_BLUE:
-			GetViewPortInterface()->ShowPanel( PANEL_CLASS_BLUE, true );
-			break;
-		case SDK_TEAM_RED:
-			GetViewPortInterface()->ShowPanel( PANEL_CLASS_RED, true );
-			break;
-#else
-		case TEAM_UNASSIGNED:
-			GetViewPortInterface()->ShowPanel( PANEL_CLASS, true );
-			break;
-#endif
-		default:
-			break;
-		}
-	}
-}
-#endif // SDK_USE_PLAYERCLASSES
-
 
 CON_COMMAND_F( spec_help, "Show spectator help screen", FCVAR_CLIENTCMD_CAN_EXECUTE)
 {
@@ -159,30 +113,6 @@ IViewPortPanel* SDKViewport::CreatePanelByName(const char *szPanelName)
 	{
 		newpanel = new CSDKSpectatorGUI( this );	
 	}
-
-#if defined ( SDK_USE_PLAYERCLASSES )
-	#if !defined ( SDK_USE_TEAMS )
-		else if ( Q_strcmp( PANEL_CLASS_NOTEAMS, szPanelName) == 0 )
-		{
-			newpanel = new CSDKClassMenu_NoTeams( this );
-		}
-	#else
-		else if ( Q_strcmp( PANEL_CLASS_BLUE, szPanelName) == 0 )
-		{
-			newpanel = new CSDKClassMenu_Blue( this );
-		}
-		else if ( Q_strcmp( PANEL_CLASS_RED, szPanelName) == 0 )
-		{
-			newpanel = new CSDKClassMenu_Red( this );
-		}
-	#endif
-#endif
-#if defined ( SDK_USE_TEAMS )
-	else if ( Q_strcmp( PANEL_TEAM, szPanelName) == 0 )
-	{
-		newpanel = new CSDKTeamMenu( this );
-	}
-#endif
 	else
 	{
 		// create a generic base panel, don't add twice
@@ -194,18 +124,6 @@ IViewPortPanel* SDKViewport::CreatePanelByName(const char *szPanelName)
 
 void SDKViewport::CreateDefaultPanels( void )
 {
-#if defined ( SDK_USE_PLAYERCLASSES )
-	#if !defined ( SDK_USE_TEAMS )
-		AddNewPanel( CreatePanelByName( PANEL_CLASS_NOTEAMS ), "PANEL_CLASS_NOTEAMS" );
-	#else
-		AddNewPanel( CreatePanelByName( PANEL_CLASS_BLUE ), "PANEL_CLASS_BLUE" );
-		AddNewPanel( CreatePanelByName( PANEL_CLASS_RED ), "PANEL_CLASS_RED" );
-	#endif
-#endif
-#if defined ( SDK_USE_TEAMS )
-	AddNewPanel( CreatePanelByName( PANEL_TEAM ), "PANEL_TEAM" );
-#endif
-
 	//Msg( "created SDKViewport Panels\n");
 	BaseClass::CreateDefaultPanels();
 }

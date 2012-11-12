@@ -144,15 +144,7 @@ void CSDKPlayer::FireBullet(
 					//Tony; only while using teams do we check for friendly fire.
 					if ( pEntity && pEntity->IsPlayer() && (pEntity->GetBaseAnimating() && !pEntity->GetBaseAnimating()->IsRagdoll()) )
 					{
-#if defined ( SDK_USE_TEAMS )
-						if ( pEntity->GetTeamNumber() == GetTeamNumber() )
-						{
-							if ( !friendlyfire.GetBool() )
-								UTIL_ImpactTrace( &tr, iDamageType );
-						}
-#else
 						UTIL_ImpactTrace( &tr, iDamageType );
-#endif
 					}
 					//Tony; non player, just go nuts,
 					else
@@ -202,9 +194,6 @@ void CSDKPlayer::SharedSpawn()
 	//Tony; todo; fix
 
 //	m_flMinNextStepSoundTime = gpGlobals->curtime;
-#if defined ( SDK_USE_PRONE )
-//	m_bPlayingProneMoveSound = false;
-#endif // SDK_USE_PRONE
 }
 #if defined ( SDK_USE_SPRINTING )
 void CSDKPlayer::SetSprinting( bool bIsSprinting )
@@ -239,19 +228,6 @@ bool CSDKPlayer::CanAttack( void )
 		return false;
 #endif  //SDK_SHOOT_WHILE_JUMPING
 
-#if defined ( SDK_USE_PRONE )
-	// cannot attack while prone moving.
-	if ( m_Shared.IsProne() && GetAbsVelocity().LengthSqr() > 1 )
-	{
-		return false;
-	}
-
-	if( m_Shared.IsGoingProne() || m_Shared.IsGettingUpFromProne() )
-	{
-		return false;
-	}
-#endif // SDK_USE_PRONE
-
 	return true;
 }
 
@@ -273,12 +249,6 @@ const Vector CSDKPlayer::GetPlayerMins( void ) const
 		{
 			return VEC_DUCK_HULL_MIN;
 		}
-#if defined ( SDK_USE_PRONE )
-		else if ( m_Shared.IsProne() )
-		{
-			return VEC_PRONE_HULL_MIN;
-		}
-#endif // SDK_USE_PRONE
 		else
 		{
 			return VEC_HULL_MIN;
@@ -303,12 +273,6 @@ const Vector CSDKPlayer::GetPlayerMaxs( void ) const
 		{
 			return VEC_DUCK_HULL_MAX;
 		}
-#if defined ( SDK_USE_PRONE )
-		else if ( m_Shared.IsProne() )
-		{
-			return VEC_PRONE_HULL_MAX;
-		}
-#endif // SDK_USE_PRONE
 		else
 		{
 			return VEC_HULL_MAX;
@@ -322,17 +286,6 @@ const Vector CSDKPlayer::GetPlayerMaxs( void ) const
 // --------------------------------------------------------------------------------------------------- //
 CSDKPlayerShared::CSDKPlayerShared()
 {
-#if defined( SDK_USE_PRONE )
-	m_bProne = false;
-	m_bForceProneChange = false;
-	m_flNextProneCheck = 0;
-	m_flUnProneTime = 0;
-	m_flGoProneTime = 0;
-#endif
-
-#if defined ( SDK_USE_PLAYERCLASSES )
-	SetDesiredPlayerClass( PLAYERCLASS_UNDEFINED );
-#endif
 }
 
 CSDKPlayerShared::~CSDKPlayerShared()
@@ -348,81 +301,6 @@ bool CSDKPlayerShared::IsDucking( void ) const
 {
 	return ( m_pOuter->GetFlags() & FL_DUCKING ) ? true : false;
 }
-
-#if defined ( SDK_USE_PRONE )
-bool CSDKPlayerShared::IsProne() const
-{
-	return m_bProne;
-}
-
-bool CSDKPlayerShared::IsGettingUpFromProne() const
-{
-	return ( m_flUnProneTime > 0 );
-}
-
-bool CSDKPlayerShared::IsGoingProne() const
-{
-	return ( m_flGoProneTime > 0 );
-}
-void CSDKPlayerShared::SetProne( bool bProne, bool bNoAnimation /* = false */ )
-{
-	m_bProne = bProne;
-
-	if ( bNoAnimation )
-	{
-		m_flGoProneTime = 0;
-		m_flUnProneTime = 0;
-
-		// cancel the view animation!
-		m_bForceProneChange = true;
-	}
-
-	if ( !bProne /*&& IsSniperZoomed()*/ )	// forceunzoom for going prone is in StartGoingProne
-	{
-		ForceUnzoom();
-	}
-}
-void CSDKPlayerShared::StartGoingProne( void )
-{
-	// make the prone sound
-	CPASFilter filter( m_pOuter->GetAbsOrigin() );
-	filter.UsePredictionRules();
-	m_pOuter->EmitSound( filter, m_pOuter->entindex(), "Player.GoProne" );
-
-	// slow to prone speed
-	m_flGoProneTime = gpGlobals->curtime + TIME_TO_PRONE;
-
-	m_flUnProneTime = 0.0f;	//reset
-
-	if ( IsSniperZoomed() )
-		ForceUnzoom();
-}
-
-void CSDKPlayerShared::StandUpFromProne( void )
-{	
-	// make the prone sound
-	CPASFilter filter( m_pOuter->GetAbsOrigin() );
-	filter.UsePredictionRules();
-	m_pOuter->EmitSound( filter, m_pOuter->entindex(), "Player.UnProne" );
-
-	// speed up to target speed
-	m_flUnProneTime = gpGlobals->curtime + TIME_TO_PRONE;
-
-	m_flGoProneTime = 0.0f;	//reset 
-}
-
-bool CSDKPlayerShared::CanChangePosition( void )
-{
-	if ( IsGettingUpFromProne() )
-		return false;
-
-	if ( IsGoingProne() )
-		return false;
-
-	return true;
-}
-
-#endif
 
 #if defined ( SDK_USE_SPRINTING )
 void CSDKPlayerShared::SetSprinting( bool bSprinting )
@@ -498,28 +376,6 @@ bool CSDKPlayerShared::IsSniperZoomed( void ) const
 	return false;
 }
 
-#if defined ( SDK_USE_PLAYERCLASSES )
-void CSDKPlayerShared::SetDesiredPlayerClass( int playerclass )
-{
-	m_iDesiredPlayerClass = playerclass;
-}
-
-int CSDKPlayerShared::DesiredPlayerClass( void )
-{
-	return m_iDesiredPlayerClass;
-}
-
-void CSDKPlayerShared::SetPlayerClass( int playerclass )
-{
-	m_iPlayerClass = playerclass;
-}
-
-int CSDKPlayerShared::PlayerClass( void )
-{
-	return m_iPlayerClass;
-}
-#endif
-
 #if defined ( SDK_USE_STAMINA ) || defined ( SDK_USE_SPRINTING )
 void CSDKPlayerShared::SetStamina( float flStamina )
 {
@@ -543,18 +399,6 @@ CWeaponSDKBase* CSDKPlayerShared::GetActiveSDKWeapon() const
 void CSDKPlayerShared::ComputeWorldSpaceSurroundingBox( Vector *pVecWorldMins, Vector *pVecWorldMaxs )
 {
 	Vector org = m_pOuter->GetAbsOrigin();
-
-#ifdef SDK_USE_PRONE
-	if ( IsProne() )
-	{
-		static Vector vecProneMin(-44, -44, 0 );
-		static Vector vecProneMax(44, 44, 24 );
-
-		VectorAdd( vecProneMin, org, *pVecWorldMins );
-		VectorAdd( vecProneMax, org, *pVecWorldMaxs );
-	}
-	else
-#endif
 	{
 		static Vector vecMin(-32, -32, 0 );
 		static Vector vecMax(32, 32, 72 );
@@ -566,39 +410,12 @@ void CSDKPlayerShared::ComputeWorldSpaceSurroundingBox( Vector *pVecWorldMins, V
 
 void CSDKPlayer::InitSpeeds()
 {
-#if !defined ( SDK_USE_PLAYERCLASSES )
 	m_Shared.m_flRunSpeed = SDK_DEFAULT_PLAYER_RUNSPEED;
 	m_Shared.m_flSprintSpeed = SDK_DEFAULT_PLAYER_SPRINTSPEED;
 	m_Shared.m_flProneSpeed = SDK_DEFAULT_PLAYER_PRONESPEED;
 	// Set the absolute MAX to sprint speed
 	SetMaxSpeed( m_Shared.m_flSprintSpeed ); 
 	return;
-#endif
-#if defined ( SDK_USE_PLAYERCLASSES )
-		int playerclass = m_Shared.PlayerClass();
-
-		//Tony; error checkings.
-		if ( playerclass == PLAYERCLASS_UNDEFINED )
-		{
-			m_Shared.m_flRunSpeed = SDK_DEFAULT_PLAYER_RUNSPEED;
-			m_Shared.m_flSprintSpeed = SDK_DEFAULT_PLAYER_SPRINTSPEED;
-			m_Shared.m_flProneSpeed = SDK_DEFAULT_PLAYER_PRONESPEED;
-		}
-		else
-		{
-			CSDKTeam *pTeam = GetGlobalSDKTeam( GetTeamNumber() );
-			const CSDKPlayerClassInfo &pClassInfo = pTeam->GetPlayerClassInfo( playerclass );
-
-			Assert( pClassInfo.m_iTeam == GetTeamNumber() );
-
-			m_Shared.m_flRunSpeed = pClassInfo.m_flRunSpeed;
-			m_Shared.m_flSprintSpeed = pClassInfo.m_flSprintSpeed;
-			m_Shared.m_flProneSpeed = pClassInfo.m_flProneSpeed;
-		}
-
-		// Set the absolute MAX to sprint speed
-		SetMaxSpeed( m_Shared.m_flSprintSpeed ); 
-#endif // SDK_USE_PLAYERCLASSES
 }
 
 //-----------------------------------------------------------------------------
@@ -608,24 +425,6 @@ void CSDKPlayer::InitSpeeds()
 //-----------------------------------------------------------------------------
 bool CSDKPlayer::ShouldCollide( int collisionGroup, int contentsMask ) const
 {
-	// Only check these when using teams, otherwise it's normal!
-#if defined ( SDK_USE_TEAMS )
-	if ( collisionGroup == COLLISION_GROUP_PLAYER_MOVEMENT || collisionGroup == COLLISION_GROUP_PROJECTILE )
-	{
-		switch( GetTeamNumber() )
-		{
-		case SDK_TEAM_BLUE:
-			if ( !( contentsMask & CONTENTS_TEAM2 ) )
-				return false;
-			break;
-
-		case SDK_TEAM_RED:
-			if ( !( contentsMask & CONTENTS_TEAM1 ) )
-				return false;
-			break;
-		}
-	}
-#endif
 	return BaseClass::ShouldCollide( collisionGroup, contentsMask );
 }
 

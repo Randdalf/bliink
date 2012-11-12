@@ -161,11 +161,8 @@ void GameStartFrame( void )
 	if ( g_fGameOver )
 		return;
 
-#if defined ( SDK_USE_TEAMS )
-	gpGlobals->teamplay = true;
-#else
 	gpGlobals->teamplay = false;
-#endif
+
 	extern void Bot_RunAll();
 	Bot_RunAll();
 }

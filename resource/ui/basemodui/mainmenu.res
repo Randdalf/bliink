@@ -62,10 +62,10 @@
 		"tabPosition"			"0"
 		"navUp"				"BtnQuit"
 		"navDown"				"BtnStatsAndAchievements"
-		"labelText"				"#L4D360UI_MainMenu_CoOp"
+		"labelText"				"#Bliink_Start_Game"
 		"tooltiptext"			"#L4D360UI_MainMenu_CoOp_Tip"
 		"style"				"AlienSwarmMenuButton"
-		"command"				"FlmCampaignFlyout"	
+		"command"				"BliinkStartGame"	
 		"ActivationType"			"1"
 	}	
 		

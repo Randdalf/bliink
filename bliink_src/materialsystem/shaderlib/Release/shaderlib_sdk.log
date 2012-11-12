@@ -1,21 +1,21 @@
-﻿Build started 09/11/2012 18:01:58.
-     1>Project "C:\Users\Alex\My Code\bliink\materialsystem\shaderlib\shaderlib_sdk.vcxproj" on node 5 (build target(s)).
+﻿Build started 12/11/2012 19:22:18.
+     1>Project "C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\bliink_src\materialsystem\shaderlib\shaderlib_sdk.vcxproj" on node 5 (build target(s)).
      1>InitializeBuildStatus:
          Creating ".\Release\.\shaderlib.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          All outputs are up-to-date.
-     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(1151,5): warning MSB8012: TargetPath(C:\Users\Alex\My Code\bliink\materialsystem\shaderlib\.\Release\.\shaderlib.lib) does not match the Library's OutputFile property value (C:\Users\Alex\My Code\bliink\lib\public\shaderlib.lib). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(1151,5): warning MSB8012: TargetPath(C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\bliink_src\materialsystem\shaderlib\.\Release\.\shaderlib.lib) does not match the Library's OutputFile property value (C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\bliink_src\lib\public\shaderlib.lib). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Lib.OutputFile).
        PreLinkEvent:
          if exist ..\..\lib\public\shaderlib.lib attrib -r ..\..\lib\public\shaderlib.lib
          :VCEnd
        Lib:
          All outputs are up-to-date.
-         shaderlib_sdk.vcxproj -> C:\Users\Alex\My Code\bliink\materialsystem\shaderlib\.\Release\.\shaderlib.lib
+         shaderlib_sdk.vcxproj -> C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\bliink_src\materialsystem\shaderlib\.\Release\.\shaderlib.lib
        FinalizeBuildStatus:
          Deleting file ".\Release\.\shaderlib.unsuccessfulbuild".
          Touching ".\Release\.\shaderlib.lastbuildstate".
-     1>Done Building Project "C:\Users\Alex\My Code\bliink\materialsystem\shaderlib\shaderlib_sdk.vcxproj" (build target(s)).
+     1>Done Building Project "C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\bliink_src\materialsystem\shaderlib\shaderlib_sdk.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.36
+Time Elapsed 00:00:00.28

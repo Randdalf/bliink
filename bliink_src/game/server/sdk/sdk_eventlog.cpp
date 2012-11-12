@@ -40,9 +40,6 @@ public:
 
 		ListenForGameEvent( "player_death" );
 		ListenForGameEvent( "player_hurt" );
-#if defined ( SDK_USE_PLAYERCLASSES )
-		ListenForGameEvent( "player_changeclass" );
-#endif // SDK_USE_PLAYERCLASSES
 
 		return true;
 	}

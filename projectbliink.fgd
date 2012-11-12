@@ -11,21 +11,8 @@
 // Point Classes
 //
 //-------------------------------------------------------------------------
-@PointClass base(Angles,Targetname,EnableDisable) studio("models/editor/playerstart.mdl") = info_player_deathmatch :
-	"This entity marks the start point for players in deathmatch."
-[
-]
-
-@PointClass base(Angles,Targetname,EnableDisable) studio("models/editor/playerstart.mdl") = info_player_blue :
-	"This entity marks the start point for allies. One of these needs to be placed for each team member. " +
-	"16 start points is typical. Should be placed at least 128 units away from each other and surrounding walls."
-[
-]
-
-
-@PointClass base(Angles,Targetname,EnableDisable) studio("models/editor/playerstart.mdl") = info_player_red :
-	"This entity marks the start point for axis. One of these needs to be placed for each team member. " +
-	"16 start points is typical. Should be placed at least 128 units away from each other and surrounding walls."
+@PointClass base(Angles,Targetname,EnableDisable) studio("models/editor/playerstart.mdl") = info_player_spawn :
+	"This entity marks the start point for players to spawn."
 [
 ]
 

@@ -66,28 +66,6 @@ public:
 	 virtual		~C_SDKTeam_Unassigned() {}
 };
 
-#if defined ( SDK_USE_TEAMS )
-class C_SDKTeam_Blue : public C_SDKTeam
-{
-	DECLARE_CLASS( C_SDKTeam_Blue, C_SDKTeam );
-public:
-	DECLARE_CLIENTCLASS();
-
-				     C_SDKTeam_Blue();
-	 virtual		~C_SDKTeam_Blue() {}
-};
-
-class C_SDKTeam_Red : public C_SDKTeam
-{
-	DECLARE_CLASS( C_SDKTeam_Red, C_SDKTeam );
-public:
-	DECLARE_CLIENTCLASS();
-
-					 C_SDKTeam_Red();
-	virtual			~C_SDKTeam_Red() {}
-};
-#endif // SDK_USE_TEAMS
-
 extern C_SDKTeam *GetGlobalSDKTeam( int iIndex );
 
 #endif // C_SDK_TEAM_H

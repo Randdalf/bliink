@@ -80,17 +80,9 @@ public:
 
 	// Tracks our ragdoll entity.
 	CNetworkHandle( CBaseEntity, m_hRagdoll );	// networked entity handle 
-#if defined ( SDK_USE_PLAYERCLASSES )
-	int GetPlayerClassAsString( char *pDest, int iDestSize );
-	void SetClassMenuOpen( bool bIsOpen );
-	bool IsClassMenuOpen( void );
-#endif
 	void PhysObjectSleep();
 	void PhysObjectWake();
 
-#if defined ( SDK_USE_TEAMS )
-	virtual void ChangeTeam( int iTeamNum );
-#endif
 	// Player avoidance
 	virtual	bool		ShouldCollide( int collisionGroup, int contentsMask ) const;
 	void SDKPushawayThink(void);
@@ -176,21 +168,8 @@ private:
 
 	CSDKPlayerStateInfo *m_pCurStateInfo;			// This can be NULL if no state info is defined for m_iPlayerState.
 	bool HandleCommand_JoinTeam( int iTeam );
-#if defined ( SDK_USE_TEAMS )
-	bool	m_bTeamChanged;		//have we changed teams this spawn? Used to enforce one team switch per death rule
-#endif
 
 	bool BecomeRagdollOnClient( const Vector &force );
-
-#if defined ( SDK_USE_PLAYERCLASSES )
-	bool HandleCommand_JoinClass( int iClass );
-	void ShowClassSelectMenu();
-	bool m_bIsClassMenuOpen;
-#endif
-
-#if defined ( SDK_USE_PRONE )
-	void InitProne( void );
-#endif // SDK_USE_PRONE
 
 #if defined ( SDK_USE_SPRINTING )
 	void InitSprinting( void );
@@ -236,11 +215,6 @@ private:
 
 	int m_iSpawnArmorValue;
 	IMPLEMENT_NETWORK_VAR_FOR_DERIVED( m_ArmorValue );
-public:
-#if defined ( SDK_USE_PRONE )
-	bool m_bUnProneToDuck;		//Tony; GAMEMOVEMENT USED VARIABLE
-#endif // SDK_USE_PRONE
-
 };
 
 

@@ -18,10 +18,6 @@
 #include "playerclass_info_parse.h"
 #include "sdk_playerclass_info_parse.h"
 
-#if defined ( SDK_USE_PLAYERCLASSES )
-typedef CUtlLinkedList< PLAYERCLASS_FILE_INFO_HANDLE, int > PlayerClassInfoList;
-#endif
-
 //-----------------------------------------------------------------------------
 // Purpose: Team Manager
 //-----------------------------------------------------------------------------
@@ -36,24 +32,9 @@ public:
 	virtual void Init( const char *pName, int iNumber );
 	const unsigned char *GetEncryptionKey( void ) { return g_pGameRules->GetEncryptionKey(); }
 
-#if defined ( SDK_USE_PLAYERCLASSES )
-	CSDKPlayerClassInfo const &GetPlayerClassInfo( int iPlayerClass ) const;
-
-	virtual void AddPlayerClass( const char *pszClassName );
-
-	bool IsClassOnTeam( const char *pszClassName, int &iClassNum ) const;
-	int GetNumPlayerClasses( void ) { return m_hPlayerClassInfoHandles.Count(); }
-#endif  // SDK_USE_PLAYERCLASSES
-
 	virtual const char *GetTeamName( void ) { return "#Teamname_Spectators"; }
 
 	void ResetScores( void );
-
-private:
-#if defined ( SDK_USE_PLAYERCLASSES )
-	CUtlVector < PLAYERCLASS_FILE_INFO_HANDLE >		m_hPlayerClassInfoHandles;
-#endif  // SDK_USE_PLAYERCLASSES
-
 };
 
 

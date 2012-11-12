@@ -57,11 +57,6 @@ public:
 		Vector vObsHullMin,
 		Vector vObsHullMax,
 		Vector vDeadViewHeight
-#if defined ( SDK_USE_PRONE )
-		,Vector vProneHullMin,
-		Vector vProneHullMax,
-		Vector vProneView
-#endif
 		) :
 			CViewVectors( 
 				vView,
@@ -74,17 +69,7 @@ public:
 				vObsHullMax,
 				vDeadViewHeight )
 	{
-#if defined( SDK_USE_PRONE )
-		m_vProneHullMin = vProneHullMin;
-		m_vProneHullMax = vProneHullMax;
-		m_vProneView = vProneView;
-#endif 
 	}
-#if defined ( SDK_USE_PRONE )
-	Vector m_vProneHullMin;
-	Vector m_vProneHullMax;	
-	Vector m_vProneView;
-#endif
 };
 
 class CSDKGameRules : public CTeamplayRules
@@ -97,11 +82,7 @@ public:
 	virtual int		PlayerRelationship( CBaseEntity *pPlayer, CBaseEntity *pTarget );
 	virtual bool	IsTeamplay( void ) 
 	{ 
-#if defined ( SDK_USE_TEAMS )
-		return true;
-#else
-		return false;	
-#endif
+		return false;
 	}
 	// Get the view vectors for this mod.
 	virtual const CViewVectors* GetViewVectors() const;
@@ -110,10 +91,6 @@ public:
 	virtual const unsigned char *GetEncryptionKey( void ) { return (unsigned char *)"a1b2c3d4"; }
 
 	//Tony; in shared space
-#if defined ( SDK_USE_PLAYERCLASSES )
-	const char *GetPlayerClassName( int cls, int team );
-#endif
-
 #ifdef CLIENT_DLL
 
 	DECLARE_CLIENTCLASS_NOBASE(); // This makes datatables able to access our private vars.
@@ -140,14 +117,6 @@ public:
 	bool IsSpawnPointValid( CBaseEntity *pSpot, CBasePlayer *pPlayer );
 	virtual void PlayerSpawn( CBasePlayer *pPlayer );
 
-#if defined ( SDK_USE_PLAYERCLASSES )
-	bool IsPlayerClassOnTeam( int cls, int team );
-	bool CanPlayerJoinClass( CSDKPlayer *pPlayer, int cls );
-	void ChooseRandomClass( CSDKPlayer *pPlayer );
-	bool ReachedClassLimit( int team, int cls );
-	int CountPlayerClass( int team, int cls );
-	int GetClassLimit( int team, int cls );
-#endif 
 	bool TeamFull( int team_id );
 	bool TeamStacked( int iNewTeam, int iCurTeam );
 	int SelectDefaultTeam( void );
@@ -161,11 +130,6 @@ private:
 	bool m_bLevelInitialized;
 
 	Vector2D	m_vecPlayerPositions[MAX_PLAYERS];
-
-#if defined ( SDK_USE_TEAMS )
-	int	m_iSpawnPointCount_Blue;	//number of blue spawns on the map
-	int	m_iSpawnPointCount_Red;	//number of red spawns on the map
-#endif // SDK_USE_TEAMS
 
 	void RadiusDamage( const CTakeDamageInfo &info, const Vector &vecSrcIn, float flRadius, int iClassIgnore, bool bIgnoreWorld );
 

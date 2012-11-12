@@ -17,14 +17,14 @@
 //
 // Will your mod be team based?
 // define SDK_USE_TEAMS
-#define SDK_USE_TEAMS
+//#define SDK_USE_TEAMS
 
 
 
 //
 // Do you use player classes?
 // define SDK_USE_PLAYERCLASSES
-#define SDK_USE_PLAYERCLASSES
+//#define SDK_USE_PLAYERCLASSES
 
 //================================
 // PLAYER MOVEMENT RELATED OPTIONS
@@ -78,52 +78,12 @@
 // Most elements below here are specific to the options above.
 //================================================================================
 
-#if defined ( SDK_USE_TEAMS )
-
-enum sdkteams_e
-	{
-		SDK_TEAM_BLUE = LAST_SHARED_TEAM+1,
-		SDK_TEAM_RED,
-	};
-
-#endif // SDK_USE_TEAMS
-
-#if defined ( SDK_USE_PRONE )
-
-	#define TIME_TO_PRONE	1.2f
-	#define VEC_PRONE_HULL_MIN	SDKGameRules()->GetSDKViewVectors()->m_vProneHullMin
-	#define VEC_PRONE_HULL_MAX	SDKGameRules()->GetSDKViewVectors()->m_vProneHullMax
-	#define VEC_PRONE_VIEW SDKGameRules()->GetSDKViewVectors()->m_vProneView
-
-#endif // SDK_USE_PRONE
-
 #if defined ( SDK_USE_SPRINTING )
 
 	#define INITIAL_SPRINT_STAMINA_PENALTY 15
 	#define LOW_STAMINA_THRESHOLD	35
 
 #endif // SDK_USE_SPRINTING
-
-#if defined ( SDK_USE_PLAYERCLASSES )
-	#define SDK_NUM_PLAYERCLASSES 3		//Tony; our template sample has 3 player classes.
-	#define SDK_PLAYERCLASS_IMAGE_LENGTH 64
-
-	#define PLAYERCLASS_RANDOM		-2
-	#define PLAYERCLASS_UNDEFINED	-1
-
-	#if defined ( SDK_USE_TEAMS )
-		//Tony; using teams with classes, so make sure the team class panel names are defined.
-		#define PANEL_CLASS_BLUE		"class_blue"
-		#define PANEL_CLASS_RED			"class_red"
-
-		extern const char *pszTeamBlueClasses[];
-		extern const char *pszTeamRedClasses[];
-	#else
-		#define PANEL_CLASS_NOTEAMS		"class_noteams"
-		extern const char *pszPlayerClasses[];
-	#endif // SDK_USE_TEAMS
-
-#endif // SDK_USE_PLAYERCLASSES
 
 #define SDK_PLAYER_MODEL "models/player/blue_player.mdl"
 
@@ -194,12 +154,6 @@ enum SDKPlayerState
 	// During these states, you can either be a new player waiting to join, or
 	// you can be a live player in the game who wants to change teams.
 	// Either way, you can't move while choosing team or class (or while any menu is up).
-#if defined ( SDK_USE_TEAMS )
-	STATE_PICKINGTEAM,			// Choosing team.
-#endif
-#if defined ( SDK_USE_PLAYERCLASSES )
-	STATE_PICKINGCLASS,			// Choosing class.
-#endif
 	
 	STATE_DEATH_ANIM,			// Playing death anim, waiting for that to finish.
 	STATE_OBSERVER_MODE,		// Noclipping around, watching players, etc.
