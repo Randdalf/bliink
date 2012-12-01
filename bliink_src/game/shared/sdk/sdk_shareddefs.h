@@ -13,66 +13,16 @@
 //=========================
 // GAMEPLAY RELATED OPTIONS
 //=========================
-// NOTES: The Wizard automatically replaces these strings! If you extract the source as is, you will have to add the defines manually!
-//
-// Will your mod be team based?
-// define SDK_USE_TEAMS
-//#define SDK_USE_TEAMS
 
-
-
-//
-// Do you use player classes?
-// define SDK_USE_PLAYERCLASSES
-//#define SDK_USE_PLAYERCLASSES
-
-//================================
-// PLAYER MOVEMENT RELATED OPTIONS
-//================================
-
-//
 // Do your players have stamina? - this is a pre-requisite for sprinting, if you define sprinting, and don't uncomment this, it will be included anyway.
-// define SDK_USE_STAMINA
 #define SDK_USE_STAMINA
 
-//
 // Are your players able to sprint?
-// define SDK_USE_SPRINTING
 #define SDK_USE_SPRINTING
 
-//Tony; stamina is a pre-requisite to sprinting, if you don't declare stamina but you do declare sprinting
-//stamina needs to be included.
-#if defined ( SDK_USE_SPRINTING ) && !defined( SDK_USE_STAMINA )
-#define SDK_USE_STAMINA
-#endif
-
-//
-// Can your players go prone?
-// define SDK_USE_PRONE
-//#define SDK_USE_PRONE
-
-//=====================
-// EXTRA WEAPON OPTIONS
-//=====================
-
-//
-// If you're allowing sprinting, do you want to be able to shoot while sprinting?
-// define SDK_SHOOT_WHILE_SPRINTING
-//#define SDK_SHOOT_WHILE_SPRINTING
-
-//
-// Do you want your players to be able to shoot while climing ladders?
-// define SDK_SHOOT_ON_LADDERS
-//#define SDK_SHOOT_ON_LADDERS
-
-//
-// Do you want your players to be able to shoot while jumping?
-// define SDK_SHOOT_WHILE_JUMPING
 #define SDK_SHOOT_WHILE_JUMPING
 
-
-
-#define SDK_GAME_DESCRIPTION	"Swarm SDK Template"
+#define SDK_GAME_DESCRIPTION	"Project Bliink"
 
 //================================================================================
 // Most elements below here are specific to the options above.
@@ -139,7 +89,7 @@ int AliasToWeaponID( const char *alias );
 
 
 // The various states the player can be in during the join game process.
-enum SDKPlayerState
+enum BliinkPlayerState
 {
 	// Happily running around in the game.
 	// You can't move though if CSGameRules()->IsFreezePeriod() returns true.
@@ -158,6 +108,23 @@ enum SDKPlayerState
 	STATE_DEATH_ANIM,			// Playing death anim, waiting for that to finish.
 	STATE_OBSERVER_MODE,		// Noclipping around, watching players, etc.
 
+	// BLIINK STATES
+	// Pre-game stuff
+	STATE_BLIINK_WELCOME,//=0,
+	STATE_BLIINK_SPECTATE_PREGAME,
+	STATE_BLIINK_WAITING_FOR_PLAYERS,
+
+	// Game-time stuff
+	STATE_BLIINK_SPECTATE,
+	STATE_BLIINK_SURVIVOR,
+	STATE_BLIINK_SURVIVOR_DEATH_ANIM,
+	STATE_BLIINK_STALKER,
+	STATE_BLIINK_STALKER_DEATH_ANIM,
+	STATE_BLIINK_STALKER_RESPAWN,
+
+	// Post-game stuff
+	STATE_BLIINK_SURVIVOR_VIEW_RESULTS,
+
 	NUM_PLAYER_STATES
 };
 #define SDK_PLAYER_DEATH_TIME	1.0f	//Minimum Time before respawning
@@ -171,5 +138,9 @@ enum
 
 // Player avoidance
 #define PUSHAWAY_THINK_INTERVAL		(1.0f / 20.0f)
+
+// Bliink teams
+#define BLIINK_TEAM_SURVIVOR 2
+#define BLIINK_TEAM_STALKER 3
 
 #endif // SDK_SHAREDDEFS_H

@@ -25,7 +25,7 @@
 #include "shake.h"
 #include "player_resource.h"
 #include "engine/IEngineSound.h"
-#include "sdk_player.h"
+#include "bliink_player.h"
 #include "sdk_gamerules.h"
 #include "tier0/vprof.h"
 #include "sdk_bot_temp.h"
@@ -39,7 +39,7 @@ extern CBaseEntity *FindPickerEntity( CBasePlayer *pPlayer );
 extern bool			g_fGameOver;
 
 
-void FinishClientPutInServer( CSDKPlayer *pPlayer )
+void FinishClientPutInServer( CBliinkPlayer *pPlayer )
 {
 	pPlayer->InitialSpawn();
 	pPlayer->Spawn();
@@ -86,7 +86,7 @@ called each time a player is spawned into the game
 void ClientPutInServer( edict_t *pEdict, const char *playername )
 {
 	// Allocate a CBaseTFPlayer for pev, and call spawn
-	CSDKPlayer *pPlayer = CSDKPlayer::CreatePlayer( "player", pEdict );
+	CBliinkPlayer *pPlayer = CBliinkPlayer::CreatePlayer( "player", pEdict );
 	pPlayer->SetPlayerName( playername );
 }
 
@@ -96,7 +96,7 @@ void ClientActive( edict_t *pEdict, bool bLoadGame )
 	// Can't load games in CS!
 	Assert( !bLoadGame );
 
-	CSDKPlayer *pPlayer = ToSDKPlayer( CBaseEntity::Instance( pEdict ) );
+	CBliinkPlayer *pPlayer = ToSDKPlayer( CBaseEntity::Instance( pEdict ) );
 	FinishClientPutInServer( pPlayer );
 }
 void ClientFullyConnect( edict_t *pEntity )
@@ -162,9 +162,6 @@ void GameStartFrame( void )
 		return;
 
 	gpGlobals->teamplay = false;
-
-	extern void Bot_RunAll();
-	Bot_RunAll();
 }
 
 //=========================================================

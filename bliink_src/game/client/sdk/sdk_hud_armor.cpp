@@ -16,7 +16,7 @@
 #include "vgui_controls/AnimationController.h"
 #include "vgui/ILocalize.h"
 
-#include "c_sdk_player.h"
+#include "c_bliink_player.h"
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
@@ -81,7 +81,7 @@ void CSDKHudArmor::VidInit( void )
 void CSDKHudArmor::OnThink( void )
 {
 	int newArmor = 0;
-	C_SDKPlayer *local = C_SDKPlayer::GetLocalSDKPlayer();
+	C_BliinkPlayer *local = C_BliinkPlayer::GetLocalSDKPlayer();
 	if ( local )
 	{
 		// Never below zero

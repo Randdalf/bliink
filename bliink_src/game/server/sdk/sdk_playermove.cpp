@@ -10,7 +10,7 @@
 #include "igamemovement.h"
 #include "in_buttons.h"
 #include "ipredictionsystem.h"
-#include "sdk_player.h"
+#include "bliink_player.h"
 #include "iservervehicle.h"
 
 
@@ -23,9 +23,9 @@ IPredictionSystem *IPredictionSystem::g_pPredictionSystems = NULL;
 //-----------------------------------------------------------------------------
 // Sets up the move data for TF2
 //-----------------------------------------------------------------------------
-class CSDKPlayerMove : public CPlayerMove
+class CBliinkPlayerMove : public CPlayerMove
 {
-DECLARE_CLASS( CSDKPlayerMove, CPlayerMove );
+DECLARE_CLASS( CBliinkPlayerMove, CPlayerMove );
 
 public:
 	virtual void	StartCommand( CBasePlayer *player, CUserCmd *cmd );
@@ -34,7 +34,7 @@ public:
 };
 
 // PlayerMove Interface
-static CSDKPlayerMove g_PlayerMove;
+static CBliinkPlayerMove g_PlayerMove;
 
 //-----------------------------------------------------------------------------
 // Singleton accessor
@@ -48,7 +48,7 @@ CPlayerMove *PlayerMove()
 // Main setup, finish
 //-----------------------------------------------------------------------------
 
-void CSDKPlayerMove::StartCommand( CBasePlayer *player, CUserCmd *cmd )
+void CBliinkPlayerMove::StartCommand( CBasePlayer *player, CUserCmd *cmd )
 {
 	BaseClass::StartCommand( player, cmd );
 }
@@ -58,7 +58,7 @@ void CSDKPlayerMove::StartCommand( CBasePlayer *player, CUserCmd *cmd )
 //          from the player for movement. (Server-side, the client-side version
 //          of this code can be found in prediction.cpp.)
 //-----------------------------------------------------------------------------
-void CSDKPlayerMove::SetupMove( CBasePlayer *player, CUserCmd *ucmd, IMoveHelper *pHelper, CMoveData *move )
+void CBliinkPlayerMove::SetupMove( CBasePlayer *player, CUserCmd *ucmd, IMoveHelper *pHelper, CMoveData *move )
 {
 	BaseClass::SetupMove( player, ucmd, pHelper, move );
 
@@ -76,7 +76,7 @@ void CSDKPlayerMove::SetupMove( CBasePlayer *player, CUserCmd *ucmd, IMoveHelper
 //          movement. (Server-side, the client-side version of this code can 
 //          be found in prediction.cpp.)
 //-----------------------------------------------------------------------------
-void CSDKPlayerMove::FinishMove( CBasePlayer *player, CUserCmd *ucmd, CMoveData *move )
+void CBliinkPlayerMove::FinishMove( CBasePlayer *player, CUserCmd *ucmd, CMoveData *move )
 {
 	// Call the default FinishMove code.
 	BaseClass::FinishMove( player, ucmd, move );

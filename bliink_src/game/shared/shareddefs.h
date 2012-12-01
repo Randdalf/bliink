@@ -184,7 +184,8 @@ inline float FractionUnDucked( int msecs )
 #define	TEAM_INVALID			-1
 #define TEAM_UNASSIGNED			0	// not assigned to a team
 #define TEAM_SPECTATOR			1	// spectator team
-// Start your team numbers after this
+
+
 #define LAST_SHARED_TEAM		TEAM_SPECTATOR
 
 // The first team that's game specific (i.e. not unassigned / spectator)

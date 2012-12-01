@@ -24,7 +24,7 @@
 	#include "c_baseplayer.h"
 #else
 	#include "player.h"
-	#include "sdk_player.h"
+	#include "bliink_player.h"
 	#include "utlqueue.h"
 	#include "playerclass_info_parse.h"
 
@@ -135,7 +135,7 @@ private:
 
 public:
 	virtual void DeathNotice( CBasePlayer *pVictim, const CTakeDamageInfo &info );
-	const char *GetKillingWeaponName( const CTakeDamageInfo &info, CSDKPlayer *pVictim, int *iWeaponID );
+	const char *GetKillingWeaponName( const CTakeDamageInfo &info, CBliinkPlayer *pVictim, int *iWeaponID );
 
 #endif
 

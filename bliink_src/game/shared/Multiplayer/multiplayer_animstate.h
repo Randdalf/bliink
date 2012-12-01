@@ -320,7 +320,7 @@ protected:
 	//Tony; moved debuganim data to a private block and made the 2 sdk animstates friendly. I override the base classes
 	//but want complete functionality.
 private:
-	friend class CSDKPlayerAnimState;
+	friend class CBliinkPlayerAnimState;
 	friend class CHL2MPPlayerAnimState;
 	DebugPlayerAnimData_t		m_DebugAnimData;
 

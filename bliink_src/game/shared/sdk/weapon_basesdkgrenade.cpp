@@ -15,11 +15,11 @@
 
 #ifdef CLIENT_DLL
 
-	#include "c_sdk_player.h"
+	#include "c_bliink_player.h"
 
 #else
 
-	#include "sdk_player.h"
+	#include "bliink_player.h"
 	#include "items.h"
 
 #endif
@@ -94,7 +94,7 @@ bool CBaseSDKGrenade::Holster( CBaseCombatWeapon *pSwitchingTo )
 #ifndef CLIENT_DLL
 	// If they attempt to switch weapons before the throw animation is done, 
 	// allow it, but kill the weapon if we have to.
-	CSDKPlayer *pPlayer = GetPlayerOwner();
+	CBliinkPlayer *pPlayer = GetPlayerOwner();
 
 	if( pPlayer->GetAmmoCount(m_iPrimaryAmmoType) <= 0 )
 	{
@@ -115,7 +115,7 @@ void CBaseSDKGrenade::PrimaryAttack()
 	if ( m_bRedraw || m_bPinPulled )
 		return;
 
-	CSDKPlayer *pPlayer = GetPlayerOwner();
+	CBliinkPlayer *pPlayer = GetPlayerOwner();
 	if ( !pPlayer || pPlayer->GetAmmoCount( m_iPrimaryAmmoType ) <= 0 )
 		return;
 
@@ -140,7 +140,7 @@ void CBaseSDKGrenade::SecondaryAttack()
 	if ( m_bRedraw )
 		return;
 
-	CSDKPlayer *pPlayer = GetPlayerOwner();
+	CBliinkPlayer *pPlayer = GetPlayerOwner();
 	
 	if ( pPlayer == NULL )
 		return;
@@ -192,7 +192,7 @@ bool CBaseSDKGrenade::Reload()
 //-----------------------------------------------------------------------------
 void CBaseSDKGrenade::ItemPostFrame()
 {
-	CSDKPlayer *pPlayer = GetPlayerOwner();
+	CBliinkPlayer *pPlayer = GetPlayerOwner();
 	if ( !pPlayer )
 		return;
 

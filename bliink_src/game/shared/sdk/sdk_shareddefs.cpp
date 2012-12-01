@@ -14,8 +14,8 @@
 //Tony;  for our template we have two versions.
 const char *pszTeamNames[] =
 {
-	"#SDK_Team_Unassigned",
-	"#SDK_Team_Spectator",
+	"#bliink_team_Unassigned",
+	"#bliink_team_Spectator",
 };
 
 //Tony; We need to precache all possible player models that we're going to use

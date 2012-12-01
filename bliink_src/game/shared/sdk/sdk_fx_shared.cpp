@@ -15,7 +15,7 @@
 #ifdef CLIENT_DLL
 
 #include "fx_impact.h"
-#include "c_sdk_player.h"
+#include "c_bliink_player.h"
 
 	// this is a cheap ripoff from CBaseCombatWeapon::WeaponSound():
 	void FX_WeaponSound(
@@ -87,7 +87,7 @@
 
 #else
 
-	#include "sdk_player.h"
+	#include "bliink_player.h"
 	#include "te_firebullets.h"
 	
 	// Server doesn't play sounds anyway.
@@ -118,9 +118,9 @@ void FX_FireBullets(
 	bool bDoEffects = true;
 
 #ifdef CLIENT_DLL
-	C_SDKPlayer *pPlayer = ToSDKPlayer( ClientEntityList().GetBaseEntity( iPlayerIndex ) );
+	C_BliinkPlayer *pPlayer = ToSDKPlayer( ClientEntityList().GetBaseEntity( iPlayerIndex ) );
 #else
-	CSDKPlayer *pPlayer = ToSDKPlayer( UTIL_PlayerByIndex( iPlayerIndex) );
+	CBliinkPlayer *pPlayer = ToSDKPlayer( UTIL_PlayerByIndex( iPlayerIndex) );
 #endif
 
 	const char * weaponAlias =	WeaponIDToAlias( iWeaponID );

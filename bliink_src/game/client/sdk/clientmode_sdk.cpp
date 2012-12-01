@@ -30,7 +30,7 @@
 #include "text_message.h"
 #include "panelmetaclassmgr.h"
 #include "weapon_sdkbase.h"
-#include "c_sdk_player.h"
+#include "c_bliink_player.h"
 #include "c_weapon__stubs.h"		//Tony; add stubs
 #include "glow_outline_effect.h"
 #include "viewpostprocess.h"
@@ -281,7 +281,7 @@ void ClientModeSDKNormal::PostRenderVGui()
 
 bool ClientModeSDKNormal::CanRecordDemo( char *errorMsg, int length ) const
 {
-	C_SDKPlayer *player = C_SDKPlayer::GetLocalSDKPlayer();
+	C_BliinkPlayer *player = C_BliinkPlayer::GetLocalSDKPlayer();
 	if ( !player )
 	{
 		return true;
@@ -304,7 +304,7 @@ void ClientModeSDKNormal::OverrideView( CViewSetup *pSetup )
 	QAngle camAngles;
 
 	// Let the player override the view.
-	C_SDKPlayer *pPlayer = (C_SDKPlayer*)C_BasePlayer::GetLocalPlayer();
+	C_BliinkPlayer *pPlayer = (C_BliinkPlayer*)C_BasePlayer::GetLocalPlayer();
 	if(!pPlayer)
 		return;
 

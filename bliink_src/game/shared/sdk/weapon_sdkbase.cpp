@@ -16,11 +16,11 @@
  
 #if defined( CLIENT_DLL )
  
-	#include "c_sdk_player.h"
+	#include "c_bliink_player.h"
  
 #else
  
-	#include "sdk_player.h"
+	#include "bliink_player.h"
  
 #endif
  
@@ -103,9 +103,9 @@ bool CWeaponSDKBase::PlayEmptySound()
 	return 0;
 }
  
-CSDKPlayer* CWeaponSDKBase::GetPlayerOwner() const
+CBliinkPlayer* CWeaponSDKBase::GetPlayerOwner() const
 {
-	return dynamic_cast< CSDKPlayer* >( GetOwner() );
+	return dynamic_cast< CBliinkPlayer* >( GetOwner() );
 }
  
 #ifdef CLIENT_DLL
@@ -141,7 +141,7 @@ void CWeaponSDKBase::PrimaryAttack( void )
 		return;
 	}
  
-	CSDKPlayer *pPlayer = GetPlayerOwner();
+	CBliinkPlayer *pPlayer = GetPlayerOwner();
  
 	if (!pPlayer)
 		return;
@@ -205,7 +205,7 @@ void CWeaponSDKBase::SecondaryAttack()
 //Tony; added so we can have base functionality without implementing it into every weapon.
 void CWeaponSDKBase::ItemPostFrame( void )
 {
-	CSDKPlayer *pPlayer = GetPlayerOwner();
+	CBliinkPlayer *pPlayer = GetPlayerOwner();
 	if ( !pPlayer )
 		return;
  
@@ -354,7 +354,7 @@ bool CWeaponSDKBase::Reload( void )
 }
 void CWeaponSDKBase::SendReloadEvents()
 {
-	CSDKPlayer *pPlayer = GetPlayerOwner();
+	CBliinkPlayer *pPlayer = GetPlayerOwner();
 	if ( !pPlayer )
 		return;
  

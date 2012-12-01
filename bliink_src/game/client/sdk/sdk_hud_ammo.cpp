@@ -14,7 +14,7 @@
 #include <vgui_controls/AnimationController.h>
 #include <vgui/ILocalize.h>
 #include "ihudlcd.h"
-#include "c_sdk_player.h"
+#include "c_bliink_player.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -112,7 +112,7 @@ void CHudAmmo::UpdatePlayerAmmo( C_BasePlayer *player )
 	// Clear out the vehicle entity
 	m_hCurrentVehicle = NULL;
 
-	C_SDKPlayer *Pplayer = C_SDKPlayer::GetLocalSDKPlayer();
+	C_BliinkPlayer *Pplayer = C_BliinkPlayer::GetLocalSDKPlayer();
 	if( !player )
 		return;
 
@@ -379,7 +379,7 @@ void CHudAmmo::SetAmmo2(int ammo2, bool playAnimation)
 //		// set whether or not the panel draws based on if we have a weapon that supports secondary ammo
 //		
 //		//C_BasePlayer *player = C_BasePlayer::GetLocalPlayer();
-//		C_SDKPlayer *player = C_SDKPlayer::GetLocalSDKPlayer();
+//		C_BliinkPlayer *player = C_BliinkPlayer::GetLocalSDKPlayer();
 //
 //		C_BaseCombatWeapon *wpn = player->GetActiveWeapon();
 //		IClientVehicle *pVehicle = player ? player->GetVehicle() : NULL;
@@ -403,7 +403,7 @@ void CHudAmmo::SetAmmo2(int ammo2, bool playAnimation)
 //	{
 //		
 //		//C_BasePlayer *player = C_BasePlayer::GetLocalPlayer();
-//		C_SDKPlayer *player = C_SDKPlayer::GetLocalSDKPlayer();
+//		C_BliinkPlayer *player = C_BliinkPlayer::GetLocalSDKPlayer();
 //
 //		C_BaseCombatWeapon *wpn = player->GetActiveSDKWeapon();
 //		if (player && wpn && wpn->UsesSecondaryAmmo())

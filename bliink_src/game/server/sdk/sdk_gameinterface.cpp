@@ -35,5 +35,4 @@ void CServerGameDLL::ApplyGameSettings( KeyValues *pKV )
 {
 	if ( !pKV )
 		return;
-
 }

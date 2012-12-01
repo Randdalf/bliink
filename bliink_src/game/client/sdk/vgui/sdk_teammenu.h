@@ -5,8 +5,8 @@
 // $NoKeywords: $
 //=================================================================================//
 
-#ifndef SDK_TEAMMENU_H
-#define SDK_TEAMMENU_H
+#ifndef bliink_teamMENU_H
+#define bliink_teamMENU_H
 
 #include "teammenu.h"
 

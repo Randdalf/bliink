@@ -18,7 +18,7 @@
 	#include "c_basedoor.h"
 	#include "c_world.h"
 	#include "view.h"
-	#include "c_sdk_player.h"
+	#include "c_bliink_player.h"
 
 	#define CRecipientFilter C_RecipientFilter
 
@@ -31,7 +31,7 @@
 	#include "ai_basenpc.h"
 	#include "env_zoom.h"
 	#include "ammodef.h"
-	#include "sdk_player.h"
+	#include "bliink_player.h"
 
 	extern int TrainSpeed(int iSpeed, int iMax);
 	
@@ -1570,7 +1570,7 @@ void CBasePlayer::CalcPlayerView( Vector& eyeOrigin, QAngle& eyeAngles, float& f
 	CalcViewRoll( eyeAngles );
 
 	// Sprint effects
-	CSDKPlayer *pPlayer = ToSDKPlayer( this );
+	CBliinkPlayer *pPlayer = ToSDKPlayer( this );
 	if(!pPlayer)
 		return;
 

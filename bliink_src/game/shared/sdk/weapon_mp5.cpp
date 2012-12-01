@@ -10,11 +10,11 @@
 #if defined( CLIENT_DLL )
 
 	#define CWeaponMP5 C_WeaponMP5
-	#include "c_sdk_player.h"
+	#include "c_bliink_player.h"
 
 #else
 
-	#include "sdk_player.h"
+	#include "bliink_player.h"
 
 #endif
 

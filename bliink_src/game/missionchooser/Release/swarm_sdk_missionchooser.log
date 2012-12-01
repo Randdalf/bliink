@@ -1,5 +1,5 @@
-﻿Build started 12/11/2012 19:22:18.
-     1>Project "C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\bliink_src\game\missionchooser\swarm_sdk_missionchooser.vcxproj" on node 2 (build target(s)).
+﻿Build started 30/11/2012 23:11:23.
+     1>Project "C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\bliink_src\game\missionchooser\swarm_sdk_missionchooser.vcxproj" on node 3 (build target(s)).
      1>InitializeBuildStatus:
          Creating ".\Release\.\MissionChooser.unsuccessfulbuild" because "AlwaysCreate" was specified.
        PreBuildEvent:
@@ -43,4 +43,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.08
+Time Elapsed 00:00:01.36

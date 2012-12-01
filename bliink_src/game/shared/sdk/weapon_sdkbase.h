@@ -18,7 +18,7 @@
 	#define CWeaponSDKBase C_WeaponSDKBase
 #endif
  
-class CSDKPlayer;
+class CBliinkPlayer;
  
 // These are the names of the ammo types that the weapon script files reference.
 class CWeaponSDKBase : public CBaseCombatWeapon
@@ -44,7 +44,7 @@ public:
 	CSDKWeaponInfo const	&GetSDKWpnData() const;
  
 	// Get a pointer to the player that owns this weapon
-	CSDKPlayer* GetPlayerOwner() const;
+	CBliinkPlayer* GetPlayerOwner() const;
  
 	// override to play custom empty sounds
 	virtual bool PlayEmptySound();

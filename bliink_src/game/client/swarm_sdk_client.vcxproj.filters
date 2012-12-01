@@ -76,6 +76,9 @@
     <Filter Include="Source Files\SDK\game controls">
       <UniqueIdentifier>{865d655e-7a45-4c85-95d9-240133f842cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\SDK\examples">
+      <UniqueIdentifier>{fc830e95-e741-475b-9ccb-09d613002069}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="client_base.vpc">
@@ -1736,16 +1739,7 @@
     <ClCompile Include="toolframework_client.cpp">
       <Filter>Tool Framework</Filter>
     </ClCompile>
-    <ClCompile Include="sdk\c_sdk_env_sparkler.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
-    <ClCompile Include="sdk\c_sdk_player.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
     <ClCompile Include="sdk\c_sdk_player_resource.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
-    <ClCompile Include="sdk\c_sdk_team.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
     <ClCompile Include="sdk\c_te_firebullets.cpp">
@@ -1805,13 +1799,7 @@
     <ClCompile Include="sdk\sdk_scoreboard.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
-    <ClCompile Include="sdk\vgui\sdk_classmenu.cpp">
-      <Filter>Source Files\SDK\VGUI</Filter>
-    </ClCompile>
     <ClCompile Include="sdk\vgui\sdk_spectatorgui.cpp">
-      <Filter>Source Files\SDK\VGUI</Filter>
-    </ClCompile>
-    <ClCompile Include="sdk\vgui\sdk_teammenu.cpp">
       <Filter>Source Files\SDK\VGUI</Filter>
     </ClCompile>
     <ClCompile Include="sdk\vgui\sdk_textwindow.cpp">
@@ -1833,9 +1821,6 @@
       <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
     <ClCompile Include="..\shared\sdk\sdk_gamerules.cpp">
-      <Filter>Source Files\SDK\Shared</Filter>
-    </ClCompile>
-    <ClCompile Include="..\shared\sdk\sdk_player_shared.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
     <ClCompile Include="..\shared\sdk\sdk_playeranimstate.cpp">
@@ -1930,6 +1915,18 @@
     </ClCompile>
     <ClCompile Include="hud_voicestatus.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\c_sdk_env_sparkler.cpp">
+      <Filter>Source Files\SDK\examples</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\c_bliink_player.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shared\sdk\bliink_player_shared.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\c_bliink_team.cpp">
+      <Filter>Source Files\SDK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4033,13 +4030,7 @@
     <ClInclude Include="game_controls\vguitextwindow.h">
       <Filter>game_controls Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sdk\c_sdk_player.h">
-      <Filter>Source Files\SDK</Filter>
-    </ClInclude>
     <ClInclude Include="sdk\c_sdk_player_resource.h">
-      <Filter>Source Files\SDK</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\c_sdk_team.h">
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
     <ClInclude Include="sdk\clientmode_sdk.h">
@@ -4057,13 +4048,7 @@
     <ClInclude Include="sdk\sdk_scoreboard.h">
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
-    <ClInclude Include="sdk\vgui\sdk_classmenu.h">
-      <Filter>Source Files\SDK\VGUI</Filter>
-    </ClInclude>
     <ClInclude Include="sdk\vgui\sdk_spectatorgui.h">
-      <Filter>Source Files\SDK\VGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\vgui\sdk_teammenu.h">
       <Filter>Source Files\SDK\VGUI</Filter>
     </ClInclude>
     <ClInclude Include="sdk\vgui\sdk_textwindow.h">
@@ -4082,9 +4067,6 @@
       <Filter>Source Files\SDK\Shared</Filter>
     </ClInclude>
     <ClInclude Include="..\shared\sdk\sdk_gamerules.h">
-      <Filter>Source Files\SDK\Shared</Filter>
-    </ClInclude>
-    <ClInclude Include="..\shared\sdk\sdk_player_shared.h">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClInclude>
     <ClInclude Include="..\shared\sdk\sdk_playeranimstate.h">
@@ -4152,6 +4134,15 @@
     </ClInclude>
     <ClInclude Include="swarm\gameui\swarm\vkeyboard.h">
       <Filter>Source Files\Swarm\GameUI - Embedded\Swarm GameUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\c_bliink_player.h">
+      <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shared\sdk\bliink_player_shared.h">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\c_bliink_team.h">
+      <Filter>Source Files\SDK</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

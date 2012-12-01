@@ -34,6 +34,9 @@
     <Filter Include="Source Files\SDK\Shared">
       <UniqueIdentifier>{a0ebb6b2-4993-4465-ad54-b85c304d7f45}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\SDK\examples">
+      <UniqueIdentifier>{0e385220-2456-425f-8c50-5b95a703ff6e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\vpc_scripts\loadaddress.vpc">
@@ -1487,46 +1490,13 @@
     <ClCompile Include="toolframework_server.cpp">
       <Filter>Tools Framework</Filter>
     </ClCompile>
-    <ClCompile Include="sdk\sdk_bot_temp.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
-    <ClCompile Include="sdk\sdk_brushentity.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
     <ClCompile Include="sdk\sdk_client.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
-    <ClCompile Include="sdk\sdk_env_message.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
-    <ClCompile Include="sdk\sdk_env_sparkler.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
-    <ClCompile Include="sdk\sdk_eventlog.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
     <ClCompile Include="sdk\sdk_gameinterface.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
-    <ClCompile Include="sdk\sdk_logicalentity.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
-    <ClCompile Include="sdk\sdk_modelentity.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
-    <ClCompile Include="sdk\sdk_player.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
-    <ClCompile Include="sdk\sdk_player_resource.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
     <ClCompile Include="sdk\sdk_playermove.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
-    <ClCompile Include="sdk\sdk_team.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
-    <ClCompile Include="sdk\sdk_vehicle_jeep.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
     <ClCompile Include="sdk\te_firebullets.cpp">
@@ -1536,9 +1506,6 @@
       <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
     <ClCompile Include="..\shared\sdk\sdk_gamerules.cpp">
-      <Filter>Source Files\SDK\Shared</Filter>
-    </ClCompile>
-    <ClCompile Include="..\shared\sdk\sdk_player_shared.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
     <ClCompile Include="..\shared\sdk\sdk_playeranimstate.cpp">
@@ -1594,6 +1561,33 @@
     </ClCompile>
     <ClCompile Include="..\shared\sdk\sdk_fx_shared.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\sdk_brushentity.cpp">
+      <Filter>Source Files\SDK\examples</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\sdk_logicalentity.cpp">
+      <Filter>Source Files\SDK\examples</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\sdk_modelentity.cpp">
+      <Filter>Source Files\SDK\examples</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\sdk_env_sparkler.cpp">
+      <Filter>Source Files\SDK\examples</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\sdk_env_message.cpp">
+      <Filter>Source Files\SDK\examples</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\bliink_player_resource.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\bliink_player.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shared\sdk\bliink_player_shared.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\bliink_team.cpp">
+      <Filter>Source Files\SDK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3229,16 +3223,7 @@
     <ClInclude Include="toolframework_server.h">
       <Filter>Tools Framework</Filter>
     </ClInclude>
-    <ClInclude Include="sdk\sdk_bot_temp.h">
-      <Filter>Source Files\SDK</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\sdk_player.h">
-      <Filter>Source Files\SDK</Filter>
-    </ClInclude>
     <ClInclude Include="sdk\sdk_player_resource.h">
-      <Filter>Source Files\SDK</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\sdk_team.h">
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
     <ClInclude Include="sdk\te_firebullets.h">
@@ -3248,9 +3233,6 @@
       <Filter>Source Files\SDK\Shared</Filter>
     </ClInclude>
     <ClInclude Include="..\shared\sdk\sdk_gamerules.h">
-      <Filter>Source Files\SDK\Shared</Filter>
-    </ClInclude>
-    <ClInclude Include="..\shared\sdk\sdk_player_shared.h">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClInclude>
     <ClInclude Include="..\shared\sdk\sdk_playeranimstate.h">
@@ -3288,6 +3270,15 @@
     </ClInclude>
     <ClInclude Include="..\shared\sdk\sdk_basegrenade_projectile.h">
       <Filter>Source Files\SDK\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\bliink_player.h">
+      <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shared\sdk\bliink_player_shared.h">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\bliink_team.h">
+      <Filter>Source Files\SDK</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

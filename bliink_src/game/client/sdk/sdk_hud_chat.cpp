@@ -16,9 +16,9 @@
 #include <vgui/IScheme.h>
 #include <vgui/ILocalize.h>
 #include "engine/IEngineSound.h"
-#include "c_sdk_team.h"
+#include "c_bliink_team.h"
 #include "c_playerresource.h"
-#include "c_sdk_player.h"
+#include "c_bliink_player.h"
 #include "sdk_gamerules.h"
 
 // memdbgon must be the last include file in a .cpp file!!!

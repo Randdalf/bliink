@@ -12,11 +12,11 @@
 #if defined( CLIENT_DLL )
 
 	#define CWeaponShotgun C_WeaponShotgun
-	#include "c_sdk_player.h"
+	#include "c_bliink_player.h"
 
 #else
 
-	#include "sdk_player.h"
+	#include "bliink_player.h"
 	#include "te_firebullets.h"
 
 #endif
@@ -79,7 +79,7 @@ CWeaponShotgun::CWeaponShotgun()
 
 void CWeaponShotgun::PrimaryAttack()
 {
-	CSDKPlayer *pPlayer = GetPlayerOwner();
+	CBliinkPlayer *pPlayer = GetPlayerOwner();
 	if ( !pPlayer )
 		return;
 
@@ -119,7 +119,7 @@ void CWeaponShotgun::PrimaryAttack()
 
 bool CWeaponShotgun::Reload()
 {
-	CSDKPlayer *pPlayer = GetPlayerOwner();
+	CBliinkPlayer *pPlayer = GetPlayerOwner();
 
 	if (pPlayer->GetAmmoCount( m_iPrimaryAmmoType ) <= 0 || m_iClip1 == GetMaxClip1())
 		return true;
@@ -159,7 +159,7 @@ bool CWeaponShotgun::Reload()
 #ifdef GAME_DLL
 		SendReloadEvents();
 #endif
-		CSDKPlayer *pPlayer = GetPlayerOwner();
+		CBliinkPlayer *pPlayer = GetPlayerOwner();
 
 		if ( pPlayer )
 			 pPlayer->RemoveAmmo( 1, m_iPrimaryAmmoType );
@@ -173,7 +173,7 @@ bool CWeaponShotgun::Reload()
 
 void CWeaponShotgun::WeaponIdle()
 {
-	CSDKPlayer *pPlayer = GetPlayerOwner();
+	CBliinkPlayer *pPlayer = GetPlayerOwner();
 
 	if (m_flPumpTime && m_flPumpTime < gpGlobals->curtime)
 	{

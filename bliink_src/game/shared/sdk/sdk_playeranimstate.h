@@ -15,27 +15,27 @@
 #include "multiplayer_animstate.h"
 
 #if defined( CLIENT_DLL )
-class C_SDKPlayer;
-#define CSDKPlayer C_SDKPlayer
+class C_BliinkPlayer;
+#define CBliinkPlayer C_BliinkPlayer
 #else
-class CSDKPlayer;
+class CBliinkPlayer;
 #endif
 
 // ------------------------------------------------------------------------------------------------ //
 // CPlayerAnimState declaration.
 // ------------------------------------------------------------------------------------------------ //
-class CSDKPlayerAnimState : public CMultiPlayerAnimState
+class CBliinkPlayerAnimState : public CMultiPlayerAnimState
 {
 public:
 	
-	DECLARE_CLASS( CSDKPlayerAnimState, CMultiPlayerAnimState );
+	DECLARE_CLASS( CBliinkPlayerAnimState, CMultiPlayerAnimState );
 
-	CSDKPlayerAnimState();
-	CSDKPlayerAnimState( CBasePlayer *pPlayer, MultiPlayerMovementData_t &movementData );
-	~CSDKPlayerAnimState();
+	CBliinkPlayerAnimState();
+	CBliinkPlayerAnimState( CBasePlayer *pPlayer, MultiPlayerMovementData_t &movementData );
+	~CBliinkPlayerAnimState();
 
-	void InitSDKAnimState( CSDKPlayer *pPlayer );
-	CSDKPlayer *GetSDKPlayer( void )							{ return m_pSDKPlayer; }
+	void InitSDKAnimState( CBliinkPlayer *pPlayer );
+	CBliinkPlayer *GetSDKPlayer( void )							{ return m_pSDKPlayer; }
 
 	virtual void ClearAnimationState();
 	virtual Activity TranslateActivity( Activity actDesired );
@@ -59,13 +59,13 @@ public:
 
 private:
 	
-	CSDKPlayer   *m_pSDKPlayer;
+	CBliinkPlayer   *m_pSDKPlayer;
 	bool		m_bInAirWalk;
 
 	float		m_flHoldDeployedPoseUntilTime;
 };
 
-CSDKPlayerAnimState *CreateSDKPlayerAnimState( CSDKPlayer *pPlayer );
+CBliinkPlayerAnimState *CreateSDKPlayerAnimState( CBliinkPlayer *pPlayer );
 
 
 

@@ -6,7 +6,7 @@
 //=============================================================================//
 #include "cbase.h"
 #include "c_sdk_player_resource.h"
-#include "c_sdk_player.h"
+#include "c_bliink_player.h"
 #include "sdk_gamerules.h"
 #include <shareddefs.h>
 #include "hud.h"
@@ -15,7 +15,7 @@
 #include "tier0/memdbgon.h"
 
 
-IMPLEMENT_CLIENTCLASS_DT(C_SDK_PlayerResource, DT_SDKPlayerResource, CSDKPlayerResource)
+IMPLEMENT_CLIENTCLASS_DT(C_SDK_PlayerResource, DT_SDKPlayerResource, CBliinkPlayerResource)
 #if defined ( SDK_USE_PLAYERCLASSES )
 	RecvPropArray3( RECVINFO_ARRAY(m_iPlayerClass), RecvPropInt( RECVINFO(m_iPlayerClass[0]))),
 #endif
@@ -37,19 +37,6 @@ C_SDK_PlayerResource::C_SDK_PlayerResource()
 C_SDK_PlayerResource::~C_SDK_PlayerResource()
 {
 }
-
-#if defined ( SDK_USE_PLAYERCLASSES )
-int C_SDK_PlayerResource::GetPlayerClass( int iIndex )
-{
-	if ( !IsConnected( iIndex ) )
-		return PLAYERCLASS_UNDEFINED;
-
-	return m_iPlayerClass[iIndex];
-}
-
-#endif // SDK_USE_PLAYERCLASSES
-
-
 
 C_SDK_PlayerResource * SDKGameResources( void )
 {

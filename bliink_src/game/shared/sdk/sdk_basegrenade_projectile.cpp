@@ -12,7 +12,7 @@ extern ConVar sv_gravity;
 
 #ifdef CLIENT_DLL
 
-	#include "c_sdk_player.h"
+	#include "c_bliink_player.h"
 
 #else
 
@@ -77,7 +77,7 @@ END_NETWORK_TABLE()
 			if ( gpGlobals->curtime - m_flSpawnTime < 0.5 )
 			{
 //Tony; FIXME!
-//				C_SDKPlayer *pPlayer = dynamic_cast<C_SDKPlayer*>( GetThrower() );
+//				C_BliinkPlayer *pPlayer = dynamic_cast<C_BliinkPlayer*>( GetThrower() );
 //				if ( pPlayer && pPlayer->m_PlayerAnimState->IsThrowingGrenade() )
 //				{
 //					return 0;

@@ -8,7 +8,7 @@
 #include "cbase.h"
 #include "hud.h"
 #include "sdk_scoreboard.h"
-#include "c_sdk_team.h"
+#include "c_bliink_team.h"
 #include "c_sdk_player_resource.h"
 #include "sdk_gamerules.h"
 #include "sdk_backgroundpanel.h"
@@ -249,7 +249,7 @@ void CSDKScoreboard::AddSection(int teamType, int teamNumber)
 	{
 		m_pPlayerList->AddSection(sectionID, "");
 		m_pPlayerList->AddColumnToSection(sectionID, "avatar", "", SectionedListPanel::COLUMN_IMAGE | SectionedListPanel::COLUMN_CENTER, m_iAvatarWidth );
-		m_pPlayerList->AddColumnToSection(sectionID, "name", "#SDK_Team_Spectators", 0, scheme()->GetProportionalScaledValueEx( GetScheme(), NAME_WIDTH ), hFallbackFont );
+		m_pPlayerList->AddColumnToSection(sectionID, "name", "#bliink_team_Spectators", 0, scheme()->GetProportionalScaledValueEx( GetScheme(), NAME_WIDTH ), hFallbackFont );
 	}
 }
 

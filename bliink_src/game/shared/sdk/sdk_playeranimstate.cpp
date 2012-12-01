@@ -17,9 +17,9 @@
 #include "datacache/imdlcache.h"
 
 #ifdef CLIENT_DLL
-#include "c_sdk_player.h"
+#include "c_bliink_player.h"
 #else
-#include "sdk_player.h"
+#include "bliink_player.h"
 #endif
 
 #define SDK_RUN_SPEED				320.0f
@@ -31,7 +31,7 @@
 // Input  : *pPlayer - 
 // Output : CMultiPlayerAnimState*
 //-----------------------------------------------------------------------------
-CSDKPlayerAnimState* CreateSDKPlayerAnimState( CSDKPlayer *pPlayer )
+CBliinkPlayerAnimState* CreateSDKPlayerAnimState( CBliinkPlayer *pPlayer )
 {
 	MDLCACHE_CRITICAL_SECTION();
 
@@ -43,7 +43,7 @@ CSDKPlayerAnimState* CreateSDKPlayerAnimState( CSDKPlayer *pPlayer )
 	movementData.m_flSprintSpeed = -1.0f;
 
 	// Create animation state for this player.
-	CSDKPlayerAnimState *pRet = new CSDKPlayerAnimState( pPlayer, movementData );
+	CBliinkPlayerAnimState *pRet = new CBliinkPlayerAnimState( pPlayer, movementData );
 
 	// Specific SDK player initialization.
 	pRet->InitSDKAnimState( pPlayer );
@@ -55,7 +55,7 @@ CSDKPlayerAnimState* CreateSDKPlayerAnimState( CSDKPlayer *pPlayer )
 // Purpose: 
 // Input  :  - 
 //-----------------------------------------------------------------------------
-CSDKPlayerAnimState::CSDKPlayerAnimState()
+CBliinkPlayerAnimState::CBliinkPlayerAnimState()
 {
 	m_pSDKPlayer = NULL;
 
@@ -67,7 +67,7 @@ CSDKPlayerAnimState::CSDKPlayerAnimState()
 // Input  : *pPlayer - 
 //			&movementData - 
 //-----------------------------------------------------------------------------
-CSDKPlayerAnimState::CSDKPlayerAnimState( CBasePlayer *pPlayer, MultiPlayerMovementData_t &movementData )
+CBliinkPlayerAnimState::CBliinkPlayerAnimState( CBasePlayer *pPlayer, MultiPlayerMovementData_t &movementData )
 : CMultiPlayerAnimState( pPlayer, movementData )
 {
 	m_pSDKPlayer = NULL;
@@ -79,7 +79,7 @@ CSDKPlayerAnimState::CSDKPlayerAnimState( CBasePlayer *pPlayer, MultiPlayerMovem
 // Purpose: 
 // Input  :  - 
 //-----------------------------------------------------------------------------
-CSDKPlayerAnimState::~CSDKPlayerAnimState()
+CBliinkPlayerAnimState::~CBliinkPlayerAnimState()
 {
 }
 
@@ -87,7 +87,7 @@ CSDKPlayerAnimState::~CSDKPlayerAnimState()
 // Purpose: Initialize Team Fortress specific animation state.
 // Input  : *pPlayer - 
 //-----------------------------------------------------------------------------
-void CSDKPlayerAnimState::InitSDKAnimState( CSDKPlayer *pPlayer )
+void CBliinkPlayerAnimState::InitSDKAnimState( CBliinkPlayer *pPlayer )
 {
 	m_pSDKPlayer = pPlayer;
 }
@@ -95,7 +95,7 @@ void CSDKPlayerAnimState::InitSDKAnimState( CSDKPlayer *pPlayer )
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
-void CSDKPlayerAnimState::ClearAnimationState( void )
+void CBliinkPlayerAnimState::ClearAnimationState( void )
 {
 	BaseClass::ClearAnimationState();
 }
@@ -105,7 +105,7 @@ void CSDKPlayerAnimState::ClearAnimationState( void )
 // Input  : actDesired - 
 // Output : Activity
 //-----------------------------------------------------------------------------
-Activity CSDKPlayerAnimState::TranslateActivity( Activity actDesired )
+Activity CBliinkPlayerAnimState::TranslateActivity( Activity actDesired )
 {
 	Activity translateActivity = BaseClass::TranslateActivity( actDesired );
 
@@ -120,13 +120,13 @@ Activity CSDKPlayerAnimState::TranslateActivity( Activity actDesired )
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
-void CSDKPlayerAnimState::Update( float eyeYaw, float eyePitch )
+void CBliinkPlayerAnimState::Update( float eyeYaw, float eyePitch )
 {
 	// Profile the animation update.
 	VPROF( "CMultiPlayerAnimState::Update" );
 
 	// Get the SDK player.
-	CSDKPlayer *pSDKPlayer = GetSDKPlayer();
+	CBliinkPlayer *pSDKPlayer = GetSDKPlayer();
 	if ( !pSDKPlayer )
 		return;
 
@@ -170,7 +170,7 @@ void CSDKPlayerAnimState::Update( float eyeYaw, float eyePitch )
 }
 extern ConVar mp_slammoveyaw;
 float SnapYawTo( float flValue );
-void CSDKPlayerAnimState::ComputePoseParam_MoveYaw( CStudioHdr *pStudioHdr )
+void CBliinkPlayerAnimState::ComputePoseParam_MoveYaw( CStudioHdr *pStudioHdr )
 {
 	// Get the estimated movement yaw.
 	EstimateYaw();
@@ -208,7 +208,7 @@ void CSDKPlayerAnimState::ComputePoseParam_MoveYaw( CStudioHdr *pStudioHdr )
 // Purpose: 
 // Input  : event - 
 //-----------------------------------------------------------------------------
-void CSDKPlayerAnimState::DoAnimationEvent( PlayerAnimEvent_t event, int nData )
+void CBliinkPlayerAnimState::DoAnimationEvent( PlayerAnimEvent_t event, int nData )
 {
 	Activity iGestureActivity = ACT_INVALID;
 
@@ -331,7 +331,7 @@ void CSDKPlayerAnimState::DoAnimationEvent( PlayerAnimEvent_t event, int nData )
 
 #ifdef CLIENT_DLL
 	// Make the weapon play the animation as well
-	if ( iGestureActivity != ACT_INVALID && GetSDKPlayer() != CSDKPlayer::GetLocalSDKPlayer())
+	if ( iGestureActivity != ACT_INVALID && GetSDKPlayer() != CBliinkPlayer::GetLocalSDKPlayer())
 	{
 		CBaseCombatWeapon *pWeapon = GetSDKPlayer()->GetActiveWeapon();
 		if ( pWeapon )
@@ -350,7 +350,7 @@ void CSDKPlayerAnimState::DoAnimationEvent( PlayerAnimEvent_t event, int nData )
 // Purpose: 
 // Input  : *idealActivity - 
 //-----------------------------------------------------------------------------
-bool CSDKPlayerAnimState::HandleSwimming( Activity &idealActivity )
+bool CBliinkPlayerAnimState::HandleSwimming( Activity &idealActivity )
 {
 	bool bInWater = BaseClass::HandleSwimming( idealActivity );
 
@@ -362,7 +362,7 @@ bool CSDKPlayerAnimState::HandleSwimming( Activity &idealActivity )
 // Input  : *idealActivity - 
 // Output : Returns true on success, false on failure.
 //-----------------------------------------------------------------------------
-bool CSDKPlayerAnimState::HandleMoving( Activity &idealActivity )
+bool CBliinkPlayerAnimState::HandleMoving( Activity &idealActivity )
 {
 	return BaseClass::HandleMoving( idealActivity );
 }
@@ -372,7 +372,7 @@ bool CSDKPlayerAnimState::HandleMoving( Activity &idealActivity )
 // Input  : *idealActivity - 
 // Output : Returns true on success, false on failure.
 //-----------------------------------------------------------------------------
-bool CSDKPlayerAnimState::HandleDucking( Activity &idealActivity )
+bool CBliinkPlayerAnimState::HandleDucking( Activity &idealActivity )
 {
 	if ( m_pSDKPlayer->GetFlags() & FL_DUCKING )
 	{
@@ -397,7 +397,7 @@ bool CSDKPlayerAnimState::HandleDucking( Activity &idealActivity )
 // Input  : *idealActivity - 
 // Output : Returns true on success, false on failure.
 //-----------------------------------------------------------------------------
-bool CSDKPlayerAnimState::HandleSprinting( Activity &idealActivity )
+bool CBliinkPlayerAnimState::HandleSprinting( Activity &idealActivity )
 {
 	if ( m_pSDKPlayer->m_Shared.IsSprinting() )
 	{
@@ -411,7 +411,7 @@ bool CSDKPlayerAnimState::HandleSprinting( Activity &idealActivity )
 //#endif // SDK_USE_SPRINTING
 //-----------------------------------------------------------------------------
 // Purpose: 
-bool CSDKPlayerAnimState::HandleJumping( Activity &idealActivity )
+bool CBliinkPlayerAnimState::HandleJumping( Activity &idealActivity )
 {
 	Vector vecVelocity;
 	GetOuterAbsVelocity( vecVelocity );
@@ -484,7 +484,7 @@ bool CSDKPlayerAnimState::HandleJumping( Activity &idealActivity )
 extern ConVar anim_showmainactivity;
 #endif
 
-Activity CSDKPlayerAnimState::CalcMainActivity()
+Activity CBliinkPlayerAnimState::CalcMainActivity()
 {
 	Activity idealActivity = ACT_MP_STAND_IDLE;
 

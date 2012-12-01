@@ -31,8 +31,8 @@
 #include "sdk_backgroundpanel.h"
 
 #include "sdk_gamerules.h"
-#include "c_sdk_player.h"
-#include "c_sdk_team.h"
+#include "c_bliink_player.h"
+#include "c_bliink_team.h"
 
 #include "sdk_classmenu.h"
 

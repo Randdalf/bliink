@@ -7,7 +7,7 @@
 #include "cbase.h"
 #include "hud.h"
 #include "hudelement.h"
-#include "c_sdk_player.h"
+#include "c_bliink_player.h"
 #include "c_playerresource.h"
 #include "vgui_EntityPanel.h"
 #include "iclientmode.h"
@@ -106,7 +106,7 @@ void CSDKTargetId::Paint()
 	wchar_t sIDString[ MAX_ID_STRING ];
 	sIDString[0] = 0;
 
-	C_SDKPlayer *pPlayer = C_SDKPlayer::GetLocalSDKPlayer();
+	C_BliinkPlayer *pPlayer = C_BliinkPlayer::GetLocalSDKPlayer();
 
 	if ( !pPlayer )
 		return;

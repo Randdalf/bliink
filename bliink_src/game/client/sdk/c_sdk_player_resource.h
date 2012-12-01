@@ -21,16 +21,6 @@ public:
 
 					C_SDK_PlayerResource();
 	virtual			~C_SDK_PlayerResource();
-
-#if defined ( SDK_USE_PLAYERCLASSES )
-	int GetPlayerClass( int iIndex );
-#endif
-	
-protected:
-
-#if defined ( SDK_USE_PLAYERCLASSES )
-	int		m_iPlayerClass[MAX_PLAYERS+1];
-#endif
 };
 C_SDK_PlayerResource * SDKGameResources( void );
 

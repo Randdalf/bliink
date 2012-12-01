@@ -15,14 +15,14 @@
 #ifdef CLIENT_DLL
 
 	#include "precache_register.h"
-	#include "c_sdk_player.h"
-	#include "c_sdk_team.h"
+	#include "c_bliink_player.h"
+	#include "c_bliink_team.h"
 
 #else
 	
 	#include "voice_gamemgr.h"
-	#include "sdk_player.h"
-	#include "sdk_team.h"
+	#include "bliink_player.h"
+	#include "bliink_team.h"
 	#include "sdk_playerclass_info_parse.h"
 	#include "player_resource.h"
 	#include "mapentities.h"
@@ -188,10 +188,10 @@ static const char *s_PreserveEnts[] =
 	"ai_network",
 	"ai_hint",
 	"sdk_gamerules",
-	"sdk_team_manager",
-	"sdk_team_unassigned",
-	"sdk_team_blue",
-	"sdk_team_red",
+	"bliink_team_manager",
+	"bliink_team_unassigned",
+	"bliink_team_blue",
+	"bliink_team_red",
 	"sdk_player_manager",
 	"env_soundscape",
 	"env_soundscape_proxy",
@@ -280,7 +280,7 @@ CSDKGameRules::~CSDKGameRules()
 //-----------------------------------------------------------------------------
 bool CSDKGameRules::ClientCommand( CBaseEntity *pEdict, const CCommand &args )
 {
-	CSDKPlayer *pPlayer = ToSDKPlayer( pEdict );
+	CBliinkPlayer *pPlayer = ToSDKPlayer( pEdict );
 #if 0
 	const char *pcmd = args[0];
 	if ( FStrEq( pcmd, "somecommand" ) )
@@ -528,7 +528,7 @@ bool CSDKGameRules::IsSpawnPointValid( CBaseEntity *pSpot, CBasePlayer *pPlayer 
 
 void CSDKGameRules::PlayerSpawn( CBasePlayer *p )
 {	
-	CSDKPlayer *pPlayer = ToSDKPlayer( p );
+	CBliinkPlayer *pPlayer = ToSDKPlayer( p );
 
 	int team = pPlayer->GetTeamNumber();
 
@@ -549,16 +549,29 @@ void CSDKGameRules::InitTeams( void )
 	// Create the team managers
 
 	//Tony; we have a special unassigned team incase our mod is using classes but not teams.
-	CTeam *pUnassigned = static_cast<CTeam*>(CreateEntityByName( "sdk_team_unassigned" ));
+	CTeam *pUnassigned = static_cast<CTeam*>(CreateEntityByName( "bliink_team_unassigned" ));
 	Assert( pUnassigned );
 	pUnassigned->Init( pszTeamNames[TEAM_UNASSIGNED], TEAM_UNASSIGNED );
 	g_Teams.AddToTail( pUnassigned );
 
-	//Tony; just use a plain ole sdk_team_manager for spectators
-	CTeam *pSpectator = static_cast<CTeam*>(CreateEntityByName( "sdk_team_manager" ));
+	//Tony; just use a plain ole bliink_team_manager for spectators
+	CTeam *pSpectator = static_cast<CTeam*>(CreateEntityByName( "bliink_team_manager" ));
 	Assert( pSpectator );
 	pSpectator->Init( pszTeamNames[TEAM_SPECTATOR], TEAM_SPECTATOR );
-	g_Teams.AddToTail( pSpectator );
+	g_Teams.AddToTail( pSpectator ); 
+
+	// BLIINK TEAMS
+	// Survivor
+	CTeam *pSurvivor = static_cast<CTeam*>(CreateEntityByName( "bliink_team_survivor" ));
+	Assert( pSurvivor );
+	pSurvivor->Init( pszTeamNames[BLIINK_TEAM_SURVIVOR], BLIINK_TEAM_SURVIVOR );
+	g_Teams.AddToTail( pSurvivor ); 
+
+	// Stalker
+	CTeam *pStalker = static_cast<CTeam*>(CreateEntityByName( "bliink_team_stalker" ));
+	Assert( pStalker );
+	pStalker->Init( pszTeamNames[BLIINK_TEAM_STALKER], BLIINK_TEAM_STALKER );
+	g_Teams.AddToTail( pStalker );
 }
 
 /* create some proxy entities that we use for transmitting data */
@@ -583,7 +596,7 @@ int CSDKGameRules::SelectDefaultTeam()
 //-----------------------------------------------------------------------------
 // Purpose: determine the class name of the weapon that got a kill
 //-----------------------------------------------------------------------------
-const char *CSDKGameRules::GetKillingWeaponName( const CTakeDamageInfo &info, CSDKPlayer *pVictim, int *iWeaponID )
+const char *CSDKGameRules::GetKillingWeaponName( const CTakeDamageInfo &info, CBliinkPlayer *pVictim, int *iWeaponID )
 {
 	CBaseEntity *pInflictor = info.GetInflictor();
 	CBaseEntity *pKiller = info.GetAttacker();
@@ -656,11 +669,11 @@ void CSDKGameRules::DeathNotice( CBasePlayer *pVictim, const CTakeDamageInfo &in
 	int killer_ID = 0;
 
 	// Find the killer & the scorer
-	CSDKPlayer *pSDKPlayerVictim = ToSDKPlayer( pVictim );
+	CBliinkPlayer *pSDKPlayerVictim = ToSDKPlayer( pVictim );
 	CBaseEntity *pInflictor = info.GetInflictor();
 	CBaseEntity *pKiller = info.GetAttacker();
 	CBasePlayer *pScorer = GetDeathScorer( pKiller, pInflictor, pVictim );
-//	CSDKPlayer *pAssister = ToSDKPlayer( GetAssister( pVictim, pScorer, pInflictor ) );
+//	CBliinkPlayer *pAssister = ToSDKPlayer( GetAssister( pVictim, pScorer, pInflictor ) );
 
 	// Work out what killed the player, and send a message to all clients about it
 	int iWeaponID;
@@ -749,9 +762,6 @@ CAmmoDef* GetAmmoDef()
 		// def.AddAmmoType( BULLET_PLAYER_50AE,		DMG_BULLET, TRACER_LINE, 0, 0, "ammo_50AE_max",		2400, 0, 10, 14 );
 		def.AddAmmoType( "shotgun", DMG_BUCKSHOT, TRACER_NONE, 0, 0,	200/*MAX carry*/, 1, 0 );
 		def.AddAmmoType( "grenades", DMG_BLAST, TRACER_NONE, 0, 0,	4/*MAX carry*/, 1, 0 );
-
-		//Tony; added for the sdk_jeep
-		def.AddAmmoType( "JeepAmmo",	DMG_SHOCK,					TRACER_NONE,			"sdk_jeep_weapon_damage",		"sdk_jeep_weapon_damage", "sdk_jeep_max_rounds", BULLET_IMPULSE(650, 8000), 0 );
 	}
 
 	return &def;

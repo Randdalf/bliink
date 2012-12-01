@@ -16,7 +16,7 @@
 	
 #else
 
-	#include "sdk_player.h"
+	#include "bliink_player.h"
 	#include "items.h"
 	#include "sdk_basegrenade_projectile.h"
 

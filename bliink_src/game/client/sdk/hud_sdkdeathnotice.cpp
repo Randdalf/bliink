@@ -17,8 +17,8 @@
 #include "hud.h"
 
 
-#include "c_sdk_player.h"
-#include "c_sdk_team.h"
+#include "c_bliink_player.h"
+#include "c_bliink_team.h"
 #include "clientmode_sdk.h"
 
 #include "hud_basedeathnotice.h"

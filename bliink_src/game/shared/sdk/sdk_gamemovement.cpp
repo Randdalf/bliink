@@ -19,9 +19,9 @@
 #include "coordsize.h"
 
 #ifdef CLIENT_DLL
-	#include "c_sdk_player.h"
+	#include "c_bliink_player.h"
 #else
-	#include "sdk_player.h"
+	#include "bliink_player.h"
 #endif
 
 // memdbgon must be the last include file in a .cpp file!!!
@@ -70,7 +70,7 @@ protected:
 	bool ResolveStanding( void );
 	void TracePlayerBBoxWithStep( const Vector &vStart, const Vector &vEnd, unsigned int fMask, int collisionGroup, trace_t &trace );
 public:
-	CSDKPlayer *m_pSDKPlayer;
+	CBliinkPlayer *m_pSDKPlayer;
 };
 
 
@@ -277,7 +277,7 @@ void CSDKGameMovement::ProcessMovement( CBasePlayer *pBasePlayer, CMoveData *pMo
 bool CSDKGameMovement::CanAccelerate()
 {
 	// Only allow the player to accelerate when in certain states.
-	SDKPlayerState curState = m_pSDKPlayer->State_Get();
+	BliinkPlayerState curState = m_pSDKPlayer->State_Get();
 	if ( curState == STATE_ACTIVE )
 	{
 		return player->GetWaterJumpTime() == 0;

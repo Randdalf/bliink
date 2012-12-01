@@ -11,15 +11,15 @@
 #pragma once
 #endif
 
-class CSDKPlayerResource : public CPlayerResource
+class CBliinkPlayerResource : public CPlayerResource
 {
-	DECLARE_CLASS( CSDKPlayerResource, CPlayerResource );
+	DECLARE_CLASS( CBliinkPlayerResource, CPlayerResource );
 	
 public:
 	DECLARE_SERVERCLASS();
 	DECLARE_DATADESC();
 
-	CSDKPlayerResource();
+	CBliinkPlayerResource();
 
 	virtual void UpdatePlayerData( void );
 	virtual void Spawn( void );

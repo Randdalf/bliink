@@ -13,13 +13,13 @@
 #include <vgui/ISurface.h>
 #include <filesystem.h>
 #include "sdk_gamerules.h"
-#include "c_sdk_team.h"
+#include "c_bliink_team.h"
 #include "c_sdk_player_resource.h"
 #include "vtf/vtf.h"
 #include "clientmode.h"
 #include <vgui_controls/AnimationController.h>
 #include "voice_status.h"
-#include "c_sdk_player.h"
+#include "c_bliink_player.h"
 #include "mapoverview.h"
 
 using namespace vgui;
@@ -104,7 +104,7 @@ void CSDKSpectatorGUI::UpdateSpectatorPlayerList()
 
 bool CSDKSpectatorGUI::NeedsUpdate( void )
 {
-	C_SDKPlayer *player = C_SDKPlayer::GetLocalSDKPlayer();
+	C_BliinkPlayer *player = C_BliinkPlayer::GetLocalSDKPlayer();
 	if ( !player )
 		return false;
 
@@ -539,7 +539,7 @@ void CSDKMapOverview::UpdatePlayers()
 bool CSDKMapOverview::ShouldDraw( void )
 {
 	//Tony; don't draw the map unless it's a spectator - you could turn this into a radar if you wanted by using the other modes!
-	C_SDKPlayer *pPlayer = C_SDKPlayer::GetLocalSDKPlayer();
+	C_BliinkPlayer *pPlayer = C_BliinkPlayer::GetLocalSDKPlayer();
 	if (!pPlayer)
 		return false;
 
@@ -1162,10 +1162,10 @@ int CSDKMapOverview::GetIconNumberFromTeamNumber( int teamNumber )
 	switch(teamNumber) 
 	{
 #if defined ( SDK_USE_TEAMS )
-	case SDK_TEAM_BLUE:
+	case bliink_team_BLUE:
 		return MAP_ICON_BLUE;
 
-	case SDK_TEAM_RED:
+	case bliink_team_RED:
 		return MAP_ICON_RED;
 #endif
 	case 0:

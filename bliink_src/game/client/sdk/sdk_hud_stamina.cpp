@@ -9,7 +9,7 @@
 #include "hud.h"
 #include "sdk_hud_stamina.h"
 #include "hud_macros.h"
-#include "c_sdk_player.h"
+#include "c_bliink_player.h"
 #include "iclientmode.h"
 #include <vgui_controls/AnimationController.h>
 #include <vgui/ISurface.h>
@@ -61,7 +61,7 @@ void CHudStamina::Reset( void )
 //-----------------------------------------------------------------------------
 bool CHudStamina::ShouldDraw()
 {
-	C_SDKPlayer *pPlayer = C_SDKPlayer::GetLocalSDKPlayer();
+	C_BliinkPlayer *pPlayer = C_BliinkPlayer::GetLocalSDKPlayer();
 	if ( !pPlayer )
 		return false;
 	if ( pPlayer->State_Get() != STATE_ACTIVE )
@@ -76,7 +76,7 @@ bool CHudStamina::ShouldDraw()
 void CHudStamina::OnThink( void )
 {
 	float flCurrentStamina = 0;
-	C_SDKPlayer *pPlayer = C_SDKPlayer::GetLocalSDKPlayer();
+	C_BliinkPlayer *pPlayer = C_BliinkPlayer::GetLocalSDKPlayer();
 	if ( !pPlayer )
 		return;
 
@@ -104,7 +104,7 @@ void CHudStamina::OnThink( void )
 //-----------------------------------------------------------------------------
 void CHudStamina::Paint()
 {
-	C_SDKPlayer *pPlayer = C_SDKPlayer::GetLocalSDKPlayer();
+	C_BliinkPlayer *pPlayer = C_BliinkPlayer::GetLocalSDKPlayer();
 	if ( !pPlayer )
 		return;
 

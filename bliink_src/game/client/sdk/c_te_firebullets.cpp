@@ -6,7 +6,7 @@
 
 #include "cbase.h"
 #include "sdk_fx_shared.h"
-#include "c_sdk_player.h"
+#include "c_bliink_player.h"
 #include "c_basetempentity.h"
 #include <cliententitylist.h>
 

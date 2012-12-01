@@ -16,9 +16,9 @@
 #include "animation.h"
 
 #if defined( CLIENT_DLL )
-	#include "c_sdk_player.h"
+	#include "c_bliink_player.h"
 #else
-	#include "sdk_player.h"
+	#include "bliink_player.h"
 	#include "ndebugoverlay.h"
 	#include "te_effect_dispatch.h"
 	#include "ilagcompensationmanager.h"
@@ -75,7 +75,7 @@ void CWeaponSDKMelee::Precache( void )
 //------------------------------------------------------------------------------
 void CWeaponSDKMelee::ItemPostFrame( void )
 {
-	CSDKPlayer *pPlayer = GetPlayerOwner();
+	CBliinkPlayer *pPlayer = GetPlayerOwner();
 	if ( pPlayer == NULL )
 		return;
 
@@ -102,7 +102,7 @@ void CWeaponSDKMelee::PrimaryAttack()
 {
 	
 #ifndef CLIENT_DLL
-	CSDKPlayer *pPlayer = ToSDKPlayer( GetPlayerOwner() );
+	CBliinkPlayer *pPlayer = ToSDKPlayer( GetPlayerOwner() );
 	pPlayer->NoteWeaponFired();
 	// Move other players back to history positions based on local player's lag
 	lagcompensation->StartLagCompensation( pPlayer, LAG_COMPENSATE_BOUNDS );
@@ -132,7 +132,7 @@ void CWeaponSDKMelee::SecondaryAttack()
 //------------------------------------------------------------------------------
 void CWeaponSDKMelee::Hit( trace_t &traceHit, Activity nHitActivity )
 {
-	CSDKPlayer *pPlayer = ToSDKPlayer( GetOwner() );
+	CBliinkPlayer *pPlayer = ToSDKPlayer( GetOwner() );
 	
 	//Do view kick
 //	AddViewKick();
@@ -170,7 +170,7 @@ void CWeaponSDKMelee::Hit( trace_t &traceHit, Activity nHitActivity )
 	ImpactEffect( traceHit );
 }
 
-Activity CWeaponSDKMelee::ChooseIntersectionPointAndActivity( trace_t &hitTrace, const Vector &mins, const Vector &maxs, CSDKPlayer *pOwner )
+Activity CWeaponSDKMelee::ChooseIntersectionPointAndActivity( trace_t &hitTrace, const Vector &mins, const Vector &maxs, CBliinkPlayer *pOwner )
 {
 	int			i, j, k;
 	float		distance;
@@ -286,7 +286,7 @@ void CWeaponSDKMelee::Swing( int bIsSecondary )
 	trace_t traceHit;
 
 	// Try a ray
-	CSDKPlayer *pOwner = ToSDKPlayer( GetOwner() );
+	CBliinkPlayer *pOwner = ToSDKPlayer( GetOwner() );
 	if ( !pOwner )
 		return;
 
