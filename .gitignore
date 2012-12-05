@@ -15,7 +15,6 @@
 *.pch
 *.tmp
 *.ipch
-*.res
 *.user
 *\obj
 *\bin
