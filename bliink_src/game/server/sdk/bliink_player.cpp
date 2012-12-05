@@ -474,8 +474,8 @@ int CBliinkPlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 	bool bCheckFriendlyFire = false;
 	bool bFriendlyFire = friendlyfire.GetBool();
 	//Tony; only check teams in teamplay
-	if ( gpGlobals->teamplay )
-		bCheckFriendlyFire = true;
+	//if ( gpGlobals->teamplay )
+	//	bCheckFriendlyFire = true;
 
 	if ( bFriendlyFire || ( bCheckFriendlyFire && pInflictor->GetTeamNumber() != GetTeamNumber() ) || pInflictor == this ||	info.GetAttacker() == this )
 	{
