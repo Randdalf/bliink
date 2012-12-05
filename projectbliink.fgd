@@ -16,6 +16,10 @@
 [
 ]
 
+@NPCClass base(BaseNPC) studio("models/player/red_player.mdl") = npc_bliink_simple : "Freded"
+[
+]
+
 @FilterClass base(BaseFilter) size(-8 -8 -8, 8 8 8) = filter_activator_team :
 	"A filter that filters by the team of the activator."
 [
