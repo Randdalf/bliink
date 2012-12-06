@@ -52,12 +52,11 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
-      <Command>if EXIST "C:\Program Files (x86)\Steam\SteamApps\sourcemods\swarmsdktemplate\bin\.\$(TargetFileName)" for /f "delims=" %%A in (%27attrib "C:\Program Files (x86)\Steam\SteamApps\sourcemods\swarmsdktemplate\bin\.\$(TargetFileName)"%27) do set valveTmpIsReadOnly="%%A"
+      <Command>if EXIST "C:\Program Files (x86)\Steam\SteamApps\sourcemods\projectbliink\bin\.\$(TargetFileName)" for /f "delims=" %%A in (%27attrib "C:\Program Files (x86)\Steam\SteamApps\sourcemods\projectbliink\bin\.\$(TargetFileName)"%27) do set valveTmpIsReadOnly="%%A"
 set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%
 if "%valveTmpIsReadOnlyLetter%"=="R" del /q "$(TargetDir)"$(TargetFileName)
 if exist ..\..\devtools\bin\vpccrccheck.exe ..\..\devtools\bin\vpccrccheck.exe -crc2 test_swarm.vcproj
-if ERRORLEVEL 1 exit 1
-</Command>
+if ERRORLEVEL 1 exit 1</Command>
     </PreBuildEvent>
     <ClCompile>
       <AdditionalOptions>/MP %(AdditionalOptions)</AdditionalOptions>
@@ -121,14 +120,14 @@ if ERRORLEVEL 1 exit 1
       <OutputFile>$(OutDir)server.bsc</OutputFile>
     </Bscmake>
     <PostBuildEvent>
-      <Message>Publishing to C:\Program Files (x86)\Steam\SteamApps\sourcemods\swarmsdktemplate\bin\.</Message>
-      <Command>if exist "C:\Program Files (x86)\Steam\SteamApps\sourcemods\swarmsdktemplate\bin\." goto ValveStart
-mkdir "C:\Program Files (x86)\Steam\SteamApps\sourcemods\swarmsdktemplate\bin\."
+      <Message>Publishing to C:\Program Files (x86)\Steam\SteamApps\sourcemods\projectbliink\bin\.</Message>
+      <Command>if exist "C:\Program Files (x86)\Steam\SteamApps\sourcemods\projectbliink\bin\." goto ValveStart
+mkdir "C:\Program Files (x86)\Steam\SteamApps\sourcemods\projectbliink\bin\."
 :ValveStart
-copy "$(TargetDir)"$(TargetFileName) "C:\Program Files (x86)\Steam\SteamApps\sourcemods\swarmsdktemplate\bin\.\$(TargetFileName)"
+copy "$(TargetDir)"$(TargetFileName) "C:\Program Files (x86)\Steam\SteamApps\sourcemods\projectbliink\bin\.\$(TargetFileName)"
 if ERRORLEVEL 1 goto BuildEventFailed
-if exist "$(TargetDir)"$(TargetName).map copy "$(TargetDir)"$(TargetName).map "C:\Program Files (x86)\Steam\SteamApps\sourcemods\swarmsdktemplate\bin\.\$(TargetName).map"
-copy "$(TargetDir)"$(TargetName).pdb "C:\Program Files (x86)\Steam\SteamApps\sourcemods\swarmsdktemplate\bin\.\$(TargetName).pdb"
+if exist "$(TargetDir)"$(TargetName).map copy "$(TargetDir)"$(TargetName).map "C:\Program Files (x86)\Steam\SteamApps\sourcemods\projectbliink\bin\.\$(TargetName).map"
+copy "$(TargetDir)"$(TargetName).pdb "C:\Program Files (x86)\Steam\SteamApps\sourcemods\projectbliink\bin\.\$(TargetName).pdb"
 if ERRORLEVEL 1 goto BuildEventFailed
 goto BuildEventOK
 :BuildEventFailed

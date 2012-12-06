@@ -1,7 +1,6 @@
 *.dep
 *.aps
 *.vbw
-*.suo
 *.obj
 *.ncb
 *.plg
@@ -16,7 +15,5 @@
 *.tmp
 *.ipch
 *.user
-*\obj
-*\bin
 *\Debug
 *\Release
