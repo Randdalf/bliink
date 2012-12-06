@@ -13,6 +13,7 @@
 #include "engine/IEngineTrace.h"
 #include "tier0/vprof.h"
 #include "particles_ez.h"
+#include "math.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -39,6 +40,7 @@ END_RECV_TABLE()
 // ------------------------------------------------------------------------------------ //
 #define DUST_ACCEL 50
 
+static int m_iStartTime = 0;
 
 void CDustEffect::RenderParticles( CParticleRenderIterator *pIterator )
 {
@@ -211,16 +213,31 @@ void C_Func_Dust::AttemptSpawnNewParticle()
 {
 	// Find a random spot inside our bmodel.
 	static int nTests=10;
+	if(m_iStartTime == 0){
+		m_iStartTime = gpGlobals->curtime;
+	}
 
 	for( int iTest=0; iTest < nTests; iTest++ )
 	{
 		Vector vPercent = RandomVector( 0, 1 );
-		Vector vTest = WorldAlignMins() + (WorldAlignMaxs() - WorldAlignMins()) * vPercent;
+		double x = rand() % 6000-3000;
+		double y = rand() % 6000-2500;
+		double z = rand() % 600;
+		double x_distance = (500-x);
+		double y_distance = y;
+		double distance = sqrt((x_distance*x_distance) + (y_distance*y_distance));
+
+		int now = gpGlobals->curtime;
+		int gameTime = now - m_iStartTime;
+		if(distance > (3000-(gameTime*10))){
+		//Vector vTest = WorldAlignMins() + (WorldAlignMaxs() - WorldAlignMins()) * vPercent;
+		Vector vTest = Vector(x,y,z);
 
 		int contents = enginetrace->GetPointContents_Collideable( GetCollideable(), vTest );
 		if( contents & CONTENTS_SOLID )
 		{
-			CFuncDustParticle *pParticle = (CFuncDustParticle*)m_Effect.AddParticle( 10, m_hMaterial, vTest );
+			PMaterialHandle my_hMaterial = m_Effect.GetPMaterial( "particle/particle_smokegrenade1" );;
+			CFuncDustParticle *pParticle = (CFuncDustParticle*)m_Effect.AddParticle( 10, my_hMaterial, vTest );
 			if( pParticle )
 			{
 				pParticle->m_vVelocity = RandomVector( -m_SpeedMax, m_SpeedMax );
@@ -238,6 +255,7 @@ void C_Func_Dust::AttemptSpawnNewParticle()
 			}
 
 			break;
+		}
 		}
 	}
 }
