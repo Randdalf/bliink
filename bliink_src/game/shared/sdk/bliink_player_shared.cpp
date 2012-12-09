@@ -6,7 +6,7 @@
 
 #include "cbase.h"
 
-#include "sdk_gamerules.h"
+#include "bliink_gamerules.h"
 
 #include "takedamageinfo.h"
 #include "sdk_shareddefs.h"

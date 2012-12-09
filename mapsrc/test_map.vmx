@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "5032"
-	"mapversion" "55"
+	"mapversion" "57"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "55"
+	"mapversion" "57"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -4071,7 +4071,7 @@ entity
 	"fogcolor2" "53 60 56"
 	"fogdir" "0 270 0"
 	"fogenable" "1"
-	"fogend" "6200"
+	"fogend" "1536"
 	"foglerptime" "2"
 	"fogmaxdensity" ".9"
 	"fogstart" "0"
@@ -4168,16 +4168,16 @@ entity
 {
 	"id" "690"
 	"classname" "func_bliink_fog"
-	"Alpha" "98"
+	"Alpha" "100"
 	"Color" "72 72 72"
-	"DistMax" "1024"
+	"DistMax" "2048"
 	"Frozen" "0"
 	"LifetimeMax" "21"
 	"LifetimeMin" "20"
 	"MinFogRadius" "1024"
 	"SizeMax" "750"
-	"SizeMin" "250"
-	"SpawnRate" "150"
+	"SizeMin" "500"
+	"SpawnRate" "400"
 	"SpeedMax" "13"
 	"StartDisabled" "0"
 	solid

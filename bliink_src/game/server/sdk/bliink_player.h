@@ -158,6 +158,39 @@ private:
 	void State_Enter_DEATH_ANIM();
 	void State_PreThink_DEATH_ANIM();
 
+	//**************************************************************************
+	//* BLIINK PLAYER STATE FUNCTIONS
+	//**************************************************************************
+	void State_Enter_BLIINK_WELCOME();
+	void State_PreThink_BLIINK_WELCOME();
+
+	void State_Enter_BLIINK_SPECTATE_PREGAME();
+	void State_PreThink_BLIINK_SPECTATE_PREGAME();
+
+	void State_Enter_BLIINK_WAITING_FOR_PLAYERS();
+	void State_PreThink_BLIINK_WAITING_FOR_PLAYERS();
+
+	void State_Enter_BLIINK_SPECTATE();
+	void State_PreThink_BLIINK_SPECTATE();
+
+	void State_Enter_BLIINK_SURVIVOR();
+	void State_PreThink_BLIINK_SURVIVOR();
+
+	void State_Enter_BLIINK_SURVIVOR_DEATH_ANIM();
+	void State_PreThink_BLIINK_SURVIVOR_DEATH_ANIM();
+
+	void State_Enter_BLIINK_STALKER();
+	void State_PreThink_BLIINK_STALKER();
+
+	void State_Enter_BLIINK_STALKER_DEATH_ANIM();
+	void State_PreThink_BLIINK_STALKER_DEATH_ANIM();
+
+	void State_Enter_BLIINK_STALKER_RESPAWN();
+	void State_PreThink_BLIINK_STALKER_RESPAWN();
+
+	void State_Enter_BLIINK_VIEW_RESULTS();
+	void State_PreThink_BLIINK_VIEW_RESULTS();
+
 	// Find the state info for the specified state.
 	static CBliinkPlayerStateInfo* State_LookupInfo( BliinkPlayerState state );
 

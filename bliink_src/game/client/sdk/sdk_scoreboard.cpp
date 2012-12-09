@@ -10,7 +10,7 @@
 #include "sdk_scoreboard.h"
 #include "c_bliink_team.h"
 #include "c_sdk_player_resource.h"
-#include "sdk_gamerules.h"
+#include "bliink_gamerules.h"
 #include "sdk_backgroundpanel.h"
 
 #include <KeyValues.h>
@@ -138,7 +138,7 @@ void CSDKScoreboard::UpdateTeamInfo()
 			wchar_t string1[1024];
 			wchar_t wNumPlayers[6];
 
-			if ( SDKGameRules()->IsTeamplay() == false )
+			if ( BliinkGameRules()->IsTeamplay() == false )
 			{
 				_snwprintf(wNumPlayers, 6, L"%i", iNumPlayersInGame );
 				_snwprintf( name, sizeof(name), L"%s", g_pVGuiLocalize->Find("#SDK_ScoreBoard_Deathmatch") );
@@ -308,7 +308,7 @@ void CSDKScoreboard::UpdatePlayerInfo()
 			{
 				int ot = pOther->GetTeamNumber();
 				if ( ot == localteam || localteam == TEAM_UNASSIGNED)
-					kv->SetString("class", SDKGameRules()->GetPlayerClassName( SDKGameResources()->GetPlayerClass(i), ot ) );
+					kv->SetString("class", BliinkGameRules()->GetPlayerClassName( SDKGameResources()->GetPlayerClass(i), ot ) );
 				else
 					kv->SetString("class", "");
 			}

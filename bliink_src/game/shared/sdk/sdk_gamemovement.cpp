@@ -13,7 +13,7 @@
 //=============================================================================
 #include "cbase.h"
 #include "gamemovement.h"
-#include "sdk_gamerules.h"
+#include "bliink_gamerules.h"
 #include "in_buttons.h"
 #include "movevars_shared.h"
 #include "coordsize.h"

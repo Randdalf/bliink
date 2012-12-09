@@ -113,7 +113,7 @@
 #endif
 
 // Activate SDK gamerules
-#include "sdk_gamerules.h"
+#include "bliink_gamerules.h"
 
 #ifdef _WIN32
 #include "IGameUIFuncs.h"
@@ -1219,7 +1219,7 @@ void CServerGameDLL::ServerActivate( edict_t *pEdictList, int edictCount, int cl
 #endif
 
 	// Activate SDK gamerules
-	SDKGameRules()->ServerActivate();
+	BliinkGameRules()->ServerActivate();
 
 }
 

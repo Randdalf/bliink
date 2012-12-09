@@ -1505,9 +1505,6 @@
     <ClCompile Include="..\shared\sdk\sdk_gamemovement.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
-    <ClCompile Include="..\shared\sdk\sdk_gamerules.cpp">
-      <Filter>Source Files\SDK\Shared</Filter>
-    </ClCompile>
     <ClCompile Include="..\shared\sdk\sdk_playeranimstate.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
@@ -1591,6 +1588,9 @@
     </ClCompile>
     <ClCompile Include="bliink_simple_npc.cpp">
       <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shared\sdk\bliink_gamerules.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3235,9 +3235,6 @@
     <ClInclude Include="..\shared\sdk\sdk_fx_shared.h">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClInclude>
-    <ClInclude Include="..\shared\sdk\sdk_gamerules.h">
-      <Filter>Source Files\SDK\Shared</Filter>
-    </ClInclude>
     <ClInclude Include="..\shared\sdk\sdk_playeranimstate.h">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClInclude>
@@ -3282,6 +3279,9 @@
     </ClInclude>
     <ClInclude Include="sdk\bliink_team.h">
       <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shared\sdk\bliink_gamerules.h">
+      <Filter>Source Files\SDK\Shared</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

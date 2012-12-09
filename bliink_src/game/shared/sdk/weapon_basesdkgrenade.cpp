@@ -6,7 +6,7 @@
 
 #include "cbase.h"
 #include "weapon_sdkbase.h"
-#include "sdk_gamerules.h"
+#include "bliink_gamerules.h"
 #include "npcevent.h"
 #include "engine/IEngineSound.h"
 #include "weapon_basesdkgrenade.h"

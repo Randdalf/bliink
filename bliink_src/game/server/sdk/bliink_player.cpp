@@ -8,7 +8,7 @@
 #include "cbase.h"
 #include "bliink_player.h"
 #include "bliink_team.h"
-#include "sdk_gamerules.h"
+#include "bliink_gamerules.h"
 #include "weapon_sdkbase.h"
 #include "predicted_viewmodel.h"
 #include "iservervehicle.h"
@@ -330,8 +330,6 @@ void CBliinkPlayer::Spawn()
 	if ( State_Get() == STATE_ACTIVE )
 	{
 		EquipSuit( false );
-//Tony; bleh, don't do this here.
-//		GiveDefaultItems();
 	}
 
 	m_hRagdoll = NULL;
@@ -349,8 +347,6 @@ void CBliinkPlayer::Spawn()
 	m_bSpawnInterpCounter = !m_bSpawnInterpCounter;
 
 	InitSpeeds(); //Tony; initialize player speeds.
-
-	SetArmorValue(SpawnArmorValue());
 
 	SetContextThink( &CBliinkPlayer::SDKPushawayThink, gpGlobals->curtime + PUSHAWAY_THINK_INTERVAL, SDK_PUSHAWAY_THINK_CONTEXT );
 	pl.deadflag = false;
@@ -467,59 +463,15 @@ int CBliinkPlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 	if ( GetMoveType() == MOVETYPE_NOCLIP || GetMoveType() == MOVETYPE_OBSERVER )
 		return 0;
 
-	float flArmorBonus = 0.5f;
-	float flArmorRatio = 0.5f;
 	float flDamage = info.GetDamage();
 
 	bool bCheckFriendlyFire = false;
 	bool bFriendlyFire = friendlyfire.GetBool();
-	//Tony; only check teams in teamplay
-	//if ( gpGlobals->teamplay )
-	//	bCheckFriendlyFire = true;
 
-	if ( bFriendlyFire || ( bCheckFriendlyFire && pInflictor->GetTeamNumber() != GetTeamNumber() ) || pInflictor == this ||	info.GetAttacker() == this )
+	if ( pInflictor == this ||	info.GetAttacker() == this )
 	{
-		if ( bFriendlyFire && (info.GetDamageType() & DMG_BLAST) == 0 )
-		{
-			if ( pInflictor->GetTeamNumber() == GetTeamNumber() && bCheckFriendlyFire)
-			{
-				flDamage *= 0.35; // bullets hurt teammates less
-			}
-		}
-
 		// keep track of amount of damage last sustained
 		m_lastDamageAmount = flDamage;
-		// Deal with Armour
-		if ( ArmorValue() && !( info.GetDamageType() & (DMG_FALL | DMG_DROWN)) )
-		{
-			float flNew = flDamage * flArmorRatio;
-			float flArmor = (flDamage - flNew) * flArmorBonus;
-
-			// Does this use more armor than we have?
-			if (flArmor > ArmorValue() )
-			{
-				//armorHit = (int)(flArmor);
-
-				flArmor = ArmorValue();
-				flArmor *= (1/flArmorBonus);
-				flNew = flDamage - flArmor;
-				SetArmorValue( 0 );
-			}
-			else
-			{
-				int oldValue = (int)(ArmorValue());
-			
-				if ( flArmor < 0 )
-					 flArmor = 1;
-
-				SetArmorValue( oldValue - flArmor );
-				//armorHit = oldValue - (int)(pev->armorvalue);
-			}
-			
-			flDamage = flNew;
-			
-			info.SetDamage( flDamage );
-		}
 
 		// round damage to integer
 		info.SetDamage( (int)flDamage );
@@ -689,6 +641,18 @@ void CBliinkPlayer::Event_Killed( const CTakeDamageInfo &info )
 	//CreateRagdollEntity();
 
 	State_Transition( STATE_DEATH_ANIM );	// Transition into the dying state.
+
+	/*
+	if(m_iPlayerState == STATE_BLIINK_SURVIVOR)
+	{
+		State_Transition( STATE_BLIINK_SURVIVOR_DEATH_ANIM )
+	}
+	else if(m_iPlayerState == STATE_BLIINK_STALKER)
+	{
+		State_Transition( STATE_BLIINK_STALKER_DEATH_ANIM )
+	}
+	*/
+
 
 	//Tony; after transition, remove remaining items
 	RemoveAllItems( true );
@@ -886,18 +850,7 @@ int CBliinkPlayer::FlashlightIsOn( void )
 bool CBliinkPlayer::ClientCommand( const CCommand &args )
 {
 	const char *pcmd = args[0];
-	if ( FStrEq( pcmd, "jointeam" ) ) 
-	{
-		if ( args.ArgC() < 2 )
-		{
-			Warning( "Player sent bad jointeam syntax\n" );
-		}
-
-		int iTeam = atoi( args[1] );
-		HandleCommand_JoinTeam( iTeam );
-		return true;
-	}
-	else if( !Q_strncmp( pcmd, "cls_", 4 ) )
+	if( !Q_strncmp( pcmd, "cls_", 4 ) )
 	{
 		return true;
 	}
@@ -917,10 +870,6 @@ bool CBliinkPlayer::ClientCommand( const CCommand &args )
 		
 		return true;
 	}
-	else if ( FStrEq( pcmd, "joinclass" ) ) 
-	{
-		return true;
-	}
 	else if ( FStrEq( pcmd, "menuopen" ) )
 	{
 		return true;
@@ -934,63 +883,20 @@ bool CBliinkPlayer::ClientCommand( const CCommand &args )
 		ThrowActiveWeapon();
 		return true;
 	}
+	else if( FStrEq( pcmd, "bliink_welcome_spectate" ) )
+	{
+		State_Transition( STATE_BLIINK_SPECTATE_PREGAME );
+	}
+	else if( FStrEq( pcmd, "bliink_welcome_play" ) )
+	{
+		State_Transition( STATE_BLIINK_WAITING_FOR_PLAYERS );
+	}
+	else if( FStrEq( pcmd, "bliink_spectate_pregame_welcome" ) )
+	{
+		State_Transition( STATE_BLIINK_WELCOME );
+	}
 
 	return BaseClass::ClientCommand( args );
-}
-
-// returns true if the selection has been handled and the player's menu 
-// can be closed...false if the menu should be displayed again
-bool CBliinkPlayer::HandleCommand_JoinTeam( int team )
-{
-	CSDKGameRules *mp = SDKGameRules();
-	int iOldTeam = GetTeamNumber();
-	if ( !GetGlobalTeam( team ) )
-	{
-		Warning( "HandleCommand_JoinTeam( %d ) - invalid team index.\n", team );
-		return false;
-	}
-
-	if ( team == TEAM_UNASSIGNED )
-	{
-		// Attempt to auto-select a team, may set team to T, CT or SPEC
-		team = mp->SelectDefaultTeam();
-
-		if ( team == TEAM_UNASSIGNED )
-		{
-			// still team unassigned, try to kick a bot if possible	
-			 
-			ClientPrint( this, HUD_PRINTTALK, "#All_Teams_Full" );
-
-			team = TEAM_SPECTATOR;
-		}
-	}
-
-	if ( team == iOldTeam )
-		return true;	// we wouldn't change the team
-
-	if ( team == TEAM_SPECTATOR )
-	{
-		// Prevent this if the cvar is set
-		if ( !mp_allowspectators.GetInt() && !IsHLTV() )
-		{
-			ClientPrint( this, HUD_PRINTTALK, "#Cannot_Be_Spectator" );
-			ShowViewPortPanel( PANEL_TEAM );
-			return false;
-		}
-
-		ChangeTeam( TEAM_SPECTATOR );
-
-		return true;
-	}
-	
-	// If the code gets this far, the team is not TEAM_UNASSIGNED
-
-	// Player is switching to a new team (It is possible to switch to the
-	// same team just to choose a new appearance)
-	// Switch their actual team...
-	ChangeTeam( team );
-
-	return true;
 }
 
 #if defined ( SDK_USE_SPRINTING )
@@ -1066,7 +972,17 @@ CBliinkPlayerStateInfo* CBliinkPlayer::State_LookupInfo( BliinkPlayerState state
 		{ STATE_ACTIVE,			"STATE_ACTIVE",			&CBliinkPlayer::State_Enter_ACTIVE, NULL, &CBliinkPlayer::State_PreThink_ACTIVE },
 		{ STATE_WELCOME,		"STATE_WELCOME",		&CBliinkPlayer::State_Enter_WELCOME, NULL, &CBliinkPlayer::State_PreThink_WELCOME },
 		{ STATE_DEATH_ANIM,		"STATE_DEATH_ANIM",		&CBliinkPlayer::State_Enter_DEATH_ANIM,	NULL, &CBliinkPlayer::State_PreThink_DEATH_ANIM },
-		{ STATE_OBSERVER_MODE,	"STATE_OBSERVER_MODE",	&CBliinkPlayer::State_Enter_OBSERVER_MODE,	NULL, &CBliinkPlayer::State_PreThink_OBSERVER_MODE }
+		{ STATE_OBSERVER_MODE,	"STATE_OBSERVER_MODE",	&CBliinkPlayer::State_Enter_OBSERVER_MODE,	NULL, &CBliinkPlayer::State_PreThink_OBSERVER_MODE },
+		{ STATE_BLIINK_WELCOME,	"				STATE_BLIINK_WELCOME",	&CBliinkPlayer::State_Enter_BLIINK_WELCOME,	NULL, &CBliinkPlayer::State_PreThink_BLIINK_WELCOME },
+		{ STATE_BLIINK_SPECTATE_PREGAME,		"STATE_BLIINK_SPECTATE_PREGAME",	&CBliinkPlayer::State_Enter_BLIINK_SPECTATE_PREGAME,	NULL, &CBliinkPlayer::State_PreThink_BLIINK_SPECTATE_PREGAME },
+		{ STATE_BLIINK_WAITING_FOR_PLAYERS,		"STATE_BLIINK_WAITING_FOR_PLAYERS",	&CBliinkPlayer::State_Enter_BLIINK_WAITING_FOR_PLAYERS,	NULL, &CBliinkPlayer::State_PreThink_BLIINK_WAITING_FOR_PLAYERS },
+		{ STATE_BLIINK_SPECTATE,				"STATE_BLIINK_SPECTATE",			&CBliinkPlayer::State_Enter_BLIINK_SPECTATE,	NULL, &CBliinkPlayer::State_PreThink_BLIINK_SPECTATE },
+		{ STATE_BLIINK_SURVIVOR,				"STATE_BLIINK_SURVIVOR",			&CBliinkPlayer::State_Enter_BLIINK_SURVIVOR,	NULL, &CBliinkPlayer::State_PreThink_BLIINK_SURVIVOR },
+		{ STATE_BLIINK_SURVIVOR_DEATH_ANIM,		"STATE_BLIINK_SURVIVOR_DEATH_ANIM",	&CBliinkPlayer::State_Enter_BLIINK_SURVIVOR_DEATH_ANIM,	NULL, &CBliinkPlayer::State_PreThink_BLIINK_SURVIVOR_DEATH_ANIM },
+		{ STATE_BLIINK_STALKER,					"STATE_BLIINK_STALKER",				&CBliinkPlayer::State_Enter_BLIINK_STALKER,	NULL, &CBliinkPlayer::State_PreThink_BLIINK_STALKER },
+		{ STATE_BLIINK_STALKER_DEATH_ANIM,		"STATE_BLIINK_STALKER_DEATH_ANIM",	&CBliinkPlayer::State_Enter_BLIINK_STALKER_DEATH_ANIM,	NULL, &CBliinkPlayer::State_PreThink_BLIINK_STALKER_DEATH_ANIM },
+		{ STATE_BLIINK_STALKER_RESPAWN,			"STATE_BLIINK_STALKER_RESPAWN",		&CBliinkPlayer::State_Enter_BLIINK_STALKER_RESPAWN,	NULL, &CBliinkPlayer::State_PreThink_BLIINK_STALKER_RESPAWN },
+		{ STATE_BLIINK_VIEW_RESULTS,			"STATE_BLIINK_VIEW_RESULTS",		&CBliinkPlayer::State_Enter_BLIINK_VIEW_RESULTS,	NULL, &CBliinkPlayer::State_PreThink_BLIINK_VIEW_RESULTS }
 	};
 
 	for ( int i=0; i < ARRAYSIZE( playerStateInfos ); i++ )
@@ -1090,41 +1006,6 @@ void CBliinkPlayer::PhysObjectWake()
 	IPhysicsObject *pObj = VPhysicsGetObject();
 	if ( pObj )
 		pObj->Wake();
-}
-void CBliinkPlayer::State_Enter_WELCOME()
-{
-	// Important to set MOVETYPE_NONE or our physics object will fall while we're sitting at one of the intro cameras.
-	SetMoveType( MOVETYPE_NONE );
-	AddSolidFlags( FSOLID_NOT_SOLID );
-
-	PhysObjectSleep();
-
-	// Show info panel
-	if ( IsBot() )
-	{
-		// If they want to auto join a team for debugging, pretend they clicked the button.
-		CCommand args;
-		args.Tokenize( "joingame" );
-		ClientCommand( args );
-	}
-	else
-	{
-		const ConVar *hostname = cvar->FindVar( "hostname" );
-		const char *title = (hostname) ? hostname->GetString() : "MESSAGE OF THE DAY";
-
-		// open info panel on client showing MOTD:
-		KeyValues *data = new KeyValues("data");
-		data->SetString( "title", title );		// info panel title
-		data->SetString( "type", "1" );			// show userdata from stringtable entry
-		data->SetString( "msg",	"motd" );		// use this stringtable entry
-		data->SetString( "cmd", "joingame" );// exec this command if panel closed
-
-		ShowViewPortPanel( PANEL_INFO, true, data );
-
-		data->deleteThis();
-
-
-	}	
 }
 
 void CBliinkPlayer::MoveToNextIntroCamera()
@@ -1170,6 +1051,42 @@ void CBliinkPlayer::MoveToNextIntroCamera()
 	SetAbsAngles( CamAngles );
 	SnapEyeAngles( CamAngles );
 	m_fIntroCamTime = gpGlobals->curtime + 6;
+}
+
+void CBliinkPlayer::State_Enter_WELCOME()
+{
+	// Important to set MOVETYPE_NONE or our physics object will fall while we're sitting at one of the intro cameras.
+	SetMoveType( MOVETYPE_NONE );
+	AddSolidFlags( FSOLID_NOT_SOLID );
+
+	PhysObjectSleep();
+
+	// Show info panel
+	if ( IsBot() )
+	{
+		// If they want to auto join a team for debugging, pretend they clicked the button.
+		CCommand args;
+		args.Tokenize( "joingame" );
+		ClientCommand( args );
+	}
+	else
+	{
+		const ConVar *hostname = cvar->FindVar( "hostname" );
+		const char *title = (hostname) ? hostname->GetString() : "MESSAGE OF THE DAY";
+
+		// open info panel on client showing MOTD:
+		KeyValues *data = new KeyValues("data");
+		data->SetString( "title", title );		// info panel title
+		data->SetString( "type", "1" );			// show userdata from stringtable entry
+		data->SetString( "msg",	"motd" );		// use this stringtable entry
+		data->SetString( "cmd", "joingame" );// exec this command if panel closed
+
+		ShowViewPortPanel( PANEL_INFO, true, data );
+
+		data->deleteThis();
+
+
+	}	
 }
 
 void CBliinkPlayer::State_PreThink_WELCOME()
@@ -1329,6 +1246,81 @@ void CBliinkPlayer::State_Enter_ACTIVE()
 void CBliinkPlayer::State_PreThink_ACTIVE()
 {
 }
+
+//**************************************************************************
+//* BLIINK PLAYER STATE FUNCTIONS
+//**************************************************************************
+void CBliinkPlayer::State_Enter_BLIINK_WELCOME()
+{
+}
+void CBliinkPlayer::State_PreThink_BLIINK_WELCOME()
+{
+}
+
+void CBliinkPlayer::State_Enter_BLIINK_SPECTATE_PREGAME()
+{
+}
+void CBliinkPlayer::State_PreThink_BLIINK_SPECTATE_PREGAME()
+{
+}
+
+void CBliinkPlayer::State_Enter_BLIINK_WAITING_FOR_PLAYERS()
+{
+}
+void CBliinkPlayer::State_PreThink_BLIINK_WAITING_FOR_PLAYERS()
+{
+}
+
+void CBliinkPlayer::State_Enter_BLIINK_SPECTATE()
+{
+}
+void CBliinkPlayer::State_PreThink_BLIINK_SPECTATE()
+{
+}
+
+void CBliinkPlayer::State_Enter_BLIINK_SURVIVOR()
+{
+}
+void CBliinkPlayer::State_PreThink_BLIINK_SURVIVOR()
+{
+}
+
+void CBliinkPlayer::State_Enter_BLIINK_SURVIVOR_DEATH_ANIM()
+{
+}
+void CBliinkPlayer::State_PreThink_BLIINK_SURVIVOR_DEATH_ANIM()
+{
+}
+
+void CBliinkPlayer::State_Enter_BLIINK_STALKER()
+{
+}
+void CBliinkPlayer::State_PreThink_BLIINK_STALKER()
+{
+}
+
+void CBliinkPlayer::State_Enter_BLIINK_STALKER_DEATH_ANIM()
+{
+}
+void CBliinkPlayer::State_PreThink_BLIINK_STALKER_DEATH_ANIM()
+{
+}
+
+void CBliinkPlayer::State_Enter_BLIINK_STALKER_RESPAWN()
+{
+}
+void CBliinkPlayer::State_PreThink_BLIINK_STALKER_RESPAWN()
+{
+}
+
+void CBliinkPlayer::State_Enter_BLIINK_VIEW_RESULTS()
+{
+}
+void CBliinkPlayer::State_PreThink_BLIINK_VIEW_RESULTS()
+{
+}
+
+// --BLIINK STATE FUNCTIONS END--
 
 int CBliinkPlayer::GetPlayerStance()
 {

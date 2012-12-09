@@ -9,7 +9,7 @@
 #include "weapon_sdkbase.h"
 #include "sdk_weapon_melee.h"
 
-#include "sdk_gamerules.h"
+#include "bliink_gamerules.h"
 #include "ammodef.h"
 #include "mathlib/mathlib.h"
 #include "in_buttons.h"

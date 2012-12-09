@@ -12,7 +12,7 @@
 #include <vgui/ILocalize.h>
 #include <vgui/ISurface.h>
 #include <filesystem.h>
-#include "sdk_gamerules.h"
+#include "bliink_gamerules.h"
 #include "c_bliink_team.h"
 #include "c_sdk_player_resource.h"
 #include "vtf/vtf.h"
@@ -108,7 +108,7 @@ bool CSDKSpectatorGUI::NeedsUpdate( void )
 	if ( !player )
 		return false;
 
-	if ( m_nLastTime != (int)SDKGameRules()->GetMapRemainingTime() )
+	if ( m_nLastTime != (int)BliinkGameRules()->GetMapRemainingTime() )
 		return true;
 
 	if ( m_nLastSpecMode != player->GetObserverMode() )
@@ -128,7 +128,7 @@ void CSDKSpectatorGUI::UpdateTimer()
 	wchar_t szText[ 63 ];
 
 	
-	m_nLastTime = (int)( SDKGameRules()->GetMapRemainingTime() );
+	m_nLastTime = (int)( BliinkGameRules()->GetMapRemainingTime() );
 
 	if ( m_nLastTime < 0 )
 		 m_nLastTime  = 0;

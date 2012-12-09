@@ -7,7 +7,7 @@
 #include "cbase.h"
 #include "c_sdk_player_resource.h"
 #include "c_bliink_player.h"
-#include "sdk_gamerules.h"
+#include "bliink_gamerules.h"
 #include <shareddefs.h>
 #include "hud.h"
 

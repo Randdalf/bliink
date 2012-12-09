@@ -12,7 +12,7 @@
 #include "vgui_EntityPanel.h"
 #include "iclientmode.h"
 #include "vgui/ILocalize.h"
-#include "sdk_gamerules.h"
+#include "bliink_gamerules.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -158,7 +158,7 @@ void CSDKTargetId::Paint()
 			bShowPlayerName = true;
 			g_pVGuiLocalize->ConvertANSIToUnicode( pPlayer->GetPlayerName(),  wszPlayerName, sizeof(wszPlayerName) );
 			
-			if ( SDKGameRules()->IsTeamplay() == true && pPlayer->InSameTeam(pLocalPlayer) )
+			if ( BliinkGameRules()->IsTeamplay() == true && pPlayer->InSameTeam(pLocalPlayer) )
 			{
 				printFormatString = "#SDK_Playerid_sameteam";
 				bShowHealth = true;

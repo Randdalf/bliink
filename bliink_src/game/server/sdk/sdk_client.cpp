@@ -26,7 +26,7 @@
 #include "player_resource.h"
 #include "engine/IEngineSound.h"
 #include "bliink_player.h"
-#include "sdk_gamerules.h"
+#include "bliink_gamerules.h"
 #include "tier0/vprof.h"
 #include "sdk_bot_temp.h"
 
@@ -169,5 +169,5 @@ void GameStartFrame( void )
 //=========================================================
 void InstallGameRules()
 {
-	CreateGameRulesObject( "CSDKGameRules" );
+	CreateGameRulesObject( "CBliinkGameRules" );
 }

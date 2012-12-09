@@ -19,7 +19,7 @@
 #include "c_bliink_team.h"
 #include "c_playerresource.h"
 #include "c_bliink_player.h"
-#include "sdk_gamerules.h"
+#include "bliink_gamerules.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
