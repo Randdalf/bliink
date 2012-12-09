@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "5032"
-	"mapversion" "53"
+	"mapversion" "54"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "53"
+	"mapversion" "54"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -4167,13 +4167,14 @@ entity
 entity
 {
 	"id" "690"
-	"classname" "func_dustcloud"
+	"classname" "func_bliink_fog"
 	"Alpha" "98"
 	"Color" "72 72 72"
 	"DistMax" "6000"
 	"Frozen" "0"
 	"LifetimeMax" "21"
 	"LifetimeMin" "20"
+	"MinFogRadius" "500"
 	"SizeMax" "750"
 	"SizeMin" "500"
 	"SpawnRate" "400"
