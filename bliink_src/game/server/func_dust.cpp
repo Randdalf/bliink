@@ -56,7 +56,11 @@ public:
 
 	CNetworkVar( int, m_DistMax );
 
-	CNetworkVar( float, m_FallSpeed );
+	CNetworkVar( float, m_FallSpeed )
+
+	// Bliink stuff
+	CNetworkVar( int, m_iStartTime );
+	CNetworkVar( float, m_MinRadius );
 
 public:
 
@@ -93,6 +97,10 @@ IMPLEMENT_SERVERCLASS_ST_NOBASE( CFunc_Dust, DT_Func_Dust )
 	SendPropInt( SENDINFO(m_LifetimeMax), 4, SPROP_UNSIGNED ),
 	SendPropInt( SENDINFO(m_DustFlags), DUST_NUMFLAGS, SPROP_UNSIGNED ),
 
+	// Bliink SendProps
+	SendPropInt( SENDINFO(m_iStartTime), 0),
+	SendPropFloat( SENDINFO(m_MinRadius), 0, SPROP_NOSCALE ),
+
 	SendPropModelIndex( SENDINFO(m_nModelIndex) ),
 	SendPropFloat( SENDINFO(m_FallSpeed), 0, SPROP_NOSCALE ),
 	SendPropDataTable( SENDINFO_DT( m_Collision ), &REFERENCE_SEND_TABLE(DT_CollisionProperty) ),
@@ -113,6 +121,7 @@ BEGIN_DATADESC( CFunc_Dust )
 	DEFINE_KEYFIELD( m_DistMax,		FIELD_INTEGER,	"DistMax" ),
 	DEFINE_FIELD( m_iAlpha,			FIELD_INTEGER ),
 	DEFINE_KEYFIELD( m_FallSpeed,	FIELD_FLOAT,	"FallSpeed" ),
+	DEFINE_KEYFIELD ( m_MinRadius, FIELD_FLOAT, "MinFogRadius" ),
 
 	DEFINE_INPUTFUNC( FIELD_VOID, "TurnOn",  InputTurnOn ),
 	DEFINE_INPUTFUNC( FIELD_VOID, "TurnOff", InputTurnOff )
@@ -122,6 +131,7 @@ END_DATADESC()
 
 LINK_ENTITY_TO_CLASS( func_dustmotes, CFunc_DustMotes );
 LINK_ENTITY_TO_CLASS( func_dustcloud, CFunc_DustCloud );
+LINK_ENTITY_TO_CLASS( func_bliink_fog, CFunc_DustCloud );
 
 
 // ------------------------------------------------------------------------------------- //
@@ -143,6 +153,7 @@ CFunc_Dust::CFunc_Dust()
 {
 	m_DustFlags = DUSTFLAGS_ON;
 	m_FallSpeed = 0.0f;
+	m_iStartTime = gpGlobals->curtime;
 }
 
 

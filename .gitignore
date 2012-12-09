@@ -15,5 +15,6 @@
 *.tmp
 *.ipch
 *.user
+*.sdf
 *\Debug
 *\Release

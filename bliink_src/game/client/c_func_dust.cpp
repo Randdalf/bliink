@@ -30,6 +30,12 @@ IMPLEMENT_CLIENTCLASS_DT_NOBASE( C_Func_Dust, DT_Func_Dust, CFunc_Dust )
 	RecvPropInt( RECVINFO(m_DistMax) ),
 	RecvPropInt( RECVINFO( m_nModelIndex ) ),
 	RecvPropFloat( RECVINFO( m_FallSpeed ) ),
+	
+	// Bliink stuff
+	RecvPropInt( RECVINFO(m_iStartTime) ),
+	RecvPropFloat( RECVINFO(m_MinRadius) ),
+	
+
 	RecvPropDataTable( RECVINFO_DT( m_Collision ), 0, &REFERENCE_RECV_TABLE(DT_CollisionProperty) ),
 END_RECV_TABLE()
 
@@ -39,8 +45,6 @@ END_RECV_TABLE()
 // CDustEffect implementation.
 // ------------------------------------------------------------------------------------ //
 #define DUST_ACCEL 50
-
-static int m_iStartTime = 0;
 
 void CDustEffect::RenderParticles( CParticleRenderIterator *pIterator )
 {
@@ -213,9 +217,6 @@ void C_Func_Dust::AttemptSpawnNewParticle()
 {
 	// Find a random spot inside our bmodel.
 	static int nTests=10;
-	if(m_iStartTime == 0){
-		m_iStartTime = gpGlobals->curtime;
-	}
 
 	for( int iTest=0; iTest < nTests; iTest++ )
 	{
@@ -229,33 +230,34 @@ void C_Func_Dust::AttemptSpawnNewParticle()
 
 		int now = gpGlobals->curtime;
 		int gameTime = now - m_iStartTime;
-		if(distance > (3000-(gameTime*10))){
-		//Vector vTest = WorldAlignMins() + (WorldAlignMaxs() - WorldAlignMins()) * vPercent;
-		Vector vTest = Vector(x,y,z);
-
-		int contents = enginetrace->GetPointContents_Collideable( GetCollideable(), vTest );
-		if( contents & CONTENTS_SOLID )
+		if(distance > (3000-(gameTime*10)) && distance > m_MinRadius)
 		{
-			PMaterialHandle my_hMaterial = m_Effect.GetPMaterial( "particle/particle_smokegrenade1" );;
-			CFuncDustParticle *pParticle = (CFuncDustParticle*)m_Effect.AddParticle( 10, my_hMaterial, vTest );
-			if( pParticle )
+			//Vector vTest = WorldAlignMins() + (WorldAlignMaxs() - WorldAlignMins()) * vPercent;
+			Vector vTest = Vector(x,y,z);
+
+			int contents = enginetrace->GetPointContents_Collideable( GetCollideable(), vTest );
+			if( contents & CONTENTS_SOLID )
 			{
-				pParticle->m_vVelocity = RandomVector( -m_SpeedMax, m_SpeedMax );
-				pParticle->m_vVelocity.z -= m_FallSpeed;
+				PMaterialHandle my_hMaterial = m_Effect.GetPMaterial( "particle/particle_smokegrenade1" );;
+				CFuncDustParticle *pParticle = (CFuncDustParticle*)m_Effect.AddParticle( 10, my_hMaterial, vTest );
+				if( pParticle )
+				{
+					pParticle->m_vVelocity = RandomVector( -m_SpeedMax, m_SpeedMax );
+					pParticle->m_vVelocity.z -= m_FallSpeed;
 
-				pParticle->m_flLifetime = 0;
-				pParticle->m_flDieTime = RemapVal( rand(), 0, RAND_MAX, m_LifetimeMin, m_LifetimeMax );
+					pParticle->m_flLifetime = 0;
+					pParticle->m_flDieTime = RemapVal( rand(), 0, RAND_MAX, m_LifetimeMin, m_LifetimeMax );
 
-				if( m_DustFlags & DUSTFLAGS_SCALEMOTES )
-					pParticle->m_flSize = RemapVal( rand(), 0, RAND_MAX, m_flSizeMin/10000.0f, m_flSizeMax/10000.0f );
-				else
-					pParticle->m_flSize = RemapVal( rand(), 0, RAND_MAX, m_flSizeMin, m_flSizeMax );
+					if( m_DustFlags & DUSTFLAGS_SCALEMOTES )
+						pParticle->m_flSize = RemapVal( rand(), 0, RAND_MAX, m_flSizeMin/10000.0f, m_flSizeMax/10000.0f );
+					else
+						pParticle->m_flSize = RemapVal( rand(), 0, RAND_MAX, m_flSizeMin, m_flSizeMax );
 			
-				pParticle->m_Color = m_Color;
-			}
+					pParticle->m_Color = m_Color;
+				}
 
-			break;
-		}
+				break;
+			}
 		}
 	}
 }

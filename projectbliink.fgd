@@ -33,6 +33,8 @@
 	]
 ]
 
+@
+
 //-------------------------------------------------------------------------
 //
 // Solid Classes
@@ -43,4 +45,14 @@
 	"for the visual representation of the ladder in the map, apply the toolsinvisibleladder material to the " +
 	"func_ladder brush."
 [
+]
+
+@SolidClass base( Targetname, BModelParticleSpawner ) = func_bliink_fog: 
+	"A brush entity that spawns a decreasing ring of fog"
+[
+	Alpha(integer) : "Alpha" : 30
+
+	SizeMin(string) : "Minimum Particle Size" : 100
+	SizeMax(string) : "Maximum Particle Size" : 200
+	MinFogRadius(string): "Minimum fog radius" : 500
 ]
