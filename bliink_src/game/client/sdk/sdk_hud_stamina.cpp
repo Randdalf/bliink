@@ -64,7 +64,8 @@ bool CHudStamina::ShouldDraw()
 	C_BliinkPlayer *pPlayer = C_BliinkPlayer::GetLocalSDKPlayer();
 	if ( !pPlayer )
 		return false;
-	if ( pPlayer->State_Get() != STATE_ACTIVE )
+	if ( pPlayer->State_Get() != STATE_BLIINK_SURVIVOR
+		&& pPlayer->State_Get() != STATE_BLIINK_STALKER)
 		return false;
 
 	return true;

@@ -549,7 +549,7 @@ C_BliinkPlayer::~C_BliinkPlayer()
 
 C_BliinkPlayer* C_BliinkPlayer::GetLocalSDKPlayer()
 {
-	return ToSDKPlayer( C_BasePlayer::GetLocalPlayer() );
+	return ToBliinkPlayer( C_BasePlayer::GetLocalPlayer() );
 }
 
 const QAngle &C_BliinkPlayer::EyeAngles()
@@ -753,7 +753,8 @@ bool C_BliinkPlayer::ShouldDraw( void )
 	if( GetTeamNumber() == TEAM_SPECTATOR )
 		return false;
 
-	if ( State_Get() == STATE_WELCOME )
+	if ( State_Get() == STATE_BLIINK_WELCOME
+		|| State_Get() == STATE_BLIINK_WAITING_FOR_PLAYERS)
 		return false;
 
 	if( IsLocalPlayer() && IsRagdoll() )
@@ -920,7 +921,7 @@ void C_BliinkPlayer::UpdateIDTarget()
 	m_iIDEntIndex = 0;
 
 	// don't show id's in any state but active.
-	if ( State_Get() != STATE_ACTIVE )
+	if ( State_Get() != STATE_BLIINK_SURVIVOR && State_Get() != STATE_BLIINK_STALKER )
 		return;
 
 	//trace_t tr;

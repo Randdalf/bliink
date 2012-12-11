@@ -102,7 +102,7 @@ void CWeaponSDKMelee::PrimaryAttack()
 {
 	
 #ifndef CLIENT_DLL
-	CBliinkPlayer *pPlayer = ToSDKPlayer( GetPlayerOwner() );
+	CBliinkPlayer *pPlayer = ToBliinkPlayer( GetPlayerOwner() );
 	pPlayer->NoteWeaponFired();
 	// Move other players back to history positions based on local player's lag
 	lagcompensation->StartLagCompensation( pPlayer, LAG_COMPENSATE_BOUNDS );
@@ -132,7 +132,7 @@ void CWeaponSDKMelee::SecondaryAttack()
 //------------------------------------------------------------------------------
 void CWeaponSDKMelee::Hit( trace_t &traceHit, Activity nHitActivity )
 {
-	CBliinkPlayer *pPlayer = ToSDKPlayer( GetOwner() );
+	CBliinkPlayer *pPlayer = ToBliinkPlayer( GetOwner() );
 	
 	//Do view kick
 //	AddViewKick();
@@ -286,7 +286,7 @@ void CWeaponSDKMelee::Swing( int bIsSecondary )
 	trace_t traceHit;
 
 	// Try a ray
-	CBliinkPlayer *pOwner = ToSDKPlayer( GetOwner() );
+	CBliinkPlayer *pOwner = ToBliinkPlayer( GetOwner() );
 	if ( !pOwner )
 		return;
 

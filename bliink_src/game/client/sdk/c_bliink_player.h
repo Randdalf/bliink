@@ -160,7 +160,7 @@ private:
 };
 
 
-inline C_BliinkPlayer* ToSDKPlayer( CBaseEntity *pPlayer )
+inline C_BliinkPlayer* ToBliinkPlayer( CBaseEntity *pPlayer )
 {
 	if ( !pPlayer || !pPlayer->IsPlayer() )
 		return NULL;

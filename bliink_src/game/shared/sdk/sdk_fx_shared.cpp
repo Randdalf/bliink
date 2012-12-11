@@ -118,9 +118,9 @@ void FX_FireBullets(
 	bool bDoEffects = true;
 
 #ifdef CLIENT_DLL
-	C_BliinkPlayer *pPlayer = ToSDKPlayer( ClientEntityList().GetBaseEntity( iPlayerIndex ) );
+	C_BliinkPlayer *pPlayer = ToBliinkPlayer( ClientEntityList().GetBaseEntity( iPlayerIndex ) );
 #else
-	CBliinkPlayer *pPlayer = ToSDKPlayer( UTIL_PlayerByIndex( iPlayerIndex) );
+	CBliinkPlayer *pPlayer = ToBliinkPlayer( UTIL_PlayerByIndex( iPlayerIndex) );
 #endif
 
 	const char * weaponAlias =	WeaponIDToAlias( iWeaponID );

@@ -10,6 +10,7 @@
 #include "ammodef.h"
 #include "KeyValues.h"
 #include "weapon_sdkbase.h"
+#include "bliink_gamevars_shared.h"
 
 
 #ifdef CLIENT_DLL
@@ -71,8 +72,12 @@ REGISTER_GAMERULES_CLASS( CBliinkGameRules );
 BEGIN_NETWORK_TABLE_NOBASE( CBliinkGameRules, DT_BliinkGameRules )
 #if defined ( CLIENT_DLL )
 		RecvPropFloat( RECVINFO( m_flGameStartTime ) ),
+		RecvPropBool( RECVINFO( m_bCountdownToLive ) ),
+		RecvPropFloat( RECVINFO( m_fLiveTime ) ),
 #else
 		SendPropFloat( SENDINFO( m_flGameStartTime ), 32, SPROP_NOSCALE ),
+		SendPropBool( SENDINFO( m_bCountdownToLive ) ),
+		SendPropFloat( SENDINFO( m_fLiveTime ), 32, SPROP_NOSCALE ),
 #endif
 END_NETWORK_TABLE()
 
@@ -242,7 +247,10 @@ CBliinkGameRules::CBliinkGameRules()
 
 	m_flGameStartTime = 0;
 
+	// Bliink
 	m_bGameIsActive = false;
+	m_bCountdownToLive = false;
+	m_fLiveTime = 0;
 }
 
 void CBliinkGameRules::ServerActivate()
@@ -283,7 +291,7 @@ CBliinkGameRules::~CBliinkGameRules()
 //-----------------------------------------------------------------------------
 bool CBliinkGameRules::ClientCommand( CBaseEntity *pEdict, const CCommand &args )
 {
-	CBliinkPlayer *pPlayer = ToSDKPlayer( pEdict );
+	CBliinkPlayer *pPlayer = ToBliinkPlayer( pEdict );
 #if 0
 	const char *pcmd = args[0];
 	if ( FStrEq( pcmd, "somecommand" ) )
@@ -428,16 +436,80 @@ void CBliinkGameRules::RadiusDamage( const CTakeDamageInfo &info, const Vector &
 	}
 }
 
+// Starts the game if we have enough players waiting
 void CBliinkGameRules::Think()
 {
 	BaseClass::Think();
 
 	// if waiting for players...
+	if( !m_bGameIsActive )
+	{
+		if( !m_bCountdownToLive && EnoughPlayersToStart() )
+		{
+			double countdownTime = (double) Bliink_CountdownToLive.GetFloat();
+			m_fLiveTime = gpGlobals->curtime + countdownTime;
 
+			m_bCountdownToLive = true;
+		}
+		else if ( m_bCountdownToLive && !EnoughPlayersToStart() )
+		{
+			m_bCountdownToLive = false;
+		}
+		else if( m_bCountdownToLive && EnoughPlayersToStart() && gpGlobals->curtime >= m_fLiveTime )
+		{
+			Msg("Starting game...");
+			StartGame();
+		}
+	}
 
 	// if game is active...
+	else
+	{
+		// wait until there is only 1 survivor
+	}
+}
 
+// Checks the number of players we have who are ready to start and if it's
+// above the minimum, then start.
+bool CBliinkGameRules::EnoughPlayersToStart()
+{
+	int readyPlayers = 0;
 
+	for(int i=1; i<=gpGlobals->maxClients; i++)
+	{
+		CBliinkPlayer* pPlayer = ToBliinkPlayer(UTIL_PlayerByIndex(i));
+
+		if( !pPlayer || !pPlayer->IsPlayer() )
+			continue;
+
+		if( pPlayer->IsReadyToStart() )
+			readyPlayers++;		
+	}
+
+	int minPlayers = Bliink_MinPlayers.GetInt();
+
+	if( readyPlayers >= minPlayers)
+		return true;
+	else
+		return false;
+}
+
+// Starts the game going by spawning all players into the map
+void CBliinkGameRules::StartGame()
+{
+	m_bGameIsActive = true;
+	m_bCountdownToLive = false;
+
+	// Setting players who are ready to 
+	for(int i=1; i<=gpGlobals->maxClients; i++)
+	{
+		CBliinkPlayer* pPlayer = ToBliinkPlayer(UTIL_PlayerByIndex(i));
+
+		if( !pPlayer || !pPlayer->IsPlayer() )
+			continue;
+
+		pPlayer->StartGameTransition();
+	}
 }
 
 Vector DropToGround( 
@@ -496,11 +568,23 @@ bool CBliinkGameRules::IsSpawnPointValid( CBaseEntity *pSpot, CBasePlayer *pPlay
 
 void CBliinkGameRules::PlayerSpawn( CBasePlayer *p )
 {	
-	CBliinkPlayer *pPlayer = ToSDKPlayer( p );
+	CBliinkPlayer *pPlayer = ToBliinkPlayer( p );
 
 	int team = pPlayer->GetTeamNumber();
 
-	if( team != TEAM_SPECTATOR )
+	if( team == BLIINK_TEAM_SURVIVOR )
+	{
+		pPlayer->SetModel( BLIINK_SURVIVOR_MODEL );
+		pPlayer->GiveDefaultItems();
+		pPlayer->SetMaxSpeed( 600 );
+	}
+	else if ( team == BLIINK_TEAM_STALKER )
+	{
+		pPlayer->SetModel( BLIINK_STALKER_MODEL );
+		pPlayer->GiveDefaultItems();
+		pPlayer->SetMaxSpeed( 600 );
+	}
+	else
 	{
 		pPlayer->SetModel( SDK_PLAYER_MODEL );
 		pPlayer->GiveDefaultItems();
@@ -581,7 +665,7 @@ const char *CBliinkGameRules::GetKillingWeaponName( const CTakeDamageInfo &info,
 			killer_weapon_name = pScorer->GetActiveWeapon()->GetClassname(); 
 			if ( pScorer->IsPlayer() )
 			{
-				*iWeaponID = ToSDKPlayer(pScorer)->GetActiveSDKWeapon()->GetWeaponID();
+				*iWeaponID = ToBliinkPlayer(pScorer)->GetActiveSDKWeapon()->GetWeaponID();
 			}
 		}
 	}
@@ -637,11 +721,11 @@ void CBliinkGameRules::DeathNotice( CBasePlayer *pVictim, const CTakeDamageInfo 
 	int killer_ID = 0;
 
 	// Find the killer & the scorer
-	CBliinkPlayer *pSDKPlayerVictim = ToSDKPlayer( pVictim );
+	CBliinkPlayer *pSDKPlayerVictim = ToBliinkPlayer( pVictim );
 	CBaseEntity *pInflictor = info.GetInflictor();
 	CBaseEntity *pKiller = info.GetAttacker();
 	CBasePlayer *pScorer = GetDeathScorer( pKiller, pInflictor, pVictim );
-//	CBliinkPlayer *pAssister = ToSDKPlayer( GetAssister( pVictim, pScorer, pInflictor ) );
+//	CBliinkPlayer *pAssister = ToBliinkPlayer( GetAssister( pVictim, pScorer, pInflictor ) );
 
 	// Work out what killed the player, and send a message to all clients about it
 	int iWeaponID;

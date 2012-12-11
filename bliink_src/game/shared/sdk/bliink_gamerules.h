@@ -146,9 +146,16 @@ public:
 private:
 	CNetworkVar( float, m_flGameStartTime );
 
-// Bliink specific sstuff
+// Bliink specific stuff
 private:
-	bool m_bGameIsActive;
+	bool m_bGameIsActive; // has the game started yet or are we waiting for players?
+	CNetworkVar( bool, m_bCountdownToLive ); // are we counting down to the start of the game?
+	CNetworkVar( float, m_fLiveTime ); // the time at which the game goes live
+
+public:
+	bool IsGameActive() { return m_bGameIsActive; }
+	bool EnoughPlayersToStart();
+	void StartGame();
 };
 
 //-----------------------------------------------------------------------------

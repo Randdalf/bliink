@@ -36,6 +36,8 @@
 #endif // SDK_USE_SPRINTING
 
 #define SDK_PLAYER_MODEL "models/player/blue_player.mdl"
+#define BLIINK_SURVIVOR_MODEL "models/player/blue_player.mdl"
+#define BLIINK_STALKER_MODEL "models/player/red_player.mdl"
 
 //Tony; We need to precache all possible player models that we're going to use
 extern const char *pszPossiblePlayerModels[];
@@ -94,23 +96,26 @@ enum BliinkPlayerState
 	// Happily running around in the game.
 	// You can't move though if CSGameRules()->IsFreezePeriod() returns true.
 	// This state can jump to a bunch of other states like STATE_PICKINGCLASS or STATE_DEATH_ANIM.
-	STATE_ACTIVE=0,
+	//STATE_ACTIVE=0,
 	
 	// This is the state you're in when you first enter the server.
 	// It's switching between intro cameras every few seconds, and there's a level info 
 	// screen up.
-	STATE_WELCOME,			// Show the level intro screen.
+	//STATE_WELCOME,			// Show the level intro screen.
 	
 	// During these states, you can either be a new player waiting to join, or
 	// you can be a live player in the game who wants to change teams.
 	// Either way, you can't move while choosing team or class (or while any menu is up).
 	
-	STATE_DEATH_ANIM,			// Playing death anim, waiting for that to finish.
-	STATE_OBSERVER_MODE,		// Noclipping around, watching players, etc.
+	//STATE_DEATH_ANIM,			// Playing death anim, waiting for that to finish.
+	//STATE_OBSERVER_MODE,		// Noclipping around, watching players, etc.
 
 	// BLIINK STATES
 	// Pre-game stuff
-	STATE_BLIINK_WELCOME,//=0,
+
+	// Puts you on the welcome screen, asks you whether you want to play or
+	// spectate, puts you next to an intro camera.
+	STATE_BLIINK_WELCOME=0,
 	STATE_BLIINK_SPECTATE_PREGAME,
 	STATE_BLIINK_WAITING_FOR_PLAYERS,
 

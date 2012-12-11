@@ -96,7 +96,7 @@ void ClientActive( edict_t *pEdict, bool bLoadGame )
 	// Can't load games in CS!
 	Assert( !bLoadGame );
 
-	CBliinkPlayer *pPlayer = ToSDKPlayer( CBaseEntity::Instance( pEdict ) );
+	CBliinkPlayer *pPlayer = ToBliinkPlayer( CBaseEntity::Instance( pEdict ) );
 	FinishClientPutInServer( pPlayer );
 }
 void ClientFullyConnect( edict_t *pEntity )

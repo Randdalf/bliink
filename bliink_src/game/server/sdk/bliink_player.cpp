@@ -27,7 +27,6 @@ extern int gEvilImpulse101;
 
 ConVar SDK_ShowStateTransitions( "sdk_ShowStateTransitions", "-2", FCVAR_CHEAT, "sdk_ShowStateTransitions <ent index or -1 for all>. Show player state transitions." );
 
-
 EHANDLE g_pLastDMSpawn;
 // -------------------------------------------------------------------------------- //
 // Player animation event. Sent to the client when a player fires, jumps, reloads, etc..
@@ -213,7 +212,6 @@ CBliinkPlayer::CBliinkPlayer()
 	m_angEyeAngles.Init();
 
 	m_pCurStateInfo = NULL;	// no state yet
-
 }
 
 
@@ -228,17 +226,6 @@ CBliinkPlayer *CBliinkPlayer::CreatePlayer( const char *className, edict_t *ed )
 {
 	CBliinkPlayer::s_PlayerEdict = ed;
 	return (CBliinkPlayer*)CreateEntityByName( className );
-}
-
-void CBliinkPlayer::LeaveVehicle( const Vector &vecExitPoint, const QAngle &vecExitAngles )
-{
-	BaseClass::LeaveVehicle( vecExitPoint, vecExitAngles );
-
-	//teleport physics shadow too
-	// Vector newPos = GetAbsOrigin();
-	// QAngle newAng = GetAbsAngles();
-
-	// Teleport( &newPos, &newAng, &vec3_origin );
 }
 
 void CBliinkPlayer::PreThink(void)
@@ -295,9 +282,11 @@ void CBliinkPlayer::Precache()
 //Tony; this is where default items go when not using playerclasses!
 void CBliinkPlayer::GiveDefaultItems()
 {
-	if ( State_Get() == STATE_ACTIVE )
+	if ( State_Get() == STATE_BLIINK_SURVIVOR )
 	{
-		CBasePlayer::GiveAmmo( 30,	"pistol");
+		// give me survivory stuff...
+
+		/*CBasePlayer::GiveAmmo( 30,	"pistol");
 		CBasePlayer::GiveAmmo( 30,	"mp5");
 		CBasePlayer::GiveAmmo( 12,	"shotgun");
 		CBasePlayer::GiveAmmo( 5,	"grenades" );
@@ -306,7 +295,11 @@ void CBliinkPlayer::GiveDefaultItems()
 		GiveNamedItem( "weapon_mp5" );
 		GiveNamedItem( "weapon_shotgun" );
 		GiveNamedItem( "weapon_crowbar" );
-		GiveNamedItem( "weapon_grenade" );
+		GiveNamedItem( "weapon_grenade" );*/
+	}
+	else if ( State_Get() == STATE_BLIINK_STALKER )
+	{
+		// give me stalker stuff
 	}
 }
 #define SDK_PUSHAWAY_THINK_CONTEXT	"SDKPushawayThink"
@@ -327,7 +320,7 @@ void CBliinkPlayer::Spawn()
 	RemoveSolidFlags( FSOLID_NOT_SOLID );
 
 	//Tony; if we're spawning in active state, equip the suit so the hud works. -- Gotta love base code !
-	if ( State_Get() == STATE_ACTIVE )
+	if ( State_Get() == STATE_BLIINK_SURVIVOR || State_Get() == STATE_BLIINK_STALKER )
 	{
 		EquipSuit( false );
 	}
@@ -430,7 +423,7 @@ void CBliinkPlayer::CommitSuicide( bool bExplode /* = false */, bool bForce /*= 
 {
 	// Don't suicide if we haven't picked a class for the first time, or we're not in active state
 	if (
-		State_Get() != STATE_ACTIVE 
+		State_Get() != STATE_BLIINK_STALKER || State_Get() != STATE_BLIINK_SURVIVOR
 		)
 		return;
 	
@@ -438,11 +431,17 @@ void CBliinkPlayer::CommitSuicide( bool bExplode /* = false */, bool bForce /*= 
 
 	BaseClass::CommitSuicide( bExplode, bForce );
 }
+
+// Puts the player in the WELCOME state when they join the server, however, if
+// they join when the game is active, then we put them in spectate mode.
 void CBliinkPlayer::InitialSpawn( void )
 {
 	BaseClass::InitialSpawn();
-
-	State_Enter( STATE_WELCOME );
+	
+	if( BliinkGameRules()->IsGameActive() )
+		State_Enter( STATE_BLIINK_SPECTATE );
+	else
+		State_Enter( STATE_BLIINK_WELCOME );
 
 }
 void CBliinkPlayer::TraceAttack( const CTakeDamageInfo &inputInfo, const Vector &vecDir, trace_t *ptr )
@@ -464,9 +463,6 @@ int CBliinkPlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 		return 0;
 
 	float flDamage = info.GetDamage();
-
-	bool bCheckFriendlyFire = false;
-	bool bFriendlyFire = friendlyfire.GetBool();
 
 	if ( pInflictor == this ||	info.GetAttacker() == this )
 	{
@@ -640,18 +636,14 @@ void CBliinkPlayer::Event_Killed( const CTakeDamageInfo &info )
 	// because we still want to transmit to the clients in our PVS.
 	//CreateRagdollEntity();
 
-	State_Transition( STATE_DEATH_ANIM );	// Transition into the dying state.
-
-	/*
 	if(m_iPlayerState == STATE_BLIINK_SURVIVOR)
 	{
-		State_Transition( STATE_BLIINK_SURVIVOR_DEATH_ANIM )
+		State_Transition( STATE_BLIINK_SURVIVOR_DEATH_ANIM );
 	}
 	else if(m_iPlayerState == STATE_BLIINK_STALKER)
 	{
-		State_Transition( STATE_BLIINK_STALKER_DEATH_ANIM )
+		State_Transition( STATE_BLIINK_STALKER_DEATH_ANIM );
 	}
-	*/
 
 
 	//Tony; after transition, remove remaining items
@@ -857,17 +849,6 @@ bool CBliinkPlayer::ClientCommand( const CCommand &args )
 	else if ( FStrEq( pcmd, "spectate" ) )
 	{
 		// instantly join spectators
-		HandleCommand_JoinTeam( TEAM_SPECTATOR );
-		return true;
-	}
-	else if ( FStrEq( pcmd, "joingame" ) )
-	{
-		// player just closed MOTD dialog
-		if ( m_iPlayerState == STATE_WELCOME )
-		{
-			State_Transition( STATE_ACTIVE );
-		}
-		
 		return true;
 	}
 	else if ( FStrEq( pcmd, "menuopen" ) )
@@ -885,15 +866,32 @@ bool CBliinkPlayer::ClientCommand( const CCommand &args )
 	}
 	else if( FStrEq( pcmd, "bliink_welcome_spectate" ) )
 	{
-		State_Transition( STATE_BLIINK_SPECTATE_PREGAME );
+		// If we are at the welcome menu
+		if( m_iPlayerState == STATE_BLIINK_WELCOME)
+		{
+			State_Transition( STATE_BLIINK_SPECTATE_PREGAME );
+		}
 	}
 	else if( FStrEq( pcmd, "bliink_welcome_play" ) )
 	{
-		State_Transition( STATE_BLIINK_WAITING_FOR_PLAYERS );
+		if( m_iPlayerState == STATE_BLIINK_WELCOME)
+		{
+			State_Transition( STATE_BLIINK_WAITING_FOR_PLAYERS );
+		}
 	}
 	else if( FStrEq( pcmd, "bliink_spectate_pregame_welcome" ) )
 	{
-		State_Transition( STATE_BLIINK_WELCOME );
+		if( m_iPlayerState == STATE_BLIINK_SPECTATE_PREGAME )
+		{
+			State_Transition( STATE_BLIINK_WELCOME );
+		}
+	}
+	else if( FStrEq( pcmd, "bliink_cancel_ready" ) )
+	{
+		if( m_iPlayerState == STATE_BLIINK_WAITING_FOR_PLAYERS )
+		{
+			State_Transition( STATE_BLIINK_WELCOME );
+		}
 	}
 
 	return BaseClass::ClientCommand( args );
@@ -969,11 +967,7 @@ CBliinkPlayerStateInfo* CBliinkPlayer::State_LookupInfo( BliinkPlayerState state
 	// This table MUST match the 
 	static CBliinkPlayerStateInfo playerStateInfos[] =
 	{
-		{ STATE_ACTIVE,			"STATE_ACTIVE",			&CBliinkPlayer::State_Enter_ACTIVE, NULL, &CBliinkPlayer::State_PreThink_ACTIVE },
-		{ STATE_WELCOME,		"STATE_WELCOME",		&CBliinkPlayer::State_Enter_WELCOME, NULL, &CBliinkPlayer::State_PreThink_WELCOME },
-		{ STATE_DEATH_ANIM,		"STATE_DEATH_ANIM",		&CBliinkPlayer::State_Enter_DEATH_ANIM,	NULL, &CBliinkPlayer::State_PreThink_DEATH_ANIM },
-		{ STATE_OBSERVER_MODE,	"STATE_OBSERVER_MODE",	&CBliinkPlayer::State_Enter_OBSERVER_MODE,	NULL, &CBliinkPlayer::State_PreThink_OBSERVER_MODE },
-		{ STATE_BLIINK_WELCOME,	"				STATE_BLIINK_WELCOME",	&CBliinkPlayer::State_Enter_BLIINK_WELCOME,	NULL, &CBliinkPlayer::State_PreThink_BLIINK_WELCOME },
+		{ STATE_BLIINK_WELCOME,					"STATE_BLIINK_WELCOME",	&CBliinkPlayer::State_Enter_BLIINK_WELCOME,	NULL, &CBliinkPlayer::State_PreThink_BLIINK_WELCOME },
 		{ STATE_BLIINK_SPECTATE_PREGAME,		"STATE_BLIINK_SPECTATE_PREGAME",	&CBliinkPlayer::State_Enter_BLIINK_SPECTATE_PREGAME,	NULL, &CBliinkPlayer::State_PreThink_BLIINK_SPECTATE_PREGAME },
 		{ STATE_BLIINK_WAITING_FOR_PLAYERS,		"STATE_BLIINK_WAITING_FOR_PLAYERS",	&CBliinkPlayer::State_Enter_BLIINK_WAITING_FOR_PLAYERS,	NULL, &CBliinkPlayer::State_PreThink_BLIINK_WAITING_FOR_PLAYERS },
 		{ STATE_BLIINK_SPECTATE,				"STATE_BLIINK_SPECTATE",			&CBliinkPlayer::State_Enter_BLIINK_SPECTATE,	NULL, &CBliinkPlayer::State_PreThink_BLIINK_SPECTATE },
@@ -1053,8 +1047,11 @@ void CBliinkPlayer::MoveToNextIntroCamera()
 	m_fIntroCamTime = gpGlobals->curtime + 6;
 }
 
-void CBliinkPlayer::State_Enter_WELCOME()
-{
+//**************************************************************************
+//* BLIINK PLAYER STATE FUNCTIONS
+//**************************************************************************
+void CBliinkPlayer::State_Enter_BLIINK_WELCOME()
+{	
 	// Important to set MOVETYPE_NONE or our physics object will fall while we're sitting at one of the intro cameras.
 	SetMoveType( MOVETYPE_NONE );
 	AddSolidFlags( FSOLID_NOT_SOLID );
@@ -1084,13 +1081,11 @@ void CBliinkPlayer::State_Enter_WELCOME()
 		ShowViewPortPanel( PANEL_INFO, true, data );
 
 		data->deleteThis();
-
-
-	}	
+	}
 }
 
-void CBliinkPlayer::State_PreThink_WELCOME()
-{
+void CBliinkPlayer::State_PreThink_BLIINK_WELCOME()
+{	
 	// Update whatever intro camera it's at.
 	if( m_pIntroCamera && (gpGlobals->curtime >= m_fIntroCamTime) )
 	{
@@ -1098,67 +1093,8 @@ void CBliinkPlayer::State_PreThink_WELCOME()
 	}
 }
 
-void CBliinkPlayer::State_Enter_DEATH_ANIM()
-{
-	if ( HasWeapons() )
-	{
-		// we drop the guns here because weapons that have an area effect and can kill their user
-		// will sometimes crash coming back from CBasePlayer::Killed() if they kill their owner because the
-		// player class sometimes is freed. It's safer to manipulate the weapons once we know
-		// we aren't calling into any of their code anymore through the player pointer.
-		PackDeadPlayerItems();
-	}
-
-	// Used for a timer.
-	m_flDeathTime = gpGlobals->curtime;
-
-	StartObserverMode( OBS_MODE_DEATHCAM );	// go to observer mode
-
-	RemoveEffects( EF_NODRAW );	// still draw player body
-}
-
-
-void CBliinkPlayer::State_PreThink_DEATH_ANIM()
-{
-	// If the anim is done playing, go to the next state (waiting for a keypress to 
-	// either respawn the guy or put him into observer mode).
-	if ( GetFlags() & FL_ONGROUND )
-	{
-		float flForward = GetAbsVelocity().Length() - 20;
-		if (flForward <= 0)
-		{
-			SetAbsVelocity( vec3_origin );
-		}
-		else
-		{
-			Vector vAbsVel = GetAbsVelocity();
-			VectorNormalize( vAbsVel );
-			vAbsVel *= flForward;
-			SetAbsVelocity( vAbsVel );
-		}
-	}
-
-	if ( gpGlobals->curtime >= (m_flDeathTime + SDK_PLAYER_DEATH_TIME ) )	// let the death cam stay going up to min spawn time.
-	{
-		m_lifeState = LIFE_DEAD;
-
-		StopAnimation();
-
-		AddEffects( EF_NOINTERP );
-
-		if ( GetMoveType() != MOVETYPE_NONE && (GetFlags() & FL_ONGROUND) )
-			SetMoveType( MOVETYPE_NONE );
-	}
-
-	//Tony; if we're now dead, and not changing classes, spawn
-	if ( m_lifeState == LIFE_DEAD )
-	{
-		State_Transition( STATE_ACTIVE );
-	}
-}
-
-void CBliinkPlayer::State_Enter_OBSERVER_MODE()
-{
+void CBliinkPlayer::State_Enter_BLIINK_SPECTATE_PREGAME()
+{	
 	// Always start a spectator session in roaming mode
 	m_iObserverLastMode = OBS_MODE_ROAMING;
 
@@ -1202,9 +1138,8 @@ void CBliinkPlayer::State_Enter_OBSERVER_MODE()
 	PhysObjectSleep();
 }
 
-void CBliinkPlayer::State_PreThink_OBSERVER_MODE()
-{
-
+void CBliinkPlayer::State_PreThink_BLIINK_SPECTATE_PREGAME()
+{	
 	//Tony; if we're in eye, or chase, validate the target - if it's invalid, find a new one, or go back to roaming
 	if (  m_iObserverMode == OBS_MODE_IN_EYE || m_iObserverMode == OBS_MODE_CHASE )
 	{
@@ -1232,83 +1167,205 @@ void CBliinkPlayer::State_PreThink_OBSERVER_MODE()
 	}
 }
 
-void CBliinkPlayer::State_Enter_ACTIVE()
-{
-	SetMoveType( MOVETYPE_WALK );
-	RemoveSolidFlags( FSOLID_NOT_SOLID );
-    m_Local.m_iHideHUD = 0;
-	PhysObjectWake();
-
-	//Tony; call spawn again now -- remember; when we add respawn timers etc, to just put them into the spawn queue, and let the queue respawn them.
-	Spawn();
-}
-
-void CBliinkPlayer::State_PreThink_ACTIVE()
-{
-}
-
-//**************************************************************************
-//* BLIINK PLAYER STATE FUNCTIONS
-//**************************************************************************
-void CBliinkPlayer::State_Enter_BLIINK_WELCOME()
-{
-}
-void CBliinkPlayer::State_PreThink_BLIINK_WELCOME()
-{
-}
-
-void CBliinkPlayer::State_Enter_BLIINK_SPECTATE_PREGAME()
-{
-}
-void CBliinkPlayer::State_PreThink_BLIINK_SPECTATE_PREGAME()
-{
-}
-
 void CBliinkPlayer::State_Enter_BLIINK_WAITING_FOR_PLAYERS()
 {
+	SetMoveType( MOVETYPE_NONE );
+	AddSolidFlags( FSOLID_NOT_SOLID );
+
+	PhysObjectSleep();
 }
+
 void CBliinkPlayer::State_PreThink_BLIINK_WAITING_FOR_PLAYERS()
-{
+{		
+	// Update whatever intro camera it's at.
+	if( m_pIntroCamera && (gpGlobals->curtime >= m_fIntroCamTime) )
+	{
+		MoveToNextIntroCamera();
+	}
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_SPECTATE()
 {
 }
+
 void CBliinkPlayer::State_PreThink_BLIINK_SPECTATE()
-{
+{	
+	//Tony; if we're in eye, or chase, validate the target - if it's invalid, find a new one, or go back to roaming
+	if (  m_iObserverMode == OBS_MODE_IN_EYE || m_iObserverMode == OBS_MODE_CHASE )
+	{
+		//Tony; if they're not on a spectating team use the cbaseplayer validation method.
+		if ( GetTeamNumber() != TEAM_SPECTATOR )
+			ValidateCurrentObserverTarget();
+		else
+		{
+			if ( !IsValidObserverTarget( m_hObserverTarget.Get() ) )
+			{
+				// our target is not valid, try to find new target
+				CBaseEntity * target = FindNextObserverTarget( false );
+				if ( target )
+				{
+					// switch to new valid target
+					SetObserverTarget( target );	
+				}
+				else
+				{
+					// let player roam around
+					ForceObserverMode( OBS_MODE_ROAMING );
+				}
+			}
+		}
+	}
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_SURVIVOR()
-{
+{	
+	SetMoveType( MOVETYPE_WALK );
+	RemoveSolidFlags( FSOLID_NOT_SOLID );
+    m_Local.m_iHideHUD = 0;
+	PhysObjectWake();
+
+	Spawn();
 }
+
 void CBliinkPlayer::State_PreThink_BLIINK_SURVIVOR()
 {
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_SURVIVOR_DEATH_ANIM()
-{
+{	
+	if ( HasWeapons() )
+	{
+		// we drop the guns here because weapons that have an area effect and can kill their user
+		// will sometimes crash coming back from CBasePlayer::Killed() if they kill their owner because the
+		// player class sometimes is freed. It's safer to manipulate the weapons once we know
+		// we aren't calling into any of their code anymore through the player pointer.
+		PackDeadPlayerItems();
+	}
+
+	// Used for a timer.
+	m_flDeathTime = gpGlobals->curtime;
+
+	StartObserverMode( OBS_MODE_DEATHCAM );	// go to observer mode
+
+	RemoveEffects( EF_NODRAW );	// still draw player body
 }
+
 void CBliinkPlayer::State_PreThink_BLIINK_SURVIVOR_DEATH_ANIM()
 {
+	
+	// If the anim is done playing, go to the next state (waiting for a keypress to 
+	// either respawn the guy or put him into observer mode).
+	if ( GetFlags() & FL_ONGROUND )
+	{
+		float flForward = GetAbsVelocity().Length() - 20;
+		if (flForward <= 0)
+		{
+			SetAbsVelocity( vec3_origin );
+		}
+		else
+		{
+			Vector vAbsVel = GetAbsVelocity();
+			VectorNormalize( vAbsVel );
+			vAbsVel *= flForward;
+			SetAbsVelocity( vAbsVel );
+		}
+	}
+
+	if ( gpGlobals->curtime >= (m_flDeathTime + SDK_PLAYER_DEATH_TIME ) )	// let the death cam stay going up to min spawn time.
+	{
+		m_lifeState = LIFE_DEAD;
+
+		StopAnimation();
+
+		AddEffects( EF_NOINTERP );
+
+		if ( GetMoveType() != MOVETYPE_NONE && (GetFlags() & FL_ONGROUND) )
+			SetMoveType( MOVETYPE_NONE );
+	}
+
+	//Tony; if we're now dead, and not changing classes, spawn
+	if ( m_lifeState == LIFE_DEAD )
+	{
+		State_Transition( STATE_BLIINK_STALKER );
+	}
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_STALKER()
-{
+{		
+	SetMoveType( MOVETYPE_WALK );
+	RemoveSolidFlags( FSOLID_NOT_SOLID );
+    m_Local.m_iHideHUD = 0;
+	PhysObjectWake();
+
+	Spawn();
 }
+
 void CBliinkPlayer::State_PreThink_BLIINK_STALKER()
 {
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_STALKER_DEATH_ANIM()
-{
+{	
+	if ( HasWeapons() )
+	{
+		// we drop the guns here because weapons that have an area effect and can kill their user
+		// will sometimes crash coming back from CBasePlayer::Killed() if they kill their owner because the
+		// player class sometimes is freed. It's safer to manipulate the weapons once we know
+		// we aren't calling into any of their code anymore through the player pointer.
+		PackDeadPlayerItems();
+	}
+
+	// Used for a timer.
+	m_flDeathTime = gpGlobals->curtime;
+
+	StartObserverMode( OBS_MODE_DEATHCAM );	// go to observer mode
+
+	RemoveEffects( EF_NODRAW );	// still draw player body
 }
+
 void CBliinkPlayer::State_PreThink_BLIINK_STALKER_DEATH_ANIM()
-{
+{	
+	// If the anim is done playing, go to the next state (waiting for a keypress to 
+	// either respawn the guy or put him into observer mode).
+	if ( GetFlags() & FL_ONGROUND )
+	{
+		float flForward = GetAbsVelocity().Length() - 20;
+		if (flForward <= 0)
+		{
+			SetAbsVelocity( vec3_origin );
+		}
+		else
+		{
+			Vector vAbsVel = GetAbsVelocity();
+			VectorNormalize( vAbsVel );
+			vAbsVel *= flForward;
+			SetAbsVelocity( vAbsVel );
+		}
+	}
+
+	if ( gpGlobals->curtime >= (m_flDeathTime + SDK_PLAYER_DEATH_TIME ) )	// let the death cam stay going up to min spawn time.
+	{
+		m_lifeState = LIFE_DEAD;
+
+		StopAnimation();
+
+		AddEffects( EF_NOINTERP );
+
+		if ( GetMoveType() != MOVETYPE_NONE && (GetFlags() & FL_ONGROUND) )
+			SetMoveType( MOVETYPE_NONE );
+	}
+
+	//Tony; if we're now dead, and not changing classes, spawn
+	if ( m_lifeState == LIFE_DEAD )
+	{
+		State_Transition( STATE_BLIINK_STALKER );
+	}
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_STALKER_RESPAWN()
 {
 }
+
 void CBliinkPlayer::State_PreThink_BLIINK_STALKER_RESPAWN()
 {
 }
@@ -1316,6 +1373,7 @@ void CBliinkPlayer::State_PreThink_BLIINK_STALKER_RESPAWN()
 void CBliinkPlayer::State_Enter_BLIINK_VIEW_RESULTS()
 {
 }
+
 void CBliinkPlayer::State_PreThink_BLIINK_VIEW_RESULTS()
 {
 }
@@ -1352,4 +1410,63 @@ bool CBliinkPlayer::WantsLagCompensationOnEntity( const CBasePlayer *pPlayer, co
 		return false;
 
 	return BaseClass::WantsLagCompensationOnEntity( pPlayer, pCmd, pEntityTransmitBits );
+}
+
+// Bliink player methods
+void CBliinkPlayer::StartGameTransition( void )
+{
+	if( m_iPlayerState == STATE_BLIINK_WAITING_FOR_PLAYERS )
+		State_Transition( STATE_BLIINK_SURVIVOR );
+	else
+		State_Transition( STATE_BLIINK_SPECTATE );
+}
+
+// Handles team joining
+bool CBliinkPlayer::HandleCommand_JoinTeam( int team )
+{
+	CBliinkGameRules *rules = BliinkGameRules();
+	int iOldTeam = GetTeamNumber();
+
+	if( !GetGlobalTeam( team ) )
+	{
+		Warning("HandleCommand_JoinTeam( %d ) - invalid team.\n", team);
+		return false;
+	}
+
+	if( team == TEAM_UNASSIGNED )
+	{
+		team = rules->SelectDefaultTeam();
+
+		if( team == TEAM_UNASSIGNED)
+		{
+			ClientPrint( this, HUD_PRINTTALK, "#All_Teams_Full" );
+			team = TEAM_SPECTATOR;
+		}
+	}
+
+	if( team == iOldTeam )
+		return true;
+
+	if( team == TEAM_SPECTATOR )
+	{
+		ChangeTeam( TEAM_SPECTATOR );
+
+		return true;
+	}
+
+	if( team == BLIINK_TEAM_SURVIVOR )
+	{
+		ChangeTeam( BLIINK_TEAM_SURVIVOR);
+
+		return true;
+	}
+
+	if( team == BLIINK_TEAM_STALKER )
+	{
+		ChangeTeam( BLIINK_TEAM_STALKER);
+
+		return true;
+	}
+
+	return false;
 }

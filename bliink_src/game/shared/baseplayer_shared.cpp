@@ -1570,7 +1570,7 @@ void CBasePlayer::CalcPlayerView( Vector& eyeOrigin, QAngle& eyeAngles, float& f
 	CalcViewRoll( eyeAngles );
 
 	// Sprint effects
-	CBliinkPlayer *pPlayer = ToSDKPlayer( this );
+	CBliinkPlayer *pPlayer = ToBliinkPlayer( this );
 	if(!pPlayer)
 		return;
 

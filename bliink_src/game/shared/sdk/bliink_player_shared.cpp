@@ -171,7 +171,10 @@ void CBliinkPlayer::FireBullet(
 }
 bool CBliinkPlayer::CanMove( void ) const
 {
-	bool bValidMoveState = (State_Get() == STATE_ACTIVE || State_Get() == STATE_OBSERVER_MODE);
+	bool bValidMoveState = (State_Get() == STATE_BLIINK_SURVIVOR
+							|| State_Get() == STATE_BLIINK_STALKER
+							|| State_Get() == STATE_BLIINK_SPECTATE
+							|| State_Get() == STATE_BLIINK_SPECTATE_PREGAME);
 			
 	if ( !bValidMoveState )
 	{

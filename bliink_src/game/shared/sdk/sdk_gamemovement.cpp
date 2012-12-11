@@ -268,7 +268,7 @@ void CSDKGameMovement::CheckFalling( void )
 void CSDKGameMovement::ProcessMovement( CBasePlayer *pBasePlayer, CMoveData *pMove )
 {
 	//Store the player pointer
-	m_pSDKPlayer = ToSDKPlayer( pBasePlayer );
+	m_pSDKPlayer = ToBliinkPlayer( pBasePlayer );
 	Assert( m_pSDKPlayer );
 
 	BaseClass::ProcessMovement( pBasePlayer, pMove );
@@ -278,7 +278,7 @@ bool CSDKGameMovement::CanAccelerate()
 {
 	// Only allow the player to accelerate when in certain states.
 	BliinkPlayerState curState = m_pSDKPlayer->State_Get();
-	if ( curState == STATE_ACTIVE )
+	if ( curState == STATE_BLIINK_SURVIVOR || curState == STATE_BLIINK_STALKER )
 	{
 		return player->GetWaterJumpTime() == 0;
 	}

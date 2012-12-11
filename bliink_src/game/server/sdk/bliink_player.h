@@ -65,7 +65,6 @@ public:
 	virtual int			OnTakeDamage_Alive( const CTakeDamageInfo &info );
 	virtual void Event_Killed( const CTakeDamageInfo &info );
 	virtual void TraceAttack( const CTakeDamageInfo &inputInfo, const Vector &vecDir, trace_t *ptr );
-	virtual void LeaveVehicle( const Vector &vecExitPoint, const QAngle &vecExitAngles );
 	
 	CWeaponSDKBase* GetActiveSDKWeapon() const;
 	virtual void	CreateViewModel( int viewmodelindex = 0 );
@@ -248,10 +247,18 @@ private:
 
 	int m_iSpawnArmorValue;
 	IMPLEMENT_NETWORK_VAR_FOR_DERIVED( m_ArmorValue );
+
+// Bliink stuff
+private:
+
+public:
+	// Pre-game
+	bool IsReadyToStart( void ) { return m_iPlayerState == STATE_BLIINK_WAITING_FOR_PLAYERS; }
+	void StartGameTransition( void );
 };
 
 
-inline CBliinkPlayer *ToSDKPlayer( CBaseEntity *pEntity )
+inline CBliinkPlayer *ToBliinkPlayer( CBaseEntity *pEntity )
 {
 	if ( !pEntity || !pEntity->IsPlayer() )
 		return NULL;
