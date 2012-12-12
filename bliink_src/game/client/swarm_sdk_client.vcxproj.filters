@@ -79,6 +79,9 @@
     <Filter Include="Source Files\SDK\examples">
       <UniqueIdentifier>{fc830e95-e741-475b-9ccb-09d613002069}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\SDK\VGUI_bliink">
+      <UniqueIdentifier>{e0f705b7-cfe9-4337-a2de-63f7c51602fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="client_base.vpc">
@@ -1930,6 +1933,9 @@
     </ClCompile>
     <ClCompile Include="..\shared\sdk\bliink_gamevars_shared.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\vgui\bliink_welcomemenu.cpp">
+      <Filter>Source Files\SDK\VGUI_bliink</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4149,6 +4155,9 @@
     </ClInclude>
     <ClInclude Include="..\shared\sdk\bliink_gamevars_shared.h">
       <Filter>Source Files\SDK\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\vgui\bliink_welcomemenu.h">
+      <Filter>Source Files\SDK\VGUI_bliink</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

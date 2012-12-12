@@ -40,6 +40,8 @@
 #include "sdk_textwindow.h"
 #include "sdk_spectatorgui.h"
 
+#include "bliink_welcomemenu.h"
+
 #include "clientmode_sdk.h"
 
 CON_COMMAND_F( spec_help, "Show spectator help screen", FCVAR_CLIENTCMD_CAN_EXECUTE)
@@ -113,6 +115,12 @@ IViewPortPanel* SDKViewport::CreatePanelByName(const char *szPanelName)
 	{
 		newpanel = new CSDKSpectatorGUI( this );	
 	}
+	// --- BLIINK MENUS ---
+	else if( ! Q_strcmp("BliinkWelcomeMenu", szPanelName) )
+	{
+		//newpanel = new CBliinkWelcomeMenu( engine-> );
+	}
+	// 
 	else
 	{
 		// create a generic base panel, don't add twice

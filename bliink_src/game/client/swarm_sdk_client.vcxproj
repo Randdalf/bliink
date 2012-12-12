@@ -718,6 +718,7 @@ exit 1
     <ClCompile Include="sdk\sdk_prediction.cpp" />
     <ClCompile Include="sdk\sdk_scoreboard.cpp" />
     <ClCompile Include="sdk\vcreditspage.cpp" />
+    <ClCompile Include="sdk\vgui\bliink_welcomemenu.cpp" />
     <ClCompile Include="sdk\vgui\sdkviewport.cpp" />
     <ClCompile Include="sdk\vgui\sdk_spectatorgui.cpp" />
     <ClCompile Include="sdk\vgui\sdk_textwindow.cpp" />
@@ -1591,6 +1592,7 @@ exit 1
     <ClInclude Include="sdk\sdk_hud_stamina.h" />
     <ClInclude Include="sdk\sdk_scoreboard.h" />
     <ClInclude Include="sdk\vcreditspage.h" />
+    <ClInclude Include="sdk\vgui\bliink_welcomemenu.h" />
     <ClInclude Include="sdk\vgui\sdkviewport.h" />
     <ClInclude Include="sdk\vgui\sdk_spectatorgui.h" />
     <ClInclude Include="sdk\vgui\sdk_textwindow.h" />

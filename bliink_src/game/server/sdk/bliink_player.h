@@ -137,25 +137,9 @@ private:
 	void State_Leave();								// Cleanup the previous state.
 	void State_PreThink();							// Update the current state.
 
-	// Specific state handler functions.
-	void State_Enter_WELCOME();
-	void State_PreThink_WELCOME();
-
-	void State_Enter_PICKINGTEAM();
-	void State_Enter_PICKINGCLASS();
-
 public: //Tony; I had this private but I need it public for initial spawns.
 	void MoveToNextIntroCamera();
 private:
-
-	void State_Enter_ACTIVE();
-	void State_PreThink_ACTIVE();
-
-	void State_Enter_OBSERVER_MODE();
-	void State_PreThink_OBSERVER_MODE();
-
-	void State_Enter_DEATH_ANIM();
-	void State_PreThink_DEATH_ANIM();
 
 	//**************************************************************************
 	//* BLIINK PLAYER STATE FUNCTIONS

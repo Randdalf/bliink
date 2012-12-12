@@ -1052,36 +1052,13 @@ void CBliinkPlayer::MoveToNextIntroCamera()
 //**************************************************************************
 void CBliinkPlayer::State_Enter_BLIINK_WELCOME()
 {	
-	// Important to set MOVETYPE_NONE or our physics object will fall while we're sitting at one of the intro cameras.
+	// Movement and physics
 	SetMoveType( MOVETYPE_NONE );
 	AddSolidFlags( FSOLID_NOT_SOLID );
-
 	PhysObjectSleep();
 
-	// Show info panel
-	if ( IsBot() )
-	{
-		// If they want to auto join a team for debugging, pretend they clicked the button.
-		CCommand args;
-		args.Tokenize( "joingame" );
-		ClientCommand( args );
-	}
-	else
-	{
-		const ConVar *hostname = cvar->FindVar( "hostname" );
-		const char *title = (hostname) ? hostname->GetString() : "MESSAGE OF THE DAY";
-
-		// open info panel on client showing MOTD:
-		KeyValues *data = new KeyValues("data");
-		data->SetString( "title", title );		// info panel title
-		data->SetString( "type", "1" );			// show userdata from stringtable entry
-		data->SetString( "msg",	"motd" );		// use this stringtable entry
-		data->SetString( "cmd", "joingame" );// exec this command if panel closed
-
-		ShowViewPortPanel( PANEL_INFO, true, data );
-
-		data->deleteThis();
-	}
+	// Show welcome menu
+	// ...
 }
 
 void CBliinkPlayer::State_PreThink_BLIINK_WELCOME()
@@ -1095,6 +1072,9 @@ void CBliinkPlayer::State_PreThink_BLIINK_WELCOME()
 
 void CBliinkPlayer::State_Enter_BLIINK_SPECTATE_PREGAME()
 {	
+	// Movement and physics
+	SetMoveType( MOVETYPE_OBSERVER );
+
 	// Always start a spectator session in roaming mode
 	m_iObserverLastMode = OBS_MODE_ROAMING;
 
@@ -1169,9 +1149,9 @@ void CBliinkPlayer::State_PreThink_BLIINK_SPECTATE_PREGAME()
 
 void CBliinkPlayer::State_Enter_BLIINK_WAITING_FOR_PLAYERS()
 {
+	// Movement and physics
 	SetMoveType( MOVETYPE_NONE );
 	AddSolidFlags( FSOLID_NOT_SOLID );
-
 	PhysObjectSleep();
 }
 
@@ -1185,7 +1165,51 @@ void CBliinkPlayer::State_PreThink_BLIINK_WAITING_FOR_PLAYERS()
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_SPECTATE()
-{
+{		
+	// Movement and physics
+	SetMoveType( MOVETYPE_OBSERVER );
+
+	// Always start a spectator session in roaming mode
+	m_iObserverLastMode = OBS_MODE_ROAMING;
+
+	if( m_hObserverTarget == NULL )
+	{
+		// find a new observer target
+		CheckObserverSettings();
+	}
+
+	// Change our observer target to the nearest teammate
+	CTeam *pTeam = GetGlobalTeam( GetTeamNumber() );
+
+	CBasePlayer *pPlayer;
+	Vector localOrigin = GetAbsOrigin();
+	Vector targetOrigin;
+	float flMinDist = FLT_MAX;
+	float flDist;
+
+	for ( int i=0;i<pTeam->GetNumPlayers();i++ )
+	{
+		pPlayer = pTeam->GetPlayer(i);
+
+		if ( !pPlayer )
+			continue;
+
+		if ( !IsValidObserverTarget(pPlayer) )
+			continue;
+
+		targetOrigin = pPlayer->GetAbsOrigin();
+
+		flDist = ( targetOrigin - localOrigin ).Length();
+
+		if ( flDist < flMinDist )
+		{
+			m_hObserverTarget.Set( pPlayer );
+			flMinDist = flDist;
+		}
+	}
+
+	StartObserverMode( m_iObserverLastMode );
+	PhysObjectSleep();
 }
 
 void CBliinkPlayer::State_PreThink_BLIINK_SPECTATE()
