@@ -38,6 +38,7 @@ ConVar mm_max_players( "mm_max_players", "4", FCVAR_REPLICATED | FCVAR_CHEAT, "M
 
 #ifndef CLIENT_DLL
 
+// Defining spawnpoints
 class CSpawnPoint : public CPointEntity
 {
 public:
@@ -62,6 +63,26 @@ BEGIN_DATADESC(CSpawnPoint)
 END_DATADESC();
 
 	LINK_ENTITY_TO_CLASS( info_player_spawn, CSpawnPoint );
+
+// Defining the cage opener
+class CCageOpener : public CLogicalEntity
+{
+public:
+	DECLARE_CLASS( CCageOpener, CLogicalEntity );
+
+	// Outputs
+	COutputEvent m_OnOpenCages;
+
+private:
+	DECLARE_DATADESC();
+};
+
+BEGIN_DATADESC(CCageOpener)
+	// Outputs
+	DEFINE_OUTPUT(m_OnOpenCages, "OnOpenCages"),
+END_DATADESC();
+
+LINK_ENTITY_TO_CLASS( bliink_cage_opener, CCageOpener );
 
 #endif
 
@@ -509,6 +530,19 @@ void CBliinkGameRules::StartGame()
 			continue;
 
 		pPlayer->StartGameTransition();
+	}
+
+	// Opens the cages when the game starts
+	CBaseEntity* pResult = gEntList.FindEntityByClassname(NULL, "bliink_cage_opener");
+
+	if( pResult )
+	{
+		CCageOpener* pCageOpener = dynamic_cast<CCageOpener*>(pResult);
+
+		if( pCageOpener )
+		{
+			pCageOpener->m_OnOpenCages.FireOutput(NULL, NULL, 0);
+		}
 	}
 }
 

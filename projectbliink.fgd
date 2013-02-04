@@ -16,6 +16,12 @@
 [
 ]
 
+@PointClass base(Targetname, Origin) = bliink_cage_opener :
+	"This entity is used by the gamerules to open the cages."
+[
+	output OnOpenCages(void) : "Fires when cages should open"
+]
+
 @NPCClass base(BaseNPC) studio("models/player/red_player.mdl") = npc_bliink_simple : "Freded"
 [
 ]
@@ -32,8 +38,6 @@
 		3 : "Axis"
 	]
 ]
-
-@
 
 //-------------------------------------------------------------------------
 //
