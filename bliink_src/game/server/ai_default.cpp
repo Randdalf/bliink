@@ -961,12 +961,12 @@ AI_DEFINE_SCHEDULE
 	"		TASK_FACE_REASONABLE			0"
 	""
 	"	Interrupts"
-	"		COND_NEW_ENEMY"
-	"		COND_SEE_FEAR"
-	"		COND_SEE_ENEMY"
-	"		COND_LIGHT_DAMAGE"
-	"		COND_HEAVY_DAMAGE"
-	"		COND_HEAR_DANGER"
+//	"		COND_NEW_ENEMY"
+//	"		COND_SEE_FEAR"
+//	"		COND_SEE_ENEMY"
+//	"		COND_LIGHT_DAMAGE"
+//	"		COND_HEAVY_DAMAGE"
+//	"		COND_HEAR_DANGER"
 );
 
 //=========================================================

@@ -41,14 +41,14 @@
 //=========================================================
 // Private activities
 //=========================================================
-int	ACT_BLIINKCUSTOMACTIVITY = -1;
+//int	ACT_MYCUSTOMACTIVITY = -1;
 
 //=========================================================
 // Custom schedules
 //=========================================================
 enum
 {
-	SCHED_BLIINKCUSTOMSCHEDULE = LAST_SHARED_SCHEDULE,
+	SCHED_MYCUSTOMSCHEDULE = LAST_SHARED_SCHEDULE,
 };
 
 //=========================================================
@@ -56,7 +56,7 @@ enum
 //=========================================================
 enum 
 {
-	TASK_BLIINKCUSTOMTASK = LAST_SHARED_TASK,
+	TASK_MYCUSTOMTASK = LAST_SHARED_TASK,
 };
 
 
@@ -65,7 +65,7 @@ enum
 //=========================================================
 enum 
 {
-	COND_BLIINKCUSTOMCONDITION = LAST_SHARED_CONDITION,
+	COND_MYCUSTOMCONDITION = LAST_SHARED_CONDITION,
 };
 
 
@@ -79,6 +79,8 @@ public:
 	void	Precache( void );
 	void	Spawn( void );
 	Class_T Classify( void );
+
+	Activity	NPC_TranslateActivity( Activity eNewActivity );
 
 	DECLARE_DATADESC();
 
@@ -114,13 +116,13 @@ void CBliinkSimpleNPC::InitCustomSchedules(void)
 {
 	INIT_CUSTOM_AI(CBliinkSimpleNPC);
 
-	ADD_CUSTOM_TASK(CBliinkSimpleNPC,		TASK_BLIINKCUSTOMTASK);
+	ADD_CUSTOM_TASK(CBliinkSimpleNPC,		TASK_MYCUSTOMTASK);
 
-	ADD_CUSTOM_SCHEDULE(CBliinkSimpleNPC,	SCHED_BLIINKCUSTOMSCHEDULE);
+	ADD_CUSTOM_SCHEDULE(CBliinkSimpleNPC,	SCHED_MYCUSTOMSCHEDULE);
 
-	ADD_CUSTOM_ACTIVITY(CBliinkSimpleNPC,	ACT_BLIINKCUSTOMACTIVITY);
+	//ADD_CUSTOM_ACTIVITY(CBliinkSimpleNPC,	ACT_MYCUSTOMACTIVITY);
 
-	ADD_CUSTOM_CONDITION(CBliinkSimpleNPC,	COND_BLIINKCUSTOMCONDITION);
+	ADD_CUSTOM_CONDITION(CBliinkSimpleNPC,	COND_MYCUSTOMCONDITION);
 }
 
 //-----------------------------------------------------------------------------
@@ -130,7 +132,7 @@ void CBliinkSimpleNPC::InitCustomSchedules(void)
 //-----------------------------------------------------------------------------
 void CBliinkSimpleNPC::Precache( void )
 {
-	PrecacheModel( "models/player/red_player.mdl" );
+	PrecacheModel( "models/player/blue_player.mdl" );
 
 	BaseClass::Precache();
 }
@@ -145,7 +147,7 @@ void CBliinkSimpleNPC::Spawn( void )
 {
 	Precache();
 
-	SetModel( "models/player/red_player.mdl" );
+	SetModel( "models/player/blue_player.mdl" );
 	SetHullType(HULL_HUMAN);
 	SetHullSizeNormal();
 
@@ -158,9 +160,24 @@ void CBliinkSimpleNPC::Spawn( void )
 	m_NPCState			= NPC_STATE_NONE;
 
 	CapabilitiesClear();
-	//CapabilitiesAdd( bits_CAP_NONE );
+	CapabilitiesAdd( bits_CAP_MOVE_GROUND );
 
 	NPCInit();
+}
+
+// Overriding activities with DOD activities
+Activity	CBliinkSimpleNPC::NPC_TranslateActivity( Activity eNewActivity )
+{
+	eNewActivity = BaseClass::NPC_TranslateActivity( eNewActivity );
+
+	Msg("speed_now = %f\n", m_flGroundSpeed);
+
+	if ( eNewActivity == ACT_IDLE )
+		return ACT_DOD_STAND_IDLE_PISTOL;
+	else if ( eNewActivity == ACT_RUN )
+		return ACT_DOD_PRONEWALK_IDLE_RIFLE;
+
+	return eNewActivity;
 }
 
 

@@ -526,7 +526,7 @@ bool CAI_BaseNPC::Event_Gibbed( const CTakeDamageInfo &info )
 Activity CAI_BaseNPC::GetFlinchActivity( bool bHeavyDamage, bool bGesture )
 {
 	Activity	flinchActivity;
-
+	
 	switch ( LastHitGroup() )
 	{
 		// pick a region-specific flinch
