@@ -1023,10 +1023,13 @@ void CBliinkPlayer::MoveToNextIntroCamera()
 
 	if( !Target ) //if there are no cameras(or the camera has no target, find a spawn point and black out the screen
 	{
-		if ( m_pIntroCamera.IsValid() )
-			SetAbsOrigin( m_pIntroCamera->GetAbsOrigin() + VEC_VIEW );
+		if ( m_pIntroCamera.IsValid() ){
 
-		SetAbsAngles( QAngle( 0, 0, 0 ) );
+			SetAbsOrigin( m_pIntroCamera->GetAbsOrigin() + VEC_VIEW );
+			SetAbsAngles( m_pIntroCamera->GetAbsAngles() );
+		}
+
+		//SetAbsAngles( QAngle( 0, 0, 0 ) );
 		
 		m_pIntroCamera = NULL;  // never update again
 		return;
@@ -1058,7 +1061,9 @@ void CBliinkPlayer::State_Enter_BLIINK_WELCOME()
 	PhysObjectSleep();
 
 	// Show welcome menu
-	// ...
+
+	// TEMPORARY, REPLACE THIS WITH READY BUTTON!!!!!!!!!
+	State_Transition(STATE_BLIINK_WAITING_FOR_PLAYERS);
 }
 
 void CBliinkPlayer::State_PreThink_BLIINK_WELCOME()

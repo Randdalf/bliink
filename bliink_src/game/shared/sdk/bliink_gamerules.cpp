@@ -482,7 +482,7 @@ void CBliinkGameRules::Think()
 		}
 		else if( m_bCountdownToLive && EnoughPlayersToStart() && gpGlobals->curtime >= m_fLiveTime )
 		{
-			Msg("Starting game...");
+			Msg("Starting game...\n");
 			StartGame();
 		}
 	}
@@ -592,6 +592,8 @@ void CBliinkGameRules::EndGame()
 	}
 
 	m_fRestartGameTime = gpGlobals->curtime + Bliink_ResultsTime.GetFloat();
+
+	Msg("Ending game...\n");
 }
 
 Vector DropToGround( 

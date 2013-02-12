@@ -16,6 +16,11 @@
 [
 ]
 
+@PointClass base(Angles,Targetname,EnableDisable) studio("models/weapons/w_smg_mp5.mdl") = weapon_mp5 :
+	"MP5 test!"
+[
+]
+
 @PointClass base(Targetname, Origin) = bliink_cage_opener :
 	"This entity is used by the gamerules to open the cages."
 [

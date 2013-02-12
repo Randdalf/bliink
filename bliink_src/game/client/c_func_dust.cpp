@@ -222,9 +222,9 @@ void C_Func_Dust::AttemptSpawnNewParticle()
 	{
 		Vector vPercent = RandomVector( 0, 1 );
 		double x = rand() % 6000-3000;
-		double y = rand() % 6000-2500;
+		double y = rand() % 6000-3000;
 		double z = rand() % 600;
-		double x_distance = (500-x);
+		double x_distance = (x);
 		double y_distance = y;
 		double distance = sqrt((x_distance*x_distance) + (y_distance*y_distance));
 
