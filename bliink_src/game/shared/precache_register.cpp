@@ -11,6 +11,9 @@
 #include "datacache/iresourceaccesscontrol.h"
 #include "filesystem.h"
 
+// Bliink
+#include "bliink_item_parse.h"
+
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
@@ -309,6 +312,13 @@ void CPrecacheHandler::CacheResource( PrecacheResourceType_t nType, const char *
 
 		case KV_DEP_FILE:
 			CacheResourceFile( pName, bPrecache, hResourceList );
+			break;
+
+		case BLIINK_ITEM_LIST:
+			PrecacheBliinkItemInfo( pName );
+			break;
+
+		case BLIINK_CRAFT_LIST:
 			break;
 		}
 		return;

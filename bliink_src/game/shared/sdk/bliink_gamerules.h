@@ -151,11 +151,14 @@ private:
 	bool m_bGameIsActive; // has the game started yet or are we waiting for players?
 	CNetworkVar( bool, m_bCountdownToLive ); // are we counting down to the start of the game?
 	CNetworkVar( float, m_fLiveTime ); // the time at which the game goes live
+	CNetworkVar( bool, m_bGameIsEnding ); // is the game ending?
+	float m_fRestartGameTime;
 
 public:
 	bool IsGameActive() { return m_bGameIsActive; }
 	bool EnoughPlayersToStart();
 	void StartGame();
+	void EndGame();
 };
 
 //-----------------------------------------------------------------------------

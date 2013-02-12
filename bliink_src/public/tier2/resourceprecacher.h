@@ -74,6 +74,10 @@ enum PrecacheResourceType_t
 	PHYSICS_GAMESOUNDS,	// Resource names are either "BulletSounds", "StepSounds", or "PhysicsImpactSounds"
 	SHARED,				// a shared precache group (see PrecacheSystem_t SHARED)
 
+	// Bliink item and crafting list caching
+	BLIINK_ITEM_LIST,
+	BLIINK_CRAFT_LIST,
+
 	PRECACHE_RESOURCE_TYPE_COUNT,
 };
 

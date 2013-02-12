@@ -239,6 +239,7 @@ public:
 	// Pre-game
 	bool IsReadyToStart( void ) { return m_iPlayerState == STATE_BLIINK_WAITING_FOR_PLAYERS; }
 	void StartGameTransition( void );
+	void EndGameTransition( void );
 };
 
 

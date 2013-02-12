@@ -94,10 +94,12 @@ BEGIN_NETWORK_TABLE_NOBASE( CBliinkGameRules, DT_BliinkGameRules )
 #if defined ( CLIENT_DLL )
 		RecvPropFloat( RECVINFO( m_flGameStartTime ) ),
 		RecvPropBool( RECVINFO( m_bCountdownToLive ) ),
+		RecvPropBool( RECVINFO( m_bGameIsEnding ) ),
 		RecvPropFloat( RECVINFO( m_fLiveTime ) ),
 #else
 		SendPropFloat( SENDINFO( m_flGameStartTime ), 32, SPROP_NOSCALE ),
 		SendPropBool( SENDINFO( m_bCountdownToLive ) ),
+		SendPropBool( SENDINFO( m_bGameIsEnding ) ),
 		SendPropFloat( SENDINFO( m_fLiveTime ), 32, SPROP_NOSCALE ),
 #endif
 END_NETWORK_TABLE()
@@ -272,6 +274,8 @@ CBliinkGameRules::CBliinkGameRules()
 	m_bGameIsActive = false;
 	m_bCountdownToLive = false;
 	m_fLiveTime = 0;
+	m_fRestartGameTime = 0;
+	m_bGameIsEnding = false;
 }
 
 void CBliinkGameRules::ServerActivate()
@@ -484,9 +488,34 @@ void CBliinkGameRules::Think()
 	}
 
 	// if game is active...
+	else if( !m_bGameIsEnding )
+	{
+		int survivors = 0;
+
+		for(int i=1; i<=gpGlobals->maxClients; i++)
+		{
+			CBliinkPlayer* pPlayer = ToBliinkPlayer(UTIL_PlayerByIndex(i));
+
+			if( !pPlayer || !pPlayer->IsPlayer() )
+				continue;
+
+			BliinkPlayerState state = pPlayer->State_Get();
+
+			if( state == STATE_BLIINK_SURVIVOR )
+				survivors++;
+		}
+
+		if( survivors <= 1 )
+			EndGame();
+	}
+	
+	// if game is ending, wait to restart map
 	else
 	{
-		// wait until there is only 1 survivor
+		if( gpGlobals->curtime > m_fRestartGameTime )
+		{			
+			ChangeLevel();
+		}
 	}
 }
 
@@ -544,6 +573,25 @@ void CBliinkGameRules::StartGame()
 			pCageOpener->m_OnOpenCages.FireOutput(NULL, NULL, 0);
 		}
 	}
+}
+
+// Starts the game going by spawning all players into the map
+void CBliinkGameRules::EndGame()
+{
+	m_bGameIsEnding = true;
+
+	// Setting players who are ready to 
+	for(int i=1; i<=gpGlobals->maxClients; i++)
+	{
+		CBliinkPlayer* pPlayer = ToBliinkPlayer(UTIL_PlayerByIndex(i));
+
+		if( !pPlayer || !pPlayer->IsPlayer() )
+			continue;
+
+		pPlayer->EndGameTransition();
+	}
+
+	m_fRestartGameTime = gpGlobals->curtime + Bliink_ResultsTime.GetFloat();
 }
 
 Vector DropToGround( 

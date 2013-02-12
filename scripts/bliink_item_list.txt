@@ -1,0 +1,20 @@
+TextureData
+{
+	"test_item"
+	{
+		// key properties
+		"description"	""
+		"item_type"		"ITEM_TYPE_MATERIAL"
+		"item_subtype"	"ITEM_STYPE_BLANK"
+
+		// behaviours
+		"can_stack"		"false"
+		"max_stack"		"1"
+
+		// weapon-specific
+		"weapon_name"	"none"
+
+		// ammo-specific
+		"ammo_name"		"none"
+	}
+}

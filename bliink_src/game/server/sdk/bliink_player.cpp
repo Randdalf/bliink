@@ -1445,6 +1445,11 @@ void CBliinkPlayer::StartGameTransition( void )
 		State_Transition( STATE_BLIINK_SPECTATE );
 }
 
+void CBliinkPlayer::EndGameTransition( void )
+{
+	State_Transition( STATE_BLIINK_VIEW_RESULTS );
+}
+
 // Handles team joining
 bool CBliinkPlayer::HandleCommand_JoinTeam( int team )
 {
