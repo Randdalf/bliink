@@ -499,13 +499,29 @@ void CBliinkGameRules::Think()
 			if( !pPlayer || !pPlayer->IsPlayer() )
 				continue;
 
+			//Stuff for for decreasing radius.
+
+			//float now_time = gpGlobals->curtime;
+
+			//float gameTime = now_time - gpGlobals->start_time;
+
+			//gpGlobals->fog_radius = 500.0f - (gameTime*10);
+
+			Vector playerOrigin = pPlayer->GetAbsOrigin();
+
+			vec_t disFromCenter = sqrt((playerOrigin.x * playerOrigin.x)+(playerOrigin.y * playerOrigin.y));
+
+			//if(disFromCenter >= gpGlobals->fog_radius){
+			//	Msg("In Fog\n");
+			//}
+
 			BliinkPlayerState state = pPlayer->State_Get();
 
 			if( state == STATE_BLIINK_SURVIVOR )
 				survivors++;
 		}
 
-		if( survivors <= 1 )
+		if( survivors <= 0 ) // 0 for single player testing
 			EndGame();
 	}
 	
@@ -573,6 +589,11 @@ void CBliinkGameRules::StartGame()
 			pCageOpener->m_OnOpenCages.FireOutput(NULL, NULL, 0);
 		}
 	}
+
+	//initialise the fog.
+
+	//gpGlobals->fog_radius = 500.0f;
+	//gpGlobals->start_time = gpGlobals->curtime;
 }
 
 // Starts the game going by spawning all players into the map

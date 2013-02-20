@@ -54,6 +54,9 @@ public:
 	//   - During prediction, this is based on the client's current tick:
 	//     [client_current_tick * tick_interval]
 	float			curtime;
+
+	//float           fog_radius;
+	//float           start_time;
 	
 	// Time spent on last server or client frame (has nothing to do with think intervals)
 	float			frametime;

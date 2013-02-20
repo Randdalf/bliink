@@ -1045,8 +1045,8 @@ void CBliinkPlayer::MoveToNextIntroCamera()
 	VectorAngles( vCamera, CamAngles );
 
 	SetAbsOrigin( vIntroCamera );
-	SetAbsAngles( CamAngles );
-	SnapEyeAngles( CamAngles );
+	SetAbsAngles( m_pIntroCamera->GetAbsAngles() );
+	SnapEyeAngles( m_pIntroCamera->GetAbsAngles() );
 	m_fIntroCamTime = gpGlobals->curtime + 6;
 }
 
