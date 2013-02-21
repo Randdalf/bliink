@@ -12370,7 +12370,7 @@ world
 	}
 	solid
 	{
-		"id" "3939"
+		"id" "3940"
 		side
 		{
 			"id" "6321"
@@ -12439,7 +12439,7 @@ world
 		}
 		editor
 		{
-			"color" "0 125 150"
+			"color" "0 163 116"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12447,7 +12447,7 @@ world
 	}
 	solid
 	{
-		"id" "3941"
+		"id" "3942"
 		side
 		{
 			"id" "6327"
@@ -12516,7 +12516,7 @@ world
 		}
 		editor
 		{
-			"color" "0 125 150"
+			"color" "0 163 116"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12524,7 +12524,7 @@ world
 	}
 	solid
 	{
-		"id" "3943"
+		"id" "3944"
 		side
 		{
 			"id" "6333"
@@ -12593,7 +12593,7 @@ world
 		}
 		editor
 		{
-			"color" "0 125 150"
+			"color" "0 163 116"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12601,7 +12601,7 @@ world
 	}
 	solid
 	{
-		"id" "3945"
+		"id" "3946"
 		side
 		{
 			"id" "6339"
@@ -12670,7 +12670,7 @@ world
 		}
 		editor
 		{
-			"color" "0 125 150"
+			"color" "0 163 116"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12678,7 +12678,7 @@ world
 	}
 	solid
 	{
-		"id" "3947"
+		"id" "3948"
 		side
 		{
 			"id" "6345"
@@ -12747,7 +12747,7 @@ world
 		}
 		editor
 		{
-			"color" "0 125 150"
+			"color" "0 163 116"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12755,7 +12755,7 @@ world
 	}
 	solid
 	{
-		"id" "3949"
+		"id" "3950"
 		side
 		{
 			"id" "6351"
@@ -12824,7 +12824,7 @@ world
 		}
 		editor
 		{
-			"color" "0 125 150"
+			"color" "0 163 116"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -27766,11 +27766,11 @@ entity
 {
 	"id" "1422"
 	"classname" "bliink_cage_opener"
+	"origin" "-84 369 595"
 	connections
 	{
 		"OnOpenCages" "lr_open_cagesTrigger5-1"
 	}
-	"origin" "-84 369 595"
 	editor
 	{
 		"color" "220 30 220"
