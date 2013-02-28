@@ -1175,6 +1175,8 @@ exit 1
     <ClInclude Include="..\shared\scriptevent.h" />
     <ClInclude Include="..\..\public\server_class.h" />
     <ClInclude Include="sdk\bliink_item_base.h" />
+    <ClInclude Include="sdk\bliink_item_pickup.h" />
+    <ClInclude Include="sdk\bliink_item_spawner.h" />
     <ClInclude Include="sdk\bliink_player.h" />
     <ClInclude Include="sdk\sdk_player_resource.h" />
     <ClInclude Include="sdk\bliink_team.h" />

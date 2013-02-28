@@ -7,7 +7,7 @@
 
 #include "weapon_parse.h"
 
-typedef unsigned int BLIINK_ITEM_INFO_HANDLE;
+typedef unsigned short BLIINK_ITEM_INFO_HANDLE;
 
 #define MAX_ITEM_STRING 80
 #define MAX_ITEM_DESC_STRING 140
@@ -15,12 +15,35 @@ typedef unsigned int BLIINK_ITEM_INFO_HANDLE;
 //-----------------------------------------------------------------------------
 // Item types.
 //-----------------------------------------------------------------------------
-enum Bliink_Item_Types;
+typedef enum
+{
+	ITEM_TYPE_EMPTY=0,
+	ITEM_TYPE_LOCKED,
+	ITEM_TYPE_WEAPON,
+	ITEM_TYPE_AMMO,
+	ITEM_TYPE_CONSUMABLE,
+	ITEM_TYPE_MATERIAL
+} Bliink_Item_Types;
 
 //-----------------------------------------------------------------------------
 // Item sub-types.
 //-----------------------------------------------------------------------------
-enum Bliink_Item_SubTypes;
+typedef enum
+{
+	ITEM_STYPE_BLANK=0,
+	ITEM_STYPE_WEAPONS_BEGIN,
+	// ...
+	ITEM_STYPE_WEAPONS_END,
+	ITEM_STYPE_AMMO_BEGIN,
+	// ...
+	ITEM_STYPE_AMMO_END,
+	ITEM_STYPE_CONSUMABLES_BEGIN,
+	// ...
+	ITEM_STYPE_CONSUMABLES_END,
+	ITEM_STYPE_MATERIALS_BEGIN,
+	// ...
+	ITEM_STYPE_MATERIALS_END
+} Bliink_Item_SubTypes;
 
 //-----------------------------------------------------------------------------
 // Description of an item type.
@@ -53,10 +76,18 @@ public:
 
 	// Inventory icon.
 	// <INSERT HERE>
+
+	// In-game model.
 };
 
 // Allows items to access item description database.
 CBliinkItemInfo *GetItemInfo( BLIINK_ITEM_INFO_HANDLE handle );
+
+// Returns the handle into the database for an item of a specified name.
+BLIINK_ITEM_INFO_HANDLE GetItemHandle( const char* szItemName );
+
+// Returns the invalid index into the database for use in comparison.
+WEAPON_FILE_INFO_HANDLE GetInvalidItemHandle( void );
 
 // Loads item description database from resource file.
 void PrecacheBliinkItemInfo( const char *szFileName );

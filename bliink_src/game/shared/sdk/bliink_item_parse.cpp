@@ -4,6 +4,7 @@
 #include "filesystem.h"
 #include "utldict.h"
 #include "bliink_item_parse.h"
+#include "weapon_parse.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -32,16 +33,6 @@ int stringToEnum( const char *szString, stringEnum_t *table, int tableSize )
 //-----------------------------------------------------------------------------
 // Item types.
 //-----------------------------------------------------------------------------
-enum
-{
-	ITEM_TYPE_EMPTY=0,
-	ITEM_TYPE_LOCKED,
-	ITEM_TYPE_WEAPON,
-	ITEM_TYPE_AMMO,
-	ITEM_TYPE_CONSUMABLE,
-	ITEM_TYPE_MATERIAL
-} Bliink_Item_Types;
-
 #define ITEM_TYPE_COUNT 6
 
 stringEnum_t g_typeStrings[ITEM_TYPE_COUNT] =
@@ -57,23 +48,6 @@ stringEnum_t g_typeStrings[ITEM_TYPE_COUNT] =
 //-----------------------------------------------------------------------------
 // Item sub-types.
 //-----------------------------------------------------------------------------
-enum
-{
-	ITEM_STYPE_BLANK=0,
-	ITEM_STYPE_WEAPONS_BEGIN,
-	// ...
-	ITEM_STYPE_WEAPONS_END,
-	ITEM_STYPE_AMMO_BEGIN,
-	// ...
-	ITEM_STYPE_AMMO_END,
-	ITEM_STYPE_CONSUMABLES_BEGIN,
-	// ...
-	ITEM_STYPE_CONSUMABLES_END,
-	ITEM_STYPE_MATERIALS_BEGIN,
-	// ...
-	ITEM_STYPE_MATERIALS_END
-} Bliink_Item_SubTypes;
-
 #define ITEM_STYPE_COUNT 1
 
 stringEnum_t g_subTypeStrings[ITEM_STYPE_COUNT] =
@@ -82,7 +56,7 @@ stringEnum_t g_subTypeStrings[ITEM_STYPE_COUNT] =
 };
 
 //-----------------------------------------------------------------------------
-// Database storing item description information. Accessed using item subtype.
+// Database storing item description information.
 //-----------------------------------------------------------------------------
 static CUtlDict< CBliinkItemInfo*, BLIINK_ITEM_INFO_HANDLE > m_ItemInfoDatabase;
 
@@ -134,33 +108,60 @@ void CBliinkItemInfo::Parse( KeyValues *pKeyValuesData, const char *szItemName )
 
 // Allows items to access item description database.
 CBliinkItemInfo *GetItemInfo( BLIINK_ITEM_INFO_HANDLE handle )
-{
-	// Making sure we can't access stuff we're not meant to.
-	Assert(
-		handle != ITEM_STYPE_WEAPONS_BEGIN &&
-		handle != ITEM_STYPE_WEAPONS_END &&
-		handle != ITEM_STYPE_AMMO_BEGIN &&
-		handle != ITEM_STYPE_AMMO_END &&
-		handle != ITEM_STYPE_CONSUMABLES_BEGIN &&
-		handle != ITEM_STYPE_CONSUMABLES_END &&
-		handle != ITEM_STYPE_MATERIALS_BEGIN &&
-		handle != ITEM_STYPE_MATERIALS_END
-	);
-	
+{	
 	if( m_ItemInfoDatabase.IsValidIndex( handle ) )
 		return m_ItemInfoDatabase[ handle ];
 	else
 		return NULL;
 }
 
+// Returns the handle into the database for an item of a specified name.
+BLIINK_ITEM_INFO_HANDLE GetItemHandle( const char* szItemName )
+{	
+	return m_ItemInfoDatabase.Find( szItemName );
+}
+
+// Returns the invalid index into the database for use in comparison.
+BLIINK_ITEM_INFO_HANDLE GetInvalidItemHandle( void )
+{
+	return (BLIINK_ITEM_INFO_HANDLE)m_ItemInfoDatabase.InvalidIndex();
+}
+
 // Loads item description database from resource file.
 void PrecacheBliinkItemInfo( const char *szFileName )
 {
+	// If the database isn't empty, don't precache.
+	if( m_ItemInfoDatabase.Count() )
+		return;
+
 	// Load KeyValues file.
-	KeyValues *pKV = new KeyValues( "BliinkItemList" );
+	KeyValues *pKV = new KeyValues( "BliinkItemListfile" );
+	pKV->UsesEscapeSequences( true );
 
 	// Create BliinkItemInfo for each item description, parse the KeyValues, and
 	// then insert into the database.
+	pKV->LoadFromFile( filesystem, "scripts/bliink_item_list.txt", "GAME" );
+	
+	Msg("--LOADING BLIINK ITEMS FILE--\n");
+	
+	CBliinkItemInfo* insert;
+
+	for( KeyValues *sub = pKV->GetFirstSubKey(); sub; sub = sub->GetNextKey() )
+	{
+		KeyValues *itemData = sub->GetFirstValue();
+		const char* szItemName = sub->GetName();
+
+		// Parsing data.
+		insert = new CBliinkItemInfo;
+		insert->Parse(sub, szItemName);
+
+		Msg( "adding item: '%s'...\n", szItemName );
+
+		// Inserting into database.
+		m_ItemInfoDatabase.Insert(szItemName, insert);
+	}
+
+	pKV->deleteThis();
 }
 
 //-----------------------------------------------------------------------------

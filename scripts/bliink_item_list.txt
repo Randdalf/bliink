@@ -1,9 +1,9 @@
-TextureData
+BliinkItemListBUggaBooBoolool
 {
 	"test_item"
 	{
 		// key properties
-		"description"	""
+		"description"	"a test item"
 		"item_type"		"ITEM_TYPE_MATERIAL"
 		"item_subtype"	"ITEM_STYPE_BLANK"
 
@@ -16,5 +16,11 @@ TextureData
 
 		// ammo-specific
 		"ammo_name"		"none"
+	}
+	"test_item_2"
+	{
+	}
+	"test_item_3"
+	{
 	}
 }

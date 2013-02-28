@@ -314,9 +314,6 @@
     <ClCompile Include="..\shared\basecombatcharacter_shared.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="basecombatweapon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\shared\basecombatweapon_shared.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1598,6 +1595,9 @@
     <ClCompile Include="..\shared\sdk\bliink_item_parse.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
+    <ClCompile Include="basecombatweapon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\shared\achievement_saverestore.h">
@@ -1844,9 +1844,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="basecombatcharacter.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="basecombatweapon.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\shared\basecombatweapon_shared.h">
@@ -3297,6 +3294,15 @@
     </ClInclude>
     <ClInclude Include="..\shared\sdk\bliink_item_parse.h">
       <Filter>Source Files\SDK\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="basecombatweapon.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\bliink_item_spawner.h">
+      <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\bliink_item_pickup.h">
+      <Filter>Source Files\SDK</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

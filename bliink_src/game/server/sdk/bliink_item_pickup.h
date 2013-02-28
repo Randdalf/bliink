@@ -1,0 +1,4 @@
+#ifndef BLIINK_ITEM_PICKUP_H
+#define BLIINK_ITEM_PICKUP_H
+
+#endif // BLIINK_ITEM_PICKUP_H
