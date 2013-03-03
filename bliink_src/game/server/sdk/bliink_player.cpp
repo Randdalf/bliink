@@ -19,6 +19,7 @@
 #include "in_buttons.h"
 #include "physics_prop_ragdoll.h"
 #include "particle_parse.h"
+#include "bliink_item_inventory.h"
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
@@ -116,6 +117,11 @@ BEGIN_SEND_TABLE_NOBASE( CBliinkPlayer, DT_SDKNonLocalPlayerExclusive )
 	SendPropAngle( SENDINFO_VECTORELEM(m_angEyeAngles, 1), 10, SPROP_CHANGES_OFTEN ),
 END_SEND_TABLE()
 
+// Inventory table
+BEGIN_NETWORK_TABLE_NOBASE( CBliinkItemInventory, DT_BliinkItemInventory )
+		SendPropArray3( SENDINFO_ARRAY3(m_iItemTypes), SendPropInt( SENDINFO_ARRAY(m_iItemTypes), INVENTORY_MAX_SLOTS, SPROP_UNSIGNED ) ),
+		SendPropArray3( SENDINFO_ARRAY3(m_iStackCounts), SendPropInt( SENDINFO_ARRAY(m_iStackCounts), INVENTORY_MAX_SLOTS, SPROP_UNSIGNED ) ),
+END_NETWORK_TABLE()
 
 // main table
 IMPLEMENT_SERVERCLASS_ST( CBliinkPlayer, DT_SDKPlayer )
@@ -145,6 +151,9 @@ IMPLEMENT_SERVERCLASS_ST( CBliinkPlayer, DT_SDKPlayer )
 	SendPropInt( SENDINFO( m_iPlayerState ), Q_log2( NUM_PLAYER_STATES )+1, SPROP_UNSIGNED ),
 
 	SendPropBool( SENDINFO( m_bSpawnInterpCounter ) ),
+
+	// Send table for inventory
+	SendPropDataTable( SENDINFO_DT(m_Inventory), &REFERENCE_SEND_TABLE( DT_BliinkItemInventory ) ),
 
 END_SEND_TABLE()
 
@@ -1503,4 +1512,10 @@ bool CBliinkPlayer::HandleCommand_JoinTeam( int team )
 	}
 
 	return false;
+}
+
+// Gives access to the player's inventory.
+CBliinkItemInventory &CBliinkPlayer::GetBliinkInventory( void )
+{
+	return m_Inventory.GetForModify();
 }

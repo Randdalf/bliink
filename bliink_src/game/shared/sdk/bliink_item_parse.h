@@ -17,8 +17,7 @@ typedef unsigned short BLIINK_ITEM_INFO_HANDLE;
 //-----------------------------------------------------------------------------
 typedef enum
 {
-	ITEM_TYPE_EMPTY=0,
-	ITEM_TYPE_LOCKED,
+	ITEM_TYPE_NONE=0,
 	ITEM_TYPE_WEAPON,
 	ITEM_TYPE_AMMO,
 	ITEM_TYPE_CONSUMABLE,
@@ -30,7 +29,8 @@ typedef enum
 //-----------------------------------------------------------------------------
 typedef enum
 {
-	ITEM_STYPE_BLANK=0,
+	ITEM_STYPE_EMPTY=0,
+	ITEM_STYPE_LOCKED,
 	ITEM_STYPE_WEAPONS_BEGIN,
 	// ...
 	ITEM_STYPE_WEAPONS_END,
@@ -74,10 +74,11 @@ public:
 	// Ammo-specific
 	char	szAmmoType[MAX_WEAPON_STRING];
 
+	// World model
+	char	szWorldModel[128];
+
 	// Inventory icon.
 	// <INSERT HERE>
-
-	// In-game model.
 };
 
 // Allows items to access item description database.

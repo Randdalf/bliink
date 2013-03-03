@@ -89,8 +89,11 @@ public:
 	float m_flProneSpeed;
 
 private:
-
 	OuterClass *m_pOuter;
+
+	// Bliink inventory
+public:
+
 };			   
 
 

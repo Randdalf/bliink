@@ -16,6 +16,7 @@
 #include "baseparticleentity.h"
 #include "bliink_player_shared.h"
 #include "sdk_shareddefs.h"
+#include "bliink_item_inventory.h"
 
 class C_BliinkPlayer : public C_BasePlayer
 {
@@ -157,6 +158,12 @@ private:
 	};
 	CUtlLinkedList<CSDKSoundEvent,int> m_SoundEvents;
 
+// Bliink stuff
+	CBliinkItemInventory m_Inventory;
+
+public:
+
+	CBliinkItemInventory &GetBliinkInventory( void );
 };
 
 

@@ -521,7 +521,7 @@ void CBliinkGameRules::Think()
 				survivors++;
 		}
 
-		if( survivors <= 1 ) // 0 for single player testing
+		if( survivors <= 0 ) // 0 for single player testing
 			EndGame();
 	}
 	

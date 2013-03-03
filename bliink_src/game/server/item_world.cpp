@@ -131,6 +131,8 @@ bool CItem::CreateItemVPhysicsObject( void )
 		SetSolid( SOLID_BBOX );
 		AddSolidFlags( nSolidFlags );
 
+		Msg("Are you KIDDING me?\n");
+
 		// If it's not physical, drop it to the floor
 		if (UTIL_DropToFloor(this, MASK_SOLID) == 0)
 		{
@@ -176,7 +178,11 @@ void CItem::Spawn( void )
 	SetTouch(&CItem::ItemTouch);
 
 	if ( CreateItemVPhysicsObject() == false )
+	{
+		Msg( "oh no please don't say this, oh god oh man oh god\n" );
+
 		return;
+	}
 
 	m_takedamage = DAMAGE_EVENTS_ONLY;
 

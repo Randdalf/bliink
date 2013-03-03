@@ -233,6 +233,7 @@ exit 1
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="..\..\vpc_scripts\loadaddress.vpc" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="server_base.vpc" />
     <None Include="server_swarm.vpc" />
     <None Include="..\..\vpc_scripts\source_dll_base.vpc" />
@@ -251,6 +252,7 @@ exit 1
     <ClCompile Include="..\shared\playerclass_info_parse.cpp" />
     <ClCompile Include="..\shared\predicted_viewmodel.cpp" />
     <ClCompile Include="..\shared\sdk\bliink_gamevars_shared.cpp" />
+    <ClCompile Include="..\shared\sdk\bliink_item_inventory.cpp" />
     <ClCompile Include="..\shared\sdk\bliink_item_parse.cpp" />
     <ClCompile Include="..\shared\sdk\sdk_basegrenade_projectile.cpp" />
     <ClCompile Include="..\shared\sdk\sdk_fx_shared.cpp" />
@@ -706,6 +708,9 @@ exit 1
     </ClCompile>
     <ClCompile Include="scripted.cpp" />
     <ClCompile Include="scriptedtarget.cpp" />
+    <ClCompile Include="SDK\bliink_item_base.cpp" />
+    <ClCompile Include="sdk\bliink_item_pickup.cpp" />
+    <ClCompile Include="sdk\bliink_item_spawner.cpp" />
     <ClCompile Include="sdk\sdk_brushentity.cpp" />
     <ClCompile Include="sdk\sdk_client.cpp" />
     <ClCompile Include="sdk\sdk_env_message.cpp" />
@@ -911,6 +916,7 @@ exit 1
     <ClInclude Include="..\shared\playerclass_info_parse.h" />
     <ClInclude Include="..\shared\predicted_viewmodel.h" />
     <ClInclude Include="..\shared\sdk\bliink_gamevars_shared.h" />
+    <ClInclude Include="..\shared\sdk\bliink_item_inventory.h" />
     <ClInclude Include="..\shared\sdk\bliink_item_parse.h" />
     <ClInclude Include="..\shared\sdk\sdk_basegrenade_projectile.h" />
     <ClInclude Include="..\shared\sdk\sdk_fx_shared.h" />

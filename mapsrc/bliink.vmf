@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "5032"
-	"mapversion" "86"
+	"mapversion" "95"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "86"
+	"mapversion" "95"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -12370,7 +12370,7 @@ world
 	}
 	solid
 	{
-		"id" "3940"
+		"id" "4010"
 		side
 		{
 			"id" "6321"
@@ -12439,7 +12439,7 @@ world
 		}
 		editor
 		{
-			"color" "0 163 116"
+			"color" "0 132 169"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12447,7 +12447,7 @@ world
 	}
 	solid
 	{
-		"id" "3942"
+		"id" "4012"
 		side
 		{
 			"id" "6327"
@@ -12516,7 +12516,7 @@ world
 		}
 		editor
 		{
-			"color" "0 163 116"
+			"color" "0 132 169"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12524,7 +12524,7 @@ world
 	}
 	solid
 	{
-		"id" "3944"
+		"id" "4014"
 		side
 		{
 			"id" "6333"
@@ -12593,7 +12593,7 @@ world
 		}
 		editor
 		{
-			"color" "0 163 116"
+			"color" "0 132 169"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12601,7 +12601,7 @@ world
 	}
 	solid
 	{
-		"id" "3946"
+		"id" "4016"
 		side
 		{
 			"id" "6339"
@@ -12670,7 +12670,7 @@ world
 		}
 		editor
 		{
-			"color" "0 163 116"
+			"color" "0 132 169"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12678,7 +12678,7 @@ world
 	}
 	solid
 	{
-		"id" "3948"
+		"id" "4018"
 		side
 		{
 			"id" "6345"
@@ -12747,7 +12747,7 @@ world
 		}
 		editor
 		{
-			"color" "0 163 116"
+			"color" "0 132 169"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12755,7 +12755,7 @@ world
 	}
 	solid
 	{
-		"id" "3950"
+		"id" "4020"
 		side
 		{
 			"id" "6351"
@@ -12824,7 +12824,7 @@ world
 		}
 		editor
 		{
-			"color" "0 163 116"
+			"color" "0 132 169"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -27770,6 +27770,7 @@ entity
 	connections
 	{
 		"OnOpenCages" "lr_open_cagesTrigger5-1"
+		"OnOpenCages" "item_spawnerBeginSpawning0-1"
 	}
 	editor
 	{
@@ -30961,13 +30962,40 @@ entity
 		"logicalpos" "[0 4500]"
 	}
 }
+entity
+{
+	"id" "3977"
+	"classname" "bliink_item_spawner"
+	"angles" "0 0 0"
+	"item_max_quantity" "3"
+	"item_min_quantity" "1"
+	"item_spawn_chance_1" "1"
+	"item_spawn_chance_2" "5"
+	"item_type_1" "test_item"
+	"item_type_2" "test_item_2"
+	"spawner_distance_x" "32.0"
+	"spawner_distance_y" "32.0"
+	"spawner_distance_z" "0.0"
+	"spawner_max_interval" "10.0"
+	"spawner_min_interval" "5.0"
+	"spawner_only_once" "0"
+	"targetname" "item_spawner"
+	"origin" "640 -1152 240"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
 cameras
 {
 	"activecamera" "0"
 	camera
 	{
-		"position" "[-214.385 -307.087 652.636]"
-		"look" "[-1133.04 4764.94 -3734.23]"
+		"position" "[628.405 -1130.64 286.569]"
+		"look" "[2614.37 -4533.69 -5216.99]"
 	}
 }
 cordons

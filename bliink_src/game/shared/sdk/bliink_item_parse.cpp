@@ -33,12 +33,11 @@ int stringToEnum( const char *szString, stringEnum_t *table, int tableSize )
 //-----------------------------------------------------------------------------
 // Item types.
 //-----------------------------------------------------------------------------
-#define ITEM_TYPE_COUNT 6
+#define ITEM_TYPE_COUNT 5
 
 stringEnum_t g_typeStrings[ITEM_TYPE_COUNT] =
 {
-	{"ITEM_TYPE_EMPTY", ITEM_TYPE_EMPTY},
-	{"ITEM_TYPE_LOCKED", ITEM_TYPE_LOCKED},
+	{"ITEM_TYPE_NONE", ITEM_TYPE_NONE},
 	{"ITEM_TYPE_WEAPON", ITEM_TYPE_WEAPON},
 	{"ITEM_TYPE_AMMO", ITEM_TYPE_AMMO},
 	{"ITEM_TYPE_CONSUMABLE", ITEM_TYPE_CONSUMABLE},
@@ -52,7 +51,7 @@ stringEnum_t g_typeStrings[ITEM_TYPE_COUNT] =
 
 stringEnum_t g_subTypeStrings[ITEM_STYPE_COUNT] =
 {
-	{"ITEM_STYPE_BLANK", ITEM_STYPE_BLANK},
+	{"ITEM_STYPE_EMPTY", ITEM_STYPE_EMPTY},
 };
 
 //-----------------------------------------------------------------------------
@@ -70,8 +69,8 @@ CBliinkItemInfo::CBliinkItemInfo()
 	szItemDesc[0] = 0;
 
 	// Item type.
-	m_iType = ITEM_TYPE_EMPTY;
-	m_iSubType = ITEM_STYPE_BLANK;
+	m_iType = ITEM_TYPE_NONE;
+	m_iSubType = ITEM_STYPE_EMPTY;
 
 	// Item behaviors.
 	m_bCanStack = false;
@@ -80,8 +79,11 @@ CBliinkItemInfo::CBliinkItemInfo()
 	// Weapon-specific.
 	szWeaponClassName[0] = 0;
 
-	// Ammo-specific
+	// Ammo-specific.
 	szAmmoType[0] = 0;
+
+	// World model.
+	szWorldModel[0] = 0;
 }
 
 // Parses item data from a KeyValues structure.
@@ -93,7 +95,7 @@ void CBliinkItemInfo::Parse( KeyValues *pKeyValuesData, const char *szItemName )
 
 	// Item type.
 	m_iType = stringToEnum( pKeyValuesData->GetString( "item_type", "ITEM_TYPE_EMPTY" ), g_typeStrings, ITEM_TYPE_COUNT );
-	m_iSubType = stringToEnum( pKeyValuesData->GetString( "item_subtype", "ITEM_STYPE_BLANK" ), g_subTypeStrings, ITEM_STYPE_COUNT);
+	m_iSubType = stringToEnum( pKeyValuesData->GetString( "item_subtype", "ITEM_STYPE_BLANK" ), g_subTypeStrings, ITEM_STYPE_COUNT );
 
 	// Item behaviors.
 	m_bCanStack = pKeyValuesData->GetBool( "can_stack", false );
@@ -104,6 +106,9 @@ void CBliinkItemInfo::Parse( KeyValues *pKeyValuesData, const char *szItemName )
 
 	// Ammo-specific
 	Q_strncpy( szAmmoType, pKeyValuesData->GetString( "ammo_type", "none"), MAX_WEAPON_STRING );
+
+	// Ammo-specific
+	Q_strncpy( szWorldModel, pKeyValuesData->GetString( "world_model", "models/weapons/w_smg_mp5.mdl"), 128 );
 }
 
 // Allows items to access item description database.
@@ -148,7 +153,6 @@ void PrecacheBliinkItemInfo( const char *szFileName )
 
 	for( KeyValues *sub = pKV->GetFirstSubKey(); sub; sub = sub->GetNextKey() )
 	{
-		KeyValues *itemData = sub->GetFirstValue();
 		const char* szItemName = sub->GetName();
 
 		// Parsing data.
@@ -156,6 +160,9 @@ void PrecacheBliinkItemInfo( const char *szFileName )
 		insert->Parse(sub, szItemName);
 
 		Msg( "adding item: '%s'...\n", szItemName );
+
+		// Precache models/textures here...
+		CBaseEntity::PrecacheModel( insert->szWorldModel );
 
 		// Inserting into database.
 		m_ItemInfoDatabase.Insert(szItemName, insert);

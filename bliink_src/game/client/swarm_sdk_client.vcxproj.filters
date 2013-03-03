@@ -1940,6 +1940,12 @@
     <ClCompile Include="..\shared\sdk\bliink_item_parse.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
+    <ClCompile Include="sdk\c_bliink_item_pickup.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shared\sdk\bliink_item_inventory.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="achievement_notification_panel.h">
@@ -4163,6 +4169,9 @@
       <Filter>Source Files\SDK\VGUI_bliink</Filter>
     </ClInclude>
     <ClInclude Include="..\shared\sdk\bliink_item_parse.h">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shared\sdk\bliink_item_inventory.h">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClInclude>
   </ItemGroup>

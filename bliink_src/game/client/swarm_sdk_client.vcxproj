@@ -253,6 +253,7 @@ exit 1
     <ClCompile Include="..\shared\predicted_viewmodel.cpp" />
     <ClCompile Include="..\shared\sdk\bliink_gamerules.cpp" />
     <ClCompile Include="..\shared\sdk\bliink_gamevars_shared.cpp" />
+    <ClCompile Include="..\shared\sdk\bliink_item_inventory.cpp" />
     <ClCompile Include="..\shared\sdk\bliink_item_parse.cpp" />
     <ClCompile Include="..\shared\sdk\bliink_player_shared.cpp" />
     <ClCompile Include="..\shared\sdk\sdk_basegrenade_projectile.cpp" />
@@ -696,6 +697,7 @@ exit 1
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="sdk\clientmode_sdk.cpp" />
+    <ClCompile Include="sdk\c_bliink_item_pickup.cpp" />
     <ClCompile Include="sdk\c_sdk_env_sparkler.cpp" />
     <ClCompile Include="sdk\c_bliink_player.cpp" />
     <ClCompile Include="sdk\c_sdk_player_resource.cpp" />
@@ -1537,6 +1539,7 @@ exit 1
     <ClInclude Include="..\shared\predicted_viewmodel.h" />
     <ClInclude Include="..\shared\sdk\bliink_gamerules.h" />
     <ClInclude Include="..\shared\sdk\bliink_gamevars_shared.h" />
+    <ClInclude Include="..\shared\sdk\bliink_item_inventory.h" />
     <ClInclude Include="..\shared\sdk\bliink_item_parse.h" />
     <ClInclude Include="..\shared\sdk\bliink_player_shared.h" />
     <ClInclude Include="..\shared\sdk\sdk_basegrenade_projectile.h" />

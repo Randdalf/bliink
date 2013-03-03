@@ -69,6 +69,7 @@
     <None Include="vscript_server.nut">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\shared\achievement_saverestore.cpp">
@@ -1597,6 +1598,18 @@
     </ClCompile>
     <ClCompile Include="basecombatweapon.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\bliink_item_pickup.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\bliink_item_spawner.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shared\sdk\bliink_item_inventory.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="SDK\bliink_item_base.cpp">
+      <Filter>Source Files\SDK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3303,6 +3316,9 @@
     </ClInclude>
     <ClInclude Include="sdk\bliink_item_pickup.h">
       <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shared\sdk\bliink_item_inventory.h">
+      <Filter>Source Files\SDK\Shared</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

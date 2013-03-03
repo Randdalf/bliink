@@ -21,6 +21,43 @@
 [
 ]
 
+@PointClass base(Targetname,EnableDisable) = bliink_item_spawner :
+	"bliink_item_spawner test!"
+[
+	item_min_quantity(integer) : "Min. items spawned" : 1 : "The minimum number of items this spawner will create per spawning"
+	item_max_quantity(integer) : "Max. items spawned" : 1 : "The maximum number of items this spawner will create per spawning"
+	spawner_min_interval(float) : "Min. spawning interval" : "10.0" : "The minimum time interval in between each spawning"
+	spawner_max_interval(float) : "Max. spawning interval" : "10.0" : "The maximum time interval in between each spawning"
+	spawner_only_once(choices) : "Only do spawning once?" : 0 : "Should this spawner only spawn items once?" =
+	[
+		1 : "True"
+		0 : "False"
+	]
+	spawner_distance_x(float) : "Max offset from origin (X)" : "0.0" : "How far should this spawner create items from its origin?"
+	spawner_distance_y(float) : "Max offset from origin (Y)" : "0.0" : "How far should this spawner create items from its origin?"
+	spawner_distance_z(float) : "Max offset from origin (Z)" : "0.0" : "How far should this spawner create items from its origin?"
+
+	item_type_1(string) : "Item 1" : "" : "The name of the item being spawned, defined in scripts/bliink_item_list.txt"
+	item_type_2(string) : "Item 2" : "" : "The name of the item being spawned, defined in scripts/bliink_item_list.txt"
+	item_type_3(string) : "Item 3" : "" : "The name of the item being spawned, defined in scripts/bliink_item_list.txt"
+	item_type_4(string) : "Item 4" : "" : "The name of the item being spawned, defined in scripts/bliink_item_list.txt"
+	item_type_5(string) : "Item 5" : "" : "The name of the item being spawned, defined in scripts/bliink_item_list.txt"
+	item_type_6(string) : "Item 6" : "" : "The name of the item being spawned, defined in scripts/bliink_item_list.txt"
+	item_type_7(string) : "Item 7" : "" : "The name of the item being spawned, defined in scripts/bliink_item_list.txt"
+	item_type_8(string) : "Item 8" : "" : "The name of the item being spawned, defined in scripts/bliink_item_list.txt"
+
+	item_spawn_chance_1(integer) : "Item 1 spawn likelihood" : 0 : "Likelihood of item 1 being spawned, as an integer. The higher the value the more likely it is it will be spawned."
+	item_spawn_chance_2(integer) : "Item 2 spawn likelihood" : 0 : "Likelihood of item 2 being spawned, as an integer. The higher the value the more likely it is it will be spawned."
+	item_spawn_chance_3(integer) : "Item 3 spawn likelihood" : 0 : "Likelihood of item 3 being spawned, as an integer. The higher the value the more likely it is it will be spawned."
+	item_spawn_chance_4(integer) : "Item 4 spawn likelihood" : 0 : "Likelihood of item 4 being spawned, as an integer. The higher the value the more likely it is it will be spawned."
+	item_spawn_chance_5(integer) : "Item 5 spawn likelihood" : 0 : "Likelihood of item 5 being spawned, as an integer. The higher the value the more likely it is it will be spawned."
+	item_spawn_chance_6(integer) : "Item 6 spawn likelihood" : 0 : "Likelihood of item 6 being spawned, as an integer. The higher the value the more likely it is it will be spawned."
+	item_spawn_chance_7(integer) : "Item 7 spawn likelihood" : 0 : "Likelihood of item 7 being spawned, as an integer. The higher the value the more likely it is it will be spawned."
+	item_spawn_chance_8(integer) : "Item 8 spawn likelihood" : 0 : "Likelihood of item 8 being spawned, as an integer. The higher the value the more likely it is it will be spawned."
+
+	input BeginSpawning(void) : "Begin spawning items" 
+]
+
 @PointClass base(Targetname, Origin) = bliink_cage_opener :
 	"This entity is used by the gamerules to open the cages."
 [

@@ -1,24 +1,56 @@
-BliinkItemListBUggaBooBoolool
+BliinkItemList
 {
+	// DO NOT DELETE
+	"empty_item"
+	{
+		"item_type"		"ITEM_TYPE_NONE"
+		"item_subtype"	"ITEM_STYPE_EMPTY"
+	}
+	"locked_item"
+	{
+		"item_type"		"ITEM_TYPE_NONE"
+		"item_subtype"	"ITEM_STYPE_LOCKED"
+	}
+	// ADD NEW ITEMS BELOW THIS LINE
 	"test_item"
 	{
 		// key properties
 		"description"	"a test item"
-		"item_type"		"ITEM_TYPE_MATERIAL"
-		"item_subtype"	"ITEM_STYPE_BLANK"
+		"item_type"		"ITEM_TYPE_WEAPON"
+		"item_subtype"	"ITEM_STYPE_EMPTY"
 
 		// behaviours
-		"can_stack"		"false"
-		"max_stack"		"1"
+		"can_stack"		"true"
+		"max_stack"		"4"
 
 		// weapon-specific
-		"weapon_name"	"none"
+		"weapon_name"	"weapon_mp5"
 
 		// ammo-specific
 		"ammo_name"		"none"
+
+		// world model
+		"world_model"	"models/weapons/w_smg_mp5.mdl"
 	}
 	"test_item_2"
 	{
+		// key properties
+		"description"	"another test item"
+		"item_type"		"ITEM_TYPE_WEAPON"
+		"item_subtype"	"ITEM_STYPE_EMPTY"
+
+		// behaviours
+		"can_stack"		"true"
+		"max_stack"		"4"
+
+		// weapon-specific
+		"weapon_name"	"weapon_mp5"
+
+		// ammo-specific
+		"ammo_name"		"none"
+
+		// world model
+		"world_model"	"models/weapons/w_pist_deagle.mdl"
 	}
 	"test_item_3"
 	{

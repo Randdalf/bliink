@@ -8,10 +8,8 @@
 #include "weapon_sdkbase.h"
 #include "bliink_item_parse.h"
 
-class CBliinkItemWeapon;
-class CBliinkItemMaterial;
-class CBliinkItemAmmo;
-class CBliinkItemConsumable;
+// Whether two items can stack together or not.
+bool CanStack( BLIINK_ITEM_INFO_HANDLE hItemHandle1, BLIINK_ITEM_INFO_HANDLE hItemHandle2 );
 
 //-----------------------------------------------------------------------------
 // IBliinkItem
@@ -27,63 +25,32 @@ public:
 			m_hInfoHandle = hItemHandle;
 		else
 			m_hInfoHandle = GetInvalidItemHandle();
-
-		m_iStackCount = 1;
 	}
 
 	virtual bool	IsConsumable() { return false; }
 	virtual bool	IsAmmo() { return false; }
 	virtual bool	IsWeapon() { return false; }
 	virtual bool	IsMaterial() { return false; }
-	virtual bool	IsStackable() { return false; }
-	virtual int		GetStackCount() { return m_iStackCount; }
-	virtual bool	CanStackWith( IBliinkItem* item ) { return false; }
+	virtual bool	IsStackable() { return GetItemData().m_bCanStack; }
+
+	virtual bool	CanStackWith( IBliinkItem* pItem )
+	{
+		return CanStack(m_hInfoHandle, pItem->GetInfoHandle());
+	}
 
 	CBliinkItemInfo &GetItemData() const
 	{
-		CBliinkItemInfo* data = GetItemInfo( m_hInfoHandle );
-		
-		if( data )
-			return *data;
-		else
-			return CBliinkItemInfo();
+		return *GetItemInfo( m_hInfoHandle );
+	}
+
+	BLIINK_ITEM_INFO_HANDLE GetInfoHandle() const
+	{
+		return m_hInfoHandle;
 	}
 
 protected:
 	BLIINK_ITEM_INFO_HANDLE m_hInfoHandle;
-
-	int m_iStackCount;
 };
-
-//-----------------------------------------------------------------------------
-// GetItemByName
-// Allows creation of items by their handle e.g. "material_gold"
-//-----------------------------------------------------------------------------
-static IBliinkItem* CreateItemByHandle(BLIINK_ITEM_INFO_HANDLE hHandle)
-{
-	CBliinkItemInfo* info = GetItemInfo( hHandle );
-
-	if( !info )
-		return NULL;
-
-	switch( info->m_iType )
-	{
-	case ITEM_TYPE_WEAPON:
-		return new CBliinkItemWeapon( hHandle );
-		break;
-	case ITEM_TYPE_AMMO:
-		return new CBliinkItemAmmo( hHandle );
-		break;
-	case ITEM_TYPE_CONSUMABLE:
-		return new CBliinkItemConsumable( hHandle );
-		break;
-	case ITEM_TYPE_MATERIAL:
-		return new CBliinkItemMaterial( hHandle );
-		break;
-	default:
-		return NULL;
-	}
-}
 
 //-----------------------------------------------------------------------------
 // CBliinkItemWeapon
@@ -138,5 +105,11 @@ public:
 	{
 	}
 };
+
+//-----------------------------------------------------------------------------
+// GetItemByName
+// Allows creation of items by their handle e.g. "material_gold"
+//-----------------------------------------------------------------------------
+IBliinkItem* CreateItemByHandle(BLIINK_ITEM_INFO_HANDLE hHandle);
 
 #endif // BLIINK_ITEM_BASE_H

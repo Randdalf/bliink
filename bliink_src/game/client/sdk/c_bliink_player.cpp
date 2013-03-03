@@ -120,6 +120,12 @@ BEGIN_RECV_TABLE_NOBASE( C_BliinkPlayer, DT_SDKNonLocalPlayerExclusive )
 	RecvPropFloat( RECVINFO( m_angEyeAngles[1] ) ),
 END_RECV_TABLE()
 
+// Inventory table
+BEGIN_NETWORK_TABLE_NOBASE( CBliinkItemInventory, DT_BliinkItemInventory )
+		RecvPropArray3( RECVINFO_ARRAY( m_iItemTypes ), RecvPropInt( RECVINFO( m_iItemTypes[0] ) ) ),
+		RecvPropArray3( RECVINFO_ARRAY( m_iStackCounts ), RecvPropInt( RECVINFO( m_iStackCounts[0] ) ) ),
+END_NETWORK_TABLE()
+
 // main table
 IMPLEMENT_CLIENTCLASS_DT( C_BliinkPlayer, DT_SDKPlayer, CBliinkPlayer )
 	RecvPropDataTable( RECVINFO_DT( m_Shared ), 0, &REFERENCE_RECV_TABLE( DT_SDKPlayerShared ) ),
@@ -132,6 +138,9 @@ IMPLEMENT_CLIENTCLASS_DT( C_BliinkPlayer, DT_SDKPlayer, CBliinkPlayer )
 	RecvPropInt( RECVINFO( m_iPlayerState ) ),
 
 	RecvPropBool( RECVINFO( m_bSpawnInterpCounter ) ),
+
+	// Inventory
+	RecvPropDataTable( RECVINFO_DT( m_Inventory), 0, &REFERENCE_RECV_TABLE( DT_BliinkItemInventory ) ),
 END_RECV_TABLE()
 
 // ------------------------------------------------------------------------------------------ //
@@ -154,6 +163,12 @@ END_PREDICTION_DATA()
 BEGIN_PREDICTION_DATA( C_BliinkPlayer )
 	DEFINE_PRED_FIELD( m_flCycle, FIELD_FLOAT, FTYPEDESC_OVERRIDE | FTYPEDESC_PRIVATE | FTYPEDESC_NOERRORCHECK ),
 	DEFINE_PRED_FIELD( m_iShotsFired, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),   
+END_PREDICTION_DATA()
+
+// Inventory prediction
+BEGIN_PREDICTION_DATA_NO_BASE( CBliinkItemInventory )
+	DEFINE_PRED_ARRAY( m_iItemTypes, FIELD_INTEGER, INVENTORY_MAX_SLOTS, FTYPEDESC_INSENDTABLE ),
+	DEFINE_PRED_ARRAY( m_iStackCounts, FIELD_INTEGER, INVENTORY_MAX_SLOTS, FTYPEDESC_INSENDTABLE ),
 END_PREDICTION_DATA()
 
 LINK_ENTITY_TO_CLASS( player, C_BliinkPlayer );
@@ -986,4 +1001,10 @@ void C_BliinkPlayer::UpdateSoundEvents()
 			m_SoundEvents.Remove( i );
 		}
 	}
+}
+
+// Gives access to the player's inventory.
+CBliinkItemInventory &C_BliinkPlayer::GetBliinkInventory( void )
+{
+	return m_Inventory;
 }

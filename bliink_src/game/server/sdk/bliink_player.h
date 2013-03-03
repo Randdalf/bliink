@@ -13,6 +13,7 @@
 #include "server_class.h"
 #include "sdk_playeranimstate.h"
 #include "bliink_player_shared.h"
+#include "bliink_item_inventory.h"
 
 // Function table for each player state.
 class CBliinkPlayerStateInfo
@@ -234,6 +235,11 @@ private:
 
 // Bliink stuff
 private:
+	// Inventory
+	CNetworkVarEmbedded( CBliinkItemInventory, m_Inventory );
+
+public:
+	CBliinkItemInventory &GetBliinkInventory( void );
 
 public:
 	// Pre-game

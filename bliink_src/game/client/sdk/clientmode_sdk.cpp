@@ -368,7 +368,7 @@ void ClientModeSDKNormal::DoPostScreenSpaceEffects( const CViewSetup *pSetup )
 	
 	// Render object glows and selectively-bloomed objects
 	//g_bRenderingGlows = true;
-	g_GlowObjectManager.RenderGlowEffects( pSetup, GetSplitScreenPlayerSlot() );
+	g_GlowObjectManager.RenderGlowEffects( pSetup, 0 /*GetSplitScreenPlayerSlot()*/ );
 	//g_bRenderingGlows = false;
 }
 
