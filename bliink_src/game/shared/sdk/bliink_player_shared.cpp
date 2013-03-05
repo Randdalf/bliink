@@ -156,8 +156,6 @@ void CBliinkPlayer::FireBullet(
                 CalculateBulletDamageForce( &info, iBulletType, vecDir, tr.endpos );
                 tr.m_pEnt->DispatchTraceAttack( info, vecDir, &tr );
 
-				Msg("Hi guys, it's me, the server!\n %d", info.GetDamage() );
-
                 TraceAttackToTriggers( info, tr.startpos, tr.endpos, vecDir );
 
                 ApplyMultiDamage();

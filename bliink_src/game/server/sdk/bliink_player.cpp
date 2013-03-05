@@ -470,6 +470,8 @@ int CBliinkPlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 
 	CBaseEntity *pInflictor = info.GetInflictor();
 
+	Msg("Wow, it's me, again, yes that's me, the server!\n");
+
 	if ( !pInflictor )
 		return 0;
 
