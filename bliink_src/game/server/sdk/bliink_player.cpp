@@ -470,8 +470,6 @@ int CBliinkPlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 
 	CBaseEntity *pInflictor = info.GetInflictor();
 
-	Msg("Wow, it's me, again, yes that's me, the server!\n");
-
 	if ( !pInflictor )
 		return 0;
 
@@ -479,6 +477,8 @@ int CBliinkPlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 		return 0;
 
 	float flDamage = info.GetDamage();
+
+	Msg("Taking damage %f!\n", flDamage);
 
 	if ( pInflictor == this ||	info.GetAttacker() == this )
 	{
@@ -510,7 +510,7 @@ int CBliinkPlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 	}
 	else
 	{
-		return 0;
+		return CBaseCombatCharacter::OnTakeDamage( info );
 	}
 }
 
@@ -525,6 +525,8 @@ int CBliinkPlayer::OnTakeDamage_Alive( const CTakeDamageInfo &info )
 	// fire global game event
 
 	IGameEvent * event = gameeventmanager->CreateEvent( "player_hurt" );
+
+	Msg("here yo %f\n", info.GetDamage() );
 
 	if ( event )
 	{
