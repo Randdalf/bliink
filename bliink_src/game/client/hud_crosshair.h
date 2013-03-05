@@ -1,4 +1,4 @@
-//========= Copyright 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright 1996-2005, Valve Corporation, All rights reservhttp://cdn.arstechnica.net/wp-content/uploads/2013/03/small-size.jpged. ============//
 //
 // Purpose: 
 //

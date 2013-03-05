@@ -76,6 +76,8 @@ CWeaponSDKBase::CWeaponSDKBase()
 	SetPredictionEligible( true );
  
 	AddSolidFlags( FSOLID_TRIGGER ); // Nothing collides with these but it gets touches.
+
+	m_iBliinkSlot = -1;
 }
  
 const CSDKWeaponInfo &CWeaponSDKBase::GetSDKWpnData() const
@@ -439,3 +441,13 @@ void CWeaponSDKBase::Die( void )
 	UTIL_Remove( this );
 }
 #endif
+
+int CWeaponSDKBase::GetSlot( void )
+{
+	return m_iBliinkSlot;
+}
+
+void CWeaponSDKBase::SetSlot( int slot )
+{
+	m_iBliinkSlot = slot;
+}

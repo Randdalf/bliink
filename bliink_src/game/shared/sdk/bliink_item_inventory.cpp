@@ -4,6 +4,8 @@
 #include "bliink_item_parse.h"
 #ifndef CLIENT_DLL
 #include "bliink_item_base.h"
+#include "bliink_player.h"
+#include "baseentity.h"
 #endif
 
 // memdbgon must be the last include file in a .cpp file!!!
@@ -34,6 +36,10 @@ CBliinkItemInventory::CBliinkItemInventory()
 		m_pInventory[i] = NULL;
 #endif
 	}
+
+#ifndef CLIENT_DLL
+	pOwner = NULL;
+#endif
 }
 
 // Attempts to move an item from one slot to another.
@@ -182,7 +188,7 @@ bool CBliinkItemInventory::AddItem( IBliinkItem* pNewItem )
 		iStartSearch = INVENTORY_WEAPON_SLOTS;
 	}
 
-	// If we can stack our item.
+	// If we can stack our item. Weapons don't stack so no need to worry about them here.
 	if( pNewItem->IsStackable() )
 	{
 		// Looking for an item to stack with.
@@ -211,15 +217,90 @@ bool CBliinkItemInventory::AddItem( IBliinkItem* pNewItem )
 	{
 		if( m_iItemTypes[i] == hItemEmpty )
 		{
-			m_pInventory[i] = pNewItem;
-			m_iStackCounts.GetForModify(i) = 1;
-			m_iItemTypes.GetForModify(i) = pNewItem->GetInfoHandle();
+			// We've found a free slot and we're a weapon, so have to insert
+			// into the player's weapon slots.
+			if( pNewItem->IsWeapon() && i<INVENTORY_WEAPON_SLOTS)
+			{
+				CBliinkItemWeapon* pItemWeapon = static_cast< CBliinkItemWeapon* >( pNewItem );
+
+				// Creating weapon for item if it doesn't have one.
+				if( !pItemWeapon->HasWeapon() )
+				{
+					CBaseEntity* pTemp = CreateEntityByName( pItemWeapon->GetItemData().szWeaponClassName );
+					
+
+					if( pTemp == NULL )
+					{
+						Warning("Couldn't create weapon entity\n");
+					}
+					else
+					{
+						pTemp->SetLocalOrigin( pOwner->GetLocalOrigin() );
+						pTemp->AddSpawnFlags( SF_NORESPAWN );
+
+						DispatchSpawn( pTemp );
+
+						CWeaponSDKBase* pNewWeapon = static_cast<CWeaponSDKBase*>( pTemp );
+
+						pItemWeapon->SetWeapon( pNewWeapon );
+					}
+				}
+
+				// Look for a free slot in the normal inventory if we already hold
+				// a weapon of the same type as ours.
+				if( pItemWeapon->HasWeapon() && pOwner->Weapon_BliinkHasWeapon( pItemWeapon->GetWeapon() ) )
+				{
+					i = INVENTORY_WEAPON_SLOTS - 1;
+					continue;
+				}
+				else
+				{
+					// Equipping weapon
+					pOwner->Weapon_BliinkReplace( i+1, pItemWeapon->GetWeapon() );
+					pOwner->SetActiveWeapon( pItemWeapon->GetWeapon() );
+
+					// Adding to inventory
+					m_pInventory[i] = pNewItem;
+					m_iStackCounts.GetForModify(i) = 1;
+					m_iItemTypes.GetForModify(i) = pNewItem->GetInfoHandle();
+
+					return true;
+				}
+			}
+			else
+			{
+				m_pInventory[i] = pNewItem;
+				m_iStackCounts.GetForModify(i) = 1;
+				m_iItemTypes.GetForModify(i) = pNewItem->GetInfoHandle();
+			}
 			return true;
 		}
 	}
 
 	// Couldn't find a slot :(
 	return false;
+
+	// DEALING WITH WEAPONS
+	// Insertion
+	// 1. Weapon slots are full -> add weapon + ammo to inventory
+	//    (if only 1 slot is available, insert only weapon)
+	// 2. Weapon slot is available
+	//    a) We don't have that weapon -> add to inventory/player weapons and switch to weapon
+	//    b) We do have that weapon -> don't add to weapon slots, we can't have
+	//		 more than one weapon of the same type in the slots.
+
+	// Moving
+	// 1. From inv -> empty
+	// 2. From slot -> slot
+	// 3. From slot-> empty
+
+	// override weapon get slot and add set slot
+	// keep track of owner
+
+	// Removal/Crafting/Meltdown
+	// 1. We are holding that weapon -> switch to hands + remove from player weapons
+	// 2. We aren't holding that weapon -> just act normally
+
 }
 
 // Print the contents of the inventory to console.

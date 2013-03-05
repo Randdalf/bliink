@@ -14,6 +14,7 @@
 #include "sdk_playeranimstate.h"
 #include "bliink_player_shared.h"
 #include "bliink_item_inventory.h"
+#include "weapon_sdkbase.h"
 
 // Function table for each player state.
 class CBliinkPlayerStateInfo
@@ -240,6 +241,12 @@ private:
 
 public:
 	CBliinkItemInventory &GetBliinkInventory( void );
+	
+	CWeaponSDKBase*		Weapon_BliinkGet(int slot); // Weapon_GetSlot
+	CWeaponSDKBase*		Weapon_BliinkReplace(int slot, CWeaponSDKBase* pReplacement);
+	CWeaponSDKBase*		Weapon_BliinkRemove(int slot); // Weapon_GetSlot, then Weapon_Detach
+	void				Weapon_BliinkSwitch(int slot1, int slot2);
+	bool				Weapon_BliinkHasWeapon( CWeaponSDKBase* pWeapon );
 
 public:
 	// Pre-game

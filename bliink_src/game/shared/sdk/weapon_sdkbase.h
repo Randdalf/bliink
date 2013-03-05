@@ -100,7 +100,21 @@ private:
 	CNetworkVar(float, m_flDecreaseShotsFired);
  
 	CWeaponSDKBase( const CWeaponSDKBase & );
+
+public:
+	virtual int GetSlot( void );
+	void SetSlot( int slot );
+
+private:
+	int m_iBliinkSlot;
 };
- 
+
+inline CWeaponSDKBase *ToWeaponSDKBase( CBaseEntity *pEntity )
+{
+	if ( !pEntity )
+		return NULL;
+
+	return static_cast< CWeaponSDKBase* >( pEntity );
+} 
  
 #endif // WEAPON_SDKBASE_H

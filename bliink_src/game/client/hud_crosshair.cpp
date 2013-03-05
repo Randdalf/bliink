@@ -214,10 +214,10 @@ void CHudCrosshair::Paint( void )
 		y + height / 2 );
 
 
-	//m_pCrosshair->DrawSelf( 
-	//		x - 0.5f * m_pCrosshair->Width(), 
-	//		y - 0.5f * m_pCrosshair->Height(),
-	//		m_clrCrosshair );
+	m_pCrosshair->DrawSelf( 
+			x - 0.5f * m_pCrosshair->Width(), 
+			y - 0.5f * m_pCrosshair->Height(),
+			m_clrCrosshair );
 }
 
 //-----------------------------------------------------------------------------

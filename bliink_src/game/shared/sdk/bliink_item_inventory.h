@@ -54,6 +54,14 @@ private:
 #ifndef CLIENT_DLL
 	// List of pointers to items
 	IBliinkItem* m_pInventory[INVENTORY_MAX_SLOTS];
+
+	// Player who owns this inventory, used when dealing with weapons.
+	CBliinkPlayer* pOwner;
+
+public:
+
+	// Sets the owner of this inventory.
+	void SetOwner( CBliinkPlayer* pPlayer ) { pOwner = pPlayer; }
 #endif
 };
 

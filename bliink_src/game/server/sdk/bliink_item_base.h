@@ -63,14 +63,19 @@ public:
 		m_hLinkedWeapon = NULL;
 	}
 
-	bool	IsWeapon() { return true; }
-	bool	IsStackable() { return false; }
+	bool				IsWeapon() { return true; }
+	bool				IsStackable() { return false; } 
 
-	CWeaponSDKBase*		CreateAndLinkWeapon( void );
+	// Item can't create weapon itself because it needs to know origin/angles.
+	bool				HasWeapon() { return !(m_hLinkedWeapon == NULL); }
+	CWeaponSDKBase*		GetWeapon() { return m_hLinkedWeapon; }
+	void				SetWeapon( CWeaponSDKBase* pWeapon)
+	{
+		m_hLinkedWeapon = pWeapon;
+	}
 
 private:
 	CWeaponSDKBase*		m_hLinkedWeapon;
-	//bool				m_b
 };
 
 //-----------------------------------------------------------------------------

@@ -44,7 +44,7 @@ BliinkItemList
 		"max_stack"		"4"
 
 		// weapon-specific
-		"weapon_name"	"weapon_mp5"
+		"weapon_name"	"weapon_pistol"
 
 		// ammo-specific
 		"ammo_name"		"none"

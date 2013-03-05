@@ -20,6 +20,8 @@
 #include "physics_prop_ragdoll.h"
 #include "particle_parse.h"
 #include "bliink_item_inventory.h"
+#include "basecombatweapon_shared.h"
+#include "weapon_sdkbase.h"
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
@@ -352,6 +354,9 @@ void CBliinkPlayer::Spawn()
 
 	SetContextThink( &CBliinkPlayer::SDKPushawayThink, gpGlobals->curtime + PUSHAWAY_THINK_INTERVAL, SDK_PUSHAWAY_THINK_CONTEXT );
 	pl.deadflag = false;
+
+	// Setting us as owner of Bliink inventory
+	m_Inventory.SetOwner( this );
 
 }
 bool CBliinkPlayer::SelectSpawnSpot( const char *pEntClassName, CBaseEntity* &pSpot )
@@ -1518,4 +1523,72 @@ bool CBliinkPlayer::HandleCommand_JoinTeam( int team )
 CBliinkItemInventory &CBliinkPlayer::GetBliinkInventory( void )
 {
 	return m_Inventory.GetForModify();
+}
+
+// API for adapting current weapon system into system suited for the weapon
+// inventory slots.
+
+// Returns the weapon at the specified slot;
+CWeaponSDKBase* CBliinkPlayer::Weapon_BliinkGet(int slot)
+{
+	CBaseCombatWeapon* pWeapon = Weapon_GetSlot( slot );
+
+	return pWeapon ? ToWeaponSDKBase( pWeapon ) : NULL;
+}
+
+// Replaces and returns the weapon at the specified slot.
+CWeaponSDKBase* CBliinkPlayer::Weapon_BliinkReplace(int slot, CWeaponSDKBase* pReplacement)
+{
+	pReplacement->SetSlot( slot );
+
+	CBaseCombatWeapon* pWeapon = Weapon_BliinkRemove( slot );
+
+	Weapon_Equip( pReplacement );
+
+	return pWeapon ? ToWeaponSDKBase( pWeapon ) : NULL;
+}
+
+// Removes and returns the weapon at the specified slot.
+CWeaponSDKBase* CBliinkPlayer::Weapon_BliinkRemove(int slot)
+{
+	CBaseCombatWeapon* pWeapon = Weapon_GetSlot(slot);
+
+	if( pWeapon )
+		Weapon_Detach( pWeapon );
+
+	return pWeapon ? ToWeaponSDKBase( pWeapon ) : NULL;
+}
+
+// Swaps the two weapons in the specified slots.
+void CBliinkPlayer::Weapon_BliinkSwitch(int slot1, int slot2)
+{
+	CWeaponSDKBase* pWeapon1 = Weapon_BliinkRemove( slot1 );
+	CWeaponSDKBase* pWeapon2 = Weapon_BliinkRemove( slot2 );
+
+	if( pWeapon1 )
+
+		pWeapon1->SetSlot( slot2 );
+
+	if( pWeapon2 )
+		pWeapon2->SetSlot( slot1 );
+
+	Weapon_Equip( pWeapon1 );
+	Weapon_Equip( pWeapon2 );
+}
+
+// Checks if the player has the specified weapon.
+bool CBliinkPlayer::Weapon_BliinkHasWeapon( CWeaponSDKBase* pWeapon )
+{
+	if( !pWeapon )
+		return false;
+
+	for (int i=0; i < MAX_WEAPONS; i++)
+	{
+		if ( m_hMyWeapons[i] && m_hMyWeapons[i]->GetWeaponID() == pWeapon->GetWeaponID() )
+		{
+			return true;
+		}
+	}
+
+	return false;
 }

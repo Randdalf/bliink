@@ -52,7 +52,6 @@ CBliinkItemSpawner::CBliinkItemSpawner( void )
 // Attempts to perform a spawning.
 void CBliinkItemSpawner::Think( void )
 {
-	RandomSeed( gpGlobals->curtime );
 	float fNextSpawnInterval = RandomFloat(m_fSpawnMinInterval, m_fSpawnMaxInterval);
 
 	if( CanSpawnItem() )
