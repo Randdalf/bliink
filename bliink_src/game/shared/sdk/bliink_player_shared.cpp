@@ -141,16 +141,8 @@ void CBliinkPlayer::FireBullet(
 				if ( !( tr.surface.flags & (SURF_SKY|SURF_NODRAW|SURF_HINT|SURF_SKIP) ) )
 				{
 					CBaseEntity *pEntity = tr.m_pEnt;
-					//Tony; only while using teams do we check for friendly fire.
-					if ( pEntity && pEntity->IsPlayer() && (pEntity->GetBaseAnimating() && !pEntity->GetBaseAnimating()->IsRagdoll()) )
-					{
-						UTIL_ImpactTrace( &tr, iDamageType );
-					}
-					//Tony; non player, just go nuts,
-					else
-					{
-						UTIL_ImpactTrace( &tr, iDamageType );
-					}
+
+					UTIL_ImpactTrace( &tr, iDamageType );
 				}
 			}
 		} // bDoEffects

@@ -20,7 +20,7 @@ CBliinkItemInventory::CBliinkItemInventory()
 	for(int i=0; i<INVENTORY_MAX_SLOTS; i++ )
 	{
 		// Setting up networked slots
-		if( i>0 && i<INVENTORY_WEAPON_SLOTS )
+		if( i>1 && i<INVENTORY_WEAPON_SLOTS )
 		{
 			m_iItemTypes.GetForModify(i) = hItemLocked;
 		}
