@@ -117,6 +117,8 @@ public:
 	bool IsSpawnPointValid( CBaseEntity *pSpot, CBasePlayer *pPlayer );
 	virtual void PlayerSpawn( CBasePlayer *pPlayer );
 
+	void InitDefaultAIRelationships( void );
+
 	bool TeamFull( int team_id );
 	bool TeamStacked( int iNewTeam, int iCurTeam );
 	int SelectDefaultTeam( void );

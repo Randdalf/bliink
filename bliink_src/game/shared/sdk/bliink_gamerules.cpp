@@ -146,6 +146,64 @@ ConVar mp_limitteams(
 	true, 30	// MAX value
 );
 
+//AI RELATIONSHIPS YEA BOY THIS WILL TOTALLY WORK XD
+#ifndef CLIENT_DLL
+void CBliinkGameRules::InitDefaultAIRelationships( void )
+	{
+		int i, j;
+
+		//  Allocate memory for default relationships
+		CBaseCombatCharacter::AllocateDefaultRelationships();
+
+		// --------------------------------------------------------------
+		// First initialize table so we can report missing relationships
+		// --------------------------------------------------------------
+		/*for (i=0;i<NUM_AI_CLASSES;i++)
+		{
+			for (j=0;j<NUM_AI_CLASSES;j++)
+			{
+				// By default all relationships are neutral of priority zero
+				CBaseCombatCharacter::SetDefaultRelationship( (Class_T)i, (Class_T)j, D_NU, 0 );
+			}
+		}*/
+
+		// ------------------------------------------------------------
+		//	> CLASS_NONE
+		// ------------------------------------------------------------
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_NONE,				CLASS_NONE,				D_NU, 0);			
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_NONE,				CLASS_PLAYER,			D_HT, 0);			
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_NONE,				CLASS_PROTOSNIPER,		D_NU, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_NONE,				CLASS_EARTH_FAUNA,		D_NU, 0);
+
+		// ------------------------------------------------------------
+		//	> CLASS_PLAYER
+		// ------------------------------------------------------------
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_PLAYER,			CLASS_NONE,				D_HT, 0);			
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_PLAYER,			CLASS_PLAYER,			D_NU, 0);			
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_PLAYER,			CLASS_PROTOSNIPER,		D_HT, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_PLAYER,			CLASS_EARTH_FAUNA,		D_NU, 0);
+		
+		// ------------------------------------------------------------
+		//	> CLASS_PROTOSNIPER
+		// ------------------------------------------------------------	
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_PROTOSNIPER,			CLASS_NONE,				D_NU, 0);			
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_PROTOSNIPER,			CLASS_PLAYER,			D_HT, 0);			
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_PROTOSNIPER,			CLASS_PROTOSNIPER,		D_NU, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_PROTOSNIPER,			CLASS_EARTH_FAUNA,		D_NU, 0);
+
+		// ------------------------------------------------------------
+		//	> CLASS_EARTH_FAUNA
+		//
+		// Hates pretty much everything equally except other earth fauna.
+		// This will make the critter choose the nearest thing as its enemy.
+		// ------------------------------------------------------------	
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_EARTH_FAUNA,			CLASS_NONE,				D_HT, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_EARTH_FAUNA,			CLASS_PLAYER,			D_HT, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_EARTH_FAUNA,			CLASS_PROTOSNIPER,		D_HT, 0);
+		CBaseCombatCharacter::SetDefaultRelationship(CLASS_EARTH_FAUNA,			CLASS_EARTH_FAUNA,		D_NU, 0);
+	}
+#endif
+
 static CSDKViewVectors g_SDKViewVectors(
 
 	Vector( 0, 0, 58 ),			//VEC_VIEW

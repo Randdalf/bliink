@@ -2183,6 +2183,9 @@ AI_DEFINE_SCHEDULE
 	"		TASK_WAIT_FOR_MOVEMENT			0"
 	""
 	"	Interrupts"
+	"		COND_HEAR_DANGER"
+	"		COND_NEW_ENEMY"
+	"		COND_SEE_ENEMY"
 );
 
 //=========================================================

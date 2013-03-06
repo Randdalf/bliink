@@ -79,6 +79,7 @@ public:
 	void	Precache( void );
 	void	Spawn( void );
 	Class_T Classify( void );
+	int		SelectSchedule( void );
 
 	Activity	NPC_TranslateActivity( Activity eNewActivity );
 
@@ -137,6 +138,21 @@ void CBliinkSimpleNPC::Precache( void )
 	BaseClass::Precache();
 }
 
+//-----------------------------------------------------------------------------
+// Purpose: 
+//
+//
+//-----------------------------------------------------------------------------
+int CBliinkSimpleNPC::SelectSchedule( void )
+{
+	if (HasCondition(COND_SEE_ENEMY)) {
+		/*Msg("I SEE YOUUUUU");*/
+		return SCHED_CHASE_ENEMY;
+	}
+
+	return SCHED_RUN_RANDOM;
+}
+
 
 //-----------------------------------------------------------------------------
 // Purpose: 
@@ -170,11 +186,9 @@ Activity	CBliinkSimpleNPC::NPC_TranslateActivity( Activity eNewActivity )
 {
 	eNewActivity = BaseClass::NPC_TranslateActivity( eNewActivity );
 
-	Msg("speed_now = %f\n", m_flGroundSpeed);
-
 	if ( eNewActivity == ACT_IDLE )
 		return ACT_DOD_STAND_IDLE_PISTOL;
-	else if ( eNewActivity == ACT_RUN )
+	else if ( eNewActivity == ACT_RUN || eNewActivity == ACT_WALK )
 		return ACT_DOD_PRONEWALK_IDLE_RIFLE;
 
 	return eNewActivity;
