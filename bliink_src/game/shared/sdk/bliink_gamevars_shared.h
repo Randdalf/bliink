@@ -8,6 +8,7 @@
 
 extern ConVar Bliink_CountdownToLive;
 extern ConVar Bliink_MinPlayers;
+extern ConVar Bliink_MinSurvivors;
 extern ConVar Bliink_ResultsTime;
 
 #ifdef CLIENT_DLL

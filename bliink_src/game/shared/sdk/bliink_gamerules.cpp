@@ -579,7 +579,7 @@ void CBliinkGameRules::Think()
 				survivors++;
 		}
 
-		if( survivors <= 0 ) // 0 for single player testing
+		if( survivors <= Bliink_MinSurvivors.GetInt() )
 			EndGame();
 	}
 	
