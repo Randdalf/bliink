@@ -20,6 +20,7 @@
 #include "physics_prop_ragdoll.h"
 #include "particle_parse.h"
 #include "bliink_item_inventory.h"
+#include "bliink_player_stats.h"
 #include "basecombatweapon_shared.h"
 #include "weapon_sdkbase.h"
 // memdbgon must be the last include file in a .cpp file!!!
@@ -89,10 +90,6 @@ BEGIN_SEND_TABLE_NOBASE( CBliinkPlayerShared, DT_SDKSharedLocalPlayerExclusive )
 END_SEND_TABLE()
 
 BEGIN_SEND_TABLE_NOBASE( CBliinkPlayerShared, DT_SDKPlayerShared )
-#if defined ( SDK_USE_STAMINA ) || defined ( SDK_USE_SPRINTING )
-	SendPropFloat( SENDINFO( m_flStamina ), 0, SPROP_NOSCALE | SPROP_CHANGES_OFTEN ),
-#endif
-
 #if defined ( SDK_USE_SPRINTING )
 	SendPropBool( SENDINFO( m_bIsSprinting ) ),
 #endif
@@ -123,6 +120,20 @@ END_SEND_TABLE()
 BEGIN_NETWORK_TABLE_NOBASE( CBliinkItemInventory, DT_BliinkItemInventory )
 		SendPropArray3( SENDINFO_ARRAY3(m_iItemTypes), SendPropInt( SENDINFO_ARRAY(m_iItemTypes), INVENTORY_MAX_SLOTS, SPROP_UNSIGNED ) ),
 		SendPropArray3( SENDINFO_ARRAY3(m_iStackCounts), SendPropInt( SENDINFO_ARRAY(m_iStackCounts), INVENTORY_MAX_SLOTS, SPROP_UNSIGNED ) ),
+END_NETWORK_TABLE()
+
+// Stats table
+BEGIN_NETWORK_TABLE_NOBASE( CBliinkPlayerStats, DT_BliinkPlayerStats )
+	SendPropFloat( SENDINFO(m_fHealth), -1, SPROP_NOSCALE | SPROP_CHANGES_OFTEN),
+	SendPropFloat( SENDINFO(m_fFatigue), -1, SPROP_NOSCALE | SPROP_CHANGES_OFTEN),
+	SendPropFloat( SENDINFO(m_fHunger), -1, SPROP_NOSCALE | SPROP_CHANGES_OFTEN),
+	SendPropFloat( SENDINFO(m_fMaxHealth), -1, SPROP_NOSCALE),
+	SendPropFloat( SENDINFO(m_fMaxFatigue), -1, SPROP_NOSCALE),
+	SendPropFloat( SENDINFO(m_fFatigueRegenRate), -1, SPROP_NOSCALE),
+	SendPropInt( SENDINFO(m_iExperience), -1, SPROP_UNSIGNED),
+	SendPropInt( SENDINFO(m_iLevel), -1, SPROP_UNSIGNED),
+	SendPropInt( SENDINFO(m_iUpgradePoints), -1, SPROP_UNSIGNED),
+	SendPropInt( SENDINFO(m_iMaxExperience), -1, SPROP_UNSIGNED),
 END_NETWORK_TABLE()
 
 // main table
@@ -156,6 +167,9 @@ IMPLEMENT_SERVERCLASS_ST( CBliinkPlayer, DT_SDKPlayer )
 
 	// Send table for inventory
 	SendPropDataTable( SENDINFO_DT(m_Inventory), &REFERENCE_SEND_TABLE( DT_BliinkItemInventory ) ),
+
+	// Send table for Bliink stats
+	SendPropDataTable( SENDINFO_DT(m_BliinkStats), &REFERENCE_SEND_TABLE( DT_BliinkPlayerStats ) ),
 
 END_SEND_TABLE()
 
@@ -339,9 +353,6 @@ void CBliinkPlayer::Spawn()
 	m_hRagdoll = NULL;
 	
 	BaseClass::Spawn();
-#if defined ( SDK_USE_STAMINA ) || defined ( SDK_USE_SPRINTING )
-	m_Shared.SetStamina( 100 );
-#endif
 
 #if defined ( SDK_USE_SPRINTING )
 	InitSprinting();
@@ -358,7 +369,15 @@ void CBliinkPlayer::Spawn()
 	// Setting us as owner of Bliink inventory
 	m_Inventory.SetOwner( this );
 
+	// Initialising the player stats and setting us as owner.
+	m_BliinkStats.SetOwner( this );
+	m_BliinkStats.Reset();
+
+	// Thinking
+	SetThink(&CBliinkPlayer::Think);
+	SetNextThink(gpGlobals->curtime);
 }
+
 bool CBliinkPlayer::SelectSpawnSpot( const char *pEntClassName, CBaseEntity* &pSpot )
 {
 	// Find the next spawn spot.
@@ -480,7 +499,7 @@ int CBliinkPlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 
 	Msg("Taking damage %f!\n", flDamage);
 
-	if ( pInflictor == this ||	info.GetAttacker() == this )
+	if ( 0 /*pInflictor == this ||	info.GetAttacker() == this*/ )
 	{
 		// keep track of amount of damage last sustained
 		m_lastDamageAmount = flDamage;
@@ -518,6 +537,12 @@ int CBliinkPlayer::OnTakeDamage_Alive( const CTakeDamageInfo &info )
 {
 	// set damage type sustained
 	m_bitsDamageType |= info.GetDamageType();
+	
+	// Updating health.
+	if( !(info.GetDamageType() & DMG_BLIINKSELF) )
+	{
+		m_BliinkStats.TakeDamage(info.GetDamage());
+	}
 
 	if ( !CBaseCombatCharacter::OnTakeDamage_Alive( info ) )
 		return 0;
@@ -882,6 +907,7 @@ bool CBliinkPlayer::ClientCommand( const CCommand &args )
 		ThrowActiveWeapon();
 		return true;
 	}
+	// State transitions
 	else if( FStrEq( pcmd, "bliink_welcome_spectate" ) )
 	{
 		// If we are at the welcome menu
@@ -909,6 +935,39 @@ bool CBliinkPlayer::ClientCommand( const CCommand &args )
 		if( m_iPlayerState == STATE_BLIINK_WAITING_FOR_PLAYERS )
 		{
 			State_Transition( STATE_BLIINK_WELCOME );
+		}
+	}
+	// Inventory
+
+	// Upgrades
+	else if( FStrEq( pcmd, "bliink_upgrade_slots" ) )
+	{
+		if( m_iPlayerState == STATE_BLIINK_SURVIVOR )
+		{
+			m_BliinkStats.UseUpgrade( BLIINK_UPGRADE_WEAPON_SLOTS );
+		}
+	}
+	else if( FStrEq( pcmd, "bliink_upgrade_health" ) )
+	{
+		if( m_iPlayerState == STATE_BLIINK_SURVIVOR )
+		{
+			m_BliinkStats.UseUpgrade( BLIINK_UPGRADE_HEALTH );
+		}
+	}
+	else if( FStrEq( pcmd, "bliink_upgrade_fatigue" ) )
+	{
+		if( m_iPlayerState == STATE_BLIINK_SURVIVOR )
+		{
+			m_BliinkStats.UseUpgrade( BLIINK_UPGRADE_STAMINA );
+		}
+	}
+
+	// Cheats
+	else if( FStrEq( pcmd, "bliink_debug_exp" ) )
+	{
+		if( m_iPlayerState == STATE_BLIINK_SURVIVOR )
+		{
+			m_BliinkStats.GainExperience( 17 );
 		}
 	}
 
@@ -1529,6 +1588,12 @@ CBliinkItemInventory &CBliinkPlayer::GetBliinkInventory( void )
 	return m_Inventory.GetForModify();
 }
 
+// Gives access to the player's stats.
+CBliinkPlayerStats &CBliinkPlayer::GetBliinkPlayerStats( void )
+{
+	return m_BliinkStats;
+}
+
 // API for adapting current weapon system into system suited for the weapon
 // inventory slots.
 
@@ -1595,4 +1660,17 @@ bool CBliinkPlayer::Weapon_BliinkHasWeapon( CWeaponSDKBase* pWeapon )
 	}
 
 	return false;
+}
+
+// Thinking
+void CBliinkPlayer::Think()
+{
+	// If we're a survivor than do our stats thinking
+	if( State_Get() == STATE_BLIINK_SURVIVOR )
+	{
+		m_BliinkStats.Think();
+		m_BliinkStats.UpdateHealth();
+	}
+
+	SetNextThink(gpGlobals->frametime);
 }

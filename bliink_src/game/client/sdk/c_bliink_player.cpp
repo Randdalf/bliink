@@ -21,6 +21,8 @@
 #include "obstacle_pushaway.h"
 #include "bone_setup.h"
 #include "cl_animevent.h"
+#include "bliink_player_stats.h"
+#include "bliink_item_inventory.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 ConVar cl_ragdoll_physics_enable( "cl_ragdoll_physics_enable", "1", 0, "Enable/disable ragdoll physics." );
@@ -89,9 +91,6 @@ BEGIN_RECV_TABLE_NOBASE( CBliinkPlayerShared, DT_SDKSharedLocalPlayerExclusive )
 END_RECV_TABLE()
 
 BEGIN_RECV_TABLE_NOBASE( CBliinkPlayerShared, DT_SDKPlayerShared )
-#if defined ( SDK_USE_STAMINA ) || defined ( SDK_USE_SPRINTING )
-	RecvPropFloat( RECVINFO( m_flStamina ) ),
-#endif
 
 #if defined ( SDK_USE_PRONE )
 	RecvPropBool( RECVINFO( m_bProne ) ),
@@ -126,6 +125,20 @@ BEGIN_NETWORK_TABLE_NOBASE( CBliinkItemInventory, DT_BliinkItemInventory )
 		RecvPropArray3( RECVINFO_ARRAY( m_iStackCounts ), RecvPropInt( RECVINFO( m_iStackCounts[0] ) ) ),
 END_NETWORK_TABLE()
 
+// Stats table
+BEGIN_NETWORK_TABLE_NOBASE( CBliinkPlayerStats, DT_BliinkPlayerStats )		
+	RecvPropFloat( RECVINFO(m_fHealth) ),
+	RecvPropFloat( RECVINFO(m_fFatigue) ),
+	RecvPropFloat( RECVINFO(m_fHunger) ),
+	RecvPropFloat( RECVINFO(m_fMaxHealth) ),
+	RecvPropFloat( RECVINFO(m_fMaxFatigue) ),
+	RecvPropFloat( RECVINFO(m_fFatigueRegenRate) ),
+	RecvPropInt( RECVINFO(m_iExperience) ),
+	RecvPropInt( RECVINFO(m_iLevel) ),
+	RecvPropInt( RECVINFO(m_iUpgradePoints) ),
+	RecvPropInt( RECVINFO(m_iMaxExperience) ),
+END_NETWORK_TABLE()
+
 // main table
 IMPLEMENT_CLIENTCLASS_DT( C_BliinkPlayer, DT_SDKPlayer, CBliinkPlayer )
 	RecvPropDataTable( RECVINFO_DT( m_Shared ), 0, &REFERENCE_RECV_TABLE( DT_SDKPlayerShared ) ),
@@ -141,15 +154,15 @@ IMPLEMENT_CLIENTCLASS_DT( C_BliinkPlayer, DT_SDKPlayer, CBliinkPlayer )
 
 	// Inventory
 	RecvPropDataTable( RECVINFO_DT( m_Inventory), 0, &REFERENCE_RECV_TABLE( DT_BliinkItemInventory ) ),
+
+	// Bliink stats
+	RecvPropDataTable( RECVINFO_DT( m_BliinkStats), 0, &REFERENCE_RECV_TABLE( DT_BliinkPlayerStats ) ),
 END_RECV_TABLE()
 
 // ------------------------------------------------------------------------------------------ //
 // Prediction tables.
 // ------------------------------------------------------------------------------------------ //
 BEGIN_PREDICTION_DATA_NO_BASE( CBliinkPlayerShared )
-#if defined ( SDK_USE_STAMINA ) || defined ( SDK_USE_SPRINTING )
-	DEFINE_PRED_FIELD( m_flStamina, FIELD_FLOAT, FTYPEDESC_INSENDTABLE ),
-#endif
 #if defined( SDK_USE_PRONE )
 	DEFINE_PRED_FIELD( m_bProne, FIELD_BOOLEAN, FTYPEDESC_INSENDTABLE ),
 	DEFINE_PRED_FIELD( m_flGoProneTime, FIELD_FLOAT, FTYPEDESC_INSENDTABLE ),
@@ -169,6 +182,13 @@ END_PREDICTION_DATA()
 BEGIN_PREDICTION_DATA_NO_BASE( CBliinkItemInventory )
 	DEFINE_PRED_ARRAY( m_iItemTypes, FIELD_INTEGER, INVENTORY_MAX_SLOTS, FTYPEDESC_INSENDTABLE ),
 	DEFINE_PRED_ARRAY( m_iStackCounts, FIELD_INTEGER, INVENTORY_MAX_SLOTS, FTYPEDESC_INSENDTABLE ),
+END_PREDICTION_DATA()
+
+// Stats prediction
+BEGIN_PREDICTION_DATA_NO_BASE( CBliinkPlayerStats )
+	DEFINE_PRED_FIELD( m_fFatigue, FIELD_FLOAT, FTYPEDESC_INSENDTABLE ),
+	DEFINE_PRED_FIELD( m_fMaxFatigue, FIELD_FLOAT, FTYPEDESC_INSENDTABLE ),
+	DEFINE_PRED_FIELD( m_fFatigueRegenRate, FIELD_FLOAT, FTYPEDESC_INSENDTABLE ),
 END_PREDICTION_DATA()
 
 LINK_ENTITY_TO_CLASS( player, C_BliinkPlayer );
@@ -1007,4 +1027,10 @@ void C_BliinkPlayer::UpdateSoundEvents()
 CBliinkItemInventory &C_BliinkPlayer::GetBliinkInventory( void )
 {
 	return m_Inventory;
+}
+
+// Gives access to the player's stats.
+CBliinkPlayerStats &C_BliinkPlayer::GetBliinkPlayerStats( void )
+{
+	return m_BliinkStats;
 }

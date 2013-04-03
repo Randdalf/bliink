@@ -22,8 +22,24 @@ void send_f ( const CCommand & args )
 	engine->ServerCmd( args[ 0 ] );
 }
 
+void send_upgrade_f ( const CCommand & args )
+{
+	C_BliinkPlayer* pPlayer = ToBliinkPlayer( CBasePlayer::GetLocalPlayer() );
+
+	if( !pPlayer || pPlayer->GetBliinkPlayerStats().GetUpgradePoints() <= 0 )
+		return;
+
+	engine->ServerCmd( args[ 0 ] );
+}
+
 ConCommand Bliink_WelcomePlay( "bliink_welcome_play", send_f, "Play the game, if you're at the welcome screen.", FCVAR_CLIENTCMD_CAN_EXECUTE); 
 ConCommand Bliink_WelcomeSpectate( "bliink_welcome_spectate", send_f, "Spectate the game, if you're at the welcome screen.", FCVAR_CLIENTCMD_CAN_EXECUTE); 
 ConCommand Bliink_SpectatePregameWelcome( "bliink_spectate_pregame_welcome", send_f, "Return to the welcome menu, if you're spectating pre-game.", FCVAR_CLIENTCMD_CAN_EXECUTE); 
 ConCommand Bliink_CancelReady( "bliink_cancel_ready", send_f, "Return to the welcome screen, if you're waiting for players.", FCVAR_CLIENTCMD_CAN_EXECUTE);
+
+ConCommand Bliink_UpgradeWeaponSlots( "bliink_upgrade_slots", send_upgrade_f, "Spend an upgrade point to unlock a weapon slot in your inventory.", FCVAR_CLIENTCMD_CAN_EXECUTE);
+ConCommand Bliink_UpgradeHealth( "bliink_upgrade_health", send_upgrade_f, "Spend an upgrade point to increase your maximum health.", FCVAR_CLIENTCMD_CAN_EXECUTE);
+ConCommand Bliink_UpgradeFatigue( "bliink_upgrade_fatigue", send_upgrade_f, "Spend an upgrade point to increase your maximum fatigue and fatigue regeneration.", FCVAR_CLIENTCMD_CAN_EXECUTE);
+
+ConCommand Bliink_DevAddExp( "bliink_debug_exp", send_f, "", FCVAR_CLIENTCMD_CAN_EXECUTE | FCVAR_CHEAT );
 #endif

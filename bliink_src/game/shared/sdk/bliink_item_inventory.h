@@ -1,5 +1,5 @@
-#ifndef BLIINK_ITEM_SPAWNER_H
-#define BLIINK_ITEM_SPAWNER_H
+#ifndef BLIINK_ITEM_INVENTORY_H
+#define BLIINK_ITEM_INVENTORY_H
 
 #include "bliink_item_parse.h"
 #ifndef CLIENT_DLL
@@ -59,10 +59,9 @@ private:
 	CBliinkPlayer* pOwner;
 
 public:
-
 	// Sets the owner of this inventory.
 	void SetOwner( CBliinkPlayer* pPlayer ) { pOwner = pPlayer; }
 #endif
 };
 
-#endif // BLIINK_ITEM_SPAWNER_H
+#endif // BLIINK_ITEM_INVENTORY_H

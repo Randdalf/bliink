@@ -303,13 +303,6 @@ void CBliinkPlayerShared::SetSprinting( bool bSprinting )
 	if ( bSprinting && !m_bIsSprinting )
 	{
 		StartSprinting();
-
-		// only one penalty per key press
-		if ( m_bGaveSprintPenalty == false )
-		{
-			m_flStamina -= INITIAL_SPRINT_STAMINA_PENALTY;
-			m_bGaveSprintPenalty = true;
-		}
 	}
 	else if ( !bSprinting && m_bIsSprinting )
 	{
@@ -318,9 +311,9 @@ void CBliinkPlayerShared::SetSprinting( bool bSprinting )
 }
 
 // this is reset when we let go of the sprint key
-void CBliinkPlayerShared::ResetSprintPenalty( void )
+void CBliinkPlayerShared::SetSprintPenalty( bool bPenalty )
 {
-	m_bGaveSprintPenalty = false;
+	m_bGaveSprintPenalty = bPenalty;
 }
 
 void CBliinkPlayerShared::StartSprinting( void )

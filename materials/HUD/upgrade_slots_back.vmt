@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+      "$basetexture" "HUD/upgrade_slots_back"
+      "$translucent"   "1"
+      "$translucency" "1"
+      "$ignorez" "1"
+}

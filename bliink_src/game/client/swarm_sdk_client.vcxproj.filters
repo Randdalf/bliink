@@ -1769,22 +1769,13 @@
     <ClCompile Include="sdk\sdk_hud_ammo.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
-    <ClCompile Include="sdk\sdk_hud_armor.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
     <ClCompile Include="sdk\sdk_hud_chat.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
     <ClCompile Include="sdk\sdk_hud_damage.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
-    <ClCompile Include="sdk\sdk_hud_health.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
     <ClCompile Include="sdk\sdk_hud_message.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
-    <ClCompile Include="sdk\sdk_hud_stamina.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
     <ClCompile Include="sdk\sdk_hud_targetid.cpp">
@@ -1945,6 +1936,21 @@
     </ClCompile>
     <ClCompile Include="..\shared\sdk\bliink_item_inventory.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\shared\sdk\bliink_player_stats.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\bliink_hud_meters.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\sdk_hud_health.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="bliink_hud_level.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="bliink_hud_upgrade_notice.cpp">
+      <Filter>Source Files\SDK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4060,9 +4066,6 @@
     <ClInclude Include="sdk\sdk_hud_chat.h">
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
-    <ClInclude Include="sdk\sdk_hud_stamina.h">
-      <Filter>Source Files\SDK</Filter>
-    </ClInclude>
     <ClInclude Include="sdk\sdk_scoreboard.h">
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
@@ -4172,6 +4175,9 @@
       <Filter>Source Files\SDK\Shared</Filter>
     </ClInclude>
     <ClInclude Include="..\shared\sdk\bliink_item_inventory.h">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shared\sdk\bliink_player_stats.h">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClInclude>
   </ItemGroup>

@@ -254,6 +254,7 @@ exit 1
     <ClCompile Include="..\shared\sdk\bliink_gamevars_shared.cpp" />
     <ClCompile Include="..\shared\sdk\bliink_item_inventory.cpp" />
     <ClCompile Include="..\shared\sdk\bliink_item_parse.cpp" />
+    <ClCompile Include="..\shared\sdk\bliink_player_stats.cpp" />
     <ClCompile Include="..\shared\sdk\sdk_basegrenade_projectile.cpp" />
     <ClCompile Include="..\shared\sdk\sdk_fx_shared.cpp" />
     <ClCompile Include="..\shared\sdk\sdk_gamemovement.cpp" />
@@ -918,6 +919,7 @@ exit 1
     <ClInclude Include="..\shared\sdk\bliink_gamevars_shared.h" />
     <ClInclude Include="..\shared\sdk\bliink_item_inventory.h" />
     <ClInclude Include="..\shared\sdk\bliink_item_parse.h" />
+    <ClInclude Include="..\shared\sdk\bliink_player_stats.h" />
     <ClInclude Include="..\shared\sdk\sdk_basegrenade_projectile.h" />
     <ClInclude Include="..\shared\sdk\sdk_fx_shared.h" />
     <ClInclude Include="..\shared\sdk\bliink_gamerules.h" />

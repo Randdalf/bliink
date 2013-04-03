@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+      "$basetexture" "HUD/meters_icon_health"
+      "$translucent"   "1"
+      "$translucency" "1"
+      "$ignorez" "1"
+}

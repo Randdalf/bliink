@@ -14,7 +14,7 @@ extern ConVar in_joystick;
 
 CBindPanel::CBindPanel(Panel *parent, const char *panelName) : BaseClass( parent, panelName )
 {
-	SetScheme( vgui::scheme()->LoadSchemeFromFile( "resource/ClientScheme.res", "ClientScheme" ) );
+	SetScheme( vgui::scheme()->LoadSchemeFromFile( "resource/SourceScheme.res", "SourceScheme" ) );
 	m_fWidthScale = 1.0f;
 	m_szBind[0] = '\0';
 	m_szKey[0] = '\0';

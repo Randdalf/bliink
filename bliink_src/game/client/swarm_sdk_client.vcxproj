@@ -256,6 +256,7 @@ exit 1
     <ClCompile Include="..\shared\sdk\bliink_item_inventory.cpp" />
     <ClCompile Include="..\shared\sdk\bliink_item_parse.cpp" />
     <ClCompile Include="..\shared\sdk\bliink_player_shared.cpp" />
+    <ClCompile Include="..\shared\sdk\bliink_player_stats.cpp" />
     <ClCompile Include="..\shared\sdk\sdk_basegrenade_projectile.cpp" />
     <ClCompile Include="..\shared\sdk\sdk_fx_shared.cpp" />
     <ClCompile Include="..\shared\sdk\sdk_gamemovement.cpp" />
@@ -300,6 +301,8 @@ exit 1
     <ClCompile Include="beamdraw.cpp" />
     <ClCompile Include="..\..\common\blackbox_helper.cpp" />
     <ClCompile Include="..\..\public\bone_accessor.cpp" />
+    <ClCompile Include="bliink_hud_level.cpp" />
+    <ClCompile Include="bliink_hud_upgrade_notice.cpp" />
     <ClCompile Include="bone_merge_cache.cpp" />
     <ClCompile Include="c_ai_basehumanoid.cpp" />
     <ClCompile Include="c_ai_basenpc.cpp" />
@@ -696,6 +699,7 @@ exit 1
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="sdk\bliink_hud_meters.cpp" />
     <ClCompile Include="sdk\clientmode_sdk.cpp" />
     <ClCompile Include="sdk\c_bliink_item_pickup.cpp" />
     <ClCompile Include="sdk\c_sdk_env_sparkler.cpp" />
@@ -709,12 +713,10 @@ exit 1
     <ClCompile Include="sdk\sdk_fx_tracers.cpp" />
     <ClCompile Include="sdk\sdk_fx_weaponfx.cpp" />
     <ClCompile Include="sdk\sdk_hud_ammo.cpp" />
-    <ClCompile Include="sdk\sdk_hud_armor.cpp" />
     <ClCompile Include="sdk\sdk_hud_chat.cpp" />
     <ClCompile Include="sdk\sdk_hud_damage.cpp" />
     <ClCompile Include="sdk\sdk_hud_health.cpp" />
     <ClCompile Include="sdk\sdk_hud_message.cpp" />
-    <ClCompile Include="sdk\sdk_hud_stamina.cpp" />
     <ClCompile Include="sdk\sdk_hud_targetid.cpp" />
     <ClCompile Include="sdk\sdk_hud_weaponselection.cpp" />
     <ClCompile Include="sdk\sdk_in_main.cpp" />
@@ -1542,6 +1544,7 @@ exit 1
     <ClInclude Include="..\shared\sdk\bliink_item_inventory.h" />
     <ClInclude Include="..\shared\sdk\bliink_item_parse.h" />
     <ClInclude Include="..\shared\sdk\bliink_player_shared.h" />
+    <ClInclude Include="..\shared\sdk\bliink_player_stats.h" />
     <ClInclude Include="..\shared\sdk\sdk_basegrenade_projectile.h" />
     <ClInclude Include="..\shared\sdk\sdk_fx_shared.h" />
     <ClInclude Include="..\shared\sdk\sdk_playeranimstate.h" />
@@ -1594,7 +1597,6 @@ exit 1
     <ClInclude Include="sdk\c_bliink_team.h" />
     <ClInclude Include="sdk\sdk_backgroundpanel.h" />
     <ClInclude Include="sdk\sdk_hud_chat.h" />
-    <ClInclude Include="sdk\sdk_hud_stamina.h" />
     <ClInclude Include="sdk\sdk_scoreboard.h" />
     <ClInclude Include="sdk\vcreditspage.h" />
     <ClInclude Include="sdk\vgui\bliink_welcomemenu.h" />

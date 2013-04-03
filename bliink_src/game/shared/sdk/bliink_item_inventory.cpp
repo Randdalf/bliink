@@ -235,7 +235,7 @@ bool CBliinkItemInventory::AddItem( IBliinkItem* pNewItem )
 					}
 					else
 					{
-						pTemp->SetLocalOrigin( pOwner->GetLocalOrigin() );
+						pTemp->SetLocalOrigin( Vector(0, 0, 0) );
 						pTemp->AddSpawnFlags( SF_NORESPAWN );
 
 						DispatchSpawn( pTemp );

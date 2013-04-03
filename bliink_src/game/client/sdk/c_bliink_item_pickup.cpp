@@ -33,6 +33,20 @@ IMPLEMENT_CLIENTCLASS_DT( C_BliinkItemPickup, DT_BliinkItemPickup ,CBliinkItemPi
 	// ...
 END_RECV_TABLE()
 
+// Sets pickups to be useable
+bool C_BliinkPlayer::IsUseableEntity( CBaseEntity *pEntity, unsigned int requiredCaps )
+{
+	if( pEntity && requiredCaps != FCAP_USE_IN_RADIUS )
+	{
+		C_BliinkItemPickup* pPickup = dynamic_cast<C_BliinkItemPickup*>( pEntity );
+
+		if( pPickup )
+			return true;
+	}
+
+	return BaseClass::IsUseableEntity( pEntity, requiredCaps );
+}
+
 C_BliinkItemPickup::C_BliinkItemPickup( ) : m_GlowObject(this)
 {
 	m_GlowObject.SetColor( Vector( 0.3f, 0.6f, 0.1f ) );
@@ -51,7 +65,7 @@ void C_BliinkItemPickup::ClientThink()
 
 	if( pPlayer )
 	{
-		// Finding eye position and angles.
+		/*// Finding eye position and angles.
 		Vector vecStart = pPlayer->EyePosition();
 		QAngle eyeAngles = pPlayer->EyeAngles();
 
@@ -68,10 +82,12 @@ void C_BliinkItemPickup::ClientThink()
 		UTIL_TraceLine( vecStart, vecEnd, MASK_SOLID|CONTENTS_DEBRIS|CONTENTS_HITBOX, pPlayer, COLLISION_GROUP_NONE, &tr );
 
 		if ( tr.fraction == 1.0f )
-			return;
+			return;*/
+
+		C_BaseEntity* pEntity = pPlayer->FindUseEntity();
 
 		// Determining if we are visible.
-		if( tr.m_pEnt && tr.m_pEnt == this )
+		if( pEntity == this )
 		{
 			m_GlowObject.SetRenderFlags( false, true );
 		}

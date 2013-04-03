@@ -40,7 +40,6 @@ public:
 
 #if defined ( SDK_USE_STAMINA ) || defined ( SDK_USE_SPRINTING )
 	void	SetStamina( float stamina );
-	float	GetStamina( void ) { return m_flStamina; }
 #endif // SDK_USE_STAMINA || SDK_USE_SPRINTING
 
 	void	Init( OuterClass *pOuter );
@@ -62,7 +61,8 @@ public:
 	void	StartSprinting( void );
 	void	StopSprinting( void );
 
-	void ResetSprintPenalty( void );
+	void	SetSprintPenalty( bool pPenalty );
+	bool	GaveSprintPenalty( void ) {return m_bGaveSprintPenalty;}
 #endif
 
 	void ComputeWorldSpaceSurroundingBox( Vector *pVecWorldMins, Vector *pVecWorldMaxs );

@@ -17,6 +17,7 @@
 #include "bliink_player_shared.h"
 #include "sdk_shareddefs.h"
 #include "bliink_item_inventory.h"
+#include "bliink_player_stats.h"
 
 class C_BliinkPlayer : public C_BasePlayer
 {
@@ -160,10 +161,14 @@ private:
 
 // Bliink stuff
 	CBliinkItemInventory m_Inventory;
-
+	CBliinkPlayerStats m_BliinkStats;
 public:
 
 	CBliinkItemInventory &GetBliinkInventory( void );
+	CBliinkPlayerStats &GetBliinkPlayerStats( void );
+
+	// defined in c_bliink_item_pickup.cpp
+	bool IsUseableEntity( CBaseEntity *pEntity, unsigned int requiredCaps );
 };
 
 

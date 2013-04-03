@@ -1611,6 +1611,9 @@
     <ClCompile Include="SDK\bliink_item_base.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
+    <ClCompile Include="..\shared\sdk\bliink_player_stats.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\shared\achievement_saverestore.h">
@@ -3318,6 +3321,9 @@
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
     <ClInclude Include="..\shared\sdk\bliink_item_inventory.h">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shared\sdk\bliink_player_stats.h">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClInclude>
   </ItemGroup>

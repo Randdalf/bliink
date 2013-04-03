@@ -419,6 +419,66 @@ Scheme
 				"weight"		"0"
 			}
 		}
+		"BliinkHUDMedium"
+		{
+			"1"
+			{
+				"name"		"BigNoodleTitling"
+				"tall"		"32"
+				"weight"	"100"
+				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
+				"antialias"	"1"
+			}
+		}
+		"BliinkHUDLarge"
+		{
+			"1"
+			{
+				"name"		"BigNoodleTitling"
+				"tall"		"48"
+				"weight"	"100"
+				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
+				"antialias"	"1"
+			}
+		}
+		"BliinkHUDExp"
+		{
+			"1"
+			{
+				"name"		"BigNoodleTitling"
+				"tall"		"24"
+				"weight"	"50"
+				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
+				"antialias"	"1"
+				"dropshadow"	"1"
+			}
+		}
+		
+		"BliinkHUDSmall"
+		{
+			"1"
+			{
+				"name"		"BigNoodleTitling"
+				"tall"		"16"
+				"weight"	"100"
+				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
+				"antialias"	"1"
+			}
+		}
+		
+		"BliinkHUDUpgradeNotice"
+		{
+			"1"
+			{
+				"name"		"BigNoodleTitling"
+				"tall"		"32"
+				"weight"	"100"
+				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
+				"antialias"	"1"
+				"dropshadow"	"1"
+			}
+		}
+		
 		WeaponIcons
 		{
 			"1"
@@ -1473,6 +1533,7 @@ Scheme
 	CustomFontFiles
 	{
 		"1"		"resource/HALFLIFE2.ttf"
+		"2"		"resource/big_noodle_titling_oblique.ttf"
 	}
 
 }

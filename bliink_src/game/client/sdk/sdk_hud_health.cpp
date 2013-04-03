@@ -50,6 +50,7 @@ public:
 	virtual void Reset( void );
 	virtual void OnThink();
 			void MsgFunc_Damage( bf_read &msg );
+	virtual void Paint() { return; }
 
 private:
 	// old variables

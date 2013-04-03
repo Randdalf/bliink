@@ -14,6 +14,7 @@
 #include "sdk_playeranimstate.h"
 #include "bliink_player_shared.h"
 #include "bliink_item_inventory.h"
+#include "bliink_player_stats.h"
 #include "weapon_sdkbase.h"
 
 // Function table for each player state.
@@ -248,11 +249,20 @@ public:
 	void				Weapon_BliinkSwitch(int slot1, int slot2);
 	bool				Weapon_BliinkHasWeapon( CWeaponSDKBase* pWeapon );
 
+	virtual void Think();
+
 public:
 	// Pre-game
 	bool IsReadyToStart( void ) { return m_iPlayerState == STATE_BLIINK_WAITING_FOR_PLAYERS; }
 	void StartGameTransition( void );
 	void EndGameTransition( void );
+
+private:
+	// Player stats
+	CNetworkVarEmbedded( CBliinkPlayerStats, m_BliinkStats );
+
+public:
+	CBliinkPlayerStats &GetBliinkPlayerStats( void );
 };
 
 

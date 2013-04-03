@@ -17,6 +17,7 @@
 #include "in_buttons.h"
 #include "movevars_shared.h"
 #include "coordsize.h"
+#include "bliink_player_stats.h"
 
 #ifdef CLIENT_DLL
 	#include "c_bliink_player.h"
@@ -96,10 +97,8 @@ CSDKGameMovement::~CSDKGameMovement()
 void CSDKGameMovement::SetPlayerSpeed( void )
 {
 	{
-		float stamina = 100.0f;
-#if defined ( SDK_USE_STAMINA ) || defined ( SDK_USE_SPRINTING )
-		stamina = m_pSDKPlayer->m_Shared.GetStamina();
-#endif
+		float stamina = m_pSDKPlayer->GetBliinkPlayerStats().GetFatigue();
+
 		if ( mv->m_nButtons & IN_DUCK )
 		{
 			mv->m_flClientMaxSpeed = m_pSDKPlayer->m_Shared.m_flRunSpeed;	//gets cut in fraction later
@@ -307,6 +306,12 @@ void CSDKGameMovement::WalkMove( void )
 		flSpeedCheck > 80 )
 	{
 		m_pSDKPlayer->SetSprinting( true );
+
+		if( !m_pSDKPlayer->m_Shared.GaveSprintPenalty() )
+		{
+			m_pSDKPlayer->GetBliinkPlayerStats().UseFatigue(FATIGUE_INIT_SPRINT_LOSS, false);
+			m_pSDKPlayer->m_Shared.SetSprintPenalty( true );
+		}
 	}
 	else
 	{
@@ -592,18 +597,12 @@ void CSDKGameMovement::ReduceTimers( void )
 {
 	Vector vecPlayerVelocity = m_pSDKPlayer->GetAbsVelocity();
 
-#if defined ( SDK_USE_STAMINA ) || defined ( SDK_USE_SPRINTING )
-	float flStamina = m_pSDKPlayer->m_Shared.GetStamina();
-#endif
-	
-#if defined ( SDK_USE_SPRINTING )
-
 	float fl2DVelocitySquared = vecPlayerVelocity.x * vecPlayerVelocity.x + 
 								vecPlayerVelocity.y * vecPlayerVelocity.y;	
 
 	if ( !( mv->m_nButtons & IN_SPEED ) )
 	{
-		m_pSDKPlayer->m_Shared.ResetSprintPenalty();
+		m_pSDKPlayer->m_Shared.SetSprintPenalty( false );
 	}
 
 	// Can only sprint in forward direction.
@@ -613,34 +612,26 @@ void CSDKGameMovement::ReduceTimers( void )
 	Vector vel = m_pSDKPlayer->GetAbsVelocity();
 	if ( bSprinting && fl2DVelocitySquared > 10000 ) //speed > 100
 	{
-		flStamina -= 20 * gpGlobals->frametime;
-
-		m_pSDKPlayer->m_Shared.SetStamina( flStamina );
+		// A: Lose stamina when sprinting
+		m_pSDKPlayer->GetBliinkPlayerStats().UseFatigue( FATIGUE_SPRINT_LOSS * gpGlobals->frametime );
 	}
 	else
-#endif // SDK_USE_SPRINTING
-
-#if defined ( SDK_USE_STAMINA ) || defined ( SDK_USE_SPRINTING )
 	{
-		//gain some back		
+		float flRegenRate = m_pSDKPlayer->GetBliinkPlayerStats().GetFatigueRegenRate();
+
+		// Gain stamina back if not sprinting.	
 		if ( fl2DVelocitySquared <= 0 )
 		{
-			flStamina += 60 * gpGlobals->frametime;
-		}
-		else if ( ( m_pSDKPlayer->GetFlags() & FL_ONGROUND ) && 
-					( mv->m_nButtons & IN_DUCK ) &&
-					( m_pSDKPlayer->GetFlags() & FL_DUCKING ) )
-		{
-			flStamina += 50 * gpGlobals->frametime;
+			// A: Gain faster when not moving
+			m_pSDKPlayer->GetBliinkPlayerStats().GainFatigue( FATIGUE_STANDING_REGEN_MUL * flRegenRate * gpGlobals->frametime );
 		}
 		else
 		{
-			flStamina += 10 * gpGlobals->frametime;
+			// A: Normal gain speed
+			m_pSDKPlayer->GetBliinkPlayerStats().GainFatigue( flRegenRate * gpGlobals->frametime );
 		}
-
-		m_pSDKPlayer->m_Shared.SetStamina( flStamina );	
 	}
-#endif 
+
 	BaseClass::ReduceTimers();
 }
 
@@ -700,6 +691,10 @@ bool CSDKGameMovement::CheckJumpButton( void )
 
 	if ( mv->m_nOldButtons & IN_JUMP )
 		return false;		// don't pogo stick
+
+	// Attempt to use fatigue required to jump
+	if( !m_pSDKPlayer->GetBliinkPlayerStats().UseFatigue(FATIGUE_JUMP_LOSS, true) )
+		return false;
 
 	// In the air now.
 	SetGroundEntity( NULL );

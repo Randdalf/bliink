@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+      "$basetexture" "HUD/fatigue_meter_full"
+      "$translucent"   "1"
+      "$translucency" "1"
+      "$ignorez" "1"
+}

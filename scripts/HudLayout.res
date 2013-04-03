@@ -1,14 +1,47 @@
 "Resource/HudLayout.res"
-{
+{	
+	BliinkHudMeters
+	{
+	  "fieldName" "BliinkHudMeters"
+	  "xpos" "16"
+	  "ypos" "r76"
+	  "wide" "292"
+	  "tall" "96"
+	  "visible" "1"
+	  "enabled" "1"
+	}
+
+	BliinkHudLevel
+	{
+	  "fieldName" "BliinkHudLevel"
+	  "xpos" "16"
+	  "ypos" "16"
+	  "wide" "128"
+	  "tall" "96"
+	  "visible" "1"
+	  "enabled" "1"
+	}
+	
+	BliinkHudUpgradeNotice
+	{
+	  "fieldName" "BliinkHudUpgradeNotice"
+	  "xpos" "c-128"
+	  "ypos" "-128"
+	  "wide" "392"
+	  "tall" "128"
+	  "visible" "1"
+	  "enabled" "1"
+	}
+
 	HudHealth
 	{
 		"fieldName"		"HudHealth"
 		"xpos"	"16"
 		"ypos"	"432"
-		"wide"	"102"
-		"tall"  "36"
-		"visible" "1"
-		"enabled" "1"
+		"wide"	"1"
+		"tall"  "1"
+		"visible" "0"
+		"enabled" "0"
 
 		"PaintBackgroundType"	"2"
 		

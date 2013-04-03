@@ -43,6 +43,22 @@ event LevelInit
 {
 }
 
+event BliinkOpenUpgradeNotice
+{
+	StopEvent BliinkCloseUpgradeNotice 0.0
+	
+	Animate BliinkHudUpgradeNotice 	Ypos "0" 			Linear  0.0 0.5
+	Animate BliinkHudUpgradeNotice	IsVisible "1"		Linear	0.0 0.0
+}
+
+event BliinkCloseUpgradeNotice
+{
+	StopEvent BliinkOpenUpgradeNotice 0.0
+	
+	Animate BliinkHudUpgradeNotice 	Ypos "-128" 		Linear  0.0 0.0
+	Animate BliinkHudUpgradeNotice	IsVisible "0"		Linear	0.0 0.0
+}
+
 event WeaponHighlight
 {
 	Animate HudWeaponSelection		Blur		"7"			Linear		0.0	0.0 

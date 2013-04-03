@@ -349,7 +349,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Verdana" //"Neo Sans"
+				"name"		"Verdana" //"BigNoodleTitling"
 				"tall"		"14"
 				"weight"	"100"
 				"antialias"	"1"
@@ -381,7 +381,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Neo Sans"
+				"name"		"BigNoodleTitling"
 				"tall"		"10"
 				"weight"	"100"
 				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
@@ -393,7 +393,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Neo Sans"
+				"name"		"BigNoodleTitling"
 				"tall"		"10"
 				"weight"	"100"
 				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
@@ -405,7 +405,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Neo Sans"
+				"name"		"BigNoodleTitling"
 				"tall"		"16"
 				"weight"	"100"
 				"antialias"	"1"
@@ -415,7 +415,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Neo Sans"
+				"name"		"BigNoodleTitling"
 				"tall"		"16"
 				"weight"	"100"
 				"antialias"	"1"
@@ -478,7 +478,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Verdana" //"Neo Sans"
+				"name"		"Verdana" //"BigNoodleTitling"
 				"tall"		"8"
 				"weight"	"100"
 				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
@@ -490,7 +490,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Neo Sans"
+				"name"		"BigNoodleTitling"
 				"tall"		"12"
 				"weight"	"100"
 				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
@@ -501,7 +501,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Neo Sans"
+				"name"		"BigNoodleTitling"
 				"tall"		"12"
 				"weight"	"100"
 				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
@@ -521,7 +521,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Verdana" //"Neo Sans"
+				"name"		"Verdana" //"BigNoodleTitling"
 				"tall"		"7"
 				"weight"	"100"
 				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
@@ -626,11 +626,79 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Neo Sans"
+				"name"		"BigNoodleTitling"
 				"tall"		"20"
 				"weight"	"100"
 				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
 				"antialias"	"1"
+			}
+		}
+		
+		// Instructor		
+		"InstructorTitle"
+		{
+			"1"
+			{
+				"Name"			"BigNoodleTitling"
+				"tall"			"16"
+				"weight"	"100"
+				"antialias" "1"
+				//"dropshadow"	"1"
+			}
+		}
+		"InstructorTitle_ss"
+		{
+			"1"
+			{
+				"Name"			"BigNoodleTitling"
+				"tall"			"16"
+				"weight"	"100"
+				"antialias" "1"
+				//"dropshadow"	"1"
+			}
+		}
+		"InstructorTitleGlow"
+		{
+			"1"
+			{
+				"Name"			"BigNoodleTitling"
+				"tall"			"16"
+				"weight"	"100"
+				"antialias" "1"
+				//"dropshadow"	"1"
+				"blur"	"2"
+			}
+		}
+		"InstructorTitleGlow_ss"
+		{
+			"1"
+			{
+				"Name"			"BigNoodleTitling"
+				"tall"			"16"
+				"weight"	"100"
+				"antialias" "1"
+				//"dropshadow"	"1"
+				"blur"	"2"
+			}
+		}
+		InstructorButtons
+		{
+			"1"
+			{
+				"bitmap"	"1"
+				"name"		"Buttons"
+				"scalex"	"0.65"
+				"scaley"	"0.65"
+			}
+		}
+		"InstructorKeyBindings"
+		{
+			"1"
+			{
+				"name"		"BigNoodleTitling"
+				"tall"		"12"
+				"weight"	"100"
+				"antialias" "1"
 			}
 		}
 		
@@ -641,7 +709,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"			"Neo Sans"
+				"name"			"BigNoodleTitling"
 				"tall"			"24"
 				"weight"		"400"
 				"antialias"		"1"
@@ -652,7 +720,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"			"Neo Sans"
+				"name"			"BigNoodleTitling"
 				"tall"			"24"
 				"weight"		"400"
 				"blur"			"3"					[$WIN32 || $X360LODEF]
@@ -665,7 +733,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"			"Neo Sans"
+				"name"			"BigNoodleTitling"
 				"tall"			"20"
 				"weight"		"400"				[$WIN32]
 				"weight"		"800"				[$X360]
@@ -677,7 +745,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"			"Neo Sans"
+				"name"			"BigNoodleTitling"
 				"tall"			"20"
 				"weight"		"400"				[$WIN32]
 				"weight"		"800"				[$X360]
@@ -730,7 +798,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Neo Sans"
+				"name"		"BigNoodleTitling"
 				"tall"		"28"
 				"weight"	"400"
 				"antialias"	"1"
@@ -1488,5 +1556,6 @@ Scheme
 	CustomFontFiles
 	{
 		"1"		"resource/NeoSans.vfont"
+		"2"		"resource/big_noodle_titling_oblique.ttf"
 	}
 }
