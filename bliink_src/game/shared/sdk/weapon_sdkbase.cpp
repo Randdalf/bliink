@@ -33,10 +33,12 @@ IMPLEMENT_NETWORKCLASS_ALIASED( WeaponSDKBase, DT_WeaponSDKBase )
 BEGIN_NETWORK_TABLE( CWeaponSDKBase, DT_WeaponSDKBase )
 #ifdef CLIENT_DLL
   	RecvPropFloat( RECVINFO( m_flDecreaseShotsFired ) ),
+	RecvPropInt( RECVINFO(m_iBliinkSlot) ),
 #else
 	SendPropExclude( "DT_BaseAnimating", "m_nNewSequenceParity" ),
 	SendPropExclude( "DT_BaseAnimating", "m_nResetEventsParity" ),
 	SendPropFloat( SENDINFO( m_flDecreaseShotsFired ) ),
+	SendPropInt( SENDINFO(m_iBliinkSlot), 16, SPROP_UNSIGNED )
 #endif
 END_NETWORK_TABLE()
  
@@ -442,12 +444,44 @@ void CWeaponSDKBase::Die( void )
 }
 #endif
 
-int CWeaponSDKBase::GetSlot( void )
+int CWeaponSDKBase::GetSlot( void ) const
 {
 	return m_iBliinkSlot;
 }
 
+int CWeaponSDKBase::GetPosition( void ) const
+{
+	return 0;
+}
+
+
 void CWeaponSDKBase::SetSlot( int slot )
 {
 	m_iBliinkSlot = slot;
+}
+
+// Overriding drop behaviour
+void CWeaponSDKBase::Drop( const Vector &vecVelocity )
+{
+#ifndef CLIENT_DLL
+	//If it was dropped then there's no need to respawn it.
+	AddSpawnFlags( SF_NORESPAWN );
+
+	StopAnimation();
+	StopFollowingEntity( );
+	m_iState = WEAPON_NOT_CARRIED;
+
+	SetAbsOrigin(Vector(0,0,0));
+
+	CBaseEntity *pOwner = GetOwnerEntity();
+
+	SetOwnerEntity( NULL );
+	SetOwner( NULL );
+#endif
+}
+
+void CWeaponSDKBase::GiveDefaultAmmo( void )
+{
+	m_iClip1 = 0;
+	m_iClip2 = 0;
 }

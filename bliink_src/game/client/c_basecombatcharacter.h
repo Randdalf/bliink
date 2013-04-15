@@ -57,11 +57,11 @@ public:
 	// -----------------------
 	// Ammo
 	// -----------------------
-	void				RemoveAmmo( int iCount, int iAmmoIndex );
-	void				RemoveAmmo( int iCount, const char *szName );
+	virtual void		RemoveAmmo( int iCount, int iAmmoIndex );
+	virtual void		RemoveAmmo( int iCount, const char *szName );
 	void				RemoveAllAmmo( );
-	int					GetAmmoCount( int iAmmoIndex ) const;
-	int					GetAmmoCount( char *szName ) const;
+	virtual int			GetAmmoCount( int iAmmoIndex ) const;
+	virtual int			GetAmmoCount( char *szName ) const;
 
 	virtual C_BaseCombatWeapon*	Weapon_OwnsThisType( const char *pszWeapon, int iSubType = 0 ) const;  // True if already owns a weapon of this class
 	virtual int			Weapon_GetSlot( const char *pszWeapon, int iSubType = 0 ) const;  // Returns -1 if they don't have one

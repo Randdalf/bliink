@@ -620,7 +620,7 @@ void CSDKGameMovement::ReduceTimers( void )
 		float flRegenRate = m_pSDKPlayer->GetBliinkPlayerStats().GetFatigueRegenRate();
 
 		// Gain stamina back if not sprinting.	
-		if ( fl2DVelocitySquared <= 0 )
+		if ( 0 /*fl2DVelocitySquared <= 0*/ )
 		{
 			// A: Gain faster when not moving
 			m_pSDKPlayer->GetBliinkPlayerStats().GainFatigue( FATIGUE_STANDING_REGEN_MUL * flRegenRate * gpGlobals->frametime );

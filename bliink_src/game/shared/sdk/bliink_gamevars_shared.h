@@ -22,7 +22,16 @@ extern ConCommand Bliink_UpgradeHealth;
 extern ConCommand Bliink_UpgradeFatigue;
 
 extern ConCommand Bliink_DevAddExp;
+extern ConCommand Bliink_DevGiveSlow;
+extern ConCommand Bliink_DevGiveBurn;
 
+extern ConCommand Bliink_InventoryPrint;
+extern ConCommand Bliink_InventoryMove;
+extern ConCommand Bliink_InventoryCraft;
+extern ConCommand Bliink_InventoryDrop;
+extern ConCommand Bliink_InventoryConsume;
+extern ConCommand Bliink_InventoryDelete;
+extern ConCommand Bliink_InventorySetNextAmmoType;
 #endif
 
 #endif // BLIINK_GAMEVARS_SHARED_H

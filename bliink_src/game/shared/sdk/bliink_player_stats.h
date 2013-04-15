@@ -36,7 +36,29 @@
 #define HUNGER_REGEN_THRESHOLD 0.7f
 #define HUNGER_DEGEN_THRESHOLD 0.0f
 
+#define STATUS_POISON_DAMAGE_PER_SECOND 1.0f
+#define STATUS_BURN_DAMAGE_PER_SECOND 3.0f
+#define STATUS_FOGGED_DAMAGE_PER_SECOND 1.3f
+#define STATUS_SLOW_PERCENT 0.5f
+
+#define STATUS_POISON_CHANCE 0.05f
+#define STATUS_BURN_CHANCE 0.08f
+#define STATUS_FOG_CHANCE 1.0f
+#define STATUS_SLOW_CHANCE 1.0f
+
 class CBliinkPlayer;
+
+//-----------------------------------------------------------------------------
+// Status effects
+//-----------------------------------------------------------------------------
+typedef enum
+{
+	BLIINK_STATUS_NORMAL=0,
+	BLIINK_STATUS_POISONED,
+	BLIINK_STATUS_BURNING,
+	BLIINK_STATUS_FOGGED,
+	BLIINK_STATUS_SLOWED
+} bliink_status_effects;
 
 //-----------------------------------------------------------------------------
 // CBliinkPlayerStats
@@ -71,6 +93,8 @@ public:
 	int GetMaxExperience() { return m_iMaxExperience; }
 	int GetLevel() { return m_iLevel; }
 	int GetUpgradePoints() { return m_iUpgradePoints; }
+	int GetStatus() { return m_iStatusEffect; }
+	float GetStatusDuration() { return m_fStatusEndTime; }
 
 	// Interface functions
 	bool UseFatigue(float fFatigueAmount, bool limit = false);
@@ -82,6 +106,12 @@ public:
 	void GainHealth(float fHealthGain);
 	bool TakeDamage(float fHealthLoss); // true if dead
 	void GainHunger(float fHungerGain);
+
+	// Status effects
+	void AfflictStatus(int iEffect, float fDuration);
+
+private:
+	void StatusThink();
 #endif
 	
 private:
@@ -93,6 +123,8 @@ private:
 	int m_iExperience;
 	int m_iLevel;
 	int m_iUpgradePoints;
+	int m_iStatusEffect;
+	float m_fStatusEndTime;
 
 	// Other values
 	float m_fMaxHealth;
@@ -107,6 +139,8 @@ private:
 	CNetworkVar( int, m_iExperience );
 	CNetworkVar( int, m_iLevel );
 	CNetworkVar( int, m_iUpgradePoints );
+	CNetworkVar( int, m_iStatusEffect );
+	CNetworkVar( float, m_fStatusEndTime );
 
 	// Other values
 	CNetworkVar( float, m_fMaxHealth );

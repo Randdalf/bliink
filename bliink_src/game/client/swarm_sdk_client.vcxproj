@@ -699,6 +699,7 @@ exit 1
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="sdk\bliink_hud_ammo.cpp" />
     <ClCompile Include="sdk\bliink_hud_meters.cpp" />
     <ClCompile Include="sdk\clientmode_sdk.cpp" />
     <ClCompile Include="sdk\c_bliink_item_pickup.cpp" />
@@ -712,7 +713,6 @@ exit 1
     <ClCompile Include="sdk\sdk_fx_impacts.cpp" />
     <ClCompile Include="sdk\sdk_fx_tracers.cpp" />
     <ClCompile Include="sdk\sdk_fx_weaponfx.cpp" />
-    <ClCompile Include="sdk\sdk_hud_ammo.cpp" />
     <ClCompile Include="sdk\sdk_hud_chat.cpp" />
     <ClCompile Include="sdk\sdk_hud_damage.cpp" />
     <ClCompile Include="sdk\sdk_hud_health.cpp" />

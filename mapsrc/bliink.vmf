@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "5032"
-	"mapversion" "113"
+	"mapversion" "117"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "113"
+	"mapversion" "117"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -12370,7 +12370,7 @@ world
 	}
 	solid
 	{
-		"id" "4474"
+		"id" "4835"
 		side
 		{
 			"id" "6357"
@@ -12439,7 +12439,7 @@ world
 		}
 		editor
 		{
-			"color" "0 121 234"
+			"color" "0 233 242"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12447,7 +12447,7 @@ world
 	}
 	solid
 	{
-		"id" "4476"
+		"id" "4837"
 		side
 		{
 			"id" "6363"
@@ -12516,7 +12516,7 @@ world
 		}
 		editor
 		{
-			"color" "0 121 234"
+			"color" "0 233 242"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12524,7 +12524,7 @@ world
 	}
 	solid
 	{
-		"id" "4478"
+		"id" "4839"
 		side
 		{
 			"id" "6369"
@@ -12593,7 +12593,7 @@ world
 		}
 		editor
 		{
-			"color" "0 121 234"
+			"color" "0 233 242"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12601,7 +12601,7 @@ world
 	}
 	solid
 	{
-		"id" "4480"
+		"id" "4841"
 		side
 		{
 			"id" "6375"
@@ -12670,7 +12670,7 @@ world
 		}
 		editor
 		{
-			"color" "0 121 234"
+			"color" "0 233 242"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12678,7 +12678,7 @@ world
 	}
 	solid
 	{
-		"id" "4482"
+		"id" "4843"
 		side
 		{
 			"id" "6381"
@@ -12747,7 +12747,7 @@ world
 		}
 		editor
 		{
-			"color" "0 121 234"
+			"color" "0 233 242"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12755,7 +12755,7 @@ world
 	}
 	solid
 	{
-		"id" "4484"
+		"id" "4845"
 		side
 		{
 			"id" "6387"
@@ -12824,7 +12824,7 @@ world
 		}
 		editor
 		{
-			"color" "0 121 234"
+			"color" "0 233 242"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -33058,13 +33058,117 @@ entity
 		"logicalpos" "[0 500]"
 	}
 }
+entity
+{
+	"id" "4624"
+	"classname" "bliink_item_spawner"
+	"angles" "0 0 0"
+	"item_max_quantity" "5"
+	"item_min_quantity" "5"
+	"item_spawn_chance_1" "1"
+	"item_spawn_chance_2" "0"
+	"item_type_1" "ammo_pistol_normal"
+	"spawner_distance_x" "16"
+	"spawner_distance_y" "16"
+	"spawner_distance_z" "0.0"
+	"spawner_max_interval" "10.0"
+	"spawner_min_interval" "5.0"
+	"spawner_only_once" "0"
+	"targetname" "item_spawner"
+	"origin" "-536 -1020.23 448"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
+entity
+{
+	"id" "4797"
+	"classname" "bliink_item_spawner"
+	"angles" "0 0 0"
+	"item_max_quantity" "5"
+	"item_min_quantity" "5"
+	"item_spawn_chance_1" "1"
+	"item_spawn_chance_2" "0"
+	"item_type_1" "consumable_booster"
+	"spawner_distance_x" "16"
+	"spawner_distance_y" "16"
+	"spawner_distance_z" "0.0"
+	"spawner_max_interval" "10.0"
+	"spawner_min_interval" "5.0"
+	"spawner_only_once" "0"
+	"targetname" "item_spawner"
+	"origin" "544 690.792 536"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
+entity
+{
+	"id" "4803"
+	"classname" "bliink_item_spawner"
+	"angles" "0 0 0"
+	"item_max_quantity" "5"
+	"item_min_quantity" "5"
+	"item_spawn_chance_1" "1"
+	"item_spawn_chance_2" "0"
+	"item_type_1" "consumable_food"
+	"spawner_distance_x" "16"
+	"spawner_distance_y" "16"
+	"spawner_distance_z" "0.0"
+	"spawner_max_interval" "10.0"
+	"spawner_min_interval" "5.0"
+	"spawner_only_once" "0"
+	"targetname" "item_spawner"
+	"origin" "1456 1768.62 240"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
+entity
+{
+	"id" "4809"
+	"classname" "bliink_item_spawner"
+	"angles" "0 0 0"
+	"item_max_quantity" "5"
+	"item_min_quantity" "5"
+	"item_spawn_chance_1" "1"
+	"item_spawn_chance_2" "0"
+	"item_type_1" "consumable_aid"
+	"spawner_distance_x" "16"
+	"spawner_distance_y" "16"
+	"spawner_distance_z" "0.0"
+	"spawner_max_interval" "10.0"
+	"spawner_min_interval" "5.0"
+	"spawner_only_once" "0"
+	"targetname" "item_spawner"
+	"origin" "-799.739 -1064 240"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
 cameras
 {
 	"activecamera" "0"
 	camera
 	{
-		"position" "[1231.99 2055.05 660.559]"
-		"look" "[1720.22 6341.82 -4554.73]"
+		"position" "[-807.61 -722.14 960.727]"
+		"look" "[-1285.84 -3520.68 -5183.66]"
 	}
 }
 cordons

@@ -13,7 +13,7 @@ WeaponData
 	"playermodel"			"models/weapons/w_pist_deagle.mdl"
 	"PlayerAnimationExtension"	"mp5"
 	
-	"bucket"			"1"
+	"bucket"			"0"
 	"bucket_position"		"0"
 
 	"clip_size"			"8"

@@ -7,6 +7,7 @@
 #include "cbase.h"
 
 #include "bliink_gamerules.h"
+#include "ammodef.h"
 
 #include "takedamageinfo.h"
 #include "sdk_shareddefs.h"
@@ -109,6 +110,26 @@ void CBliinkPlayer::FireBullet(
                 fCurrentDamage *= pow ( 0.85f, (flCurrentDistance / 500));
 
                 int iDamageType = DMG_BULLET | DMG_NEVERGIB;
+
+#ifndef CLIENT_DLL
+				CBliinkPlayer* pAttacker = static_cast<CBliinkPlayer*> ( pevAttacker );
+				int iActiveAmmo = GetAmmoDef()->Index( pAttacker->GetActiveWeapon()->GetWpnData().szAmmo1 );
+				int iAmmoSubtype = pAttacker->GetBliinkInventory().GetAmmoSubtype( iActiveAmmo );
+
+				switch( iAmmoSubtype )
+				{
+				case ITEM_STYPE_AMMO_NORMAL:
+					break;
+				case ITEM_STYPE_AMMO_POISON:
+					iDamageType &= DMG_POISON; break;
+				case ITEM_STYPE_AMMO_FOGGED:
+					iDamageType &= DMG_NERVEGAS; break;
+				case ITEM_STYPE_AMMO_FIRE:
+					iDamageType &= DMG_BURN; break;
+				case ITEM_STYPE_AMMO_SLOW:
+					iDamageType &= DMG_PARALYZE; break;
+				}
+#endif
 
                 if( bDoEffects )
                 {

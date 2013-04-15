@@ -31,6 +31,8 @@ CBliinkPlayerStats::CBliinkPlayerStats()
 	m_fMaxFatigue = BASE_FATIGUE;
 	m_fFatigueRegenRate = BASE_FATIGUE_REGEN_RATE_PER_SECOND;
 	m_iMaxExperience = BASE_MAX_EXPERIENCE;
+	m_iStatusEffect = BLIINK_STATUS_NORMAL;
+	m_fStatusEndTime = gpGlobals->curtime;
 
 #ifndef CLIENT_DLL
 	m_fLastDamageTime = 0;
@@ -78,7 +80,10 @@ bool CBliinkPlayerStats::UseUpgrade(BLIINK_UPGRADE type)
 	{
 #ifndef CLIENT_DLL
 	case BLIINK_UPGRADE_WEAPON_SLOTS:
-		// TODO
+		// Check if slot has been unlocked, so we don't waste points.
+		if( !m_pOwner->GetBliinkInventory().UnlockWeaponSlot() )
+			return false;
+
 		break;
 	case BLIINK_UPGRADE_HEALTH:
 		// Increasing maximum health by one segment
@@ -140,7 +145,8 @@ bool CBliinkPlayerStats::Think()
 
 	// Hunger-health regen
 	if( m_fHunger >= HUNGER_REGEN_THRESHOLD*BASE_HUNGER &&
-		gpGlobals->curtime - m_fLastDamageTime > HEALTH_REGEN_DAMAGE_COOLDOWN )
+		gpGlobals->curtime - m_fLastDamageTime > HEALTH_REGEN_DAMAGE_COOLDOWN &&
+		m_iStatusEffect == BLIINK_STATUS_NORMAL )
 	{
 		float flSegmentLimit = getSegmentLimit(m_fHealth, m_fMaxHealth);
 		float flHealthLimit = MIN(m_fMaxHealth,flSegmentLimit);
@@ -162,6 +168,9 @@ bool CBliinkPlayerStats::Think()
 			return true;
 		}
 	}
+
+	// Status
+	StatusThink();
 
 	return false;
 }
@@ -275,6 +284,85 @@ void CBliinkPlayerStats::UpdateHealth( void )
 		info.Set(m_pOwner, m_pOwner, (float) iDiff, DMG_BLIINKSELF);
 
 		m_pOwner->OnTakeDamage(info);
+	}
+}
+
+void CBliinkPlayerStats::AfflictStatus(int iEffect, float fDuration)
+{
+	if( iEffect == BLIINK_STATUS_NORMAL )
+		return;
+
+	// Set status and end time
+	switch(iEffect)
+	{
+	case BLIINK_STATUS_POISONED:
+	case BLIINK_STATUS_BURNING:
+	case BLIINK_STATUS_FOGGED:
+		if( m_iStatusEffect != BLIINK_STATUS_NORMAL )
+			return;
+		else
+		{
+			m_iStatusEffect  = iEffect;
+			m_fStatusEndTime = gpGlobals->curtime + fDuration;
+		}
+
+		break;
+	case BLIINK_STATUS_SLOWED:
+		if( m_iStatusEffect == BLIINK_STATUS_SLOWED )
+		{
+			m_fStatusEndTime += fDuration;
+		}
+		else
+		if(  m_iStatusEffect == BLIINK_STATUS_NORMAL )
+		{
+			m_iStatusEffect  = BLIINK_STATUS_SLOWED;
+			m_fStatusEndTime = gpGlobals->curtime + fDuration;
+			
+			m_pOwner->m_Shared.m_flRunSpeed = SDK_DEFAULT_PLAYER_RUNSPEED * STATUS_SLOW_PERCENT;
+			m_pOwner->m_Shared.m_flSprintSpeed = SDK_DEFAULT_PLAYER_SPRINTSPEED * STATUS_SLOW_PERCENT;
+		}
+
+		break;
+	}
+
+}
+
+void CBliinkPlayerStats::StatusThink()
+{
+	if( m_iStatusEffect == BLIINK_STATUS_NORMAL )
+		return;
+
+	// If our time is over...
+	if( gpGlobals->curtime > m_fStatusEndTime )
+	{
+		switch(m_iStatusEffect)
+		{
+		case BLIINK_STATUS_SLOWED:
+			m_pOwner->m_Shared.m_flRunSpeed = SDK_DEFAULT_PLAYER_RUNSPEED;
+			m_pOwner->m_Shared.m_flSprintSpeed = SDK_DEFAULT_PLAYER_SPRINTSPEED;
+
+			break;
+		}
+
+		m_iStatusEffect = BLIINK_STATUS_NORMAL;
+	}
+	// If our time is yet to come
+	else
+	{		
+		float fTimePassed = gpGlobals->frametime;
+
+		switch(m_iStatusEffect)
+		{
+			case BLIINK_STATUS_POISONED:
+				m_fHealth -= fTimePassed * STATUS_POISON_DAMAGE_PER_SECOND;
+				break;
+			case BLIINK_STATUS_BURNING:
+				m_fHealth -= fTimePassed * STATUS_BURN_DAMAGE_PER_SECOND;
+				break;
+			case BLIINK_STATUS_FOGGED:
+				m_fHealth -= fTimePassed * STATUS_FOGGED_DAMAGE_PER_SECOND;
+				break;
+		}
 	}
 }
 

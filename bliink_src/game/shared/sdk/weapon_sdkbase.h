@@ -102,11 +102,18 @@ private:
 	CWeaponSDKBase( const CWeaponSDKBase & );
 
 public:
-	virtual int GetSlot( void );
+	// Inventory management
+	virtual int GetSlot( void ) const;
+	virtual int GetPosition( void ) const;
 	void SetSlot( int slot );
+	void Drop( const Vector &vecVelocity );
 
 private:
-	int m_iBliinkSlot;
+	CNetworkVar(int, m_iBliinkSlot);
+
+public:
+	// Ammo
+	virtual void GiveDefaultAmmo( void );
 };
 
 inline CWeaponSDKBase *ToWeaponSDKBase( CBaseEntity *pEntity )

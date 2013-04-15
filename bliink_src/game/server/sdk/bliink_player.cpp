@@ -120,6 +120,8 @@ END_SEND_TABLE()
 BEGIN_NETWORK_TABLE_NOBASE( CBliinkItemInventory, DT_BliinkItemInventory )
 		SendPropArray3( SENDINFO_ARRAY3(m_iItemTypes), SendPropInt( SENDINFO_ARRAY(m_iItemTypes), INVENTORY_MAX_SLOTS, SPROP_UNSIGNED ) ),
 		SendPropArray3( SENDINFO_ARRAY3(m_iStackCounts), SendPropInt( SENDINFO_ARRAY(m_iStackCounts), INVENTORY_MAX_SLOTS, SPROP_UNSIGNED ) ),
+		SendPropArray3( SENDINFO_ARRAY3(m_iAmmoSlots), SendPropInt( SENDINFO_ARRAY(m_iAmmoSlots), MAX_AMMO_TYPES, SPROP_NOSCALE ) ),
+		SendPropArray3( SENDINFO_ARRAY3(m_iAmmoCounts), SendPropInt( SENDINFO_ARRAY(m_iAmmoCounts), MAX_AMMO_TYPES, SPROP_NOSCALE ) ),
 END_NETWORK_TABLE()
 
 // Stats table
@@ -134,6 +136,8 @@ BEGIN_NETWORK_TABLE_NOBASE( CBliinkPlayerStats, DT_BliinkPlayerStats )
 	SendPropInt( SENDINFO(m_iLevel), -1, SPROP_UNSIGNED),
 	SendPropInt( SENDINFO(m_iUpgradePoints), -1, SPROP_UNSIGNED),
 	SendPropInt( SENDINFO(m_iMaxExperience), -1, SPROP_UNSIGNED),
+	SendPropInt( SENDINFO(m_iStatusEffect), -1, SPROP_UNSIGNED),
+	SendPropFloat( SENDINFO(m_fStatusEndTime), -1, SPROP_NOSCALE),
 END_NETWORK_TABLE()
 
 // main table
@@ -547,11 +551,24 @@ int CBliinkPlayer::OnTakeDamage_Alive( const CTakeDamageInfo &info )
 	if ( !CBaseCombatCharacter::OnTakeDamage_Alive( info ) )
 		return 0;
 
+	// Doing status effects.
+	float fRandomFloat = RandomFloat();
+
+	if( (info.GetDamageType() & DMG_BURN) && fRandomFloat <= STATUS_BURN_CHANCE )
+		m_BliinkStats.AfflictStatus( BLIINK_STATUS_BURNING, 5.0f );
+	else
+	if( (info.GetDamageType() & DMG_NERVEGAS) && fRandomFloat <= STATUS_FOG_CHANCE )
+		m_BliinkStats.AfflictStatus( BLIINK_STATUS_FOGGED, 20.0f );
+	else
+	if( (info.GetDamageType() & DMG_POISON) && fRandomFloat <= STATUS_POISON_CHANCE )
+		m_BliinkStats.AfflictStatus( BLIINK_STATUS_POISONED, 20.0f );
+	else
+	if( (info.GetDamageType() & DMG_PARALYZE) && fRandomFloat <= STATUS_SLOW_CHANCE )
+		m_BliinkStats.AfflictStatus( BLIINK_STATUS_SLOWED, 0.5f );
+
 	// fire global game event
 
 	IGameEvent * event = gameeventmanager->CreateEvent( "player_hurt" );
-
-	Msg("here yo %f\n", info.GetDamage() );
 
 	if ( event )
 	{
@@ -937,37 +954,77 @@ bool CBliinkPlayer::ClientCommand( const CCommand &args )
 			State_Transition( STATE_BLIINK_WELCOME );
 		}
 	}
-	// Inventory
-
-	// Upgrades
-	else if( FStrEq( pcmd, "bliink_upgrade_slots" ) )
+	
+	if( m_iPlayerState == STATE_BLIINK_SURVIVOR )
 	{
-		if( m_iPlayerState == STATE_BLIINK_SURVIVOR )
+		// Upgrades
+		if( FStrEq( pcmd, "bliink_upgrade_slots" ) )
 		{
 			m_BliinkStats.UseUpgrade( BLIINK_UPGRADE_WEAPON_SLOTS );
 		}
-	}
-	else if( FStrEq( pcmd, "bliink_upgrade_health" ) )
-	{
-		if( m_iPlayerState == STATE_BLIINK_SURVIVOR )
+		else if( FStrEq( pcmd, "bliink_upgrade_health" ) )
 		{
 			m_BliinkStats.UseUpgrade( BLIINK_UPGRADE_HEALTH );
 		}
-	}
-	else if( FStrEq( pcmd, "bliink_upgrade_fatigue" ) )
-	{
-		if( m_iPlayerState == STATE_BLIINK_SURVIVOR )
+		else if( FStrEq( pcmd, "bliink_upgrade_fatigue" ) )
 		{
 			m_BliinkStats.UseUpgrade( BLIINK_UPGRADE_STAMINA );
 		}
-	}
 
-	// Cheats
-	else if( FStrEq( pcmd, "bliink_debug_exp" ) )
-	{
-		if( m_iPlayerState == STATE_BLIINK_SURVIVOR )
+		// Cheats
+		else if( FStrEq( pcmd, "bliink_debug_exp" ) )
 		{
 			m_BliinkStats.GainExperience( 17 );
+		}
+		else if( FStrEq( pcmd, "bliink_debug_slow" ) )
+		{
+			m_BliinkStats.AfflictStatus( BLIINK_STATUS_SLOWED, 5.0f );
+		}
+		else if( FStrEq( pcmd, "bliink_debug_burn" ) )
+		{
+			m_BliinkStats.AfflictStatus( BLIINK_STATUS_BURNING, 5.0f );
+		}
+
+		// Inventory	
+		else if( FStrEq( pcmd, "bliink_inventory_move" ) )
+		{
+			int from = atoi( args.Arg(1) ); 
+			int to = atoi( args.Arg(2) );
+
+			m_Inventory.Command_Move(from, to);
+		}	
+		else if( FStrEq( pcmd, "bliink_inventory_craft" ) )
+		{
+			int from = atoi( args.Arg(1) ); 
+			int to = atoi( args.Arg(2) );
+
+			m_Inventory.Command_Craft(from, to);
+		}	
+		else if( FStrEq( pcmd, "bliink_inventory_drop") )
+		{
+			int from = atoi( args.Arg(1) ); 
+
+			m_Inventory.Command_Drop(from);
+		}	
+		else if( FStrEq( pcmd, "bliink_inventory_consume" ) )
+		{
+			int from = atoi( args.Arg(1) ); 
+
+			m_Inventory.Command_Consume(from);
+		}	
+		else if( FStrEq( pcmd, "bliink_inventory_delete" ) )
+		{
+			int from = atoi( args.Arg(1) ); 
+
+			m_Inventory.Command_Delete(from);
+		}	
+		else if( FStrEq( pcmd, "bliink_inventory_nextammo" ) )
+		{
+			m_Inventory.Command_SetNextAmmoType();
+		}
+		else if( FStrEq( pcmd, "bliink_inventory_print" ) )
+		{
+			m_Inventory.Debug_PrintInventory();
 		}
 	}
 
@@ -1612,7 +1669,8 @@ CWeaponSDKBase* CBliinkPlayer::Weapon_BliinkReplace(int slot, CWeaponSDKBase* pR
 
 	CBaseCombatWeapon* pWeapon = Weapon_BliinkRemove( slot );
 
-	Weapon_Equip( pReplacement );
+	if( pReplacement )
+		Weapon_Equip( pReplacement );
 
 	return pWeapon ? ToWeaponSDKBase( pWeapon ) : NULL;
 }
@@ -1623,7 +1681,15 @@ CWeaponSDKBase* CBliinkPlayer::Weapon_BliinkRemove(int slot)
 	CBaseCombatWeapon* pWeapon = Weapon_GetSlot(slot);
 
 	if( pWeapon )
-		Weapon_Detach( pWeapon );
+	{
+		// Dropping + detaching weapon
+		Weapon_Drop( pWeapon, NULL, NULL );
+	}
+
+	Msg("%d %d\n", GetActiveSDKWeapon(), pWeapon);
+
+	if( GetActiveWeapon() == pWeapon )
+		SetActiveWeapon( NULL );
 
 	return pWeapon ? ToWeaponSDKBase( pWeapon ) : NULL;
 }
@@ -1635,14 +1701,22 @@ void CBliinkPlayer::Weapon_BliinkSwitch(int slot1, int slot2)
 	CWeaponSDKBase* pWeapon2 = Weapon_BliinkRemove( slot2 );
 
 	if( pWeapon1 )
-
+	{
 		pWeapon1->SetSlot( slot2 );
+		Weapon_Equip( pWeapon1 );
+
+		if( GetActiveWeapon() == pWeapon1 )
+			SetActiveWeapon( pWeapon1 );
+	}
 
 	if( pWeapon2 )
+	{
 		pWeapon2->SetSlot( slot1 );
+		Weapon_Equip( pWeapon2 );
 
-	Weapon_Equip( pWeapon1 );
-	Weapon_Equip( pWeapon2 );
+		if( GetActiveWeapon() == pWeapon2 )
+			SetActiveWeapon( pWeapon2 );
+	}
 }
 
 // Checks if the player has the specified weapon.
@@ -1670,7 +1744,20 @@ void CBliinkPlayer::Think()
 	{
 		m_BliinkStats.Think();
 		m_BliinkStats.UpdateHealth();
+		m_Inventory.UpdateAmmoCounts();
 	}
 
 	SetNextThink(gpGlobals->frametime);
+}
+
+// Getting ammo in inventory
+int	CBliinkPlayer::GetAmmoCount( int iAmmoIndex ) const
+{
+	return m_Inventory.GetAmmoClipCount( iAmmoIndex );
+}
+
+// Using ammo in inventory
+void CBliinkPlayer::RemoveAmmo( int iCount, int iAmmoIndex )
+{
+	m_Inventory.UseAmmoClip( iAmmoIndex, iCount );
 }

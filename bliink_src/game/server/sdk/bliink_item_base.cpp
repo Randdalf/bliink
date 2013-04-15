@@ -2,6 +2,7 @@
 
 #include "bliink_item_base.h"
 #include "bliink_item_parse.h"
+#include "bliink_player.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -33,5 +34,23 @@ IBliinkItem* CreateItemByHandle(BLIINK_ITEM_INFO_HANDLE hHandle)
 		return new CBliinkItemMaterial( hHandle );
 	default:
 		return NULL;
+	}
+}
+
+void CBliinkItemConsumable::Consume( CBliinkPlayer* pConsumer )
+{
+	int iValue = GetItemData().m_iSubType;
+
+	switch( GetItemData().m_iSubType )
+	{
+	case ITEM_STYPE_CONSUMABLE_HEALTH:
+		pConsumer->GetBliinkPlayerStats().GainHealth( (float) iValue );
+		break;
+	case ITEM_STYPE_CONSUMABLE_FOOD:
+		pConsumer->GetBliinkPlayerStats().GainHunger( (float) iValue );
+		break;
+	case ITEM_STYPE_CONSUMABLE_BOOSTER:
+		pConsumer->GetBliinkPlayerStats().GainFatigue( (float) iValue );
+		break;
 	}
 }

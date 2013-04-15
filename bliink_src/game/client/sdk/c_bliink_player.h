@@ -169,6 +169,11 @@ public:
 
 	// defined in c_bliink_item_pickup.cpp
 	bool IsUseableEntity( CBaseEntity *pEntity, unsigned int requiredCaps );
+
+	// Ammo
+public:
+	virtual int GetAmmoCount( int iAmmoIndex ) const;
+	virtual void RemoveAmmo( int iCount, int iAmmoIndex ) {}
 };
 
 

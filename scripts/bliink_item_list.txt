@@ -11,6 +11,7 @@ BliinkItemList
 		"item_type"		"ITEM_TYPE_NONE"
 		"item_subtype"	"ITEM_STYPE_LOCKED"
 	}
+
 	// ADD NEW ITEMS BELOW THIS LINE
 	"test_item"
 	{
@@ -20,8 +21,7 @@ BliinkItemList
 		"item_subtype"	"ITEM_STYPE_EMPTY"
 
 		// behaviours
-		"can_stack"		"true"
-		"max_stack"		"4"
+		"can_stack"		"0"
 
 		// weapon-specific
 		"weapon_name"	"weapon_mp5"
@@ -40,8 +40,7 @@ BliinkItemList
 		"item_subtype"	"ITEM_STYPE_EMPTY"
 
 		// behaviours
-		"can_stack"		"true"
-		"max_stack"		"4"
+		"can_stack"		"0"
 
 		// weapon-specific
 		"weapon_name"	"weapon_pistol"
@@ -54,5 +53,188 @@ BliinkItemList
 	}
 	"test_item_3"
 	{
+	}
+
+	// NORMAL AMMO
+	"ammo_pistol_normal"
+	{
+		// key properties
+		"description"	"Normal ammo"
+		"item_type"		"ITEM_TYPE_AMMO"
+		"item_subtype"	"ITEM_STYPE_AMMO_NORMAL"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// ammo-specific
+		"ammo_name"		"pistol"
+		"ammo_clip"		"16"
+
+		// world model
+		"world_model"	"models/weapons/w_pist_deagle.mdl"
+	}
+	"ammo_revolver_normal"
+	{
+		// key properties
+		"description"	"Normal ammo"
+		"item_type"		"ITEM_TYPE_AMMO"
+		"item_subtype"	"ITEM_STYPE_AMMO_NORMAL"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"16"
+
+		// ammo-specific
+		"ammo_name"		"revolver"
+		"ammo_clip"		"16"
+
+		// world model
+		"world_model"	"models/gibs/metal_gib1.mdl"
+	}
+	"ammo_smg_normal"
+	{
+		// key properties
+		"description"	"Normal ammo"
+		"item_type"		"ITEM_TYPE_AMMO"
+		"item_subtype"	"ITEM_STYPE_AMMO_NORMAL"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"16"
+
+		// ammo-specific
+		"ammo_name"		"mp5"
+		"ammo_clip"		"16"
+
+		// world model
+		"world_model"	"models/gibs/metal_gib1.mdl"
+	}
+	"ammo_rifle_normal"
+	{
+		// key properties
+		"description"	"Normal ammo"
+		"item_type"		"ITEM_TYPE_AMMO"
+		"item_subtype"	"ITEM_STYPE_AMMO_NORMAL"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"16"
+
+		// ammo-specific
+		"ammo_name"		"rifle"
+		"ammo_clip"		"16"
+
+		// world model
+		"world_model"	"models/gibs/metal_gib1.mdl"
+	}
+	"ammo_shotgun_normal"
+	{
+		// key properties
+		"description"	"Normal ammo"
+		"item_type"		"ITEM_TYPE_AMMO"
+		"item_subtype"	"ITEM_STYPE_AMMO_NORMAL"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"16"
+
+		// ammo-specific
+		"ammo_name"		"shotgun"
+		"ammo_clip"		"16"
+
+		// world model
+		"world_model"	"models/gibs/metal_gib1.mdl"
+	}
+	"ammo_sniper_normal"
+	{
+		// key properties
+		"description"	"Normal ammo"
+		"item_type"		"ITEM_TYPE_AMMO"
+		"item_subtype"	"ITEM_STYPE_AMMO_NORMAL"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"16"
+
+		// ammo-specific
+		"ammo_name"		"sniper"
+		"ammo_clip"		"16"
+
+		// world model
+		"world_model"	"models/gibs/metal_gib1.mdl"
+	}
+
+	// POISON AMMO
+	"ammo_pistol_poison"
+	{
+		// key properties
+		"description"	"Poison ammo ammo"
+		"item_type"		"ITEM_TYPE_AMMO"
+		"item_subtype"	"ITEM_STYPE_AMMO_POISON"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"16"
+
+		// ammo-specific
+		"ammo_name"		"pistol"
+		"ammo_clip"		"16"
+
+		// world model
+		"world_model"	"models/gibs/metal_gib1.mdl"
+	}
+
+	// CONSUMABLE TEST
+	"consumable_aid"
+	{
+		// key properties
+		"description"	"Health restore"
+		"item_type"		"ITEM_TYPE_CONSUMABLE"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_HEALTH"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// consumable
+		"consume_value"	"20"
+
+		// world model
+		"world_model"	"models/weapons/w_pist_deagle.mdl"
+	}
+	"consumable_food"
+	{
+		// key properties
+		"description"	"Hunger restore"
+		"item_type"		"ITEM_TYPE_CONSUMABLE"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// consumable
+		"consume_value"	"20"
+
+		// world model
+		"world_model"	"models/weapons/w_smg_mp5.mdl"
+	}
+	"consumable_booster"
+	{
+		// key properties
+		"description"	"Hunger restore"
+		"item_type"		"ITEM_TYPE_CONSUMABLE"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// consumable
+		"consume_value"	"50"
+
+		// world model
+		"world_model"	"models/weapons/w_smg_mp5.mdl"
 	}
 }

@@ -33,6 +33,17 @@
 	  "enabled" "1"
 	}
 
+	BliinkHudAmmo
+	{
+	  "fieldName" "BliinkHudAmmo"
+	  "xpos" "r96"
+	  "ypos" "r54"
+	  "wide" "128"
+	  "tall" "64"
+	  "visible" "1"
+	  "enabled" "1"
+	}
+
 	HudHealth
 	{
 		"fieldName"		"HudHealth"

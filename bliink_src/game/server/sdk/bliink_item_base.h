@@ -63,6 +63,12 @@ public:
 		m_hLinkedWeapon = NULL;
 	}
 
+	~CBliinkItemWeapon()
+	{
+		if( m_hLinkedWeapon )
+			UTIL_Remove( m_hLinkedWeapon );
+	}
+
 	bool				IsWeapon() { return true; }
 	bool				IsStackable() { return false; } 
 
@@ -86,7 +92,37 @@ class CBliinkItemAmmo : public IBliinkItem
 public:
 	CBliinkItemAmmo(BLIINK_ITEM_INFO_HANDLE hItemHandle) : IBliinkItem( hItemHandle )
 	{
+		CBliinkItemInfo* pItemInfo = GetItemInfo( hItemHandle );
+
+		m_iMaxAmmo = pItemInfo->m_iAmmoClip;
+		m_iAmmo = m_iMaxAmmo;
 	}
+
+	bool IsAmmo() { return true; }
+
+	// Return the ammo, for this active weapon. Set the clip size if we
+	// haven't set it before.
+	int GetAmmo( )
+	{
+		return m_iAmmo;
+	}
+
+	// Used when dropping stacks of ammo, resets this ammo count to full.
+	void ResetAmmo()
+	{
+		m_iAmmo = m_iMaxAmmo;
+	}
+
+	// Sets our ammo.
+	void SetAmmo( int iAmmoAmount )
+	{
+		m_iAmmo = iAmmoAmount;
+	}
+
+
+private:
+	int		m_iAmmo;
+	int		m_iMaxAmmo;
 };
 
 //-----------------------------------------------------------------------------
@@ -98,6 +134,10 @@ public:
 	CBliinkItemConsumable(BLIINK_ITEM_INFO_HANDLE hItemHandle) : IBliinkItem( hItemHandle )
 	{
 	}
+
+	virtual bool	IsConsumable() { return true; }
+
+	void Consume( CBliinkPlayer* pConsumer );
 };
 
 //-----------------------------------------------------------------------------

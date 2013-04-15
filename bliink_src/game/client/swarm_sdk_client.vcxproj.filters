@@ -1766,9 +1766,6 @@
     <ClCompile Include="sdk\sdk_fx_weaponfx.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
-    <ClCompile Include="sdk\sdk_hud_ammo.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
     <ClCompile Include="sdk\sdk_hud_chat.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
@@ -1950,6 +1947,9 @@
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
     <ClCompile Include="bliink_hud_upgrade_notice.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\bliink_hud_ammo.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
   </ItemGroup>

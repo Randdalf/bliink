@@ -47,11 +47,21 @@ stringEnum_t g_typeStrings[ITEM_TYPE_COUNT] =
 //-----------------------------------------------------------------------------
 // Item sub-types.
 //-----------------------------------------------------------------------------
-#define ITEM_STYPE_COUNT 1
+#define ITEM_STYPE_COUNT 11
 
 stringEnum_t g_subTypeStrings[ITEM_STYPE_COUNT] =
 {
 	{"ITEM_STYPE_EMPTY", ITEM_STYPE_EMPTY},
+	{"ITEM_STYPE_LOCKED", ITEM_STYPE_LOCKED},
+	{"ITEM_STYPE_AMMO_NORMAL", ITEM_STYPE_AMMO_NORMAL},
+	{"ITEM_STYPE_AMMO_POISON", ITEM_STYPE_AMMO_POISON},
+	{"ITEM_STYPE_AMMO_FOGGED", ITEM_STYPE_AMMO_FOGGED},
+	{"ITEM_STYPE_AMMO_FIRE", ITEM_STYPE_AMMO_FIRE},
+	{"ITEM_STYPE_AMMO_SLOW", ITEM_STYPE_AMMO_SLOW},
+	{"ITEM_STYPE_CONSUMABLES_BEGIN", ITEM_STYPE_CONSUMABLES_BEGIN},
+	{"ITEM_STYPE_CONSUMABLE_HEALTH", ITEM_STYPE_CONSUMABLE_HEALTH},
+	{"ITEM_STYPE_CONSUMABLE_FOOD", ITEM_STYPE_CONSUMABLE_FOOD},
+	{"ITEM_STYPE_CONSUMABLE_BOOSTER", ITEM_STYPE_CONSUMABLE_BOOSTER}
 };
 
 //-----------------------------------------------------------------------------
@@ -81,6 +91,10 @@ CBliinkItemInfo::CBliinkItemInfo()
 
 	// Ammo-specific.
 	szAmmoType[0] = 0;
+	m_iAmmoClip = 0;
+
+	// Consumable-specific.
+	m_iConsumeValue = 0;
 
 	// World model.
 	szWorldModel[0] = 0;
@@ -99,13 +113,17 @@ void CBliinkItemInfo::Parse( KeyValues *pKeyValuesData, const char *szItemName )
 
 	// Item behaviors.
 	m_bCanStack = pKeyValuesData->GetBool( "can_stack", false );
-	m_iMaxStack =  pKeyValuesData->GetInt( "max_stack", false );
+	m_iMaxStack =  pKeyValuesData->GetInt( "max_stack", 1 );
 
 	// Weapon-specific.
 	Q_strncpy( szWeaponClassName, pKeyValuesData->GetString( "weapon_name", "none"), MAX_WEAPON_STRING );
 
 	// Ammo-specific
-	Q_strncpy( szAmmoType, pKeyValuesData->GetString( "ammo_type", "none"), MAX_WEAPON_STRING );
+	Q_strncpy( szAmmoType, pKeyValuesData->GetString( "ammo_name", "none"), MAX_WEAPON_STRING );
+	m_iAmmoClip =  pKeyValuesData->GetInt( "ammo_clip", 0 );
+
+	// Consumable-specific
+	m_iConsumeValue =  pKeyValuesData->GetInt( "consume_value", 0 );
 
 	// Ammo-specific
 	Q_strncpy( szWorldModel, pKeyValuesData->GetString( "world_model", "models/weapons/w_smg_mp5.mdl"), 128 );

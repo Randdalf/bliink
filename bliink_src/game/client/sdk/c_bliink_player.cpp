@@ -123,6 +123,8 @@ END_RECV_TABLE()
 BEGIN_NETWORK_TABLE_NOBASE( CBliinkItemInventory, DT_BliinkItemInventory )
 		RecvPropArray3( RECVINFO_ARRAY( m_iItemTypes ), RecvPropInt( RECVINFO( m_iItemTypes[0] ) ) ),
 		RecvPropArray3( RECVINFO_ARRAY( m_iStackCounts ), RecvPropInt( RECVINFO( m_iStackCounts[0] ) ) ),
+		RecvPropArray3( RECVINFO_ARRAY( m_iAmmoSlots ), RecvPropInt( RECVINFO( m_iAmmoSlots[0] ) ) ),
+		RecvPropArray3( RECVINFO_ARRAY( m_iAmmoCounts ), RecvPropInt( RECVINFO( m_iAmmoCounts[0] ) ) ),
 END_NETWORK_TABLE()
 
 // Stats table
@@ -137,6 +139,8 @@ BEGIN_NETWORK_TABLE_NOBASE( CBliinkPlayerStats, DT_BliinkPlayerStats )
 	RecvPropInt( RECVINFO(m_iLevel) ),
 	RecvPropInt( RECVINFO(m_iUpgradePoints) ),
 	RecvPropInt( RECVINFO(m_iMaxExperience) ),
+	RecvPropInt( RECVINFO(m_iStatusEffect) ),
+	RecvPropFloat( RECVINFO(m_fStatusEndTime) ),
 END_NETWORK_TABLE()
 
 // main table
@@ -1033,4 +1037,10 @@ CBliinkItemInventory &C_BliinkPlayer::GetBliinkInventory( void )
 CBliinkPlayerStats &C_BliinkPlayer::GetBliinkPlayerStats( void )
 {
 	return m_BliinkStats;
+}
+
+// Getting ammo in inventory
+int	C_BliinkPlayer::GetAmmoCount( int iAmmoIndex ) const
+{
+	return m_Inventory.GetAmmoClipCount( iAmmoIndex );
 }

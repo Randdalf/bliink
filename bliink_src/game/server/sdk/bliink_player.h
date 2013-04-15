@@ -263,6 +263,11 @@ private:
 
 public:
 	CBliinkPlayerStats &GetBliinkPlayerStats( void );
+
+	// Ammo
+public:
+	int		GetAmmoCount( int iAmmoIndex ) const;
+	void	RemoveAmmo( int iCount, int iAmmoIndex );
 };
 
 

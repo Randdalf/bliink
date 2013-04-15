@@ -971,11 +971,11 @@ CAmmoDef* GetAmmoDef()
 			if (i == SDK_WEAPON_GRENADE || i == SDK_WEAPON_CROWBAR || i == SDK_WEAPON_SHOTGUN)
 				continue;
 
-			def.AddAmmoType( WeaponIDToAlias(i), DMG_BULLET, TRACER_LINE_AND_WHIZ, 0, 0, 200/*MAX carry*/, 1, 0 );
+			def.AddAmmoType( WeaponIDToAlias(i), DMG_BULLET, TRACER_LINE_AND_WHIZ, 0, 0, 40/*MAX carry*/, 1, 0 );
 		}
 
 		// def.AddAmmoType( BULLET_PLAYER_50AE,		DMG_BULLET, TRACER_LINE, 0, 0, "ammo_50AE_max",		2400, 0, 10, 14 );
-		def.AddAmmoType( "shotgun", DMG_BUCKSHOT, TRACER_NONE, 0, 0,	200/*MAX carry*/, 1, 0 );
+		def.AddAmmoType( "shotgun", DMG_BUCKSHOT, TRACER_NONE, 0, 0,	12/*MAX carry*/, 1, 0 );
 		def.AddAmmoType( "grenades", DMG_BLAST, TRACER_NONE, 0, 0,	4/*MAX carry*/, 1, 0 );
 	}
 
