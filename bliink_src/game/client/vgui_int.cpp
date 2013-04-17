@@ -22,6 +22,7 @@
 #include <vgui_controls/Panel.h>
 #include <KeyValues.h>
 #include "FileSystem.h"
+#include "blink_panel.h"
 #include "matsys_controls/matsyscontrols.h"
 
 using namespace vgui;
@@ -430,6 +431,11 @@ bool VGui_Startup( CreateInterfaceFn appSystemFactory )
 //-----------------------------------------------------------------------------
 void VGui_CreateGlobalPanels( void )
 {
+	VPANEL gameParent = enginevgui->GetPanel( PANEL_INGAMESCREENS );
+	blinkpanel->Create(gameParent);
+
+
+
 	VPANEL gameToolParent = enginevgui->GetPanel( PANEL_CLIENTDLL_TOOLS );
 	VPANEL toolParent = enginevgui->GetPanel( PANEL_TOOLS );
 #if defined( TRACK_BLOCKING_IO )
@@ -464,7 +470,7 @@ void VGui_Shutdown()
 #ifndef _X360
 	MP3Player_Destroy();
 #endif
-
+	blinkpanel->Destroy();
 	netgraphpanel->Destroy();
 	debugoverlaypanel->Destroy();
 #if defined( TRACK_BLOCKING_IO )

@@ -105,6 +105,7 @@ bool IsDemoPolishRecording();
 
 	BEGIN_RECV_TABLE_NOBASE(CPlayerState, DT_PlayerState)
 		RecvPropInt		(RECVINFO(deadflag)),
+		RecvPropInt		(RECVINFO(blinkflag)),
 	END_RECV_TABLE()
 
 
@@ -273,6 +274,7 @@ END_RECV_TABLE()
 BEGIN_PREDICTION_DATA_NO_BASE( CPlayerState )
 
 	DEFINE_PRED_FIELD(  deadflag, FIELD_BOOLEAN, FTYPEDESC_INSENDTABLE ),
+	DEFINE_PRED_FIELD(  blinkflag, FIELD_BOOLEAN, FTYPEDESC_INSENDTABLE ),
 	// DEFINE_FIELD( netname, string_t ),
 	// DEFINE_FIELD( fixangle, FIELD_INTEGER ),
 	// DEFINE_FIELD( anglechange, FIELD_FLOAT ),
@@ -1078,6 +1080,18 @@ void C_BasePlayer::DetermineVguiInputMode( CUserCmd *pCmd )
 		// Kill all attack inputs if we're in vgui screen mode
 		pCmd->buttons &= ~(IN_ATTACK | IN_ATTACK2);
 	}
+}
+
+void C_BasePlayer::BlinkNotice( C_BasePlayer *pBlinker) {
+
+	IGameEvent * event = gameeventmanager->CreateEvent( "player_blink" );
+
+	if (event) {
+		Msg("User ID - %d\n",pBlinker->GetUserID());
+		event->SetInt("userid",pBlinker->GetUserID());
+		gameeventmanager->FireEvent(event);
+	}
+	
 }
 
 //-----------------------------------------------------------------------------

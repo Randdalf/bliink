@@ -222,7 +222,7 @@ BEGIN_SIMPLE_DATADESC( CPlayerState )
 	// DEFINE_FIELD( netname, FIELD_STRING ),  // Don't stomp player name with what's in save/restore
 	DEFINE_FIELD( v_angle, FIELD_VECTOR ),
 	DEFINE_FIELD( deadflag, FIELD_BOOLEAN ),
-
+	DEFINE_FIELD( blinkflag, FIELD_BOOLEAN ),
 	// this is always set to true on restore, don't bother saving it.
 	// DEFINE_FIELD( fixangle, FIELD_INTEGER ),
 	// DEFINE_FIELD( anglechange, FIELD_FLOAT ),
@@ -7909,6 +7909,7 @@ REGISTER_SEND_PROXY_NON_MODIFIED_POINTER( SendProxy_SendNonLocalDataTable );
 
 	BEGIN_SEND_TABLE_NOBASE(CPlayerState, DT_PlayerState)
 		SendPropInt		(SENDINFO(deadflag),	1, SPROP_UNSIGNED ),
+		SendPropInt		(SENDINFO(blinkflag),	1, SPROP_UNSIGNED ),
 	END_SEND_TABLE()
 
 // -------------------------------------------------------------------------------- //

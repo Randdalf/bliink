@@ -197,6 +197,7 @@ void CMapOverview::Init( void )
 	ListenForGameEvent( "player_team" );
 	ListenForGameEvent( "player_spawn" );
 	ListenForGameEvent( "player_death" );
+	ListenForGameEvent( "player_blink" );
 	ListenForGameEvent( "player_disconnect" );
 }
 
@@ -1009,7 +1010,7 @@ void CMapOverview::FireGameEvent( IGameEvent *event )
 
 		if ( !player )
 			return;
-
+		Msg("SPAWNED!!");
 		player->health = 100;
 		Q_memset( player->trail, 0, sizeof(player->trail) ); // clear trails
 	}
@@ -1023,6 +1024,19 @@ void CMapOverview::FireGameEvent( IGameEvent *event )
 
 		Q_memset( player, 0, sizeof(MapPlayer_t) ); // clear player field
 	}
+	else if ( Q_strcmp(type,"player_blink") == 0 ) //Every blink lowers your health by 1
+	{
+		MapPlayer_t *player = GetPlayerByUserID( event->GetInt("userid") );
+	
+		if ( !player )
+			return;
+
+		player->health--;
+
+		Q_memset( player->trail, 0, sizeof(player->trail) ); // clear player field
+	}
+
+
 }
 
 void CMapOverview::SetMode(int mode)

@@ -1952,6 +1952,8 @@
     <ClCompile Include="sdk\bliink_hud_ammo.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
+    <ClCompile Include="opencv_interface.cpp" />
+    <ClCompile Include="blink_panel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="achievement_notification_panel.h">
@@ -4180,6 +4182,8 @@
     <ClInclude Include="..\shared\sdk\bliink_player_stats.h">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClInclude>
+    <ClInclude Include="opencv_interface.h" />
+    <ClInclude Include="blink_panel.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\lib\public\bitmap.lib">
