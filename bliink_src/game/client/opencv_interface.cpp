@@ -42,9 +42,10 @@ cvSaveImage("opencvtest.jpg" ,pSaveImg);*/
 	cap = new cv::VideoCapture( 0 );
 				TrackerSetup();
 				  cascade = (CvHaarClassifierCascade*)cvLoad( "haarcascade_frontalface_alt.xml" );
+				  engine->ClientCmd( "BlinkPanelOff\n" );
 				  blink = false;
 				  seeface = false;
-				  engine->ClientCmd( "BlinkPanelOff\n" );
+				  
 				  loop = true;
 
 			//	 face_cascade.load("haarcascade_frontalface_alt.xml");
