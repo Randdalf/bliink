@@ -23,6 +23,7 @@
 #include "bliink_player_stats.h"
 #include "basecombatweapon_shared.h"
 #include "weapon_sdkbase.h"
+#include "engine/ienginesound.h"
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 

@@ -2,7 +2,11 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "5032"
+<<<<<<< HEAD
 	"mapversion" "119"
+=======
+	"mapversion" "118"
+>>>>>>> Added new map for testing
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +24,11 @@ viewsettings
 world
 {
 	"id" "1"
+<<<<<<< HEAD
 	"mapversion" "119"
+=======
+	"mapversion" "127"
+>>>>>>> Added new map for testing
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -12370,10 +12378,17 @@ world
 	}
 	solid
 	{
+<<<<<<< HEAD
 		"id" "5044"
 		side
 		{
 			"id" "6393"
+=======
+		"id" "5555"
+		side
+		{
+			"id" "6321"
+>>>>>>> Added new map for testing
 			"plane" "(-16376 16376 16376) (16376 16376 16376) (16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12384,7 +12399,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6392"
+=======
+			"id" "6320"
+>>>>>>> Added new map for testing
 			"plane" "(-16376 16376 16376) (-16376 -16376 16376) (-16376 -16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12395,7 +12414,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6391"
+=======
+			"id" "6319"
+>>>>>>> Added new map for testing
 			"plane" "(16376 16376 -16376) (16376 -16376 -16376) (16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12406,7 +12429,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6390"
+=======
+			"id" "6318"
+>>>>>>> Added new map for testing
 			"plane" "(16376 16376 16376) (-16376 16376 16376) (-16376 16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12417,7 +12444,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6389"
+=======
+			"id" "6317"
+>>>>>>> Added new map for testing
 			"plane" "(16376 -16376 -16376) (-16376 -16376 -16376) (-16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12428,7 +12459,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6388"
+=======
+			"id" "6316"
+>>>>>>> Added new map for testing
 			"plane" "(3472 -3088 1844) (3472 4912 1844) (-3296 4912 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12439,7 +12474,11 @@ world
 		}
 		editor
 		{
+<<<<<<< HEAD
 			"color" "0 248 105"
+=======
+			"color" "0 206 219"
+>>>>>>> Added new map for testing
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12447,10 +12486,17 @@ world
 	}
 	solid
 	{
+<<<<<<< HEAD
 		"id" "5046"
 		side
 		{
 			"id" "6399"
+=======
+		"id" "5557"
+		side
+		{
+			"id" "6327"
+>>>>>>> Added new map for testing
 			"plane" "(-16376 -16376 -16376) (16376 -16376 -16376) (16376 16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12461,7 +12507,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6398"
+=======
+			"id" "6326"
+>>>>>>> Added new map for testing
 			"plane" "(-16376 16376 16376) (-16376 -16376 16376) (-16376 -16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12472,7 +12522,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6397"
+=======
+			"id" "6325"
+>>>>>>> Added new map for testing
 			"plane" "(16376 16376 -16376) (16376 -16376 -16376) (16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12483,7 +12537,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6396"
+=======
+			"id" "6324"
+>>>>>>> Added new map for testing
 			"plane" "(16376 16376 16376) (-16376 16376 16376) (-16376 16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12494,7 +12552,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6395"
+=======
+			"id" "6323"
+>>>>>>> Added new map for testing
 			"plane" "(16376 -16376 -16376) (-16376 -16376 -16376) (-16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12505,7 +12567,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6394"
+=======
+			"id" "6322"
+>>>>>>> Added new map for testing
 			"plane" "(3472 4912 -604) (3472 -3088 -604) (-3296 -3088 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12516,7 +12582,11 @@ world
 		}
 		editor
 		{
+<<<<<<< HEAD
 			"color" "0 248 105"
+=======
+			"color" "0 206 219"
+>>>>>>> Added new map for testing
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12524,10 +12594,17 @@ world
 	}
 	solid
 	{
+<<<<<<< HEAD
 		"id" "5048"
 		side
 		{
 			"id" "6405"
+=======
+		"id" "5559"
+		side
+		{
+			"id" "6333"
+>>>>>>> Added new map for testing
 			"plane" "(-16376 16376 16376) (-16376 -16376 16376) (-16376 -16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12538,7 +12615,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6404"
+=======
+			"id" "6332"
+>>>>>>> Added new map for testing
 			"plane" "(16376 16376 16376) (-16376 16376 16376) (-16376 16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12549,7 +12630,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6403"
+=======
+			"id" "6331"
+>>>>>>> Added new map for testing
 			"plane" "(16376 -16376 -16376) (-16376 -16376 -16376) (-16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12560,7 +12645,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6402"
+=======
+			"id" "6330"
+>>>>>>> Added new map for testing
 			"plane" "(-3296 4912 1844) (3472 4912 1844) (3472 -3088 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12571,7 +12660,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6401"
+=======
+			"id" "6329"
+>>>>>>> Added new map for testing
 			"plane" "(-3296 -3088 -604) (3472 -3088 -604) (3472 4912 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12582,7 +12675,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6400"
+=======
+			"id" "6328"
+>>>>>>> Added new map for testing
 			"plane" "(-3296 -3088 -604) (-3296 -3088 1844) (-3296 4912 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12593,7 +12690,11 @@ world
 		}
 		editor
 		{
+<<<<<<< HEAD
 			"color" "0 248 105"
+=======
+			"color" "0 206 219"
+>>>>>>> Added new map for testing
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12601,10 +12702,17 @@ world
 	}
 	solid
 	{
+<<<<<<< HEAD
 		"id" "5050"
 		side
 		{
 			"id" "6411"
+=======
+		"id" "5561"
+		side
+		{
+			"id" "6339"
+>>>>>>> Added new map for testing
 			"plane" "(16376 16376 -16376) (16376 -16376 -16376) (16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12615,7 +12723,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6410"
+=======
+			"id" "6338"
+>>>>>>> Added new map for testing
 			"plane" "(16376 16376 16376) (-16376 16376 16376) (-16376 16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12626,7 +12738,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6409"
+=======
+			"id" "6337"
+>>>>>>> Added new map for testing
 			"plane" "(16376 -16376 -16376) (-16376 -16376 -16376) (-16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12637,7 +12753,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6408"
+=======
+			"id" "6336"
+>>>>>>> Added new map for testing
 			"plane" "(-3296 4912 1844) (3472 4912 1844) (3472 -3088 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12648,7 +12768,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6407"
+=======
+			"id" "6335"
+>>>>>>> Added new map for testing
 			"plane" "(-3296 -3088 -604) (3472 -3088 -604) (3472 4912 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12659,7 +12783,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6406"
+=======
+			"id" "6334"
+>>>>>>> Added new map for testing
 			"plane" "(3472 -3088 1844) (3472 -3088 -604) (3472 4912 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12670,7 +12798,11 @@ world
 		}
 		editor
 		{
+<<<<<<< HEAD
 			"color" "0 248 105"
+=======
+			"color" "0 206 219"
+>>>>>>> Added new map for testing
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12678,10 +12810,17 @@ world
 	}
 	solid
 	{
+<<<<<<< HEAD
 		"id" "5052"
 		side
 		{
 			"id" "6417"
+=======
+		"id" "5563"
+		side
+		{
+			"id" "6345"
+>>>>>>> Added new map for testing
 			"plane" "(16376 16376 16376) (-16376 16376 16376) (-16376 16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12692,7 +12831,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6416"
+=======
+			"id" "6344"
+>>>>>>> Added new map for testing
 			"plane" "(-3296 4912 1844) (3472 4912 1844) (3472 -3088 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12703,7 +12846,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6415"
+=======
+			"id" "6343"
+>>>>>>> Added new map for testing
 			"plane" "(-3296 -3088 -604) (3472 -3088 -604) (3472 4912 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12714,7 +12861,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6414"
+=======
+			"id" "6342"
+>>>>>>> Added new map for testing
 			"plane" "(-3296 4912 1844) (-3296 -3088 1844) (-3296 -3088 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12725,7 +12876,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6413"
+=======
+			"id" "6341"
+>>>>>>> Added new map for testing
 			"plane" "(3472 4912 -604) (3472 -3088 -604) (3472 -3088 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12736,7 +12891,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6412"
+=======
+			"id" "6340"
+>>>>>>> Added new map for testing
 			"plane" "(-3296 4912 -604) (-3296 4912 1844) (3472 4912 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12747,7 +12906,11 @@ world
 		}
 		editor
 		{
+<<<<<<< HEAD
 			"color" "0 248 105"
+=======
+			"color" "0 206 219"
+>>>>>>> Added new map for testing
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12755,10 +12918,17 @@ world
 	}
 	solid
 	{
+<<<<<<< HEAD
 		"id" "5054"
 		side
 		{
 			"id" "6423"
+=======
+		"id" "5565"
+		side
+		{
+			"id" "6351"
+>>>>>>> Added new map for testing
 			"plane" "(16376 -16376 -16376) (-16376 -16376 -16376) (-16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12769,7 +12939,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6422"
+=======
+			"id" "6350"
+>>>>>>> Added new map for testing
 			"plane" "(-3296 4912 1844) (3472 4912 1844) (3472 -3088 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12780,7 +12954,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6421"
+=======
+			"id" "6349"
+>>>>>>> Added new map for testing
 			"plane" "(-3296 -3088 -604) (3472 -3088 -604) (3472 4912 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12791,7 +12969,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6420"
+=======
+			"id" "6348"
+>>>>>>> Added new map for testing
 			"plane" "(-3296 4912 1844) (-3296 -3088 1844) (-3296 -3088 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12802,7 +12984,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6419"
+=======
+			"id" "6347"
+>>>>>>> Added new map for testing
 			"plane" "(3472 4912 -604) (3472 -3088 -604) (3472 -3088 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12813,7 +12999,11 @@ world
 		}
 		side
 		{
+<<<<<<< HEAD
 			"id" "6418"
+=======
+			"id" "6346"
+>>>>>>> Added new map for testing
 			"plane" "(-3296 -3088 1844) (-3296 -3088 -604) (3472 -3088 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12824,7 +13014,11 @@ world
 		}
 		editor
 		{
+<<<<<<< HEAD
 			"color" "0 248 105"
+=======
+			"color" "0 206 219"
+>>>>>>> Added new map for testing
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -27766,12 +27960,12 @@ entity
 {
 	"id" "1422"
 	"classname" "bliink_cage_opener"
-	"origin" "-84 369 595"
 	connections
 	{
 		"OnOpenCages" "lr_open_cagesTrigger5-1"
 		"OnOpenCages" "item_spawnerBeginSpawning0-1"
 	}
+	"origin" "-84 369 595"
 	editor
 	{
 		"color" "220 30 220"
@@ -33164,6 +33358,7 @@ entity
 }
 entity
 {
+<<<<<<< HEAD
 	"id" "4983"
 	"classname" "ambient_generic"
 	"health" "10"
@@ -33174,6 +33369,13 @@ entity
 	"spawnflags" "0"
 	"targetname" "sound"
 	"origin" "-78.4435 -27.228 465"
+=======
+	"id" "4982"
+	"classname" "ai_addon_builder"
+	"AddonPoints" "10"
+	"NpcPoints" "10"
+	"origin" "-56 -160 0"
+>>>>>>> Added new map for testing
 	editor
 	{
 		"color" "220 30 220"
@@ -33182,6 +33384,7 @@ entity
 		"logicalpos" "[0 0]"
 	}
 }
+<<<<<<< HEAD
 entity
 {
 	"id" "4986"
@@ -33200,13 +33403,20 @@ entity
 		"logicalpos" "[0 500]"
 	}
 }
+=======
+>>>>>>> Added new map for testing
 cameras
 {
 	"activecamera" "0"
 	camera
 	{
+<<<<<<< HEAD
 		"position" "[-136.134 -80.2777 556.128]"
 		"look" "[4790.48 1435.6 -3830.74]"
+=======
+		"position" "[24.2253 305.35 804.375]"
+		"look" "[-1177.55 -4480.17 -3829.05]"
+>>>>>>> Added new map for testing
 	}
 }
 cordons

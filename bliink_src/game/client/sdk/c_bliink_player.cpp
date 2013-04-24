@@ -32,7 +32,7 @@ ConVar cl_ragdoll_physics_enable( "cl_ragdoll_physics_enable", "1", 0, "Enable/d
 	#undef CBliinkPlayer
 #endif
 
-
+int theme_playing = 0;
 
 
 // -------------------------------------------------------------------------------- //
