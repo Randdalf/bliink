@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "5032"
-	"mapversion" "117"
+	"mapversion" "118"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "117"
+	"mapversion" "118"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -12370,7 +12370,7 @@ world
 	}
 	solid
 	{
-		"id" "4819"
+		"id" "5007"
 		side
 		{
 			"id" "6321"
@@ -12439,7 +12439,7 @@ world
 		}
 		editor
 		{
-			"color" "0 143 112"
+			"color" "0 176 101"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12447,7 +12447,7 @@ world
 	}
 	solid
 	{
-		"id" "4821"
+		"id" "5009"
 		side
 		{
 			"id" "6327"
@@ -12516,7 +12516,7 @@ world
 		}
 		editor
 		{
-			"color" "0 143 112"
+			"color" "0 176 101"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12524,7 +12524,7 @@ world
 	}
 	solid
 	{
-		"id" "4823"
+		"id" "5011"
 		side
 		{
 			"id" "6333"
@@ -12593,7 +12593,7 @@ world
 		}
 		editor
 		{
-			"color" "0 143 112"
+			"color" "0 176 101"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12601,7 +12601,7 @@ world
 	}
 	solid
 	{
-		"id" "4825"
+		"id" "5013"
 		side
 		{
 			"id" "6339"
@@ -12670,7 +12670,7 @@ world
 		}
 		editor
 		{
-			"color" "0 143 112"
+			"color" "0 176 101"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12678,7 +12678,7 @@ world
 	}
 	solid
 	{
-		"id" "4827"
+		"id" "5015"
 		side
 		{
 			"id" "6345"
@@ -12747,7 +12747,7 @@ world
 		}
 		editor
 		{
-			"color" "0 143 112"
+			"color" "0 176 101"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12755,7 +12755,7 @@ world
 	}
 	solid
 	{
-		"id" "4829"
+		"id" "5017"
 		side
 		{
 			"id" "6351"
@@ -12824,7 +12824,7 @@ world
 		}
 		editor
 		{
-			"color" "0 143 112"
+			"color" "0 176 101"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -33162,13 +33162,51 @@ entity
 		"logicalpos" "[0 0]"
 	}
 }
+entity
+{
+	"id" "4983"
+	"classname" "ambient_generic"
+	"health" "10"
+	"message" "ui/gamestartup1.wav"
+	"pitch" "100"
+	"pitchstart" "100"
+	"radius" "1250"
+	"spawnflags" "48"
+	"targetname" "sound"
+	"origin" "-78.4435 -27.228 465"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
+entity
+{
+	"id" "4986"
+	"classname" "logic_auto"
+	"spawnflags" "1"
+	connections
+	{
+		"OnMapSpawn" "soundPlaySound0-1"
+	}
+	"origin" "-47.5135 -61.4605 465"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 500]"
+	}
+}
 cameras
 {
 	"activecamera" "0"
 	camera
 	{
-		"position" "[-807.61 -722.14 960.727]"
-		"look" "[-1285.84 -3520.68 -5183.66]"
+		"position" "[-136.134 -80.2777 556.128]"
+		"look" "[4790.48 1435.6 -3830.74]"
 	}
 }
 cordons
