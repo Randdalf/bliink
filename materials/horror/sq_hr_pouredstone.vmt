@@ -1,0 +1,6 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "horror/sq_hr_pouredstone"
+	"$normalmap" "horror/sq_hr_pouredstone_normal"
+	"$translucent" 1
+}

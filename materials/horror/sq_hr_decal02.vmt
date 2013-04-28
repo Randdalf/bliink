@@ -1,0 +1,6 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "sq_textures\horror\sq_hr_decal02"
+	"$translucent" 1
+	"$decalscale" 0.25
+}
