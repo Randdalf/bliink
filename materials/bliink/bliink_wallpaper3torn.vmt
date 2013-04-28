@@ -1,4 +1,5 @@
 "LightmappedGeneric"
 {
 	"$basetexture" "bliink/bliink_wallpaper3torn"
+	"$surfaceprop" "metalpanel"
 }

@@ -2,4 +2,5 @@
 {
 	"$basetexture" "bliink/bliink_metalpillar"
 	"$normalmap" "Users/Dan/Downloads/_28-/VBD Pack 2 Remnont/VBD/Pack 2 Remnont/remn_pillar_e_normal"
+	"$surfaceprop" "solidmetal"
 }

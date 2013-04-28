@@ -1,4 +1,5 @@
 "LightmappedGeneric"
 {
 	"$basetexture" "bliink/bliink_tarmac2"
+	"$surfaceprop" "concrete"
 }

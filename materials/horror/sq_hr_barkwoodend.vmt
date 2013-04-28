@@ -2,5 +2,5 @@
 {
 	"$basetexture" "horror/sq_hr_barkwoodend"
 	"$normalmap" "horror/sq_hr_barkwoodend_normal"
-	"$translucent" 1
+	"$surfaceprop" "Wood"
 }

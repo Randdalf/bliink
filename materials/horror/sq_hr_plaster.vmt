@@ -2,5 +2,5 @@
 {
 	"$basetexture" "horror/sq_hr_plaster"
 	"$normalmap" "horror/sq_hr_plaster_normal"
-	"$translucent" 1
+	"$surfaceprop" "plaster"
 }

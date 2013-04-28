@@ -1,5 +1,5 @@
 "LightmappedGeneric"
 {
 	"$basetexture" "bliink/bliink_brick2dirty"
-	"$translucent" 1
+	"$surfaceprop" "brick"
 }

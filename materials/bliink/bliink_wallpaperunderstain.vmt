@@ -1,5 +1,5 @@
 "LightmappedGeneric"
 {
 	"$basetexture" "bliink/bliink_wallpaperunderstain"
-	"$translucent" 1
+	"$surfaceprop" "metalpanel"
 }
