@@ -1877,9 +1877,6 @@
     <ClCompile Include="swarm\vgui\asw_vgui_music_importer.cpp">
       <Filter>Source Files\Swarm\GameUI - Embedded</Filter>
     </ClCompile>
-    <ClCompile Include="swarm\c_asw_lesson.cpp">
-      <Filter>Source Files\Swarm</Filter>
-    </ClCompile>
     <ClCompile Include="hud_crosshair.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
@@ -1956,6 +1953,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="opencv_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="swarm\c_asw_lesson.cpp">
+      <Filter>Source Files\Swarm\GameUI - Embedded</Filter>
+    </ClCompile>
+    <ClCompile Include="noface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -4190,6 +4193,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="opencv_interface.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="noface.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

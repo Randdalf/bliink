@@ -40,9 +40,11 @@ IplImage *pSaveImg = cvQueryFrame(pCapturedImage);
 // Save the frame into a file
 cvSaveImage("opencvtest.jpg" ,pSaveImg);*/
 	cap = new cv::VideoCapture( 0 );
+	hascam = true;
 				TrackerSetup();
 				  cascade = (CvHaarClassifierCascade*)cvLoad( "haarcascade_frontalface_alt.xml" );
 				  engine->ClientCmd( "BlinkPanelOff\n" );
+				  engine->ClientCmd( "NoFacePanelOff\n" );
 				  blink = false;
 				  seeface = false;
 				  
@@ -84,6 +86,7 @@ int OpenCVController::Run() {
 	//while(WaitForCall( &nCall ) )
 	loop = true;
 	track = false;
+	int lcounter = 0;
     while(loop)
 	{    
 		C_BasePlayer *pLocalPlayer = C_BasePlayer::GetLocalPlayer();
@@ -102,8 +105,10 @@ int OpenCVController::Run() {
 				break;
 			}
 			Reply( 1 );
-			if (track)
+			if (track && hascam) {
               TrackerLoop();
+			}
+
         }
         return 1;
 
@@ -111,6 +116,9 @@ int OpenCVController::Run() {
 
 void OpenCVController::TrackerSetup() {
 		height = (int) cap->get(CV_CAP_PROP_FRAME_HEIGHT);
+			if (height == 0) {
+				hascam = false;
+			}
         width  = (int) cap->get(CV_CAP_PROP_FRAME_WIDTH);
 		count = 0;
 }
@@ -247,8 +255,7 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
 
   MemStorage storage(cvCreateMemStorage(0));
     CvMat _image = frame_gray;
-    CvSeq* obs = cvHaarDetectObjects( &_image, cascade, storage, 1.1,
-                                           2, 0 |CV_HAAR_DO_ROUGH_SEARCH |CV_HAAR_FIND_BIGGEST_OBJECT, Size(30, 30) );
+    CvSeq* obs = cvHaarDetectObjects( &_image, cascade, storage, 1.1, 2, 0 |CV_HAAR_DO_ROUGH_SEARCH |CV_HAAR_FIND_BIGGEST_OBJECT, Size(30, 30) );
 
 	vector<CvRect> faces;
 
@@ -284,7 +291,8 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
 	  cv:: Mat itEye2;
 	  
      if (faces.size() != 0 ) {
-	//	 engine->ClientCmd( "NoFacePanelOff\n" );
+		 engine->ClientCmd( "NoFacePanelOff\n" );
+
 
 		 seeface = true;
 
@@ -634,7 +642,8 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
 		
 		}
 		else {
-			engine->ClientCmd( "BlinkPanelOn\n" );
+			engine->ClientCmd( "NoFacePanelOn\n" );
+			engine->ClientCmd( "BlinkPanelOff\n" );
 			seeface = false;
 			//pLocalPlayer->pl.blinkflag = false;
 		}

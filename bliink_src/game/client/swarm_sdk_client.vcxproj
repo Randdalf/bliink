@@ -602,6 +602,7 @@ exit 1
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="noface.cpp" />
     <ClCompile Include="object_motion_blur_effect.cpp" />
     <ClCompile Include="..\shared\obstacle_pushaway.cpp" />
     <ClCompile Include="opencv_interface.cpp" />
@@ -1596,6 +1597,7 @@ exit 1
     <ClInclude Include="..\shared\point_bonusmaps_accessor.h" />
     <ClInclude Include="..\shared\postprocess_shared.h" />
     <ClInclude Include="..\shared\sharedvar.h" />
+    <ClInclude Include="noface.h" />
     <ClInclude Include="opencv_interface.h" />
     <ClInclude Include="sdk\clientmode_sdk.h" />
     <ClInclude Include="sdk\c_bliink_player.h" />

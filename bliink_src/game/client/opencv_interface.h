@@ -14,6 +14,7 @@ public:
  
 	bool loop;
 	bool track;
+	bool hascam;
 
 	OpenCVController();
  

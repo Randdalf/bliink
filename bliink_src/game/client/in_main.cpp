@@ -1833,10 +1833,10 @@ Init_All
 void CInput::Init_All (void)
 {
 
-	//cvControl = new OpenCVController();
-	//cvControl->Start();
-	//	cvControl->CallWorker( OpenCVController::CALL_FUNC );
-	engine->ClientCmd( "BlinkPanelOff\n" );
+	cvControl = new OpenCVController();
+	cvControl->Start();
+		cvControl->CallWorker( OpenCVController::CALL_FUNC );
+	//engine->ClientCmd( "BlinkPanelOff\n" );
 	m_hInputContext = engine->GetInputContext( ENGINE_INPUT_CONTEXT_GAME );
 
 	for ( int i = 0; i < MAX_SPLITSCREEN_PLAYERS; ++i )
