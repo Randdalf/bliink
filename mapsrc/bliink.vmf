@@ -3,10 +3,14 @@ versioninfo
 	"editorversion" "400"
 	"editorbuild" "5032"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"mapversion" "119"
 =======
 	"mapversion" "118"
 >>>>>>> Added new map for testing
+=======
+	"mapversion" "125"
+>>>>>>> Added basic sound to the map
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -25,10 +29,14 @@ world
 {
 	"id" "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"mapversion" "119"
 =======
 	"mapversion" "127"
 >>>>>>> Added new map for testing
+=======
+	"mapversion" "125"
+>>>>>>> Added basic sound to the map
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -12379,6 +12387,7 @@ world
 	solid
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		"id" "5044"
 		side
 		{
@@ -12389,6 +12398,12 @@ world
 		{
 			"id" "6321"
 >>>>>>> Added new map for testing
+=======
+		"id" "5340"
+		side
+		{
+			"id" "6645"
+>>>>>>> Added basic sound to the map
 			"plane" "(-16376 16376 16376) (16376 16376 16376) (16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12400,10 +12415,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6392"
 =======
 			"id" "6320"
 >>>>>>> Added new map for testing
+=======
+			"id" "6644"
+>>>>>>> Added basic sound to the map
 			"plane" "(-16376 16376 16376) (-16376 -16376 16376) (-16376 -16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12415,10 +12434,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6391"
 =======
 			"id" "6319"
 >>>>>>> Added new map for testing
+=======
+			"id" "6643"
+>>>>>>> Added basic sound to the map
 			"plane" "(16376 16376 -16376) (16376 -16376 -16376) (16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12430,10 +12453,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6390"
 =======
 			"id" "6318"
 >>>>>>> Added new map for testing
+=======
+			"id" "6642"
+>>>>>>> Added basic sound to the map
 			"plane" "(16376 16376 16376) (-16376 16376 16376) (-16376 16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12445,10 +12472,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6389"
 =======
 			"id" "6317"
 >>>>>>> Added new map for testing
+=======
+			"id" "6641"
+>>>>>>> Added basic sound to the map
 			"plane" "(16376 -16376 -16376) (-16376 -16376 -16376) (-16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12460,10 +12491,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6388"
 =======
 			"id" "6316"
 >>>>>>> Added new map for testing
+=======
+			"id" "6640"
+>>>>>>> Added basic sound to the map
 			"plane" "(3472 -3088 1844) (3472 4912 1844) (-3296 4912 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12475,10 +12510,14 @@ world
 		editor
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"color" "0 248 105"
 =======
 			"color" "0 206 219"
 >>>>>>> Added new map for testing
+=======
+			"color" "0 238 111"
+>>>>>>> Added basic sound to the map
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12486,6 +12525,7 @@ world
 	}
 	solid
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		"id" "5046"
 		side
@@ -12497,6 +12537,12 @@ world
 		{
 			"id" "6327"
 >>>>>>> Added new map for testing
+=======
+		"id" "5342"
+		side
+		{
+			"id" "6651"
+>>>>>>> Added basic sound to the map
 			"plane" "(-16376 -16376 -16376) (16376 -16376 -16376) (16376 16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12508,10 +12554,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6398"
 =======
 			"id" "6326"
 >>>>>>> Added new map for testing
+=======
+			"id" "6650"
+>>>>>>> Added basic sound to the map
 			"plane" "(-16376 16376 16376) (-16376 -16376 16376) (-16376 -16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12523,10 +12573,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6397"
 =======
 			"id" "6325"
 >>>>>>> Added new map for testing
+=======
+			"id" "6649"
+>>>>>>> Added basic sound to the map
 			"plane" "(16376 16376 -16376) (16376 -16376 -16376) (16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12538,10 +12592,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6396"
 =======
 			"id" "6324"
 >>>>>>> Added new map for testing
+=======
+			"id" "6648"
+>>>>>>> Added basic sound to the map
 			"plane" "(16376 16376 16376) (-16376 16376 16376) (-16376 16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12553,10 +12611,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6395"
 =======
 			"id" "6323"
 >>>>>>> Added new map for testing
+=======
+			"id" "6647"
+>>>>>>> Added basic sound to the map
 			"plane" "(16376 -16376 -16376) (-16376 -16376 -16376) (-16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12568,10 +12630,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6394"
 =======
 			"id" "6322"
 >>>>>>> Added new map for testing
+=======
+			"id" "6646"
+>>>>>>> Added basic sound to the map
 			"plane" "(3472 4912 -604) (3472 -3088 -604) (-3296 -3088 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12583,10 +12649,14 @@ world
 		editor
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"color" "0 248 105"
 =======
 			"color" "0 206 219"
 >>>>>>> Added new map for testing
+=======
+			"color" "0 238 111"
+>>>>>>> Added basic sound to the map
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12594,6 +12664,7 @@ world
 	}
 	solid
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		"id" "5048"
 		side
@@ -12605,6 +12676,12 @@ world
 		{
 			"id" "6333"
 >>>>>>> Added new map for testing
+=======
+		"id" "5344"
+		side
+		{
+			"id" "6657"
+>>>>>>> Added basic sound to the map
 			"plane" "(-16376 16376 16376) (-16376 -16376 16376) (-16376 -16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12616,10 +12693,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6404"
 =======
 			"id" "6332"
 >>>>>>> Added new map for testing
+=======
+			"id" "6656"
+>>>>>>> Added basic sound to the map
 			"plane" "(16376 16376 16376) (-16376 16376 16376) (-16376 16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12631,10 +12712,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6403"
 =======
 			"id" "6331"
 >>>>>>> Added new map for testing
+=======
+			"id" "6655"
+>>>>>>> Added basic sound to the map
 			"plane" "(16376 -16376 -16376) (-16376 -16376 -16376) (-16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12646,10 +12731,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6402"
 =======
 			"id" "6330"
 >>>>>>> Added new map for testing
+=======
+			"id" "6654"
+>>>>>>> Added basic sound to the map
 			"plane" "(-3296 4912 1844) (3472 4912 1844) (3472 -3088 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12661,10 +12750,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6401"
 =======
 			"id" "6329"
 >>>>>>> Added new map for testing
+=======
+			"id" "6653"
+>>>>>>> Added basic sound to the map
 			"plane" "(-3296 -3088 -604) (3472 -3088 -604) (3472 4912 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12676,10 +12769,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6400"
 =======
 			"id" "6328"
 >>>>>>> Added new map for testing
+=======
+			"id" "6652"
+>>>>>>> Added basic sound to the map
 			"plane" "(-3296 -3088 -604) (-3296 -3088 1844) (-3296 4912 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12691,10 +12788,14 @@ world
 		editor
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"color" "0 248 105"
 =======
 			"color" "0 206 219"
 >>>>>>> Added new map for testing
+=======
+			"color" "0 238 111"
+>>>>>>> Added basic sound to the map
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12702,6 +12803,7 @@ world
 	}
 	solid
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		"id" "5050"
 		side
@@ -12713,6 +12815,12 @@ world
 		{
 			"id" "6339"
 >>>>>>> Added new map for testing
+=======
+		"id" "5346"
+		side
+		{
+			"id" "6663"
+>>>>>>> Added basic sound to the map
 			"plane" "(16376 16376 -16376) (16376 -16376 -16376) (16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12724,10 +12832,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6410"
 =======
 			"id" "6338"
 >>>>>>> Added new map for testing
+=======
+			"id" "6662"
+>>>>>>> Added basic sound to the map
 			"plane" "(16376 16376 16376) (-16376 16376 16376) (-16376 16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12739,10 +12851,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6409"
 =======
 			"id" "6337"
 >>>>>>> Added new map for testing
+=======
+			"id" "6661"
+>>>>>>> Added basic sound to the map
 			"plane" "(16376 -16376 -16376) (-16376 -16376 -16376) (-16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12754,10 +12870,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6408"
 =======
 			"id" "6336"
 >>>>>>> Added new map for testing
+=======
+			"id" "6660"
+>>>>>>> Added basic sound to the map
 			"plane" "(-3296 4912 1844) (3472 4912 1844) (3472 -3088 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12769,10 +12889,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6407"
 =======
 			"id" "6335"
 >>>>>>> Added new map for testing
+=======
+			"id" "6659"
+>>>>>>> Added basic sound to the map
 			"plane" "(-3296 -3088 -604) (3472 -3088 -604) (3472 4912 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12784,10 +12908,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6406"
 =======
 			"id" "6334"
 >>>>>>> Added new map for testing
+=======
+			"id" "6658"
+>>>>>>> Added basic sound to the map
 			"plane" "(3472 -3088 1844) (3472 -3088 -604) (3472 4912 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12799,10 +12927,14 @@ world
 		editor
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"color" "0 248 105"
 =======
 			"color" "0 206 219"
 >>>>>>> Added new map for testing
+=======
+			"color" "0 238 111"
+>>>>>>> Added basic sound to the map
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12810,6 +12942,7 @@ world
 	}
 	solid
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		"id" "5052"
 		side
@@ -12821,6 +12954,12 @@ world
 		{
 			"id" "6345"
 >>>>>>> Added new map for testing
+=======
+		"id" "5348"
+		side
+		{
+			"id" "6669"
+>>>>>>> Added basic sound to the map
 			"plane" "(16376 16376 16376) (-16376 16376 16376) (-16376 16376 -16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12832,10 +12971,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6416"
 =======
 			"id" "6344"
 >>>>>>> Added new map for testing
+=======
+			"id" "6668"
+>>>>>>> Added basic sound to the map
 			"plane" "(-3296 4912 1844) (3472 4912 1844) (3472 -3088 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12847,10 +12990,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6415"
 =======
 			"id" "6343"
 >>>>>>> Added new map for testing
+=======
+			"id" "6667"
+>>>>>>> Added basic sound to the map
 			"plane" "(-3296 -3088 -604) (3472 -3088 -604) (3472 4912 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12862,10 +13009,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6414"
 =======
 			"id" "6342"
 >>>>>>> Added new map for testing
+=======
+			"id" "6666"
+>>>>>>> Added basic sound to the map
 			"plane" "(-3296 4912 1844) (-3296 -3088 1844) (-3296 -3088 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12877,10 +13028,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6413"
 =======
 			"id" "6341"
 >>>>>>> Added new map for testing
+=======
+			"id" "6665"
+>>>>>>> Added basic sound to the map
 			"plane" "(3472 4912 -604) (3472 -3088 -604) (3472 -3088 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12892,10 +13047,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6412"
 =======
 			"id" "6340"
 >>>>>>> Added new map for testing
+=======
+			"id" "6664"
+>>>>>>> Added basic sound to the map
 			"plane" "(-3296 4912 -604) (-3296 4912 1844) (3472 4912 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12907,10 +13066,14 @@ world
 		editor
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"color" "0 248 105"
 =======
 			"color" "0 206 219"
 >>>>>>> Added new map for testing
+=======
+			"color" "0 238 111"
+>>>>>>> Added basic sound to the map
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12918,6 +13081,7 @@ world
 	}
 	solid
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		"id" "5054"
 		side
@@ -12929,6 +13093,12 @@ world
 		{
 			"id" "6351"
 >>>>>>> Added new map for testing
+=======
+		"id" "5350"
+		side
+		{
+			"id" "6675"
+>>>>>>> Added basic sound to the map
 			"plane" "(16376 -16376 -16376) (-16376 -16376 -16376) (-16376 -16376 16376)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12940,10 +13110,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6422"
 =======
 			"id" "6350"
 >>>>>>> Added new map for testing
+=======
+			"id" "6674"
+>>>>>>> Added basic sound to the map
 			"plane" "(-3296 4912 1844) (3472 4912 1844) (3472 -3088 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12955,10 +13129,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6421"
 =======
 			"id" "6349"
 >>>>>>> Added new map for testing
+=======
+			"id" "6673"
+>>>>>>> Added basic sound to the map
 			"plane" "(-3296 -3088 -604) (3472 -3088 -604) (3472 4912 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -12970,10 +13148,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6420"
 =======
 			"id" "6348"
 >>>>>>> Added new map for testing
+=======
+			"id" "6672"
+>>>>>>> Added basic sound to the map
 			"plane" "(-3296 4912 1844) (-3296 -3088 1844) (-3296 -3088 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -12985,10 +13167,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6419"
 =======
 			"id" "6347"
 >>>>>>> Added new map for testing
+=======
+			"id" "6671"
+>>>>>>> Added basic sound to the map
 			"plane" "(3472 4912 -604) (3472 -3088 -604) (3472 -3088 1844)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[0 1 0 0] 0.25"
@@ -13000,10 +13186,14 @@ world
 		side
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"id" "6418"
 =======
 			"id" "6346"
 >>>>>>> Added new map for testing
+=======
+			"id" "6670"
+>>>>>>> Added basic sound to the map
 			"plane" "(-3296 -3088 1844) (-3296 -3088 -604) (3472 -3088 -604)"
 			"material" "TOOLS/TOOLSSKYBOX"
 			"uaxis" "[1 0 0 0] 0.25"
@@ -13015,10 +13205,14 @@ world
 		editor
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			"color" "0 248 105"
 =======
 			"color" "0 206 219"
 >>>>>>> Added new map for testing
+=======
+			"color" "0 238 111"
+>>>>>>> Added basic sound to the map
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -33359,6 +33553,7 @@ entity
 entity
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	"id" "4983"
 	"classname" "ambient_generic"
 	"health" "10"
@@ -33376,6 +33571,18 @@ entity
 	"NpcPoints" "10"
 	"origin" "-56 -160 0"
 >>>>>>> Added new map for testing
+=======
+	"id" "4983"
+	"classname" "ambient_generic"
+	"health" "10"
+	"message" "common/bliink_main_theme.wav"
+	"pitch" "100"
+	"pitchstart" "100"
+	"radius" "6000"
+	"spawnflags" "0"
+	"targetname" "sound"
+	"origin" "-78.4435 -27.228 465"
+>>>>>>> Added basic sound to the map
 	editor
 	{
 		"color" "220 30 220"
@@ -33385,6 +33592,9 @@ entity
 	}
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Added basic sound to the map
 entity
 {
 	"id" "4986"
@@ -33403,13 +33613,17 @@ entity
 		"logicalpos" "[0 500]"
 	}
 }
+<<<<<<< HEAD
 =======
 >>>>>>> Added new map for testing
+=======
+>>>>>>> Added basic sound to the map
 cameras
 {
 	"activecamera" "0"
 	camera
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		"position" "[-136.134 -80.2777 556.128]"
 		"look" "[4790.48 1435.6 -3830.74]"
@@ -33417,6 +33631,10 @@ cameras
 		"position" "[24.2253 305.35 804.375]"
 		"look" "[-1177.55 -4480.17 -3829.05]"
 >>>>>>> Added new map for testing
+=======
+		"position" "[-136.134 -80.2777 556.128]"
+		"look" "[4790.48 1435.6 -3830.74]"
+>>>>>>> Added basic sound to the map
 	}
 }
 cordons
