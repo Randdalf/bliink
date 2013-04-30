@@ -32,7 +32,7 @@ ConVar cl_ragdoll_physics_enable( "cl_ragdoll_physics_enable", "1", 0, "Enable/d
 	#undef CBliinkPlayer
 #endif
 
-int theme_playing = 0;
+bool inFog = false;
 
 
 // -------------------------------------------------------------------------------- //
@@ -852,6 +852,27 @@ void C_BliinkPlayer::ClientThink()
 	Vector vForward;
 	AngleVectors( GetLocalAngles(), &vForward );
 
+	bool inFogNow = playerInFog();
+	
+	CBaseEntity *normalSound = ClientEntityList().
+
+
+	if(inFogNow){
+		if(!inFog){
+			inFog = true;
+			//switch from normal to smoke theme
+			Msg( "Started Playing Smoke Theme2\n");
+		}
+	}else{
+		if(inFog){
+			inFog = false;
+			//switch from smoke to normal theme
+			Msg( "Started Playing Normal Theme2\n");
+		}
+	}
+
+
+
 	for( int iClient = 1; iClient <= gpGlobals->maxClients; ++iClient )
 	{
 		CBaseEntity *pEnt = UTIL_PlayerByIndex( iClient );
@@ -892,6 +913,16 @@ void C_BliinkPlayer::ClientThink()
 		PerformObstaclePushaway( this );
 		m_fNextThinkPushAway =  gpGlobals->curtime + PUSHAWAY_THINK_INTERVAL;
 	}
+}
+
+bool C_BliinkPlayer::playerInFog(void)
+{
+	Vector vMyOrigin =  GetAbsOrigin();
+	double distance = sqrt((vMyOrigin.x*vMyOrigin.x) + (vMyOrigin.y*vMyOrigin.y));
+
+	if(distance >= 1000) return true;
+
+	return false;
 }
 
 //-----------------------------------------------------------------------------

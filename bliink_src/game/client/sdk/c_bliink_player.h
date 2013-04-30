@@ -107,6 +107,7 @@ public:
 
 	//Tony; update lookat, if our model has moving eyes setup, they need to be updated.
 	void			UpdateLookAt( void );
+	bool			playerInFog( void );
 	int				GetIDTarget() const;
 	void			UpdateIDTarget( void );
 
