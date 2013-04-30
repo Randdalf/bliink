@@ -854,7 +854,7 @@ void C_BliinkPlayer::ClientThink()
 
 	bool inFogNow = playerInFog();
 	
-	CBaseEntity *normalSound = ClientEntityList().
+	//CBaseEntity *normalSound = ClientEntityList();
 
 
 	if(inFogNow){

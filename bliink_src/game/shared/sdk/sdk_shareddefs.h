@@ -132,7 +132,9 @@ enum BliinkPlayerState
 
 	NUM_PLAYER_STATES
 };
-#define SDK_PLAYER_DEATH_TIME	1.0f	//Minimum Time before respawning
+#define SDK_PLAYER_DEATH_TIME	3.0f	//Minimum Time before respawning
+
+#define BLIINK_STALKER_RESPAWN_TIME (10.0f+SDK_PLAYER_DEATH_TIME)
 
 // Special Damage types
 enum

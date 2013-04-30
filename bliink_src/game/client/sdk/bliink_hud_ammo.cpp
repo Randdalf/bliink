@@ -54,6 +54,9 @@ void CBliinkHudAmmo::Paint()
 	if( !pBliinkPlayer )
 		return;
 
+	if( pBliinkPlayer->State_Get() != STATE_BLIINK_SURVIVOR )
+		return;
+
 	C_BaseCombatWeapon* pWeapon = pBliinkPlayer->GetActiveWeapon();
 
 	if( !pWeapon )

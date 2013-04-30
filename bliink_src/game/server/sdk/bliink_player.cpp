@@ -1450,7 +1450,7 @@ void CBliinkPlayer::State_PreThink_BLIINK_SURVIVOR_DEATH_ANIM()
 	//Tony; if we're now dead, and not changing classes, spawn
 	if ( m_lifeState == LIFE_DEAD )
 	{
-		State_Transition( STATE_BLIINK_STALKER );
+		State_Transition( STATE_BLIINK_STALKER_RESPAWN );
 	}
 }
 
@@ -1465,7 +1465,7 @@ void CBliinkPlayer::State_Enter_BLIINK_STALKER()
 }
 
 void CBliinkPlayer::State_PreThink_BLIINK_STALKER()
-{
+{	
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_STALKER_DEATH_ANIM()
@@ -1522,16 +1522,23 @@ void CBliinkPlayer::State_PreThink_BLIINK_STALKER_DEATH_ANIM()
 	//Tony; if we're now dead, and not changing classes, spawn
 	if ( m_lifeState == LIFE_DEAD )
 	{
-		State_Transition( STATE_BLIINK_STALKER );
+		State_Transition( STATE_BLIINK_STALKER_RESPAWN );
 	}
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_STALKER_RESPAWN()
-{
+{	
+	SetMoveType( MOVETYPE_OBSERVER );
+	StartObserverMode( OBS_MODE_ROAMING );
+	PhysObjectSleep();
 }
 
 void CBliinkPlayer::State_PreThink_BLIINK_STALKER_RESPAWN()
 {
+	if ( gpGlobals->curtime >= (m_flDeathTime + BLIINK_STALKER_RESPAWN_TIME ) )
+	{
+		State_Transition( STATE_BLIINK_STALKER );
+	}
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_VIEW_RESULTS()

@@ -1961,6 +1961,9 @@
     <ClCompile Include="noface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sdk\bliink_hud_respawn_timer.cpp">
+      <Filter>Source Files\SDK\VGUI_bliink</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="achievement_notification_panel.h">

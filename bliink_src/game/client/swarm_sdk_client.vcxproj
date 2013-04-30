@@ -706,6 +706,7 @@ exit 1
     </ClCompile>
     <ClCompile Include="sdk\bliink_hud_ammo.cpp" />
     <ClCompile Include="sdk\bliink_hud_meters.cpp" />
+    <ClCompile Include="sdk\bliink_hud_respawn_timer.cpp" />
     <ClCompile Include="sdk\clientmode_sdk.cpp" />
     <ClCompile Include="sdk\c_bliink_item_pickup.cpp" />
     <ClCompile Include="sdk\c_sdk_env_sparkler.cpp" />

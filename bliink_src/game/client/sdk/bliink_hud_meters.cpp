@@ -78,6 +78,9 @@ void CHudBliinkMeters::Paint()
 	if( !pBliinkPlayer )
 		return;
 
+	if( pBliinkPlayer->State_Get() != STATE_BLIINK_SURVIVOR )
+		return;
+
 	CBliinkPlayerStats stats = pBliinkPlayer->GetBliinkPlayerStats();
 
 	// Getting player health

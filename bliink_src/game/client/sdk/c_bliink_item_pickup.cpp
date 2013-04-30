@@ -61,9 +61,9 @@ void C_BliinkItemPickup::ClientThink()
 
 	// Only render the glow effect when the player is looking at us and we're
 	// the first item they see.
-	C_BasePlayer* pPlayer = C_BasePlayer::GetLocalPlayer();
+	C_BliinkPlayer* pPlayer = ToBliinkPlayer( C_BasePlayer::GetLocalPlayer() );
 
-	if( pPlayer )
+	if( pPlayer && pPlayer->State_Get() == STATE_BLIINK_SURVIVOR )
 	{
 		/*// Finding eye position and angles.
 		Vector vecStart = pPlayer->EyePosition();

@@ -32,6 +32,17 @@
 	  "visible" "1"
 	  "enabled" "1"
 	}
+	
+	BliinkHudRespawnTimer
+	{
+	  "fieldName" BliinkHudRespawnTimer
+	  "xpos" "c"
+	  "ypos" "32"
+	  "wide" "392"
+	  "tall" "32"
+	  "visible" "1"
+	  "enabled" "1"
+	}
 
 	BliinkHudAmmo
 	{
