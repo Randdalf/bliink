@@ -113,7 +113,7 @@ IViewPortPanel* SDKViewport::CreatePanelByName(const char *szPanelName)
 	}
 	else if ( Q_strcmp(PANEL_SPECGUI, szPanelName) == 0 )
 	{
-		newpanel = new CSDKSpectatorGUI( this );	
+		//newpanel = new CSDKSpectatorGUI( this );	
 	}
 	// --- BLIINK MENUS ---
 	else if( ! Q_strcmp("BliinkWelcomeMenu", szPanelName) )

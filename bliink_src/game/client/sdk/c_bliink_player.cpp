@@ -870,7 +870,7 @@ void C_BliinkPlayer::ClientThink()
 	}
 
 	bool inFogNow = playerInFog();
-	
+
 	if(inFogNow){
 		if(!inFog){
 			inFog = true;
@@ -1117,4 +1117,12 @@ CBliinkPlayerStats &C_BliinkPlayer::GetBliinkPlayerStats( void )
 int	C_BliinkPlayer::GetAmmoCount( int iAmmoIndex ) const
 {
 	return m_Inventory.GetAmmoClipCount( iAmmoIndex );
+}
+
+int	C_BliinkPlayer::GetMaxHealth()
+{
+	if( State_Get() == STATE_BLIINK_SURVIVOR )
+		return (int) floor(m_BliinkStats.GetMaxHealth());
+	else
+		return 100;
 }

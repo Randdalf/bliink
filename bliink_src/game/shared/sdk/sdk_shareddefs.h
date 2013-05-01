@@ -47,7 +47,9 @@ extern const char *pszTeamNames[];
 //Tony; these defines handle the default speeds for all of these - all are listed regardless of which option is enabled.
 #define SDK_DEFAULT_PLAYER_RUNSPEED			220
 #define SDK_DEFAULT_PLAYER_SPRINTSPEED		330
-#define SDK_DEFAULT_PLAYER_PRONESPEED		50
+#define SDK_DEFAULT_PLAYER_PRONESPEED		100
+
+#define BLIINK_DEFAULT_STALKER_SPEED		400
 
 //--------------------------------------------------------------------------------------------------------
 //
@@ -132,7 +134,9 @@ enum BliinkPlayerState
 
 	NUM_PLAYER_STATES
 };
-#define SDK_PLAYER_DEATH_TIME	1.0f	//Minimum Time before respawning
+#define SDK_PLAYER_DEATH_TIME	3.0f	//Minimum Time before respawning
+
+#define BLIINK_STALKER_RESPAWN_TIME (10.0f+SDK_PLAYER_DEATH_TIME)
 
 // Special Damage types
 enum

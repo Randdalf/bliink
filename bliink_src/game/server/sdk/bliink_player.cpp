@@ -1139,6 +1139,7 @@ void CBliinkPlayer::PhysObjectWake()
 
 void CBliinkPlayer::MoveToNextIntroCamera()
 {
+	EHANDLE pOldCamera = m_pIntroCamera;
 	m_pIntroCamera = gEntList.FindEntityByClassname( m_pIntroCamera, "point_viewcontrol" );
 
 	// if m_pIntroCamera is NULL we just were at end of list, start searching from start again
@@ -1182,7 +1183,9 @@ void CBliinkPlayer::MoveToNextIntroCamera()
 	SetAbsOrigin( vIntroCamera );
 	SetAbsAngles( m_pIntroCamera->GetAbsAngles() );
 	SnapEyeAngles( m_pIntroCamera->GetAbsAngles() );
-	m_fIntroCamTime = gpGlobals->curtime + 6;
+
+	if( pOldCamera != m_pIntroCamera )
+		m_fIntroCamTime = gpGlobals->curtime + 6;
 }
 
 //**************************************************************************
@@ -1450,7 +1453,7 @@ void CBliinkPlayer::State_PreThink_BLIINK_SURVIVOR_DEATH_ANIM()
 	//Tony; if we're now dead, and not changing classes, spawn
 	if ( m_lifeState == LIFE_DEAD )
 	{
-		State_Transition( STATE_BLIINK_STALKER );
+		State_Transition( STATE_BLIINK_STALKER_RESPAWN );
 	}
 }
 
@@ -1462,10 +1465,14 @@ void CBliinkPlayer::State_Enter_BLIINK_STALKER()
 	PhysObjectWake();
 
 	Spawn();
+
+	// Move well quick when we're a stalker.
+	this->m_Shared.m_flRunSpeed = BLIINK_DEFAULT_STALKER_SPEED;
+	this->m_Shared.m_flSprintSpeed = BLIINK_DEFAULT_STALKER_SPEED;
 }
 
 void CBliinkPlayer::State_PreThink_BLIINK_STALKER()
-{
+{	
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_STALKER_DEATH_ANIM()
@@ -1522,16 +1529,24 @@ void CBliinkPlayer::State_PreThink_BLIINK_STALKER_DEATH_ANIM()
 	//Tony; if we're now dead, and not changing classes, spawn
 	if ( m_lifeState == LIFE_DEAD )
 	{
-		State_Transition( STATE_BLIINK_STALKER );
+		State_Transition( STATE_BLIINK_STALKER_RESPAWN );
 	}
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_STALKER_RESPAWN()
-{
+{	
+	SetMoveType( MOVETYPE_OBSERVER );
+	MoveToNextIntroCamera();
+	StartObserverMode( OBS_MODE_ROAMING );
+	PhysObjectSleep();
 }
 
 void CBliinkPlayer::State_PreThink_BLIINK_STALKER_RESPAWN()
 {
+	if ( gpGlobals->curtime >= (m_flDeathTime + BLIINK_STALKER_RESPAWN_TIME ) )
+	{
+		State_Transition( STATE_BLIINK_STALKER );
+	}
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_VIEW_RESULTS()

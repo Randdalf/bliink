@@ -303,7 +303,8 @@ void CSDKGameMovement::WalkMove( void )
 	if( bSprintButtonPressed && 
 		( mv->m_nButtons & IN_FORWARD ) &&
 		!m_pSDKPlayer->m_Shared.IsDucking() &&
-		flSpeedCheck > 80 )
+		flSpeedCheck > 80 &&
+		m_pSDKPlayer->State_Get() == STATE_BLIINK_SURVIVOR )
 	{
 		m_pSDKPlayer->SetSprinting( true );
 

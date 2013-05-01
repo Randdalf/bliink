@@ -5,7 +5,7 @@
 	  "fieldName" "BliinkHudMeters"
 	  "xpos" "16"
 	  "ypos" "r76"
-	  "wide" "292"
+	  "wide" "324"
 	  "tall" "96"
 	  "visible" "1"
 	  "enabled" "1"
@@ -29,6 +29,17 @@
 	  "ypos" "-128"
 	  "wide" "392"
 	  "tall" "128"
+	  "visible" "1"
+	  "enabled" "1"
+	}
+	
+	BliinkHudRespawnTimer
+	{
+	  "fieldName" BliinkHudRespawnTimer
+	  "xpos" "c-128"
+	  "ypos" "32"
+	  "wide" "392"
+	  "tall" "48"
 	  "visible" "1"
 	  "enabled" "1"
 	}

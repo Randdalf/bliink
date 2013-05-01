@@ -175,6 +175,7 @@ public:
 public:
 	virtual int GetAmmoCount( int iAmmoIndex ) const;
 	virtual void RemoveAmmo( int iCount, int iAmmoIndex ) {}
+	virtual int	GetMaxHealth();
 };
 
 

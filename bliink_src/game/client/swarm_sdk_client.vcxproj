@@ -706,6 +706,7 @@ exit 1
     </ClCompile>
     <ClCompile Include="sdk\bliink_hud_ammo.cpp" />
     <ClCompile Include="sdk\bliink_hud_meters.cpp" />
+    <ClCompile Include="sdk\bliink_hud_respawn_timer.cpp" />
     <ClCompile Include="sdk\clientmode_sdk.cpp" />
     <ClCompile Include="sdk\c_bliink_item_pickup.cpp" />
     <ClCompile Include="sdk\c_sdk_env_sparkler.cpp" />
@@ -733,6 +734,8 @@ exit 1
     <ClCompile Include="sdk\vgui\sdk_spectatorgui.cpp" />
     <ClCompile Include="sdk\vgui\sdk_textwindow.cpp" />
     <ClCompile Include="sdk\vgui\vgui_rootpanel_sdk.cpp" />
+    <ClCompile Include="ShaderEditor\SEdit_ModelRender.cpp" />
+    <ClCompile Include="ShaderEditor\ShaderEditorSystem.cpp" />
     <ClCompile Include="simple_keys.cpp" />
     <ClCompile Include="..\..\public\simple_physics.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -1612,6 +1615,10 @@ exit 1
     <ClInclude Include="sdk\vgui\sdk_spectatorgui.h" />
     <ClInclude Include="sdk\vgui\sdk_textwindow.h" />
     <ClInclude Include="sdk\vgui\vgui_rootpanel_sdk.h" />
+    <ClInclude Include="ShaderEditor\ISEdit_ModelRender.h" />
+    <ClInclude Include="ShaderEditor\IVShaderEditor.h" />
+    <ClInclude Include="ShaderEditor\SEdit_ModelRender.h" />
+    <ClInclude Include="ShaderEditor\ShaderEditorSystem.h" />
     <ClInclude Include="spatialentitymgr.h" />
     <ClInclude Include="swarm\c_asw_jukebox.h" />
     <ClInclude Include="swarm\gameui\swarm\vkeyboard.h" />

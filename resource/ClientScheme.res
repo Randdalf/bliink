@@ -479,6 +479,19 @@ Scheme
 			}
 		}
 		
+		"BliinkHUDRespawnTimer"
+		{
+			"1"
+			{
+				"name"		"BigNoodleTitling"
+				"tall"		"48"
+				"weight"	"100"
+				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
+				"antialias"	"1"
+				"dropshadow"	"1"
+			}
+		}
+		
 		WeaponIcons
 		{
 			"1"

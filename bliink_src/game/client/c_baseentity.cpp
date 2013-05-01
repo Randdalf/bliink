@@ -1547,7 +1547,7 @@ bool C_BaseEntity::VPhysicsIsFlesh( void )
 //-----------------------------------------------------------------------------
 // Returns the health fraction
 //-----------------------------------------------------------------------------
-float C_BaseEntity::HealthFraction() const
+float C_BaseEntity::HealthFraction()
 {
 	if (GetMaxHealth() == 0)
 		return 1.0f;
