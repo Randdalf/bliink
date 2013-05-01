@@ -62,7 +62,8 @@ BEGIN_DATADESC(CSpawnPoint)
 
 END_DATADESC();
 
-	LINK_ENTITY_TO_CLASS( info_player_spawn, CSpawnPoint );
+LINK_ENTITY_TO_CLASS( info_player_spawn, CSpawnPoint );
+LINK_ENTITY_TO_CLASS( info_stalker_spawn, CSpawnPoint );
 
 // Defining the cage opener
 class CCageOpener : public CLogicalEntity
@@ -295,6 +296,7 @@ static const char *s_PreserveEnts[] =
 	"info_player_red",
 	"info_player_blue",
 	"info_player_spawn",
+	"info_stalker_spawn",
 	"point_viewcontrol",
 	"shadow_control",
 	"sky_camera",

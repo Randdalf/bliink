@@ -429,7 +429,11 @@ CBaseEntity* CBliinkPlayer::EntSelectSpawnPoint()
 	{
 	case TEAM_UNASSIGNED:
 		{
-			pSpawnPointName = "info_player_spawn";
+			if( State_Get() == STATE_BLIINK_STALKER )
+				pSpawnPointName = "info_stalker_spawn";
+			else
+				pSpawnPointName = "info_player_spawn";
+
 			pSpot = g_pLastDMSpawn;
 			if ( SelectSpawnSpot( pSpawnPointName, pSpot ) )
 			{

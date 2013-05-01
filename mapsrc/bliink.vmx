@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "5032"
-	"mapversion" "126"
+	"mapversion" "128"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "126"
+	"mapversion" "128"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -12370,7 +12370,7 @@ world
 	}
 	solid
 	{
-		"id" "5171"
+		"id" "5378"
 		side
 		{
 			"id" "6321"
@@ -12439,7 +12439,7 @@ world
 		}
 		editor
 		{
-			"color" "0 225 150"
+			"color" "0 229 214"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12447,7 +12447,7 @@ world
 	}
 	solid
 	{
-		"id" "5173"
+		"id" "5380"
 		side
 		{
 			"id" "6327"
@@ -12516,7 +12516,7 @@ world
 		}
 		editor
 		{
-			"color" "0 225 150"
+			"color" "0 229 214"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12524,7 +12524,7 @@ world
 	}
 	solid
 	{
-		"id" "5175"
+		"id" "5382"
 		side
 		{
 			"id" "6333"
@@ -12593,7 +12593,7 @@ world
 		}
 		editor
 		{
-			"color" "0 225 150"
+			"color" "0 229 214"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12601,7 +12601,7 @@ world
 	}
 	solid
 	{
-		"id" "5177"
+		"id" "5384"
 		side
 		{
 			"id" "6339"
@@ -12670,7 +12670,7 @@ world
 		}
 		editor
 		{
-			"color" "0 225 150"
+			"color" "0 229 214"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12678,7 +12678,7 @@ world
 	}
 	solid
 	{
-		"id" "5179"
+		"id" "5386"
 		side
 		{
 			"id" "6345"
@@ -12747,7 +12747,7 @@ world
 		}
 		editor
 		{
-			"color" "0 225 150"
+			"color" "0 229 214"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -12755,7 +12755,7 @@ world
 	}
 	solid
 	{
-		"id" "5181"
+		"id" "5388"
 		side
 		{
 			"id" "6351"
@@ -12824,7 +12824,7 @@ world
 		}
 		editor
 		{
-			"color" "0 225 150"
+			"color" "0 229 214"
 			"visgroupshown" "1"
 			"visgroupautoshown" "1"
 			"cordonsolid" "1"
@@ -27766,12 +27766,12 @@ entity
 {
 	"id" "1422"
 	"classname" "bliink_cage_opener"
+	"origin" "-84 369 595"
 	connections
 	{
 		"OnOpenCages" "lr_open_cagesTrigger5-1"
 		"OnOpenCages" "item_spawnerBeginSpawning0-1"
 	}
-	"origin" "-84 369 595"
 	editor
 	{
 		"color" "220 30 220"
@@ -33164,16 +33164,10 @@ entity
 }
 entity
 {
-	"id" "4983"
-	"classname" "ambient_generic"
-	"health" "10"
-	"message" "common/bliink_main_theme.wav"
-	"pitch" "100"
-	"pitchstart" "100"
-	"radius" "6000"
-	"spawnflags" "0"
-	"targetname" "sound"
-	"origin" "-78.4435 -27.228 465"
+	"id" "5360"
+	"classname" "info_stalker_spawn"
+	"angles" "0 0 0"
+	"origin" "-781.453 784 720"
 	editor
 	{
 		"color" "220 30 220"
@@ -33184,14 +33178,10 @@ entity
 }
 entity
 {
-	"id" "4986"
-	"classname" "logic_auto"
-	"spawnflags" "1"
-	connections
-	{
-		"OnMapSpawn" "soundPlaySound0-1"
-	}
-	"origin" "-47.5135 -61.4605 465"
+	"id" "5364"
+	"classname" "info_stalker_spawn"
+	"angles" "0 270 0"
+	"origin" "1184 2491.77 248"
 	editor
 	{
 		"color" "220 30 220"
@@ -33200,13 +33190,27 @@ entity
 		"logicalpos" "[0 500]"
 	}
 }
+entity
+{
+	"id" "5368"
+	"classname" "info_stalker_spawn"
+	"angles" "0 0 0"
+	"origin" "-1112 -967.666 472"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 1000]"
+	}
+}
 cameras
 {
 	"activecamera" "0"
 	camera
 	{
-		"position" "[-136.134 -80.2777 556.128]"
-		"look" "[3454.87 1541.33 -4947.43]"
+		"position" "[1198.35 2367.31 435.194]"
+		"look" "[1004.21 5948.88 -5304.91]"
 	}
 }
 cordons
