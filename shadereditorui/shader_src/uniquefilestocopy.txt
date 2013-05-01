@@ -1,6 +1,6 @@
 bin\dx_proxy.dll
-..\..\..\..\common\alien swarm\bin\tier0.dll
-..\..\..\..\common\alien swarm\bin\vstdlib.dll
+..\..\..\..\aggrogangsta\sourcesdk\bin\source2007\bin\tier0.dll
+..\..\..\..\aggrogangsta\sourcesdk\bin\source2007\bin\vstdlib.dll
 common_fxc.h
 common_hlsl_cpp_consts.h
 common_pragmas.h
@@ -10,8 +10,7 @@ common_vertexlitgeneric_dx9.h
 common_lightmappedgeneric_fxc.h
 common_flashlight_fxc.h
 common_parallax.h
-..\..\..\..\common\alien swarm\bin\shadercompile.exe
-..\..\..\..\common\alien swarm\bin\shadercompile_dll.dll
-000001_postproc_videofeed_pos_preview_vs30.fxc
-000001_postproc_videofeed_preview_vs30.fxc
-000001_postproc_videofeed_preview_ps30.fxc
+..\..\..\..\aggrogangsta\sourcesdk\bin\source2007\bin\shadercompile.exe
+..\..\..\..\aggrogangsta\sourcesdk\bin\source2007\bin\shadercompile_dll.dll
+model_cubemap_vs30.fxc
+model_cubemap_ps30.fxc
