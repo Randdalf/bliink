@@ -642,7 +642,7 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
 		
 		}
 		else {
-			engine->ClientCmd( "NoFacePanelOn\n" );
+			//engine->ClientCmd( "NoFacePanelOn\n" );
 			engine->ClientCmd( "BlinkPanelOff\n" );
 			seeface = false;
 			//pLocalPlayer->pl.blinkflag = false;
