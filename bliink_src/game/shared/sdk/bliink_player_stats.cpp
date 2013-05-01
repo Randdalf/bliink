@@ -355,9 +355,11 @@ void CBliinkPlayerStats::StatusThink()
 		{
 			case BLIINK_STATUS_POISONED:
 				m_fHealth -= fTimePassed * STATUS_POISON_DAMAGE_PER_SECOND;
+				m_fLastDamageTime = gpGlobals->curtime;
 				break;
 			case BLIINK_STATUS_BURNING:
 				m_fHealth -= fTimePassed * STATUS_BURN_DAMAGE_PER_SECOND;
+				m_fLastDamageTime = gpGlobals->curtime;
 				break;
 			case BLIINK_STATUS_FOGGED:
 				m_fHealth -= fTimePassed * STATUS_FOGGED_DAMAGE_PER_SECOND;

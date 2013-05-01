@@ -17,6 +17,7 @@
  
 using namespace vgui;
  
+ 
 class CBliinkHudRespawnTimer : public CHudElement, public Panel
 {
    DECLARE_CLASS_SIMPLE( CBliinkHudRespawnTimer, Panel );
@@ -38,7 +39,6 @@ CBliinkHudRespawnTimer::CBliinkHudRespawnTimer( const char *pElementName ) : CHu
 	SetVisible( true );
 	SetAlpha( 255 );
 	SetPaintBackgroundEnabled(false);
-	SetHiddenBits( HIDEHUD_PLAYERDEAD | HIDEHUD_NEEDSUIT );
 }
 
 void CBliinkHudRespawnTimer::Paint()
@@ -59,7 +59,7 @@ void CBliinkHudRespawnTimer::Paint()
 	// Drawing upgrade notice
 	wchar_t pNumberText[32];
 	V_snwprintf( pNumberText, ARRAYSIZE(pNumberText), L"RESPAWNING IN %d SECONDS", timeLeft );
-	vgui::HFont hNumberFont = pScheme->GetFont( "BliinkHUDUpgradeNotice" );
+	vgui::HFont hNumberFont = pScheme->GetFont( "BliinkHUDRespawnTimer" );
 	
 	surface()->GetTextSize(hNumberFont, pNumberText, wide, tall);
 	

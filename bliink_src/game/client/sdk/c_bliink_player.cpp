@@ -23,6 +23,7 @@
 #include "cl_animevent.h"
 #include "bliink_player_stats.h"
 #include "bliink_item_inventory.h"
+#include "engine/ienginesound.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 ConVar cl_ragdoll_physics_enable( "cl_ragdoll_physics_enable", "1", 0, "Enable/disable ragdoll physics." );
@@ -33,7 +34,13 @@ ConVar cl_ragdoll_physics_enable( "cl_ragdoll_physics_enable", "1", 0, "Enable/d
 #endif
 
 bool inFog = false;
-
+bool soundPlaying = false;
+int mainThemeID = NULL;
+int fogThemeID = NULL;
+bool fadeToSmoke = false;
+bool fadeToNorm = false;
+float smokeVol;
+float normVol;
 
 // -------------------------------------------------------------------------------- //
 // Player animation event. Sent to the client when a player fires, jumps, reloads, etc..
@@ -852,23 +859,59 @@ void C_BliinkPlayer::ClientThink()
 	Vector vForward;
 	AngleVectors( GetLocalAngles(), &vForward );
 
-	bool inFogNow = playerInFog();
-	
-	//CBaseEntity *normalSound = ClientEntityList();
+	if(!soundPlaying){
+		CLocalPlayerFilter filter;
+		enginesound->SetRoomType( filter, 1 );
+		normVol = 1.0f;
+		enginesound->EmitAmbientSound( "common/bliink_main_theme.wav", normVol );
+		mainThemeID = enginesound->GetGuidForLastSoundEmitted();
+		//Msg( "Starting bliink_main_theme\n");
+		soundPlaying = true;
+	}
 
+	bool inFogNow = playerInFog();
 
 	if(inFogNow){
 		if(!inFog){
 			inFog = true;
+			fadeToNorm = false;
+			fadeToSmoke = true;
 			//switch from normal to smoke theme
-			Msg( "Started Playing Smoke Theme2\n");
+			//enginesound->SetVolumeByGuid(mainThemeID, 0.0f);
+			//enginesound->SetVolumeByGuid(fogThemeID, 1.0f);
+			smokeVol = 0.0f;
+			enginesound->EmitAmbientSound( "common/bliink_fog_theme.wav", smokeVol );
+			fogThemeID = enginesound->GetGuidForLastSoundEmitted();
+			//Msg( "Swiching from bliink_main_theme to bliink_fog_theme\n");
 		}
 	}else{
 		if(inFog){
 			inFog = false;
+			fadeToNorm = true;
+			fadeToSmoke = false;
 			//switch from smoke to normal theme
-			Msg( "Started Playing Normal Theme2\n");
+			//enginesound->SetVolumeByGuid(fogThemeID, 0.0f);
+			//enginesound->SetVolumeByGuid(mainThemeID, 1.0f);
+			//Msg( "Switching from bliink_fog_theme to bliink_main_theme\n");
 		}
+	}
+
+	if(fadeToNorm){
+		normVol += 0.01f;
+		smokeVol -= 0.01f;
+		//Msg( "normVol - %g , smokeVol - %g\n",normVol,smokeVol);
+		enginesound->SetVolumeByGuid(mainThemeID, normVol);
+		enginesound->SetVolumeByGuid(fogThemeID, smokeVol);
+		if(normVol >= 1.0f) fadeToNorm = false;
+	}
+
+	if(fadeToSmoke){
+		normVol -= 0.01f;
+		smokeVol += 0.01f;
+		//Msg( "normVol - %g , smokeVol - %g\n",normVol,smokeVol);
+		enginesound->SetVolumeByGuid(mainThemeID, normVol);
+		enginesound->SetVolumeByGuid(fogThemeID, smokeVol);
+		if(smokeVol >= 1.0f) fadeToSmoke = false;
 	}
 
 
@@ -1074,4 +1117,12 @@ CBliinkPlayerStats &C_BliinkPlayer::GetBliinkPlayerStats( void )
 int	C_BliinkPlayer::GetAmmoCount( int iAmmoIndex ) const
 {
 	return m_Inventory.GetAmmoClipCount( iAmmoIndex );
+}
+
+int	C_BliinkPlayer::GetMaxHealth()
+{
+	if( State_Get() == STATE_BLIINK_SURVIVOR )
+		return (int) floor(m_BliinkStats.GetMaxHealth());
+	else
+		return 100;
 }

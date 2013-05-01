@@ -67,9 +67,6 @@
     <Filter Include="Source Files\SDK">
       <UniqueIdentifier>{8f28da79-7e7d-49ea-9b8a-93c557876159}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\SDK\VGUI">
-      <UniqueIdentifier>{6cb7da86-3600-4b9d-acd3-8a75b1cb7317}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\SDK\Shared">
       <UniqueIdentifier>{e3d0df4f-dbde-49be-bd0b-c00c320fe26f}</UniqueIdentifier>
     </Filter>
@@ -81,6 +78,9 @@
     </Filter>
     <Filter Include="Source Files\SDK\VGUI_bliink">
       <UniqueIdentifier>{e0f705b7-cfe9-4337-a2de-63f7c51602fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\From HL2\VGUI">
+      <UniqueIdentifier>{6cb7da86-3600-4b9d-acd3-8a75b1cb7317}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1791,16 +1791,16 @@
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
     <ClCompile Include="sdk\vgui\sdk_spectatorgui.cpp">
-      <Filter>Source Files\SDK\VGUI</Filter>
+      <Filter>Source Files\From HL2\VGUI</Filter>
     </ClCompile>
     <ClCompile Include="sdk\vgui\sdk_textwindow.cpp">
-      <Filter>Source Files\SDK\VGUI</Filter>
+      <Filter>Source Files\From HL2\VGUI</Filter>
     </ClCompile>
     <ClCompile Include="sdk\vgui\sdkviewport.cpp">
-      <Filter>Source Files\SDK\VGUI</Filter>
+      <Filter>Source Files\From HL2\VGUI</Filter>
     </ClCompile>
     <ClCompile Include="sdk\vgui\vgui_rootpanel_sdk.cpp">
-      <Filter>Source Files\SDK\VGUI</Filter>
+      <Filter>Source Files\From HL2\VGUI</Filter>
     </ClCompile>
     <ClCompile Include="..\shared\sdk\sdk_basegrenade_projectile.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
@@ -1884,13 +1884,13 @@
       <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
     <ClCompile Include="hud_basedeathnotice.cpp">
-      <Filter>Source Files\SDK\VGUI</Filter>
+      <Filter>Source Files\From HL2\VGUI</Filter>
     </ClCompile>
     <ClCompile Include="..\shared\predicted_viewmodel.cpp">
       <Filter>Source Files\From HL2</Filter>
     </ClCompile>
     <ClCompile Include="sdk\vcreditspage.cpp">
-      <Filter>Source Files\SDK\VGUI</Filter>
+      <Filter>Source Files\From HL2\VGUI</Filter>
     </ClCompile>
     <ClCompile Include="swarm\gameui\swarm\vkeyboard.cpp">
       <Filter>Source Files\Swarm\GameUI - Embedded\Swarm GameUI\Win32</Filter>
@@ -1962,7 +1962,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sdk\bliink_hud_respawn_timer.cpp">
-      <Filter>Source Files\SDK\VGUI_bliink</Filter>
+      <Filter>Source Files\SDK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4082,16 +4082,16 @@
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
     <ClInclude Include="sdk\vgui\sdk_spectatorgui.h">
-      <Filter>Source Files\SDK\VGUI</Filter>
+      <Filter>Source Files\From HL2\VGUI</Filter>
     </ClInclude>
     <ClInclude Include="sdk\vgui\sdk_textwindow.h">
-      <Filter>Source Files\SDK\VGUI</Filter>
+      <Filter>Source Files\From HL2\VGUI</Filter>
     </ClInclude>
     <ClInclude Include="sdk\vgui\sdkviewport.h">
-      <Filter>Source Files\SDK\VGUI</Filter>
+      <Filter>Source Files\From HL2\VGUI</Filter>
     </ClInclude>
     <ClInclude Include="sdk\vgui\vgui_rootpanel_sdk.h">
-      <Filter>Source Files\SDK\VGUI</Filter>
+      <Filter>Source Files\From HL2\VGUI</Filter>
     </ClInclude>
     <ClInclude Include="..\shared\sdk\sdk_basegrenade_projectile.h">
       <Filter>Source Files\SDK\Shared</Filter>
@@ -4154,13 +4154,13 @@
       <Filter>Source Files\SDK\Shared</Filter>
     </ClInclude>
     <ClInclude Include="hud_basedeathnotice.h">
-      <Filter>Source Files\SDK\VGUI</Filter>
+      <Filter>Source Files\From HL2\VGUI</Filter>
     </ClInclude>
     <ClInclude Include="..\shared\predicted_viewmodel.h">
       <Filter>Source Files\From HL2</Filter>
     </ClInclude>
     <ClInclude Include="sdk\vcreditspage.h">
-      <Filter>Source Files\SDK\VGUI</Filter>
+      <Filter>Source Files\From HL2\VGUI</Filter>
     </ClInclude>
     <ClInclude Include="swarm\gameui\swarm\vkeyboard.h">
       <Filter>Source Files\Swarm\GameUI - Embedded\Swarm GameUI\Headers</Filter>
