@@ -131,7 +131,7 @@ END_DATADESC()
 
 LINK_ENTITY_TO_CLASS( func_dustmotes, CFunc_DustMotes );
 LINK_ENTITY_TO_CLASS( func_dustcloud, CFunc_DustCloud );
-LINK_ENTITY_TO_CLASS( func_bliink_fog, CFunc_DustCloud );
+//LINK_ENTITY_TO_CLASS( func_bliink_fog, CFunc_DustCloud );
 
 
 // ------------------------------------------------------------------------------------- //
