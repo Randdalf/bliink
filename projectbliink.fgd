@@ -15,6 +15,10 @@
 	"This entity marks the start point for players to spawn."
 [
 ]
+@PointClass base(Angles,Targetname,EnableDisable) studio("models/editor/playerstart.mdl") = info_stalker_spawn :
+	"This entity marks the start point for stalkers to spawn."
+[
+]
 
 @PointClass base(Angles,Targetname,EnableDisable) studio("models/weapons/w_smg_mp5.mdl") = weapon_mp5 :
 	"MP5 test!"

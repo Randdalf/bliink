@@ -1,0 +1,11 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models\player\bliink\bliink_player"	
+
+	"$phong" "1"
+
+//	"$phongexponent" "3"
+	"$phongboost" "1"	
+	"$phongfresnelranges"	"[1 3 8]"
+	"$halflambert" "1"
+	"$phongalbedotint" "1"								}

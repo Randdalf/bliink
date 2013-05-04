@@ -82,6 +82,9 @@
     <Filter Include="Source Files\From HL2\VGUI">
       <UniqueIdentifier>{6cb7da86-3600-4b9d-acd3-8a75b1cb7317}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ShaderEditor">
+      <UniqueIdentifier>{7bc08bda-32aa-41c3-976e-f1681ff51e30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="client_base.vpc">
@@ -1963,6 +1966,12 @@
     </ClCompile>
     <ClCompile Include="sdk\bliink_hud_respawn_timer.cpp">
       <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderEditor\SEdit_ModelRender.cpp">
+      <Filter>Source Files\ShaderEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderEditor\ShaderEditorSystem.cpp">
+      <Filter>Source Files\ShaderEditor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -4200,6 +4209,18 @@
     </ClInclude>
     <ClInclude Include="noface.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderEditor\ISEdit_ModelRender.h">
+      <Filter>Source Files\ShaderEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderEditor\IVShaderEditor.h">
+      <Filter>Source Files\ShaderEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderEditor\SEdit_ModelRender.h">
+      <Filter>Source Files\ShaderEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderEditor\ShaderEditorSystem.h">
+      <Filter>Source Files\ShaderEditor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
