@@ -1,0 +1,5 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "bliink/bliink_metal3"
+	"$surfaceprop" "solidmetal"
+}
