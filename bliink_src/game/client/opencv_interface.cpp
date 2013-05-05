@@ -40,9 +40,11 @@ IplImage *pSaveImg = cvQueryFrame(pCapturedImage);
 // Save the frame into a file
 cvSaveImage("opencvtest.jpg" ,pSaveImg);*/
 	cap = new cv::VideoCapture( 0 );
+	cap->set( CV_CAP_PROP_FPS, 60 );
 	hascam = true;
 				TrackerSetup();
 				  cascade = (CvHaarClassifierCascade*)cvLoad( "haarcascade_frontalface_alt.xml" );
+				  face_cascade.load( "haarcascade_frontalface_alt.xml");
 				  engine->ClientCmd( "BlinkPanelOff\n" );
 				  engine->ClientCmd( "NoFacePanelOff\n" );
 				  blink = false;
@@ -236,7 +238,7 @@ void OpenCVController::derivatives (cv::Mat &Ix, cv::Mat &Iy, cv::Mat &It, cv::M
  
 void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::Mat &It)
 {
-
+	Msg("yay -werwerwe\n");
 	C_BasePlayer *pLocalPlayer = C_BasePlayer::GetLocalPlayer();
         cv::Mat A = cv::Mat(2, 2, CV_64FC1);
         cv::Mat invA = cv::Mat(2, 2, CV_64FC1);
@@ -250,6 +252,13 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
 		
 		 Mat frame_gray;
 
+	//	 		std::vector<Rect> faces;
+
+	//	cv::Mat image_thresh;
+
+	//	 face_cascade.detectMultiScale( image, faces, 1.1, 2, 0|CV_HAAR_SCALE_IMAGE, Size(30, 30) );
+
+		 Msg("yyaaay2");
 //  cvtColor( image, frame_gray, CV_BGR2GRAY );
   equalizeHist( image, frame_gray );
 
@@ -642,7 +651,7 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
 		
 		}
 		else {
-			//engine->ClientCmd( "NoFacePanelOn\n" );
+			engine->ClientCmd( "NoFacePanelOn\n" );
 			engine->ClientCmd( "BlinkPanelOff\n" );
 			seeface = false;
 			//pLocalPlayer->pl.blinkflag = false;

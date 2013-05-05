@@ -6842,3 +6842,33 @@ Reduced 247 texinfos to 204
 Reduced 11 texdatas to 11 (199 bytes to 199)
 Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
 0 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.vmf
+Could not locate GameData file projectbliink.fgd
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 24 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (40351 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 247 texinfos to 204
+Reduced 11 texdatas to 11 (199 bytes to 199)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
+0 seconds elapsed

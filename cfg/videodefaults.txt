@@ -1,7 +1,8 @@
 "config"
 {
 	"VendorID"		"32902"
-	"DeviceID"		"278"
+	"DeviceID"		"358"
+
 	"setting.fullscreen"		"1"
 	"setting.nowindowborder"		"0"
 	"setting.aspectratiomode"		"-1"
