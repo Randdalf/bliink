@@ -1745,9 +1745,6 @@
     <ClCompile Include="toolframework_client.cpp">
       <Filter>Tool Framework</Filter>
     </ClCompile>
-    <ClCompile Include="sdk\c_sdk_player_resource.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
     <ClCompile Include="sdk\c_te_firebullets.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
@@ -1974,6 +1971,12 @@
       <Filter>Source Files\ShaderEditor</Filter>
     </ClCompile>
     <ClCompile Include="sdk\c_bliink_fog.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\bliink_hud_player_states.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\c_bliink_player_resource.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
   </ItemGroup>
@@ -4078,9 +4081,6 @@
     <ClInclude Include="game_controls\vguitextwindow.h">
       <Filter>game_controls Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sdk\c_sdk_player_resource.h">
-      <Filter>Source Files\SDK</Filter>
-    </ClInclude>
     <ClInclude Include="sdk\clientmode_sdk.h">
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
@@ -4224,6 +4224,9 @@
     </ClInclude>
     <ClInclude Include="ShaderEditor\ShaderEditorSystem.h">
       <Filter>Source Files\ShaderEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\c_bliink_player_resource.h">
+      <Filter>Source Files\SDK</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

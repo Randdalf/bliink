@@ -55,6 +55,17 @@
 	  "enabled" "1"
 	}
 
+	BliinkHudPlayerStates
+	{
+	  "fieldName" "BliinkHudPlayerStates"
+	  "xpos" "r176"
+	  "ypos" "16"
+	  "wide" "256"
+	  "tall" "64"
+	  "visible" "1"
+	  "enabled" "1"
+	}
+
 	HudHealth
 	{
 		"fieldName"		"HudHealth"

@@ -1191,7 +1191,7 @@ exit 1
     <ClInclude Include="sdk\bliink_item_pickup.h" />
     <ClInclude Include="sdk\bliink_item_spawner.h" />
     <ClInclude Include="sdk\bliink_player.h" />
-    <ClInclude Include="sdk\sdk_player_resource.h" />
+    <ClInclude Include="sdk\bliink_player_resource.h" />
     <ClInclude Include="sdk\bliink_team.h" />
     <ClInclude Include="sdk\te_firebullets.h" />
     <ClInclude Include="serverbenchmark_base.h" />

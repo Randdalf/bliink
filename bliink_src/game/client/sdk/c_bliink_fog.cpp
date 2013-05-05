@@ -4,6 +4,8 @@
 #include "math.h"
 #include "c_func_dust.h"
 #include "func_dust_shared.h"
+#include "c_bliink_player.h"
+#include "bliink_player_stats.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -58,10 +60,22 @@ void C_BliinkFog::AttemptSpawnNewParticle()
 	if( m_flFogRadius >= m_flMaxFogRadius || m_flFogRadius == 0.0f )
 		return;
 
+	// Testing whether local player is stalker, changing alpha if so.
+	CBliinkPlayer* pPlayer = ToBliinkPlayer( CBasePlayer::GetLocalPlayer() );
+
+	if( !pPlayer )
+		return;
+
+	// Stalkers can see through the fog.
+	if( pPlayer->State_Get() == STATE_BLIINK_STALKER )
+	{
+		m_Color.a = 32;
+	}
+
 	for( int iTest=0; iTest < nTests; iTest++ )
 	{
 		// Calculating point to spawn at around player.
-		Vector pOrigin = CBasePlayer::GetLocalPlayer()->GetAbsOrigin();
+		Vector pOrigin = pPlayer->GetAbsOrigin();
 		Vector fOrigin = GetAbsOrigin();
 		float x = pOrigin.x;
 		float y = pOrigin.y;

@@ -14,7 +14,7 @@
 #include <filesystem.h>
 #include "bliink_gamerules.h"
 #include "c_bliink_team.h"
-#include "c_sdk_player_resource.h"
+#include "c_bliink_player_resource.h"
 #include "vtf/vtf.h"
 #include "clientmode.h"
 #include <vgui_controls/AnimationController.h>
@@ -476,7 +476,7 @@ CSDKMapOverview::~CSDKMapOverview()
 
 void CSDKMapOverview::UpdatePlayers()
 {
-	C_SDK_PlayerResource *pSDKPR = (C_SDK_PlayerResource*)GameResources();
+	C_Bliink_PlayerResource *pSDKPR = (C_Bliink_PlayerResource*)GameResources();
 	if ( !pSDKPR )
 		return;
 

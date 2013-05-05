@@ -143,6 +143,11 @@ void CHudBliinkMeters::Paint()
 			surface()->DrawSetTexture( m_nSegmentEnd );
 			surface()->DrawTexturedRect( 32 + iSegmentBegin-1, 0, 32+iSegmentBegin+2, 32 );
 		}
+
+		// Drawing hunger threshold marker
+		int iMarkerBegin = (int) floor(256.0f * (HUNGER_REGEN_THRESHOLD));
+		surface()->DrawSetTexture( m_nSegmentEnd );
+		surface()->DrawTexturedRect( 32 + iMarkerBegin-1, 32, 32+iMarkerBegin+2, 64 );
 	}
 	else if( pBliinkPlayer->State_Get() == STATE_BLIINK_STALKER )
 	{

@@ -3248,9 +3248,6 @@
     <ClInclude Include="toolframework_server.h">
       <Filter>Tools Framework</Filter>
     </ClInclude>
-    <ClInclude Include="sdk\sdk_player_resource.h">
-      <Filter>Source Files\SDK</Filter>
-    </ClInclude>
     <ClInclude Include="sdk\te_firebullets.h">
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
@@ -3334,6 +3331,9 @@
     </ClInclude>
     <ClInclude Include="func_dust.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\bliink_player_resource.h">
+      <Filter>Source Files\SDK</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

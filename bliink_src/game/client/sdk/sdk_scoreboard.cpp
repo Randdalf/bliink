@@ -9,7 +9,7 @@
 #include "hud.h"
 #include "sdk_scoreboard.h"
 #include "c_bliink_team.h"
-#include "c_sdk_player_resource.h"
+#include "c_bliink_player_resource.h"
 #include "bliink_gamerules.h"
 #include "sdk_backgroundpanel.h"
 
@@ -109,14 +109,14 @@ void CSDKScoreboard::InitScoreboardSections()
 //-----------------------------------------------------------------------------
 void CSDKScoreboard::UpdateTeamInfo()
 {
-	if ( SDKGameResources() == NULL )
+	if ( BliinkGameResources() == NULL )
 		return;
 
 	int iNumPlayersInGame = 0;
 
 	for ( int j = 1; j <= gpGlobals->maxClients; j++ )
 	{	
-		if ( SDKGameResources()->IsConnected( j ) )
+		if ( BliinkGameResources()->IsConnected( j ) )
 		{
 			iNumPlayersInGame++;
 		}
@@ -239,8 +239,8 @@ void CSDKScoreboard::AddSection(int teamType, int teamNumber)
 		// set the section to have the team color
 		if ( teamNumber )
 		{
-			if ( SDKGameResources() )
-					m_pPlayerList->SetSectionFgColor(sectionID,  SDKGameResources()->GetTeamColor(teamNumber));
+			if ( BliinkGameResources() )
+					m_pPlayerList->SetSectionFgColor(sectionID,  BliinkGameResources()->GetTeamColor(teamNumber));
 		}
 		
 		m_pPlayerList->SetSectionAlwaysVisible(sectionID);
@@ -276,10 +276,10 @@ void CSDKScoreboard::UpdatePlayerInfo()
 
 	CBasePlayer *pPlayer = C_BasePlayer::GetLocalPlayer();
 
-	if ( !pPlayer || !SDKGameResources() )
+	if ( !pPlayer || !BliinkGameResources() )
 		return;
 
-	C_SDK_PlayerResource *sdkPR = SDKGameResources();
+	C_Bliink_PlayerResource *sdkPR = BliinkGameResources();
 
 
 #if defined ( SDK_USE_PLAYERCLASSES )
@@ -308,7 +308,7 @@ void CSDKScoreboard::UpdatePlayerInfo()
 			{
 				int ot = pOther->GetTeamNumber();
 				if ( ot == localteam || localteam == TEAM_UNASSIGNED)
-					kv->SetString("class", BliinkGameRules()->GetPlayerClassName( SDKGameResources()->GetPlayerClass(i), ot ) );
+					kv->SetString("class", BliinkGameRules()->GetPlayerClassName( BliinkGameResources()->GetPlayerClass(i), ot ) );
 				else
 					kv->SetString("class", "");
 			}
