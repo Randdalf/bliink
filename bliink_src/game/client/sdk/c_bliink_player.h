@@ -176,6 +176,13 @@ public:
 	virtual int GetAmmoCount( int iAmmoIndex ) const;
 	virtual void RemoveAmmo( int iCount, int iAmmoIndex ) {}
 	virtual int	GetMaxHealth();
+
+	// Fog
+private:
+	bool m_bIsInFog;
+
+public:
+	bool IsInFog() { return m_bIsInFog; }
 };
 
 

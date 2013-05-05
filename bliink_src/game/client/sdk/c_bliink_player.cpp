@@ -168,6 +168,9 @@ IMPLEMENT_CLIENTCLASS_DT( C_BliinkPlayer, DT_SDKPlayer, CBliinkPlayer )
 
 	// Bliink stats
 	RecvPropDataTable( RECVINFO_DT( m_BliinkStats), 0, &REFERENCE_RECV_TABLE( DT_BliinkPlayerStats ) ),
+
+	// Fog status.
+	RecvPropBool( RECVINFO( m_bIsInFog ) )
 END_RECV_TABLE()
 
 // ------------------------------------------------------------------------------------------ //

@@ -80,11 +80,11 @@ void CHudBliinkMeters::Paint()
 
 	if( !pBliinkPlayer )
 		return;
+	
+	CBliinkPlayerStats stats = pBliinkPlayer->GetBliinkPlayerStats();
 
 	if( pBliinkPlayer->State_Get() == STATE_BLIINK_SURVIVOR )
 	{
-		CBliinkPlayerStats stats = pBliinkPlayer->GetBliinkPlayerStats();
-
 		// Getting player health
 		float fHealth = (float) stats.GetHealth();
 		int iHealthWidth = (int) floor(256.0f * (fHealth/stats.GetMaxHealth()));
@@ -147,8 +147,8 @@ void CHudBliinkMeters::Paint()
 	else if( pBliinkPlayer->State_Get() == STATE_BLIINK_STALKER )
 	{
 		// Getting player health
-		float fHealth = (float) pBliinkPlayer->GetHealth();
-		int iHealthWidth = (int) floor(256.0f * (fHealth/((float)pBliinkPlayer->GetMaxHealth())));
+		float fHealth = (float) stats.GetHealth();
+		int iHealthWidth = (int) floor(256.0f * (fHealth/stats.GetMaxHealth()));
 
 		// Drawing heath icon
 		surface()->DrawSetTexture( m_nHealthIcon );

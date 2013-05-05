@@ -15,7 +15,7 @@
 #define BASE_UPGRADE_POINTS 0
 #define BASE_FATIGUE_REGEN_RATE_PER_SECOND 10.0f
 #define BASE_MAX_EXPERIENCE 100
-#define BASE_HUNGER_DEGEN_RATE_PER_SECOND 0.05f
+#define BASE_HUNGER_DEGEN_RATE_PER_SECOND 0.1f
 #define BASE_HEATH_REGEN_RATE_PER_SECOND 5.0f
 #define BASE_HEATH_DEGEN_RATE_PER_SECOND 0.5f
 
@@ -38,13 +38,16 @@
 
 #define STATUS_POISON_DAMAGE_PER_SECOND 1.0f
 #define STATUS_BURN_DAMAGE_PER_SECOND 3.0f
-#define STATUS_FOGGED_DAMAGE_PER_SECOND 1.3f
+#define STATUS_FOGGED_DAMAGE_PER_SECOND 0.7f
 #define STATUS_SLOW_PERCENT 0.5f
 
 #define STATUS_POISON_CHANCE 0.05f
 #define STATUS_BURN_CHANCE 0.08f
 #define STATUS_FOG_CHANCE 1.0f
 #define STATUS_SLOW_CHANCE 1.0f
+
+#define STALKER_FOG_HEALTH_REGEN 2.5f
+#define STALKER_FOG_HEALTH_DEGEN 0.13f
 
 class CBliinkPlayer;
 
@@ -80,6 +83,9 @@ public:
 
 	// Runs every frame, for stuff like health regen etc.
 	bool Think();  // true if dead
+
+	// Health management for stalkers.
+	void StalkerThink();
 #endif
 
 	// Getter functions.

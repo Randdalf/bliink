@@ -3,11 +3,13 @@
 
 #include "cbase.h"
 
+#include "func_dust.h"
+
 // Radial fog.
-class CBliinkFog : public CPointEntity
+class CBliinkFog : public CFunc_Dust
 {
 public:
-	DECLARE_CLASS( CBliinkFog, CPointEntity );
+	DECLARE_CLASS( CBliinkFog, CFunc_Dust );
 	DECLARE_SERVERCLASS();
 	DECLARE_DATADESC();
 	
@@ -15,7 +17,6 @@ public:
 	~CBliinkFog();
 
 public:
-	virtual void Spawn();
 	virtual void Precache();
 
 public:
@@ -26,23 +27,12 @@ public:
 	float CalcTargetTime();
 
 	// Used to control radius.
-	void Think();
+	virtual void Think();
+
+	// Determines whether or not an entity is in the fog.
+	bool IsInFog( CBaseEntity* pEntity );
 
 public:
-	// Func dust stuff for particles.
-	CNetworkVar( color32, m_Color );
-	CNetworkVar( int, m_SpawnRate );	
-	CNetworkVar( float, m_flSizeMin );
-	CNetworkVar( float, m_flSizeMax );
-	CNetworkVar( int, m_SpeedMax );
-	CNetworkVar( int, m_LifetimeMin );
-	CNetworkVar( int, m_LifetimeMax );
-	CNetworkVar( int, m_DistMax );
-	CNetworkVar( float, m_FallSpeed );
-	CNetworkVar( int, m_DustFlags );
-	int m_iAlpha;
-
-	// Bliink specific.
 	CNetworkVar( float, m_flMaxFogRadius );
 	CNetworkVar( float, m_flMinFogRadius );
 	CNetworkVar( float, m_flFogHeightUp );

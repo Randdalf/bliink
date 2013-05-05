@@ -28,6 +28,7 @@
 	#include "player_resource.h"
 	#include "mapentities.h"
 	#include "sdk_basegrenade_projectile.h"
+	#include "bliink_fog.h"
 #endif
 
 
@@ -651,6 +652,17 @@ void CBliinkGameRules::StartGame()
 	}
 
 	//initialise the fog.
+	pResult = gEntList.FindEntityByClassname( NULL, "func_bliink_fog" );
+
+	if( pResult )
+	{
+		CBliinkFog* pFog = dynamic_cast<CBliinkFog*>(pResult);
+
+		if( pFog )
+		{
+			pFog->BeginContracting();
+		}
+	}
 
 	//gpGlobals->fog_radius = 500.0f;
 	//gpGlobals->start_time = gpGlobals->curtime;

@@ -1973,6 +1973,9 @@
     <ClCompile Include="ShaderEditor\ShaderEditorSystem.cpp">
       <Filter>Source Files\ShaderEditor</Filter>
     </ClCompile>
+    <ClCompile Include="sdk\c_bliink_fog.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="achievement_notification_panel.h">
