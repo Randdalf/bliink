@@ -72,7 +72,7 @@ BliinkItemList
 		"ammo_clip"		"16"
 
 		// world model
-		"world_model"	"models/weapons/w_pist_deagle.mdl"
+		"world_model"	"models/props/ammo.mdl"
 	}
 	"ammo_revolver_normal"
 	{
@@ -90,7 +90,7 @@ BliinkItemList
 		"ammo_clip"		"16"
 
 		// world model
-		"world_model"	"models/gibs/metal_gib1.mdl"
+		"world_model"	"models/props/ammorev.mdl"
 	}
 	"ammo_smg_normal"
 	{
@@ -108,7 +108,7 @@ BliinkItemList
 		"ammo_clip"		"16"
 
 		// world model
-		"world_model"	"models/gibs/metal_gib1.mdl"
+		"world_model"	"models/props/ammosmg.mdl"
 	}
 	"ammo_rifle_normal"
 	{
@@ -126,7 +126,7 @@ BliinkItemList
 		"ammo_clip"		"16"
 
 		// world model
-		"world_model"	"models/gibs/metal_gib1.mdl"
+		"world_model"	"models/props/ammorif.mdl"
 	}
 	"ammo_shotgun_normal"
 	{
@@ -144,7 +144,7 @@ BliinkItemList
 		"ammo_clip"		"16"
 
 		// world model
-		"world_model"	"models/gibs/metal_gib1.mdl"
+		"world_model"	"models/props/ammoshot.mdl"
 	}
 	"ammo_sniper_normal"
 	{
@@ -182,7 +182,7 @@ BliinkItemList
 		"ammo_clip"		"16"
 
 		// world model
-		"world_model"	"models/gibs/metal_gib1.mdl"
+		"world_model"	"models/props/ammopistpoison.mdl"
 	}
 
 	// CONSUMABLE TEST
@@ -223,7 +223,7 @@ BliinkItemList
 	"consumable_booster"
 	{
 		// key properties
-		"description"	"Hunger restore"
+		"description"	"Hunger restore melon"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
 
@@ -235,6 +235,243 @@ BliinkItemList
 		"consume_value"	"50"
 
 		// world model
-		"world_model"	"models/weapons/w_smg_mp5.mdl"
+		"world_model"	"models/props/melon.mdl"
 	}
+
+	"melon"
+	{
+		// key properties
+		"description"	"Hunger restore melon"
+		"item_type"		"ITEM_TYPE_CONSUMABLE"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// consumable
+		"consume_value"	"10"
+
+		// world model
+		"world_model"	"models/props/melon.mdl"
+	}
+
+"banana"
+	{
+		// key properties
+		"description"	"Hunger restore banana"
+		"item_type"		"ITEM_TYPE_CONSUMABLE"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// consumable
+		"consume_value"	"10"
+
+		// world model
+		"world_model"	"models/props/banana.mdl"
+	}
+
+"orange"
+	{
+		// key properties
+		"description"	"Hunger restore orange"
+		"item_type"		"ITEM_TYPE_CONSUMABLE"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// consumable
+		"consume_value"	"10"
+
+		// world model
+		"world_model"	"models/props/orange.mdl"
+	}
+
+"soup"
+	{
+		// key properties
+		"description"	"Hunger restore soup"
+		"item_type"		"ITEM_TYPE_CONSUMABLE"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// consumable
+		"consume_value"	"18"
+
+		// world model
+		"world_model"	"models/props/soup.mdl"
+	}
+
+"corn"
+	{
+		// key properties
+		"description"	"Hunger restore corn"
+		"item_type"		"ITEM_TYPE_CONSUMABLE"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// consumable
+		"consume_value"	"18"
+
+		// world model
+		"world_model"	"models/props/corn.mdl"
+	}
+
+"sandwich"
+	{
+		// key properties
+		"description"	"Hunger restore sandwich"
+		"item_type"		"ITEM_TYPE_CONSUMABLE"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// consumable
+		"consume_value"	"18"
+
+		// world model
+		"world_model"	"models/props/sandwich.mdl"
+	}
+
+"chicken"
+	{
+		// key properties
+		"description"	"Hunger restore chicken"
+		"item_type"		"ITEM_TYPE_CONSUMABLE"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// consumable
+		"consume_value"	"32"
+
+		// world model
+		"world_model"	"models/props/chicken.mdl"
+	}
+
+
+"pizza"
+	{
+		// key properties
+		"description"	"Hunger restore pizza"
+		"item_type"		"ITEM_TYPE_CONSUMABLE"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// consumable
+		"consume_value"	"32"
+
+		// world model
+		"world_model"	"models/props/pizza.mdl"
+	}
+
+"fish"
+	{
+		// key properties
+		"description"	"Hunger restore fish"
+		"item_type"		"ITEM_TYPE_CONSUMABLE"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// consumable
+		"consume_value"	"32"
+
+		// world model
+		"world_model"	"models/props/fish.mdl"
+	}
+
+
+"breakfast"
+	{
+		// key properties
+		"description"	"Hunger restore breakfast"
+		"item_type"		"ITEM_TYPE_CONSUMABLE"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// consumable
+		"consume_value"	"50"
+
+		// world model
+		"world_model"	"models/props/breakfast.mdl"
+	}
+
+"healthsmall"
+	{
+		// key properties
+		"description"	"Health restore small"
+		"item_type"		"ITEM_TYPE_CONSUMABLE"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_HEALTH"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// consumable
+		"consume_value"	"10"
+
+		// world model
+		"world_model"	"models/props/healthsmall.mdl"
+	}
+
+"healthmedium"
+	{
+		// key properties
+		"description"	"Health restore medium"
+		"item_type"		"ITEM_TYPE_CONSUMABLE"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_HEALTH"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// consumable
+		"consume_value"	"18"
+
+		// world model
+		"world_model"	"models/props/healthmedium.mdl"
+	}
+
+"healthlarge"
+	{
+		// key properties
+		"description"	"Health restore large"
+		"item_type"		"ITEM_TYPE_CONSUMABLE"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_HEALTH"
+
+		// behaviours
+		"can_stack"		"1"
+		"max_stack"		"4"
+
+		// consumable
+		"consume_value"	"32"
+
+		// world model
+		"world_model"	"models/props/healthlarge.mdl"
+	}
+
 }
