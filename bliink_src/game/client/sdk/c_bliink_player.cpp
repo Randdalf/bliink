@@ -872,7 +872,7 @@ void C_BliinkPlayer::ClientThink()
 		soundPlaying = true;
 	}
 
-	bool inFogNow = playerInFog();
+	bool inFogNow = GetBliinkPlayerStats().GetStatus() == BLIINK_STATUS_FOGGED;
 
 	if(inFogNow){
 		if(!inFog){

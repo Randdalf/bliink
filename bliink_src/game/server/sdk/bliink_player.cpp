@@ -1778,7 +1778,7 @@ void CBliinkPlayer::Think()
 	if( State_Get() == STATE_BLIINK_SURVIVOR )
 	{
 		if( m_bIsInFog )
-			m_BliinkStats.AfflictStatus( BLIINK_STATUS_FOGGED, 30.0f );
+			m_BliinkStats.AfflictStatus( BLIINK_STATUS_FOGGED, 15.0f );
 
 		m_BliinkStats.Think();
 		m_BliinkStats.UpdateHealth();
