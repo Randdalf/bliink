@@ -24,6 +24,7 @@
 #include "bliink_player_stats.h"
 #include "bliink_item_inventory.h"
 #include "engine/ienginesound.h"
+#include "glow_outline_effect.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 ConVar cl_ragdoll_physics_enable( "cl_ragdoll_physics_enable", "1", 0, "Enable/disable ragdoll physics." );
@@ -168,6 +169,9 @@ IMPLEMENT_CLIENTCLASS_DT( C_BliinkPlayer, DT_SDKPlayer, CBliinkPlayer )
 
 	// Bliink stats
 	RecvPropDataTable( RECVINFO_DT( m_BliinkStats), 0, &REFERENCE_RECV_TABLE( DT_BliinkPlayerStats ) ),
+
+	// Fog status.
+	RecvPropBool( RECVINFO( m_bIsInFog ) )
 END_RECV_TABLE()
 
 // ------------------------------------------------------------------------------------------ //
@@ -574,8 +578,13 @@ IRagdoll* C_BliinkPlayer::GetRepresentativeRagdoll() const
 
 
 C_BliinkPlayer::C_BliinkPlayer() : 
-	m_iv_angEyeAngles( "C_BliinkPlayer::m_iv_angEyeAngles" )
+	m_iv_angEyeAngles( "C_BliinkPlayer::m_iv_angEyeAngles" ),
+	m_GlowObject(this)
 {
+	// Setting up glow state
+	m_GlowObject.SetColor( Vector( 0.3f, 0.1f, 0.6f ) );
+	m_GlowObject.SetRenderFlags( false, false );
+
 	m_PlayerAnimState = CreateSDKPlayerAnimState( this );
 	m_Shared.Init(this);
 
@@ -869,7 +878,7 @@ void C_BliinkPlayer::ClientThink()
 		soundPlaying = true;
 	}
 
-	bool inFogNow = playerInFog();
+	bool inFogNow = GetBliinkPlayerStats().GetStatus() == BLIINK_STATUS_FOGGED;
 
 	if(inFogNow){
 		if(!inFog){
@@ -913,9 +922,6 @@ void C_BliinkPlayer::ClientThink()
 		enginesound->SetVolumeByGuid(fogThemeID, smokeVol);
 		if(smokeVol >= 1.0f) fadeToSmoke = false;
 	}
-
-
-
 	for( int iClient = 1; iClient <= gpGlobals->maxClients; ++iClient )
 	{
 		CBaseEntity *pEnt = UTIL_PlayerByIndex( iClient );
@@ -955,6 +961,24 @@ void C_BliinkPlayer::ClientThink()
 	{
 		PerformObstaclePushaway( this );
 		m_fNextThinkPushAway =  gpGlobals->curtime + PUSHAWAY_THINK_INTERVAL;
+	}
+
+	// Glowing
+	m_GlowObject.SetRenderFlags( false, false );
+
+	C_BliinkPlayer* pPlayer = ToBliinkPlayer( C_BasePlayer::GetLocalPlayer() );
+
+	if( pPlayer->State_Get() == STATE_BLIINK_STALKER ||
+		pPlayer->State_Get() == STATE_BLIINK_STALKER_RESPAWN ||
+		pPlayer->State_Get() == STATE_BLIINK_STALKER_DEATH_ANIM
+		)
+	{
+		// Only render when player is fogged.
+		if( State_Get() == STATE_BLIINK_SURVIVOR &&
+			m_BliinkStats.GetStatus() == BLIINK_STATUS_NORMAL /*BLIINK_STATUS_FOGGED*/ )
+		{
+			m_GlowObject.SetRenderFlags( true, true );
+		}
 	}
 }
 

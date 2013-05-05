@@ -1614,6 +1614,9 @@
     <ClCompile Include="..\shared\sdk\bliink_player_stats.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
+    <ClCompile Include="sdk\bliink_fog.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\shared\achievement_saverestore.h">
@@ -3245,9 +3248,6 @@
     <ClInclude Include="toolframework_server.h">
       <Filter>Tools Framework</Filter>
     </ClInclude>
-    <ClInclude Include="sdk\sdk_player_resource.h">
-      <Filter>Source Files\SDK</Filter>
-    </ClInclude>
     <ClInclude Include="sdk\te_firebullets.h">
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
@@ -3325,6 +3325,15 @@
     </ClInclude>
     <ClInclude Include="..\shared\sdk\bliink_player_stats.h">
       <Filter>Source Files\SDK\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\bliink_fog.h">
+      <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="func_dust.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\bliink_player_resource.h">
+      <Filter>Source Files\SDK</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

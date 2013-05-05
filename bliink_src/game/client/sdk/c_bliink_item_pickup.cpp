@@ -65,25 +65,6 @@ void C_BliinkItemPickup::ClientThink()
 
 	if( pPlayer && pPlayer->State_Get() == STATE_BLIINK_SURVIVOR )
 	{
-		/*// Finding eye position and angles.
-		Vector vecStart = pPlayer->EyePosition();
-		QAngle eyeAngles = pPlayer->EyeAngles();
-
-		// Finding direction we're looking in.
-		Vector vecDir;
-		AngleVectors( eyeAngles, &vecDir );
-		VectorNormalize( vecDir );
-
-		// Specifiying the end of the trace.
-		Vector vecEnd = vecStart + vecDir * 160;
-
-		// Tracing vector.
-		trace_t tr;
-		UTIL_TraceLine( vecStart, vecEnd, MASK_SOLID|CONTENTS_DEBRIS|CONTENTS_HITBOX, pPlayer, COLLISION_GROUP_NONE, &tr );
-
-		if ( tr.fraction == 1.0f )
-			return;*/
-
 		C_BaseEntity* pEntity = pPlayer->FindUseEntity();
 
 		// Determining if we are visible.

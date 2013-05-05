@@ -694,7 +694,8 @@ bool CSDKGameMovement::CheckJumpButton( void )
 		return false;		// don't pogo stick
 
 	// Attempt to use fatigue required to jump
-	if( !m_pSDKPlayer->GetBliinkPlayerStats().UseFatigue(FATIGUE_JUMP_LOSS, true) )
+	if( m_pSDKPlayer->State_Get() == STATE_BLIINK_SURVIVOR && 
+		!m_pSDKPlayer->GetBliinkPlayerStats().UseFatigue(FATIGUE_JUMP_LOSS, true) )
 		return false;
 
 	// In the air now.

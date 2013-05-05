@@ -6,6 +6,7 @@
 //=============================================================================//
 
 #include "cbase.h"
+#include "func_dust.h"
 #include "func_dust_shared.h"
 #include "te_particlesystem.h"
 #include "IEffects.h"
@@ -13,80 +14,7 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
-class CFunc_Dust : public CBaseEntity
-{
-public:
-	DECLARE_CLASS( CFunc_Dust, CBaseEntity );
-	DECLARE_SERVERCLASS();
-	DECLARE_DATADESC();
-
-					CFunc_Dust();
-	virtual 		~CFunc_Dust();
-
-
-// CBaseEntity overrides.
-public:
-
-	virtual void	Spawn();
-	virtual void	Activate();
-	virtual void	Precache();
-	virtual bool	KeyValue( const char *szKeyName, const char *szValue );
-
-
-// Input handles.
-public:
-	
-	void InputTurnOn( inputdata_t &inputdata );
-	void InputTurnOff( inputdata_t &inputdata );
-
-
-// FGD properties.
-public:
-
-	CNetworkVar( color32, m_Color );
-	CNetworkVar( int, m_SpawnRate );
-	
-	CNetworkVar( float, m_flSizeMin );
-	CNetworkVar( float, m_flSizeMax );
-
-	CNetworkVar( int, m_SpeedMax );
-
-	CNetworkVar( int, m_LifetimeMin );
-	CNetworkVar( int, m_LifetimeMax );
-
-	CNetworkVar( int, m_DistMax );
-
-	CNetworkVar( float, m_FallSpeed )
-
-	// Bliink stuff
-	CNetworkVar( int, m_iStartTime );
-	CNetworkVar( float, m_MinRadius );
-
-public:
-
-	CNetworkVar( int, m_DustFlags );	// Combination of DUSTFLAGS_
-
-private:	
-	int			m_iAlpha;
-
-};
-
-
-class CFunc_DustMotes : public CFunc_Dust
-{
-	DECLARE_CLASS( CFunc_DustMotes, CFunc_Dust );
-public:
-					CFunc_DustMotes();
-};
-
-
-class CFunc_DustCloud : public CFunc_Dust
-{
-	DECLARE_CLASS( CFunc_DustCloud, CFunc_Dust );
-public:
-};
-
-IMPLEMENT_SERVERCLASS_ST_NOBASE( CFunc_Dust, DT_Func_Dust )
+IMPLEMENT_SERVERCLASS_ST( CFunc_Dust, DT_Func_Dust )
 	SendPropInt( SENDINFO(m_Color),	32, SPROP_UNSIGNED, SendProxy_Color32ToInt32 ),
 	SendPropInt( SENDINFO(m_SpawnRate),	12, SPROP_UNSIGNED ),
 	SendPropInt( SENDINFO(m_SpeedMax),	12, SPROP_UNSIGNED ),
@@ -96,10 +24,6 @@ IMPLEMENT_SERVERCLASS_ST_NOBASE( CFunc_Dust, DT_Func_Dust )
 	SendPropInt( SENDINFO(m_LifetimeMin), 4, SPROP_UNSIGNED ),
 	SendPropInt( SENDINFO(m_LifetimeMax), 4, SPROP_UNSIGNED ),
 	SendPropInt( SENDINFO(m_DustFlags), DUST_NUMFLAGS, SPROP_UNSIGNED ),
-
-	// Bliink SendProps
-	SendPropInt( SENDINFO(m_iStartTime), 0),
-	SendPropFloat( SENDINFO(m_MinRadius), 0, SPROP_NOSCALE ),
 
 	SendPropModelIndex( SENDINFO(m_nModelIndex) ),
 	SendPropFloat( SENDINFO(m_FallSpeed), 0, SPROP_NOSCALE ),
@@ -121,7 +45,6 @@ BEGIN_DATADESC( CFunc_Dust )
 	DEFINE_KEYFIELD( m_DistMax,		FIELD_INTEGER,	"DistMax" ),
 	DEFINE_FIELD( m_iAlpha,			FIELD_INTEGER ),
 	DEFINE_KEYFIELD( m_FallSpeed,	FIELD_FLOAT,	"FallSpeed" ),
-	DEFINE_KEYFIELD ( m_MinRadius, FIELD_FLOAT, "MinFogRadius" ),
 
 	DEFINE_INPUTFUNC( FIELD_VOID, "TurnOn",  InputTurnOn ),
 	DEFINE_INPUTFUNC( FIELD_VOID, "TurnOff", InputTurnOff )
@@ -131,7 +54,7 @@ END_DATADESC()
 
 LINK_ENTITY_TO_CLASS( func_dustmotes, CFunc_DustMotes );
 LINK_ENTITY_TO_CLASS( func_dustcloud, CFunc_DustCloud );
-LINK_ENTITY_TO_CLASS( func_bliink_fog, CFunc_DustCloud );
+//LINK_ENTITY_TO_CLASS( func_bliink_fog, CFunc_DustCloud );
 
 
 // ------------------------------------------------------------------------------------- //
@@ -153,7 +76,6 @@ CFunc_Dust::CFunc_Dust()
 {
 	m_DustFlags = DUSTFLAGS_ON;
 	m_FallSpeed = 0.0f;
-	m_iStartTime = gpGlobals->curtime;
 }
 
 

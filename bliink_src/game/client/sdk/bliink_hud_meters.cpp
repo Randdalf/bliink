@@ -80,11 +80,11 @@ void CHudBliinkMeters::Paint()
 
 	if( !pBliinkPlayer )
 		return;
+	
+	CBliinkPlayerStats stats = pBliinkPlayer->GetBliinkPlayerStats();
 
 	if( pBliinkPlayer->State_Get() == STATE_BLIINK_SURVIVOR )
 	{
-		CBliinkPlayerStats stats = pBliinkPlayer->GetBliinkPlayerStats();
-
 		// Getting player health
 		float fHealth = (float) stats.GetHealth();
 		int iHealthWidth = (int) floor(256.0f * (fHealth/stats.GetMaxHealth()));
@@ -143,12 +143,17 @@ void CHudBliinkMeters::Paint()
 			surface()->DrawSetTexture( m_nSegmentEnd );
 			surface()->DrawTexturedRect( 32 + iSegmentBegin-1, 0, 32+iSegmentBegin+2, 32 );
 		}
+
+		// Drawing hunger threshold marker
+		int iMarkerBegin = (int) floor(256.0f * (HUNGER_REGEN_THRESHOLD));
+		surface()->DrawSetTexture( m_nSegmentEnd );
+		surface()->DrawTexturedRect( 32 + iMarkerBegin-1, 32, 32+iMarkerBegin+2, 64 );
 	}
 	else if( pBliinkPlayer->State_Get() == STATE_BLIINK_STALKER )
 	{
 		// Getting player health
-		float fHealth = (float) pBliinkPlayer->GetHealth();
-		int iHealthWidth = (int) floor(256.0f * (fHealth/((float)pBliinkPlayer->GetMaxHealth())));
+		float fHealth = (float) stats.GetHealth();
+		int iHealthWidth = (int) floor(256.0f * (fHealth/stats.GetMaxHealth()));
 
 		// Drawing heath icon
 		surface()->DrawSetTexture( m_nHealthIcon );

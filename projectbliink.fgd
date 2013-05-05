@@ -97,12 +97,11 @@
 [
 ]
 
-@SolidClass base( Targetname, BModelParticleSpawner ) = func_bliink_fog: 
+@SolidClass base( func_dustcloud ) = func_bliink_fog: 
 	"A brush entity that spawns a decreasing ring of fog"
 [
-	Alpha(integer) : "Alpha" : 30
-
-	SizeMin(string) : "Minimum Particle Size" : 100
-	SizeMax(string) : "Maximum Particle Size" : 200
-	MinFogRadius(string): "Minimum fog radius" : 500
+	MinFogRadius(float): "Minimum fog radius" : 512
+	MaxFogRadius(float): "Maximum fog radius" : 2048
+	FogHeightUp(float): "Fog height upwards" : 512
+	FogHeightDown(float): "Fog height downwards"  : 0
 ]

@@ -706,12 +706,14 @@ exit 1
     </ClCompile>
     <ClCompile Include="sdk\bliink_hud_ammo.cpp" />
     <ClCompile Include="sdk\bliink_hud_meters.cpp" />
+    <ClCompile Include="sdk\bliink_hud_player_states.cpp" />
     <ClCompile Include="sdk\bliink_hud_respawn_timer.cpp" />
     <ClCompile Include="sdk\clientmode_sdk.cpp" />
+    <ClCompile Include="sdk\c_bliink_fog.cpp" />
     <ClCompile Include="sdk\c_bliink_item_pickup.cpp" />
     <ClCompile Include="sdk\c_sdk_env_sparkler.cpp" />
     <ClCompile Include="sdk\c_bliink_player.cpp" />
-    <ClCompile Include="sdk\c_sdk_player_resource.cpp" />
+    <ClCompile Include="sdk\c_bliink_player_resource.cpp" />
     <ClCompile Include="sdk\c_bliink_team.cpp" />
     <ClCompile Include="sdk\c_te_firebullets.cpp" />
     <ClCompile Include="sdk\hud_sdkdeathnotice.cpp" />
@@ -1604,7 +1606,7 @@ exit 1
     <ClInclude Include="opencv_interface.h" />
     <ClInclude Include="sdk\clientmode_sdk.h" />
     <ClInclude Include="sdk\c_bliink_player.h" />
-    <ClInclude Include="sdk\c_sdk_player_resource.h" />
+    <ClInclude Include="sdk\c_bliink_player_resource.h" />
     <ClInclude Include="sdk\c_bliink_team.h" />
     <ClInclude Include="sdk\sdk_backgroundpanel.h" />
     <ClInclude Include="sdk\sdk_hud_chat.h" />

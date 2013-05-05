@@ -268,6 +268,13 @@ public:
 public:
 	int		GetAmmoCount( int iAmmoIndex ) const;
 	void	RemoveAmmo( int iCount, int iAmmoIndex );
+
+	// Fog
+private:
+	CNetworkVar( bool, m_bIsInFog );
+
+public:
+	bool IsInFog() { return m_bIsInFog; }
 };
 
 

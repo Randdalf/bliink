@@ -24,6 +24,8 @@
 #include "basecombatweapon_shared.h"
 #include "weapon_sdkbase.h"
 #include "engine/ienginesound.h"
+#include "bliink_fog.h"
+
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
@@ -81,6 +83,7 @@ DEFINE_THINKFUNC( SDKPushawayThink ),
 END_DATADESC()
 
 LINK_ENTITY_TO_CLASS( player, CBliinkPlayer );
+
 PRECACHE_REGISTER(player);
 
 // CBliinkPlayerShared Data Tables
@@ -175,6 +178,9 @@ IMPLEMENT_SERVERCLASS_ST( CBliinkPlayer, DT_SDKPlayer )
 
 	// Send table for Bliink stats
 	SendPropDataTable( SENDINFO_DT(m_BliinkStats), &REFERENCE_SEND_TABLE( DT_BliinkPlayerStats ) ),
+
+	// Fog info.
+	SendPropBool( SENDINFO( m_bIsInFog ) ),
 
 END_SEND_TABLE()
 
@@ -1759,12 +1765,31 @@ bool CBliinkPlayer::Weapon_BliinkHasWeapon( CWeaponSDKBase* pWeapon )
 // Thinking
 void CBliinkPlayer::Think()
 {
+	// Do fog interaction.
+	CBaseEntity* pResult = gEntList.FindEntityByClassname( NULL, "func_bliink_fog" );
+
+	if( pResult )
+	{
+		CBliinkFog* pFog = dynamic_cast<CBliinkFog*>(pResult);
+
+		m_bIsInFog = pFog->IsInFog( this );
+	}
+
 	// If we're a survivor than do our stats thinking
 	if( State_Get() == STATE_BLIINK_SURVIVOR )
 	{
+		if( m_bIsInFog )
+			m_BliinkStats.AfflictStatus( BLIINK_STATUS_FOGGED, 15.0f );
+
 		m_BliinkStats.Think();
 		m_BliinkStats.UpdateHealth();
 		m_Inventory.UpdateAmmoCounts();
+	}
+	else
+	if( State_Get() == STATE_BLIINK_STALKER )
+	{
+		m_BliinkStats.StalkerThink();
+		m_BliinkStats.UpdateHealth();
 	}
 
 	SetNextThink(gpGlobals->frametime);
