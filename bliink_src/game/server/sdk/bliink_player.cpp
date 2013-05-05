@@ -83,6 +83,7 @@ DEFINE_THINKFUNC( SDKPushawayThink ),
 END_DATADESC()
 
 LINK_ENTITY_TO_CLASS( player, CBliinkPlayer );
+
 PRECACHE_REGISTER(player);
 
 // CBliinkPlayerShared Data Tables

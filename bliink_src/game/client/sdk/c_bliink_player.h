@@ -18,6 +18,7 @@
 #include "sdk_shareddefs.h"
 #include "bliink_item_inventory.h"
 #include "bliink_player_stats.h"
+#include "glow_outline_effect.h"
 
 class C_BliinkPlayer : public C_BasePlayer
 {
@@ -180,6 +181,7 @@ public:
 	// Fog
 private:
 	bool m_bIsInFog;
+	CGlowObject m_GlowObject;
 
 public:
 	bool IsInFog() { return m_bIsInFog; }
