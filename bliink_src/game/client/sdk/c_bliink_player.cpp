@@ -975,7 +975,7 @@ void C_BliinkPlayer::ClientThink()
 	{
 		// Only render when player is fogged.
 		if( State_Get() == STATE_BLIINK_SURVIVOR &&
-			m_BliinkStats.GetStatus() == BLIINK_STATUS_NORMAL /*BLIINK_STATUS_FOGGED*/ )
+			m_BliinkStats.GetStatus() == BLIINK_STATUS_FOGGED )
 		{
 			m_GlowObject.SetRenderFlags( true, true );
 		}
