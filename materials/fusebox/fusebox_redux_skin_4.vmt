@@ -1,0 +1,6 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "models/fusebox/fusebox_redux_skin_4"
+	"$envmap" "env_cubemap"
+	"$envmapmask" "models/fusebox/fusebox_redux_skin_4_ref"
+}

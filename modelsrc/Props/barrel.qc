@@ -1,7 +1,6 @@
 $modelname	"props\barrel.mdl"
 $cdmaterials	"models\props\"
-$scale 90
-
+$scale 20
 $body mybody	"barrel.smd"
 $staticprop
 $surfaceprop	combine_metal
