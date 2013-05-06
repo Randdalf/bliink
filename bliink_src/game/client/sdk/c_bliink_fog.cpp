@@ -69,7 +69,7 @@ void C_BliinkFog::AttemptSpawnNewParticle()
 	// Stalkers can see through the fog.
 	if( pPlayer->State_Get() == STATE_BLIINK_STALKER )
 	{
-		m_Color.a = 32;
+		m_Color.a = 128;
 	}
 
 	for( int iTest=0; iTest < nTests; iTest++ )
