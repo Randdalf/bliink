@@ -9,6 +9,17 @@
 	  "tall" "96"
 	  "visible" "1"
 	  "enabled" "1"
+	}	
+
+	BliinkHudStatus
+	{
+	  "fieldName" BliinkHudStatus
+	  "xpos" "16"
+	  "ypos" "r124"
+	  "wide" "64"
+	  "tall" "64"
+	  "visible" "1"
+	  "enabled" "1"
 	}
 
 	BliinkHudLevel
