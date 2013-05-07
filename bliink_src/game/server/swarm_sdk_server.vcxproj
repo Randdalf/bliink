@@ -711,6 +711,7 @@ exit 1
     </ClCompile>
     <ClCompile Include="scripted.cpp" />
     <ClCompile Include="scriptedtarget.cpp" />
+    <ClCompile Include="sdk\bliink_exp_orb.cpp" />
     <ClCompile Include="sdk\bliink_fog.cpp" />
     <ClCompile Include="SDK\bliink_item_base.cpp" />
     <ClCompile Include="sdk\bliink_item_pickup.cpp" />
@@ -1186,6 +1187,7 @@ exit 1
     <ClInclude Include="scriptedtarget.h" />
     <ClInclude Include="..\shared\scriptevent.h" />
     <ClInclude Include="..\..\public\server_class.h" />
+    <ClInclude Include="sdk\bliink_exp_orb.h" />
     <ClInclude Include="sdk\bliink_fog.h" />
     <ClInclude Include="sdk\bliink_item_base.h" />
     <ClInclude Include="sdk\bliink_item_pickup.h" />

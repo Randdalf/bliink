@@ -1617,6 +1617,9 @@
     <ClCompile Include="sdk\bliink_fog.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
+    <ClCompile Include="sdk\bliink_exp_orb.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\shared\achievement_saverestore.h">
@@ -3333,6 +3336,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="sdk\bliink_player_resource.h">
+      <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\bliink_exp_orb.h">
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
   </ItemGroup>

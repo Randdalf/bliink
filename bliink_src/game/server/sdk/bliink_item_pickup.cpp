@@ -25,6 +25,7 @@ void CBliinkItemPickup::Spawn( void )
 {
 	if( pItem )
 	{
+		PrecacheModel( pItem->GetItemData().szWorldModel );
 		SetModel( pItem->GetItemData().szWorldModel );
 	}
 

@@ -710,6 +710,7 @@ exit 1
     <ClCompile Include="sdk\bliink_hud_respawn_timer.cpp" />
     <ClCompile Include="sdk\bliink_hud_status.cpp" />
     <ClCompile Include="sdk\clientmode_sdk.cpp" />
+    <ClCompile Include="sdk\c_bliink_exp_orb.cpp" />
     <ClCompile Include="sdk\c_bliink_fog.cpp" />
     <ClCompile Include="sdk\c_bliink_item_pickup.cpp" />
     <ClCompile Include="sdk\c_sdk_env_sparkler.cpp" />
