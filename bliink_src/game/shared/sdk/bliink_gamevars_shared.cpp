@@ -12,7 +12,7 @@
 ConVar Bliink_CountdownToLive( "bliink_countdown_to_live", "5.0", FCVAR_REPLICATED );
 ConVar Bliink_ResultsTime( "bliink_results_time", "5.0", FCVAR_REPLICATED );
 ConVar Bliink_MinPlayers( "bliink_min_players", "2", FCVAR_REPLICATED );
-ConVar Bliink_MinSurvivors( "bliink_min_survivors", "1", FCVAR_REPLICATED );
+ConVar Bliink_MinSurvivors( "bliink_min_survivors", "0", FCVAR_REPLICATED );
 
 // Bliink ConCommands
 

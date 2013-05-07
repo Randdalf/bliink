@@ -1711,6 +1711,11 @@ typedef enum
 	ACT_PREP_EXPLODE,
 	ACT_EXPLODE,
 
+	//Rosahn
+	ACT_DOTA_IDLE,
+	ACT_DOTA_RUN,
+	ACT_DOTA_ATTACK,
+
 	// this is the end of the global activities, private per-monster activities start here.
 	LAST_SHARED_ACTIVITY,
 } Activity;
