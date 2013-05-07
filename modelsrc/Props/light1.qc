@@ -1,6 +1,6 @@
 $modelname	"props\light1.mdl"
 $cdmaterials	"models\props\"
-$scale 40
+$scale 20
 
 $body mybody	"light1.smd"
 $staticprop
