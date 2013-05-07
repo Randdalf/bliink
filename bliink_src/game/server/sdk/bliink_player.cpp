@@ -391,6 +391,9 @@ void CBliinkPlayer::Spawn()
 
 bool CBliinkPlayer::SelectSpawnSpot( const char *pEntClassName, CBaseEntity* &pSpot )
 {
+	// Fog
+	CBaseEntity* pBaseFog = gEntList.FindEntityByClassname( NULL, "func_bliink_fog" );
+
 	// Find the next spawn spot.
 	pSpot = gEntList.FindEntityByClassname( pSpot, pEntClassName );
 
@@ -402,8 +405,18 @@ bool CBliinkPlayer::SelectSpawnSpot( const char *pEntClassName, CBaseEntity* &pS
 	{
 		if ( pSpot )
 		{
+			// check if stalker point, if necessary
+			bool bValidStalkerPoint = true;
+
+			if( pBaseFog && State_Get() == STATE_BLIINK_STALKER )
+			{
+				CBliinkFog* pFog = dynamic_cast<CBliinkFog*>(pBaseFog);
+
+				bValidStalkerPoint = pFog->IsInFog( pSpot );
+			}
+
 			// check if pSpot is valid
-			if ( g_pGameRules->IsSpawnPointValid( pSpot, this ) )
+			if ( g_pGameRules->IsSpawnPointValid( pSpot, this ) && bValidStalkerPoint)
 			{
 				if ( pSpot->GetAbsOrigin() == Vector( 0, 0, 0 ) )
 				{
@@ -1150,11 +1163,15 @@ void CBliinkPlayer::PhysObjectWake()
 void CBliinkPlayer::MoveToNextIntroCamera()
 {
 	EHANDLE pOldCamera = m_pIntroCamera;
+
 	m_pIntroCamera = gEntList.FindEntityByClassname( m_pIntroCamera, "point_viewcontrol" );
 
 	// if m_pIntroCamera is NULL we just were at end of list, start searching from start again
 	if(!m_pIntroCamera)
 		m_pIntroCamera = gEntList.FindEntityByClassname(m_pIntroCamera, "point_viewcontrol");
+
+	if( pOldCamera == m_pIntroCamera )
+		return;
 
 	// find the target
 	CBaseEntity *Target = NULL;

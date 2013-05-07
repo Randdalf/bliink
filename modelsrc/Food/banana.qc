@@ -1,6 +1,6 @@
 $modelname	"props\banana.mdl"
 $cdmaterials	"models\props\"
-$scale 3
+$scale 1.5
 
 $body mybody	"banana.smd"
 $staticprop

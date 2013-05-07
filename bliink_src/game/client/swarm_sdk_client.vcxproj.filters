@@ -1751,9 +1751,6 @@
     <ClCompile Include="sdk\clientmode_sdk.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
-    <ClCompile Include="sdk\hud_sdkdeathnotice.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
     <ClCompile Include="sdk\sdk_backgroundpanel.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
@@ -1785,9 +1782,6 @@
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
     <ClCompile Include="sdk\sdk_prediction.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
-    <ClCompile Include="sdk\sdk_scoreboard.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
     <ClCompile Include="sdk\vgui\sdk_spectatorgui.cpp">
@@ -1977,6 +1971,12 @@
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
     <ClCompile Include="sdk\c_bliink_player_resource.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\bliink_hud_status.cpp">
+      <Filter>Source Files\SDK\VGUI_bliink</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\c_bliink_exp_orb.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
   </ItemGroup>
@@ -4088,9 +4088,6 @@
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
     <ClInclude Include="sdk\sdk_hud_chat.h">
-      <Filter>Source Files\SDK</Filter>
-    </ClInclude>
-    <ClInclude Include="sdk\sdk_scoreboard.h">
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
     <ClInclude Include="sdk\vgui\sdk_spectatorgui.h">

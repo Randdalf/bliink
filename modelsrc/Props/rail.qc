@@ -1,6 +1,6 @@
 $modelname	"props\rail.mdl"
 $cdmaterials	"models\props\"
-$scale 40
+$scale 20
 
 $body mybody	"rail.smd"
 $staticprop

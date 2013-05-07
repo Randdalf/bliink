@@ -102,12 +102,8 @@ void SDKViewport::ApplySchemeSettings( vgui::IScheme *pScheme )
 IViewPortPanel* SDKViewport::CreatePanelByName(const char *szPanelName)
 {
 	IViewPortPanel* newpanel = NULL;
-
-	if ( Q_strcmp( PANEL_SCOREBOARD, szPanelName) == 0 )
-	{
-		newpanel = new CSDKScoreboard( this );
-	}
-	else if ( Q_strcmp( PANEL_INFO, szPanelName) == 0 )
+	
+	if ( Q_strcmp( PANEL_INFO, szPanelName) == 0 )
 	{
 		newpanel = new CSDKTextWindow( this );
 	}

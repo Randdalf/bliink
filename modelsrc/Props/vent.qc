@@ -1,6 +1,6 @@
 $modelname	"props\vent.mdl"
 $cdmaterials	"models\props\"
-$scale 50
+$scale 25
 
 $body mybody	"vent.smd"
 $staticprop
