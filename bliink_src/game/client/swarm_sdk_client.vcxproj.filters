@@ -1976,6 +1976,9 @@
     <ClCompile Include="sdk\bliink_hud_status.cpp">
       <Filter>Source Files\SDK\VGUI_bliink</Filter>
     </ClCompile>
+    <ClCompile Include="sdk\c_bliink_exp_orb.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="achievement_notification_panel.h">

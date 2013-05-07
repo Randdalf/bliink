@@ -10,4 +10,5 @@ particles_manifest
 	"file"		"particles/tracer_fx.pcf"
 	"file"		"particles/water_impact.pcf"
 	"file"		"particles/weapon_fx_hl2.pcf"
+	"file"		"particles/exp_orb.pcf"
 }
