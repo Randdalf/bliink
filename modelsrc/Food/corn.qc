@@ -1,6 +1,6 @@
 $modelname	"props\corn.mdl"
 $cdmaterials	"models\props\"
-$scale 24
+$scale 12
 
 $body mybody	"corn.smd"
 $staticprop
