@@ -530,6 +530,7 @@ exit 1
     <ClCompile Include="hud_basedeathnotice.cpp" />
     <ClCompile Include="hud_basetimer.cpp" />
     <ClCompile Include="hud_bitmapnumericdisplay.cpp" />
+    <ClCompile Include="hud_bliink.cpp" />
     <ClCompile Include="hud_closecaption.cpp" />
     <ClCompile Include="hud_crosshair.cpp" />
     <ClCompile Include="hud_element_helper.cpp" />
@@ -541,6 +542,7 @@ exit 1
     </ClCompile>
     <ClCompile Include="hud_locator_target.cpp" />
     <ClCompile Include="hud_msg.cpp" />
+    <ClCompile Include="hud_noface.cpp" />
     <ClCompile Include="hud_numericdisplay.cpp" />
     <ClCompile Include="hud_pdump.cpp" />
     <ClCompile Include="hud_redraw.cpp" />
@@ -1594,8 +1596,10 @@ exit 1
     <ClInclude Include="game_controls\buysubmenu.h" />
     <ClInclude Include="game_controls\classmenu.h" />
     <ClInclude Include="hud_basedeathnotice.h" />
+    <ClInclude Include="hud_bliink.h" />
     <ClInclude Include="hud_locator_target.h" />
     <ClInclude Include="..\..\engine\iblackbox.h" />
+    <ClInclude Include="hud_noface.h" />
     <ClInclude Include="modelrendersystem.h" />
     <ClInclude Include="..\shared\particle_parse.h" />
     <ClInclude Include="..\shared\particle_property.h" />

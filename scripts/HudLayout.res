@@ -32,7 +32,34 @@
 	  "visible" "1"
 	  "enabled" "1"
 	}
+
+	HudBliink
+   {
+      "fieldName" "HudBliink"
+      "xpos" "0"
+      "ypos" "0"
+      "wide" "1200"
+      "tall" "1200"
+      "visible" "0"
+      "enabled" "1"
+      
+      "PaintBackgroundType"   "2"
+   }
 	
+	HudNoFace
+   {
+      "fieldName" "HudNoFace"
+      "xpos" "250"
+      "ypos" "6"
+      "wide" "225"
+      "tall" "50"
+      "visible" "0"
+      "enabled" "1"
+      
+      "PaintBackgroundType"   "2"
+   }
+
+
 	BliinkHudUpgradeNotice
 	{
 	  "fieldName" "BliinkHudUpgradeNotice"

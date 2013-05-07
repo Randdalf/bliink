@@ -44,14 +44,16 @@ cvSaveImage("opencvtest.jpg" ,pSaveImg);*/
 	hascam = true;
 				TrackerSetup();
 				  cascade = (CvHaarClassifierCascade*)cvLoad( "haarcascade_frontalface_alt.xml" );
-				  face_cascade.load( "haarcascade_frontalface_alt.xml");
+		//		  face_cascade.load( "haarcascade_frontalface_alt.xml");
 				  engine->ClientCmd( "BlinkPanelOff\n" );
+				  engine->ClientCmd( "BlinkGUIOff\n" );
 				  engine->ClientCmd( "NoFacePanelOff\n" );
+				   engine->ClientCmd( "NoFaceGUIOff\n" );
 				  blink = false;
-				  seeface = false;
+				  seeface = true;
 				  
 				  loop = true;
-
+				  loopcount = 0;
 			//	 face_cascade.load("haarcascade_frontalface_alt.xml");
 
 
@@ -107,7 +109,7 @@ int OpenCVController::Run() {
 				break;
 			}
 			Reply( 1 );
-			if (track && hascam) {
+			if (track && hascam) {					
               TrackerLoop();
 			}
 
@@ -158,10 +160,9 @@ void OpenCVController::TrackerLoop() {
                         // Take a copy of the original image
                         cv::Mat original = a.clone();
                         LKTracker (original, Ix, Iy, It);
- 
-                        scale(Ix);
-                        scale(Iy);
-                        scale(It);
+                  //      scale(Ix);
+                  //      scale(Iy);
+                  //      scale(It);
  
                         // Update a
                         for (int i = 0; i < frame.rows; i++)
@@ -250,7 +251,7 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
         cv::Mat b2 = cv::Mat(2, 1, CV_64FC1);
         cv::Mat v2 = cv::Mat(2, 1, CV_64FC1);
 		
-		 Mat frame_gray;
+		 Mat frame_gray,frame_graysmall;
 
 	//	 		std::vector<Rect> faces;
 
@@ -258,14 +259,18 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
 
 	//	 face_cascade.detectMultiScale( image, faces, 1.1, 2, 0|CV_HAAR_SCALE_IMAGE, Size(30, 30) );
 
-		 Msg("yyaaay2");
 //  cvtColor( image, frame_gray, CV_BGR2GRAY );
   equalizeHist( image, frame_gray );
-
+  if (!seeface) {
+  pyrDown( frame_gray, frame_gray, Size( frame_gray.cols/2, frame_gray.rows/2 ));
+   pyrDown( frame_gray, frame_gray, Size( frame_gray.cols/2, frame_gray.rows/2 ));
+  }
   MemStorage storage(cvCreateMemStorage(0));
     CvMat _image = frame_gray;
+	CvMat _image2;
+//	Msg("size- %d,%d\n",image.cols,image.rows);
     CvSeq* obs = cvHaarDetectObjects( &_image, cascade, storage, 1.1, 2, 0 |CV_HAAR_DO_ROUGH_SEARCH |CV_HAAR_FIND_BIGGEST_OBJECT, Size(30, 30) );
-
+//	Msg("Time after?- %d\n",gpGlobals->curtime);
 	vector<CvRect> faces;
 
 	for( int i = 0; i < obs->total; i++ )
@@ -299,8 +304,10 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
 	  cv:: Mat iyEye2;
 	  cv:: Mat itEye2;
 	  
+
      if (faces.size() != 0 ) {
-		 engine->ClientCmd( "NoFacePanelOff\n" );
+		 engine->ClientCmd( "NoFaceGUIOff\n" );
+		 loopcount = 0;
 
 
 		 seeface = true;
@@ -450,7 +457,7 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
 					numdown++;
 				}
 
-                cv::line(imageEye, cv::Point(midPointX, midPointY), cv::Point(midPointX + v.at<double>(0,0), midPointY + v.at<double>(0,1)), CV_RGB(0, 0, 255));
+           //     cv::line(imageEye, cv::Point(midPointX, midPointY), cv::Point(midPointX + v.at<double>(0,0), midPointY + v.at<double>(0,1)), CV_RGB(0, 0, 255));
 		}
 		
 	imageEye2 = image(Rect(faces[lface].x + faces[lface].width * 0.22,faces[lface].y + faces[lface].height * 0.45,faces[lface].width * 0.6,faces[lface].height * 0.4));
@@ -594,20 +601,21 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
 					numdown2++;
 				}
 
-                cv::line(imageEye2, cv::Point(midPointX2, midPointY2), cv::Point(midPointX2 + v2.at<double>(0,0), midPointY2 + v2.at<double>(0,1)), CV_RGB(0, 0, 255));
+             //   cv::line(imageEye2, cv::Point(midPointX2, midPointY2), cv::Point(midPointX2 + v2.at<double>(0,0), midPointY2 + v2.at<double>(0,1)), CV_RGB(0, 0, 255));
 		}
 
 
 		int eyetotal = numup+numdown+numleft+numright;
 		int othertotal = numup2+numdown2+numleft2+numright2;
 		
+
 		if (othertotal < 2) {
 		if (eyetotal > 1) {
 			if ((numup > 2) || (numleft > 2) || (numright > 2) || (numdown > 2)) {
 		//printf("up - %d, down - %d, left - %d, right - %d\n", numup,numdown,numleft,numright);
 		//	Msg("BLINK!\n");
 			blink = true;
-			engine->ClientCmd( "BlinkPanelOn\n" );
+			engine->ClientCmd( "BlinkGUIOn\n" );
 			if (pLocalPlayer) {
 			pLocalPlayer->pl.blinkflag = true;
 			pLocalPlayer->BlinkNotice(pLocalPlayer);
@@ -615,7 +623,7 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
 			}
 			else {
 				blink = false;
-		engine->ClientCmd( "BlinkPanelOff\n" );
+		engine->ClientCmd( "BlinkGUIOff\n" );
           if (pLocalPlayer) {
 			pLocalPlayer->pl.blinkflag = false;
 			}
@@ -623,7 +631,7 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
 		}
 		else {
 			blink = false;
-		engine->ClientCmd( "BlinkPanelOff\n" );
+		engine->ClientCmd( "BlinkGUIOff\n" );
         if (pLocalPlayer) {
 			pLocalPlayer->pl.blinkflag = false;
 			}
@@ -631,7 +639,7 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
 		}
 		else {
 			blink = false;
-		engine->ClientCmd( "BlinkPanelOff\n" );
+		engine->ClientCmd( "BlinkGUIOff\n" );
 	    if (pLocalPlayer) {
 			pLocalPlayer->pl.blinkflag = false;
 			}
@@ -651,16 +659,33 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
 		
 		}
 		else {
-			engine->ClientCmd( "NoFacePanelOn\n" );
-			engine->ClientCmd( "BlinkPanelOff\n" );
+			engine->ClientCmd( "NoFaceGUIOn\n" );
 			seeface = false;
+			loopcount++;
+			Msg("loopcount = %d!\n",loopcount);
+			if (loopcount > 20) {
+				blink = true;
+			engine->ClientCmd( "BlinkGUIOn\n" );
+			if (pLocalPlayer) {
+			pLocalPlayer->pl.blinkflag = true;
+			pLocalPlayer->BlinkNotice(pLocalPlayer);
+			}
+			loopcount = 0;
+			}
+			else {
+				blink = false;
+		engine->ClientCmd( "BlinkGUIOff\n" );
+        if (pLocalPlayer) {
+			pLocalPlayer->pl.blinkflag = false;
+			}
+			}
 			//pLocalPlayer->pl.blinkflag = false;
 		}
 
 
 }
  
-void OpenCVController::scale (cv::Mat image)
+/*void OpenCVController::scale (cv::Mat image)
 {
         double min = 255.0;
         double max = 0.0;
@@ -684,7 +709,7 @@ void OpenCVController::scale (cv::Mat image)
                         image.at<double>(i,j) = (image.at<double>(i,j) - min) / range;
                 }
         }
-}
+}*/
 
 
 

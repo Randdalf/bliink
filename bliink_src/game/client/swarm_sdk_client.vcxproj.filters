@@ -1979,6 +1979,12 @@
     <ClCompile Include="sdk\c_bliink_exp_orb.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
+    <ClCompile Include="hud_bliink.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hud_noface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="achievement_notification_panel.h">
@@ -4224,6 +4230,12 @@
     </ClInclude>
     <ClInclude Include="sdk\c_bliink_player_resource.h">
       <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="hud_bliink.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="hud_noface.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
