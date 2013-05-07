@@ -54,5 +54,6 @@ void C_BliinkExpOrb::Spawn( void )
 
 void C_BliinkExpOrb::Precache( void )
 {
-	PrecacheParticleSystem( "particles/exp_orb.pcf" );
+	PrecacheParticleSystem( "exp_orb" );
+	PrecacheModel( "models/util/empty.mdl" );
 }
