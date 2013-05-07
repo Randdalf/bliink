@@ -1,5 +1,5 @@
 $modelname	"util/empty.mdl"
-$cdmaterials	"tools/toolsinvisible"
+$cdmaterials	"tools/"
 $staticprop
 $body mybody	"empty.smd"
 
