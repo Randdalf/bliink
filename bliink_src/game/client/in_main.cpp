@@ -1832,9 +1832,9 @@ Init_All
 */
 void CInput::Init_All (void)
 {
-	//cvControl = new OpenCVController();
-	//cvControl->Start();
-	//cvControl->CallWorker( OpenCVController::CALL_FUNC );
+	cvControl = new OpenCVController();
+	cvControl->Start();
+	cvControl->CallWorker( OpenCVController::CALL_FUNC );
 	engine->ClientCmd( "BlinkPanelOff\n" );
 	engine->ClientCmd( "NoFacePanelOff\n" );
 

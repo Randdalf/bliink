@@ -50,6 +50,7 @@ private:
 	cv::CascadeClassifier face_cascade;
 	CvHaarClassifierCascade* cascade;
     cv::Mat Iy;
+	int loopcount;
     cv::Mat It;
 	int height;
 	int width;
