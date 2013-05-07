@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+      "$basetexture" "HUD/player_symbol_dead"
+      "$translucent"   "1"
+      "$translucency" "1"
+      "$ignorez" "1"
+}

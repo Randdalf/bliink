@@ -9,7 +9,7 @@
 #include "hud.h"
 #include "recvproxy.h"
 #include "c_bliink_team.h"
-#include "c_sdk_player_resource.h"
+#include "c_bliink_player_resource.h"
 
 #include <vgui/ILocalize.h>
 #include <tier3/tier3.h>

@@ -7,7 +7,6 @@
 // $NoKeywords: $
 //=============================================================================//
 
-
 #include "cbase.h"
 #include "kbutton.h"
 #include "usercmd.h"
@@ -25,6 +24,7 @@
 #include "ivieweffects.h"
 #include <ctype.h> // isalnum()
 #include <voice_status.h>
+#include "opencv_interface.h"
 
 extern ConVar in_joystick;
 extern ConVar cam_idealpitch;
@@ -40,6 +40,8 @@ extern ConVar asw_cam_marine_yaw;
 
 int in_impulse[ MAX_SPLITSCREEN_PLAYERS ];
 static int in_cancel[ MAX_SPLITSCREEN_PLAYERS ];
+
+OpenCVController * cvControl;
 
 ConVar cl_anglespeedkey( "cl_anglespeedkey", "0.67", 0 );
 ConVar cl_yawspeed( "cl_yawspeed", "210", 0 );
@@ -1198,6 +1200,11 @@ if active == 1 then we are 1) not playing back demos ( where our commands are ig
 
 void CInput::CreateMove ( int sequence_number, float input_sample_frametime, bool active )
 {	
+
+//	cvControl->Display();
+//	if (cvControl->hasBlunk())
+//		Msg("Blink\n");
+
 	ASSERT_LOCAL_PLAYER_RESOLVABLE();
 	int nSlot = GET_ACTIVE_SPLITSCREEN_SLOT();
 
@@ -1825,6 +1832,12 @@ Init_All
 */
 void CInput::Init_All (void)
 {
+	cvControl = new OpenCVController();
+	cvControl->Start();
+	cvControl->CallWorker( OpenCVController::CALL_FUNC );
+	engine->ClientCmd( "BlinkPanelOff\n" );
+	engine->ClientCmd( "NoFacePanelOff\n" );
+
 	m_hInputContext = engine->GetInputContext( ENGINE_INPUT_CONTEXT_GAME );
 
 	for ( int i = 0; i < MAX_SPLITSCREEN_PLAYERS; ++i )
@@ -1873,6 +1886,9 @@ void CInput::Shutdown_All(void)
 {
 	DeactivateMouse();
 	Shutdown_Keyboard();
+
+	cvControl->loop  =false;
+	cvControl->~OpenCVController();
 
 	// TrackIR
 	Shutdown_TrackIR();    

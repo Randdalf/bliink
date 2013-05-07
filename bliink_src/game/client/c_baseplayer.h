@@ -93,6 +93,8 @@ public:
 
 	virtual void	OnRestore();
 
+	virtual void C_BasePlayer::BlinkNotice( C_BasePlayer *pBlinker);
+
 	virtual void	MakeTracer( const Vector &vecTracerSrc, const trace_t &tr, int iTracerType );
 
 	virtual void	GetToolRecordingState( KeyValues *msg );

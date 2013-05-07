@@ -5,8 +5,19 @@
 	  "fieldName" "BliinkHudMeters"
 	  "xpos" "16"
 	  "ypos" "r76"
-	  "wide" "292"
+	  "wide" "324"
 	  "tall" "96"
+	  "visible" "1"
+	  "enabled" "1"
+	}	
+
+	BliinkHudStatus
+	{
+	  "fieldName" BliinkHudStatus
+	  "xpos" "16"
+	  "ypos" "r124"
+	  "wide" "64"
+	  "tall" "64"
 	  "visible" "1"
 	  "enabled" "1"
 	}
@@ -21,7 +32,34 @@
 	  "visible" "1"
 	  "enabled" "1"
 	}
+
+	HudBliink
+   {
+      "fieldName" "HudBliink"
+      "xpos" "0"
+      "ypos" "0"
+      "wide" "1200"
+      "tall" "1200"
+      "visible" "0"
+      "enabled" "1"
+      
+      "PaintBackgroundType"   "2"
+   }
 	
+	HudNoFace
+   {
+      "fieldName" "HudNoFace"
+      "xpos" "250"
+      "ypos" "6"
+      "wide" "225"
+      "tall" "50"
+      "visible" "0"
+      "enabled" "1"
+      
+      "PaintBackgroundType"   "2"
+   }
+
+
 	BliinkHudUpgradeNotice
 	{
 	  "fieldName" "BliinkHudUpgradeNotice"
@@ -32,6 +70,17 @@
 	  "visible" "1"
 	  "enabled" "1"
 	}
+	
+	BliinkHudRespawnTimer
+	{
+	  "fieldName" BliinkHudRespawnTimer
+	  "xpos" "c-128"
+	  "ypos" "32"
+	  "wide" "392"
+	  "tall" "48"
+	  "visible" "1"
+	  "enabled" "1"
+	}
 
 	BliinkHudAmmo
 	{
@@ -39,6 +88,17 @@
 	  "xpos" "r96"
 	  "ypos" "r54"
 	  "wide" "128"
+	  "tall" "64"
+	  "visible" "1"
+	  "enabled" "1"
+	}
+
+	BliinkHudPlayerStates
+	{
+	  "fieldName" "BliinkHudPlayerStates"
+	  "xpos" "r176"
+	  "ypos" "16"
+	  "wide" "256"
 	  "tall" "64"
 	  "visible" "1"
 	  "enabled" "1"

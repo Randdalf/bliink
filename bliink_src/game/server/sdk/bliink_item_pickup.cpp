@@ -25,6 +25,7 @@ void CBliinkItemPickup::Spawn( void )
 {
 	if( pItem )
 	{
+		PrecacheModel( pItem->GetItemData().szWorldModel );
 		SetModel( pItem->GetItemData().szWorldModel );
 	}
 
@@ -39,7 +40,7 @@ void CBliinkItemPickup::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_
 	CBliinkPlayer* pPlayer = ToBliinkPlayer( pActivator );
 
 	// Attempt to add to inventory
-	if( pActivator->IsPlayer() && pPlayer )
+	if( pActivator->IsPlayer() && pPlayer && pPlayer->State_Get() == STATE_BLIINK_SURVIVOR )
 	{
 		bool bAdded = false;
 

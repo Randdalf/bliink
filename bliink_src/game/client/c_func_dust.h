@@ -69,7 +69,7 @@ public:
 
 private:
 
-	void				AttemptSpawnNewParticle();
+	virtual void				AttemptSpawnNewParticle();
 
 
 
@@ -91,12 +91,6 @@ public:
 
 	float			m_FallSpeed;	// extra 'gravity'
 
-	// Bliink fog stuff
-	int				m_iStartTime; // start time of fog, synced across clients
-	float			m_MinRadius; // minimum radius of fog, to keep an area in the middle unfogged
-
-
-
 public:
 
 	int				m_DustFlags;	// Combination of DUSTFLAGS_
@@ -104,7 +98,7 @@ public:
 
 
 public:
-	CDustEffect		m_Effect;
+	CDustEffect			m_Effect;
 	PMaterialHandle		m_hMaterial;
 	TimedEvent			m_Spawner;
 

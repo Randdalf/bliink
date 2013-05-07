@@ -30,6 +30,7 @@ class CHudBliinkMeters : public CHudElement, public Panel
 	   int m_nHealthBar;	   
 	   int m_nHungerBar;
 	   int m_nFatigueBar;
+	   int m_nStalkerBar;
 	   int m_nHealthIcon;
 	   int m_nHungerIcon;
 	   int m_nFatigueIcon;
@@ -54,6 +55,7 @@ CHudBliinkMeters::CHudBliinkMeters( const char *pElementName ) : CHudElement( pE
 	m_nHealthBar = surface()->CreateNewTextureID(); 
 	m_nHungerBar = surface()->CreateNewTextureID();
 	m_nFatigueBar = surface()->CreateNewTextureID();
+	m_nStalkerBar = surface()->CreateNewTextureID();
 	m_nHealthIcon = surface()->CreateNewTextureID();
 	m_nHungerIcon = surface()->CreateNewTextureID();
 	m_nFatigueIcon = surface()->CreateNewTextureID();
@@ -69,6 +71,7 @@ CHudBliinkMeters::CHudBliinkMeters( const char *pElementName ) : CHudElement( pE
 	surface()->DrawSetTextureFile( m_nHungerIcon, "HUD/meters_icon_hunger" , true, true);
 	surface()->DrawSetTextureFile( m_nFatigueIcon, "HUD/meters_icon_fatigue" , true, true);
 	surface()->DrawSetTextureFile( m_nSegmentEnd, "HUD/meter_segment_end" , true, true);
+	surface()->DrawSetTextureFile( m_nStalkerBar, "HUD/stalker_meter_full" , true, true);
 }
 
 void CHudBliinkMeters::Paint()
@@ -77,65 +80,95 @@ void CHudBliinkMeters::Paint()
 
 	if( !pBliinkPlayer )
 		return;
-
+	
 	CBliinkPlayerStats stats = pBliinkPlayer->GetBliinkPlayerStats();
 
-	// Getting player health
-	float fHealth = (float) stats.GetHealth();
-	int iHealthWidth = (int) floor(256.0f * (fHealth/stats.GetMaxHealth()));
-
-	// Getting player hunger
-	float fFatigue = (float) stats.GetFatigue();
-	int iFatigueWidth = (int) floor(256.0f * (fFatigue/stats.GetMaxFatigue()));
-
-	// Getting player fatigue
-	float fHunger = (float) stats.GetHunger();
-	int iHungerWidth = (int) floor(256.0f * (fHunger/BASE_HUNGER));
-
-	SetPaintBorderEnabled(false);
-
-	// Drawing icons
-	surface()->DrawSetTexture( m_nHealthIcon );
-	surface()->DrawTexturedRect( 0, 0, 32, 32 );
-	surface()->DrawSetTexture( m_nHungerIcon );
-	surface()->DrawTexturedRect( 0, 32, 32, 64 );
-	surface()->DrawSetTexture( m_nFatigueIcon );
-	surface()->DrawTexturedRect( 0, 64, 32, 96 );
-
-	// Drawing meter backgrounds
-	surface()->DrawSetTexture( m_nMeterBack );
-	surface()->DrawTexturedRect( 32, 0, 288, 32 );
-	surface()->DrawTexturedRect( 32, 32, 288, 64 );
-	surface()->DrawTexturedRect( 32, 64, 288, 96 );
-
-	// Drawing meter ends
-	surface()->DrawSetTexture( m_nMeterEnd );
-	surface()->DrawTexturedRect( 288, 0, 292, 32 );
-	surface()->DrawTexturedRect( 288, 32, 292, 64 );
-	surface()->DrawTexturedRect( 288, 64, 292, 96 );
-
-	// Drawing health meter
-	surface()->DrawSetTexture( m_nHealthBar );
-	surface()->DrawTexturedRect( 32, 0+2, 32+iHealthWidth, 32-2 );
-
-	// Drawing hunger meter
-	surface()->DrawSetTexture( m_nHungerBar );
-	surface()->DrawTexturedRect( 32, 32+2, 32+iHungerWidth, 64-2 );
-
-	// Drawing fatigue meter
-	surface()->DrawSetTexture( m_nFatigueBar );
-	surface()->DrawTexturedRect( 32, 64+2, 32+iFatigueWidth, 96-2 );
-
-	// Drawing health segment markers
-	int iMaxSegments = (int) floor( stats.GetMaxHealth() / HEALTH_PER_SEGMENT );
-
-	for(int ii=1; ii<iMaxSegments; ii++)
+	if( pBliinkPlayer->State_Get() == STATE_BLIINK_SURVIVOR )
 	{
-		// Scaling position
-		int iSegmentBegin = (int) floor(256.0f * ((((float)ii) * HEALTH_PER_SEGMENT)/stats.GetMaxHealth()));
+		// Getting player health
+		float fHealth = (float) stats.GetHealth();
+		int iHealthWidth = (int) floor(256.0f * (fHealth/stats.GetMaxHealth()));
 
-		// Drawing surface
+		// Getting player hunger
+		float fFatigue = (float) stats.GetFatigue();
+		int iFatigueWidth = (int) floor(256.0f * (fFatigue/stats.GetMaxFatigue()));
+
+		// Getting player fatigue
+		float fHunger = (float) stats.GetHunger();
+		int iHungerWidth = (int) floor(256.0f * (fHunger/BASE_HUNGER));
+
+		SetPaintBorderEnabled(false);
+
+		// Drawing icons
+		surface()->DrawSetTexture( m_nHealthIcon );
+		surface()->DrawTexturedRect( 0, 0, 32, 32 );
+		surface()->DrawSetTexture( m_nHungerIcon );
+		surface()->DrawTexturedRect( 0, 32, 32, 64 );
+		surface()->DrawSetTexture( m_nFatigueIcon );
+		surface()->DrawTexturedRect( 0, 64, 32, 96 );
+
+		// Drawing meter backgrounds
+		surface()->DrawSetTexture( m_nMeterBack );
+		surface()->DrawTexturedRect( 32, 0, 288, 32 );
+		surface()->DrawTexturedRect( 32, 32, 288, 64 );
+		surface()->DrawTexturedRect( 32, 64, 288, 96 );
+
+		// Drawing meter ends
+		surface()->DrawSetTexture( m_nMeterEnd );
+		surface()->DrawTexturedRect( 288, 0, 292, 32 );
+		surface()->DrawTexturedRect( 288, 32, 292, 64 );
+		surface()->DrawTexturedRect( 288, 64, 292, 96 );
+
+		// Drawing health meter
+		surface()->DrawSetTexture( m_nHealthBar );
+		surface()->DrawTexturedRect( 32, 0+2, 32+iHealthWidth, 32-2 );
+
+		// Drawing hunger meter
+		surface()->DrawSetTexture( m_nHungerBar );
+		surface()->DrawTexturedRect( 32, 32+2, 32+iHungerWidth, 64-2 );
+
+		// Drawing fatigue meter
+		surface()->DrawSetTexture( m_nFatigueBar );
+		surface()->DrawTexturedRect( 32, 64+2, 32+iFatigueWidth, 96-2 );
+
+		// Drawing health segment markers
+		int iMaxSegments = (int) floor( stats.GetMaxHealth() / HEALTH_PER_SEGMENT );
+
+		for(int ii=1; ii<iMaxSegments; ii++)
+		{
+			// Scaling position
+			int iSegmentBegin = (int) floor(256.0f * ((((float)ii) * HEALTH_PER_SEGMENT)/stats.GetMaxHealth()));
+
+			// Drawing surface
+			surface()->DrawSetTexture( m_nSegmentEnd );
+			surface()->DrawTexturedRect( 32 + iSegmentBegin-1, 0, 32+iSegmentBegin+2, 32 );
+		}
+
+		// Drawing hunger threshold marker
+		int iMarkerBegin = (int) floor(256.0f * (HUNGER_REGEN_THRESHOLD));
 		surface()->DrawSetTexture( m_nSegmentEnd );
-		surface()->DrawTexturedRect( 32 + iSegmentBegin-1, 0, 32+iSegmentBegin+2, 32 );
+		surface()->DrawTexturedRect( 32 + iMarkerBegin-1, 32, 32+iMarkerBegin+2, 64 );
+	}
+	else if( pBliinkPlayer->State_Get() == STATE_BLIINK_STALKER )
+	{
+		// Getting player health
+		float fHealth = (float) stats.GetHealth();
+		int iHealthWidth = (int) floor(256.0f * (fHealth/stats.GetMaxHealth()));
+
+		// Drawing heath icon
+		surface()->DrawSetTexture( m_nHealthIcon );
+		surface()->DrawTexturedRect( 0, 48, 48, 96 );
+
+		// Drawing meter backgrounds
+		surface()->DrawSetTexture( m_nMeterBack );
+		surface()->DrawTexturedRect( 48, 48, 304, 96 );
+
+		// Drawing meter ends
+		surface()->DrawSetTexture( m_nMeterEnd );
+		surface()->DrawTexturedRect( 304, 48, 308, 96 );
+
+		// Drawing health meter
+		surface()->DrawSetTexture( m_nStalkerBar );
+		surface()->DrawTexturedRect( 48, 48+3, 48+iHealthWidth, 96-3 );
 	}
 }

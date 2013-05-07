@@ -7,7 +7,7 @@
 #include "cbase.h"
 #include "hudelement.h"
 #include "hud_macros.h"
-#include "c_sdk_player_resource.h"
+#include "c_bliink_player_resource.h"
 #include "iclientmode.h"
 #include <vgui_controls/controls.h>
 #include <vgui_controls/panel.h>

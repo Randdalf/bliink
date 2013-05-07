@@ -811,10 +811,10 @@ public:
 	// anything that has health can override this...
 	virtual void					SetHealth(int iHealth) {}
 	virtual int						GetHealth() const { return 0; }
-	virtual int						GetMaxHealth() const { return 1; }
+	virtual int						GetMaxHealth() { return 1; }
 
 	// Returns the health fraction
-	float							HealthFraction() const;
+	float							HealthFraction();
 
 	// Should this object cast shadows?
 	virtual ShadowType_t			ShadowCastType();

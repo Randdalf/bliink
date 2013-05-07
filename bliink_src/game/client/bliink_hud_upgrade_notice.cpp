@@ -11,6 +11,7 @@
 #include "clientmode_sdk.h"
 #include "c_bliink_player.h"
 #include "bliink_player_stats.h"
+#include "sdk_shareddefs.h"
  
 #include "tier0/memdbgon.h"
  
@@ -121,6 +122,9 @@ void CBliinkHudUpgradeNotice::Paint()
 	C_BliinkPlayer* pBliinkPlayer = ToBliinkPlayer(C_BasePlayer::GetLocalPlayer());
 
 	if( !pBliinkPlayer )
+		return;
+
+	if( pBliinkPlayer->State_Get() != STATE_BLIINK_SURVIVOR )
 		return;
 
 	CBliinkPlayerStats stats = pBliinkPlayer->GetBliinkPlayerStats();

@@ -23,6 +23,9 @@
 #include "bliink_player_stats.h"
 #include "basecombatweapon_shared.h"
 #include "weapon_sdkbase.h"
+#include "engine/ienginesound.h"
+#include "bliink_fog.h"
+
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
@@ -80,6 +83,7 @@ DEFINE_THINKFUNC( SDKPushawayThink ),
 END_DATADESC()
 
 LINK_ENTITY_TO_CLASS( player, CBliinkPlayer );
+
 PRECACHE_REGISTER(player);
 
 // CBliinkPlayerShared Data Tables
@@ -174,6 +178,9 @@ IMPLEMENT_SERVERCLASS_ST( CBliinkPlayer, DT_SDKPlayer )
 
 	// Send table for Bliink stats
 	SendPropDataTable( SENDINFO_DT(m_BliinkStats), &REFERENCE_SEND_TABLE( DT_BliinkPlayerStats ) ),
+
+	// Fog info.
+	SendPropBool( SENDINFO( m_bIsInFog ) ),
 
 END_SEND_TABLE()
 
@@ -384,6 +391,9 @@ void CBliinkPlayer::Spawn()
 
 bool CBliinkPlayer::SelectSpawnSpot( const char *pEntClassName, CBaseEntity* &pSpot )
 {
+	// Fog
+	CBaseEntity* pBaseFog = gEntList.FindEntityByClassname( NULL, "func_bliink_fog" );
+
 	// Find the next spawn spot.
 	pSpot = gEntList.FindEntityByClassname( pSpot, pEntClassName );
 
@@ -395,8 +405,18 @@ bool CBliinkPlayer::SelectSpawnSpot( const char *pEntClassName, CBaseEntity* &pS
 	{
 		if ( pSpot )
 		{
+			// check if stalker point, if necessary
+			bool bValidStalkerPoint = true;
+
+			if( pBaseFog && State_Get() == STATE_BLIINK_STALKER )
+			{
+				CBliinkFog* pFog = dynamic_cast<CBliinkFog*>(pBaseFog);
+
+				bValidStalkerPoint = pFog->IsInFog( pSpot );
+			}
+
 			// check if pSpot is valid
-			if ( g_pGameRules->IsSpawnPointValid( pSpot, this ) )
+			if ( g_pGameRules->IsSpawnPointValid( pSpot, this ) && bValidStalkerPoint)
 			{
 				if ( pSpot->GetAbsOrigin() == Vector( 0, 0, 0 ) )
 				{
@@ -428,7 +448,11 @@ CBaseEntity* CBliinkPlayer::EntSelectSpawnPoint()
 	{
 	case TEAM_UNASSIGNED:
 		{
-			pSpawnPointName = "info_player_spawn";
+			if( State_Get() == STATE_BLIINK_STALKER )
+				pSpawnPointName = "info_stalker_spawn";
+			else
+				pSpawnPointName = "info_player_spawn";
+
 			pSpot = g_pLastDMSpawn;
 			if ( SelectSpawnSpot( pSpawnPointName, pSpot ) )
 			{
@@ -1138,11 +1162,16 @@ void CBliinkPlayer::PhysObjectWake()
 
 void CBliinkPlayer::MoveToNextIntroCamera()
 {
+	EHANDLE pOldCamera = m_pIntroCamera;
+
 	m_pIntroCamera = gEntList.FindEntityByClassname( m_pIntroCamera, "point_viewcontrol" );
 
 	// if m_pIntroCamera is NULL we just were at end of list, start searching from start again
 	if(!m_pIntroCamera)
 		m_pIntroCamera = gEntList.FindEntityByClassname(m_pIntroCamera, "point_viewcontrol");
+
+	if( pOldCamera == m_pIntroCamera )
+		return;
 
 	// find the target
 	CBaseEntity *Target = NULL;
@@ -1181,7 +1210,9 @@ void CBliinkPlayer::MoveToNextIntroCamera()
 	SetAbsOrigin( vIntroCamera );
 	SetAbsAngles( m_pIntroCamera->GetAbsAngles() );
 	SnapEyeAngles( m_pIntroCamera->GetAbsAngles() );
-	m_fIntroCamTime = gpGlobals->curtime + 6;
+
+	if( pOldCamera != m_pIntroCamera )
+		m_fIntroCamTime = gpGlobals->curtime + 6;
 }
 
 //**************************************************************************
@@ -1449,7 +1480,7 @@ void CBliinkPlayer::State_PreThink_BLIINK_SURVIVOR_DEATH_ANIM()
 	//Tony; if we're now dead, and not changing classes, spawn
 	if ( m_lifeState == LIFE_DEAD )
 	{
-		State_Transition( STATE_BLIINK_STALKER );
+		State_Transition( STATE_BLIINK_STALKER_RESPAWN );
 	}
 }
 
@@ -1461,10 +1492,14 @@ void CBliinkPlayer::State_Enter_BLIINK_STALKER()
 	PhysObjectWake();
 
 	Spawn();
+
+	// Move well quick when we're a stalker.
+	this->m_Shared.m_flRunSpeed = BLIINK_DEFAULT_STALKER_SPEED;
+	this->m_Shared.m_flSprintSpeed = BLIINK_DEFAULT_STALKER_SPEED;
 }
 
 void CBliinkPlayer::State_PreThink_BLIINK_STALKER()
-{
+{	
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_STALKER_DEATH_ANIM()
@@ -1521,16 +1556,24 @@ void CBliinkPlayer::State_PreThink_BLIINK_STALKER_DEATH_ANIM()
 	//Tony; if we're now dead, and not changing classes, spawn
 	if ( m_lifeState == LIFE_DEAD )
 	{
-		State_Transition( STATE_BLIINK_STALKER );
+		State_Transition( STATE_BLIINK_STALKER_RESPAWN );
 	}
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_STALKER_RESPAWN()
-{
+{	
+	SetMoveType( MOVETYPE_OBSERVER );
+	MoveToNextIntroCamera();
+	StartObserverMode( OBS_MODE_ROAMING );
+	PhysObjectSleep();
 }
 
 void CBliinkPlayer::State_PreThink_BLIINK_STALKER_RESPAWN()
 {
+	if ( gpGlobals->curtime >= (m_flDeathTime + BLIINK_STALKER_RESPAWN_TIME ) )
+	{
+		State_Transition( STATE_BLIINK_STALKER );
+	}
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_VIEW_RESULTS()
@@ -1739,12 +1782,31 @@ bool CBliinkPlayer::Weapon_BliinkHasWeapon( CWeaponSDKBase* pWeapon )
 // Thinking
 void CBliinkPlayer::Think()
 {
+	// Do fog interaction.
+	CBaseEntity* pResult = gEntList.FindEntityByClassname( NULL, "func_bliink_fog" );
+
+	if( pResult )
+	{
+		CBliinkFog* pFog = dynamic_cast<CBliinkFog*>(pResult);
+
+		m_bIsInFog = pFog->IsInFog( this );
+	}
+
 	// If we're a survivor than do our stats thinking
 	if( State_Get() == STATE_BLIINK_SURVIVOR )
 	{
+		if( m_bIsInFog )
+			m_BliinkStats.AfflictStatus( BLIINK_STATUS_FOGGED, 15.0f );
+
 		m_BliinkStats.Think();
 		m_BliinkStats.UpdateHealth();
 		m_Inventory.UpdateAmmoCounts();
+	}
+	else
+	if( State_Get() == STATE_BLIINK_STALKER )
+	{
+		m_BliinkStats.StalkerThink();
+		m_BliinkStats.UpdateHealth();
 	}
 
 	SetNextThink(gpGlobals->frametime);

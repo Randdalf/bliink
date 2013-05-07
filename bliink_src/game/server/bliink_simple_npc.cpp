@@ -133,7 +133,7 @@ void CBliinkSimpleNPC::InitCustomSchedules(void)
 //-----------------------------------------------------------------------------
 void CBliinkSimpleNPC::Precache( void )
 {
-	PrecacheModel( "models/player/blue_player.mdl" );
+	PrecacheModel( "models/player/bliink_player.mdl" );
 
 	BaseClass::Precache();
 }
@@ -163,7 +163,7 @@ void CBliinkSimpleNPC::Spawn( void )
 {
 	Precache();
 
-	SetModel( "models/player/blue_player.mdl" );
+	SetModel( "models/player/bliink_player.mdl" );
 	SetHullType(HULL_HUMAN);
 	SetHullSizeNormal();
 

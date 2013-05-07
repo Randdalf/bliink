@@ -129,9 +129,7 @@ bool CItem::CreateItemVPhysicsObject( void )
 	if ( VPhysicsInitNormal( SOLID_VPHYSICS, nSolidFlags, false ) == NULL )
 	{
 		SetSolid( SOLID_BBOX );
-		AddSolidFlags( nSolidFlags );
-
-		Msg("Are you KIDDING me?\n");
+		AddSolidFlags( nSolidFlags ); 
 
 		// If it's not physical, drop it to the floor
 		if (UTIL_DropToFloor(this, MASK_SOLID) == 0)
@@ -179,8 +177,6 @@ void CItem::Spawn( void )
 
 	if ( CreateItemVPhysicsObject() == false )
 	{
-		Msg( "oh no please don't say this, oh god oh man oh god\n" );
-
 		return;
 	}
 

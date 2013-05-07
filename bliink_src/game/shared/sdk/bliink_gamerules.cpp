@@ -28,6 +28,7 @@
 	#include "player_resource.h"
 	#include "mapentities.h"
 	#include "sdk_basegrenade_projectile.h"
+	#include "bliink_fog.h"
 #endif
 
 
@@ -62,7 +63,8 @@ BEGIN_DATADESC(CSpawnPoint)
 
 END_DATADESC();
 
-	LINK_ENTITY_TO_CLASS( info_player_spawn, CSpawnPoint );
+LINK_ENTITY_TO_CLASS( info_player_spawn, CSpawnPoint );
+LINK_ENTITY_TO_CLASS( info_stalker_spawn, CSpawnPoint );
 
 // Defining the cage opener
 class CCageOpener : public CLogicalEntity
@@ -278,7 +280,7 @@ static const char *s_PreserveEnts[] =
 	"bliink_team_unassigned",
 	"bliink_team_blue",
 	"bliink_team_red",
-	"sdk_player_manager",
+	"bliink_player_manager",
 	"env_soundscape",
 	"env_soundscape_proxy",
 	"env_soundscape_triggerable",
@@ -295,6 +297,7 @@ static const char *s_PreserveEnts[] =
 	"info_player_red",
 	"info_player_blue",
 	"info_player_spawn",
+	"info_stalker_spawn",
 	"point_viewcontrol",
 	"shadow_control",
 	"sky_camera",
@@ -649,6 +652,17 @@ void CBliinkGameRules::StartGame()
 	}
 
 	//initialise the fog.
+	pResult = gEntList.FindEntityByClassname( NULL, "func_bliink_fog" );
+
+	if( pResult )
+	{
+		CBliinkFog* pFog = dynamic_cast<CBliinkFog*>(pResult);
+
+		if( pFog )
+		{
+			pFog->BeginContracting();
+		}
+	}
 
 	//gpGlobals->fog_radius = 500.0f;
 	//gpGlobals->start_time = gpGlobals->curtime;
@@ -793,7 +807,7 @@ void CBliinkGameRules::InitTeams( void )
 void CBliinkGameRules::CreateStandardEntities()
 {
 	// Create the player resource
-	g_pPlayerResource = (CPlayerResource*)CBaseEntity::Create( "sdk_player_manager", vec3_origin, vec3_angle );
+	g_pPlayerResource = (CPlayerResource*)CBaseEntity::Create( "bliink_player_manager", vec3_origin, vec3_angle );
 
 	// Create the entity that will send our data to the client.
 #ifdef _DEBUG

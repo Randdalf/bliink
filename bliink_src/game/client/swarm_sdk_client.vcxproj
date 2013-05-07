@@ -28,9 +28,11 @@
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\first.props" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\..\..\first.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -303,6 +305,7 @@ exit 1
     <ClCompile Include="..\..\public\bone_accessor.cpp" />
     <ClCompile Include="bliink_hud_level.cpp" />
     <ClCompile Include="bliink_hud_upgrade_notice.cpp" />
+    <ClCompile Include="blink_panel.cpp" />
     <ClCompile Include="bone_merge_cache.cpp" />
     <ClCompile Include="c_ai_basehumanoid.cpp" />
     <ClCompile Include="c_ai_basenpc.cpp" />
@@ -527,6 +530,7 @@ exit 1
     <ClCompile Include="hud_basedeathnotice.cpp" />
     <ClCompile Include="hud_basetimer.cpp" />
     <ClCompile Include="hud_bitmapnumericdisplay.cpp" />
+    <ClCompile Include="hud_bliink.cpp" />
     <ClCompile Include="hud_closecaption.cpp" />
     <ClCompile Include="hud_crosshair.cpp" />
     <ClCompile Include="hud_element_helper.cpp" />
@@ -538,6 +542,7 @@ exit 1
     </ClCompile>
     <ClCompile Include="hud_locator_target.cpp" />
     <ClCompile Include="hud_msg.cpp" />
+    <ClCompile Include="hud_noface.cpp" />
     <ClCompile Include="hud_numericdisplay.cpp" />
     <ClCompile Include="hud_pdump.cpp" />
     <ClCompile Include="hud_redraw.cpp" />
@@ -599,8 +604,10 @@ exit 1
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
       </PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="noface.cpp" />
     <ClCompile Include="object_motion_blur_effect.cpp" />
     <ClCompile Include="..\shared\obstacle_pushaway.cpp" />
+    <ClCompile Include="opencv_interface.cpp" />
     <ClCompile Include="panelmetaclassmgr.cpp" />
     <ClCompile Include="particle_collision.cpp" />
     <ClCompile Include="particle_litsmokeemitter.cpp" />
@@ -701,14 +708,18 @@ exit 1
     </ClCompile>
     <ClCompile Include="sdk\bliink_hud_ammo.cpp" />
     <ClCompile Include="sdk\bliink_hud_meters.cpp" />
+    <ClCompile Include="sdk\bliink_hud_player_states.cpp" />
+    <ClCompile Include="sdk\bliink_hud_respawn_timer.cpp" />
+    <ClCompile Include="sdk\bliink_hud_status.cpp" />
     <ClCompile Include="sdk\clientmode_sdk.cpp" />
+    <ClCompile Include="sdk\c_bliink_exp_orb.cpp" />
+    <ClCompile Include="sdk\c_bliink_fog.cpp" />
     <ClCompile Include="sdk\c_bliink_item_pickup.cpp" />
     <ClCompile Include="sdk\c_sdk_env_sparkler.cpp" />
     <ClCompile Include="sdk\c_bliink_player.cpp" />
-    <ClCompile Include="sdk\c_sdk_player_resource.cpp" />
+    <ClCompile Include="sdk\c_bliink_player_resource.cpp" />
     <ClCompile Include="sdk\c_bliink_team.cpp" />
     <ClCompile Include="sdk\c_te_firebullets.cpp" />
-    <ClCompile Include="sdk\hud_sdkdeathnotice.cpp" />
     <ClCompile Include="sdk\sdk_backgroundpanel.cpp" />
     <ClCompile Include="sdk\sdk_fx_impacts.cpp" />
     <ClCompile Include="sdk\sdk_fx_tracers.cpp" />
@@ -721,13 +732,14 @@ exit 1
     <ClCompile Include="sdk\sdk_hud_weaponselection.cpp" />
     <ClCompile Include="sdk\sdk_in_main.cpp" />
     <ClCompile Include="sdk\sdk_prediction.cpp" />
-    <ClCompile Include="sdk\sdk_scoreboard.cpp" />
     <ClCompile Include="sdk\vcreditspage.cpp" />
     <ClCompile Include="sdk\vgui\bliink_welcomemenu.cpp" />
     <ClCompile Include="sdk\vgui\sdkviewport.cpp" />
     <ClCompile Include="sdk\vgui\sdk_spectatorgui.cpp" />
     <ClCompile Include="sdk\vgui\sdk_textwindow.cpp" />
     <ClCompile Include="sdk\vgui\vgui_rootpanel_sdk.cpp" />
+    <ClCompile Include="ShaderEditor\SEdit_ModelRender.cpp" />
+    <ClCompile Include="ShaderEditor\ShaderEditorSystem.cpp" />
     <ClCompile Include="simple_keys.cpp" />
     <ClCompile Include="..\..\public\simple_physics.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -1563,6 +1575,7 @@ exit 1
     <ClInclude Include="..\shared\ai_speechconcept.h" />
     <ClInclude Include="..\shared\baseachievement.h" />
     <ClInclude Include="..\..\common\blackbox_helper.h" />
+    <ClInclude Include="blink_panel.h" />
     <ClInclude Include="c_baselesson.h" />
     <ClInclude Include="c_basetoggle.h" />
     <ClInclude Include="c_colorcorrection.h" />
@@ -1583,27 +1596,34 @@ exit 1
     <ClInclude Include="game_controls\buysubmenu.h" />
     <ClInclude Include="game_controls\classmenu.h" />
     <ClInclude Include="hud_basedeathnotice.h" />
+    <ClInclude Include="hud_bliink.h" />
     <ClInclude Include="hud_locator_target.h" />
     <ClInclude Include="..\..\engine\iblackbox.h" />
+    <ClInclude Include="hud_noface.h" />
     <ClInclude Include="modelrendersystem.h" />
     <ClInclude Include="..\shared\particle_parse.h" />
     <ClInclude Include="..\shared\particle_property.h" />
     <ClInclude Include="..\shared\point_bonusmaps_accessor.h" />
     <ClInclude Include="..\shared\postprocess_shared.h" />
     <ClInclude Include="..\shared\sharedvar.h" />
+    <ClInclude Include="noface.h" />
+    <ClInclude Include="opencv_interface.h" />
     <ClInclude Include="sdk\clientmode_sdk.h" />
     <ClInclude Include="sdk\c_bliink_player.h" />
-    <ClInclude Include="sdk\c_sdk_player_resource.h" />
+    <ClInclude Include="sdk\c_bliink_player_resource.h" />
     <ClInclude Include="sdk\c_bliink_team.h" />
     <ClInclude Include="sdk\sdk_backgroundpanel.h" />
     <ClInclude Include="sdk\sdk_hud_chat.h" />
-    <ClInclude Include="sdk\sdk_scoreboard.h" />
     <ClInclude Include="sdk\vcreditspage.h" />
     <ClInclude Include="sdk\vgui\bliink_welcomemenu.h" />
     <ClInclude Include="sdk\vgui\sdkviewport.h" />
     <ClInclude Include="sdk\vgui\sdk_spectatorgui.h" />
     <ClInclude Include="sdk\vgui\sdk_textwindow.h" />
     <ClInclude Include="sdk\vgui\vgui_rootpanel_sdk.h" />
+    <ClInclude Include="ShaderEditor\ISEdit_ModelRender.h" />
+    <ClInclude Include="ShaderEditor\IVShaderEditor.h" />
+    <ClInclude Include="ShaderEditor\SEdit_ModelRender.h" />
+    <ClInclude Include="ShaderEditor\ShaderEditorSystem.h" />
     <ClInclude Include="spatialentitymgr.h" />
     <ClInclude Include="swarm\c_asw_jukebox.h" />
     <ClInclude Include="swarm\gameui\swarm\vkeyboard.h" />

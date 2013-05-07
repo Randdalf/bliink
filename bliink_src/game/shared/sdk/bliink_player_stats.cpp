@@ -126,6 +126,8 @@ void CBliinkPlayerStats::Reset()
 	m_fMaxFatigue = BASE_FATIGUE;
 	m_fFatigueRegenRate = BASE_FATIGUE_REGEN_RATE_PER_SECOND;
 	m_iMaxExperience = BASE_MAX_EXPERIENCE;
+	m_iStatusEffect = BLIINK_STATUS_NORMAL;
+	m_fStatusEndTime = gpGlobals->curtime;
 
 	UpdateMaxHealth();
 	UpdateHealth();
@@ -173,6 +175,20 @@ bool CBliinkPlayerStats::Think()
 	StatusThink();
 
 	return false;
+}
+
+void CBliinkPlayerStats::StalkerThink()
+{
+	// Regen health if in fog.
+	if( m_pOwner->IsInFog() )
+	{
+		GainHealth( STALKER_FOG_HEALTH_REGEN * gpGlobals->frametime );
+	}
+	// Slowly lose health if out of fog.
+	else
+	{
+		TakeDamage( STALKER_FOG_HEALTH_DEGEN * gpGlobals->frametime );
+	}
 }
 
 void CBliinkPlayerStats::GainExperience(int iExpGain)
@@ -354,13 +370,13 @@ void CBliinkPlayerStats::StatusThink()
 		switch(m_iStatusEffect)
 		{
 			case BLIINK_STATUS_POISONED:
-				m_fHealth -= fTimePassed * STATUS_POISON_DAMAGE_PER_SECOND;
+				TakeDamage( fTimePassed * STATUS_POISON_DAMAGE_PER_SECOND );
 				break;
 			case BLIINK_STATUS_BURNING:
-				m_fHealth -= fTimePassed * STATUS_BURN_DAMAGE_PER_SECOND;
+				TakeDamage( fTimePassed * STATUS_BURN_DAMAGE_PER_SECOND );
 				break;
 			case BLIINK_STATUS_FOGGED:
-				m_fHealth -= fTimePassed * STATUS_FOGGED_DAMAGE_PER_SECOND;
+				TakeDamage( fTimePassed * STATUS_FOGGED_DAMAGE_PER_SECOND );
 				break;
 		}
 	}

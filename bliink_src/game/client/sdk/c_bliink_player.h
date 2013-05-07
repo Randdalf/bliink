@@ -18,6 +18,7 @@
 #include "sdk_shareddefs.h"
 #include "bliink_item_inventory.h"
 #include "bliink_player_stats.h"
+#include "glow_outline_effect.h"
 
 class C_BliinkPlayer : public C_BasePlayer
 {
@@ -107,6 +108,7 @@ public:
 
 	//Tony; update lookat, if our model has moving eyes setup, they need to be updated.
 	void			UpdateLookAt( void );
+	bool			playerInFog( void );
 	int				GetIDTarget() const;
 	void			UpdateIDTarget( void );
 
@@ -174,6 +176,15 @@ public:
 public:
 	virtual int GetAmmoCount( int iAmmoIndex ) const;
 	virtual void RemoveAmmo( int iCount, int iAmmoIndex ) {}
+	virtual int	GetMaxHealth();
+
+	// Fog
+private:
+	bool m_bIsInFog;
+	CGlowObject m_GlowObject;
+
+public:
+	bool IsInFog() { return m_bIsInFog; }
 };
 
 

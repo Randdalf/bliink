@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+      "$basetexture" "HUD/status_poison"
+      "$translucent"   "1"
+      "$translucency" "1"
+      "$ignorez" "1"
+}

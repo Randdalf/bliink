@@ -60,6 +60,9 @@ void CBliinkHudLevel::Paint()
 	if( !pBliinkPlayer )
 		return;
 
+	if( pBliinkPlayer->State_Get() != STATE_BLIINK_SURVIVOR )
+		return;
+
 	CBliinkPlayerStats stats = pBliinkPlayer->GetBliinkPlayerStats();
 	vgui::IScheme* pScheme = vgui::scheme()->GetIScheme(GetScheme());
 	int wide, tall;

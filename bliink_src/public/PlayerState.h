@@ -30,6 +30,10 @@ public:
 
 	// true if the player is dead
 	CNetworkVar( bool, deadflag );	
+
+	// true if the player has blunk
+	CNetworkVar( bool, blinkflag );	
+
 	// Viewing angle (player only)
 	QAngle		v_angle;		
 	
