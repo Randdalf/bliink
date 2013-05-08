@@ -1861,6 +1861,10 @@ void ActivityList_RegisterSharedActivities( void )
 	// Boomer
 	REGISTER_SHARED_ACTIVITY( ACT_PREP_EXPLODE );
 	REGISTER_SHARED_ACTIVITY( ACT_EXPLODE );
+	// Roshan
+	REGISTER_SHARED_ACTIVITY( ACT_DOTA_IDLE );
+	REGISTER_SHARED_ACTIVITY( ACT_DOTA_RUN );
+	REGISTER_SHARED_ACTIVITY( ACT_DOTA_ATTACK );
 
 	AssertMsg( g_HighestActivity == LAST_SHARED_ACTIVITY - 1, "Not all activities from ai_activity.h registered in activitylist.cpp" ); 
 } 

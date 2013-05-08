@@ -1,6 +1,6 @@
 $modelname	"props\pallet.mdl"
 $cdmaterials	"models\props\"
-$scale 200
+$scale 50
 
 $body mybody	"pallet.smd"
 $staticprop

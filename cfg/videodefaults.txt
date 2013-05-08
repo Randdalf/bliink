@@ -1,10 +1,14 @@
 "config"
 {
 	"VendorID"		"4098"
+<<<<<<< HEAD
 	"DeviceID"		"26808"
+=======
+	"DeviceID"		"26461"
+>>>>>>> 67db92b2bb84370b32fd389875a43442cc562e37
 	"setting.fullscreen"		"1"
 	"setting.nowindowborder"		"0"
-	"setting.aspectratiomode"		"-1"
+	"setting.aspectratiomode"		"2"
 	"setting.mat_vsync"		"1"
 	"setting.mat_monitorgamma"		"2.200000"
 	"setting.mat_queue_mode"		"-1"
