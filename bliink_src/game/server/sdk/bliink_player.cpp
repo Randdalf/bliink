@@ -1050,6 +1050,19 @@ bool CBliinkPlayer::ClientCommand( const CCommand &args )
 		{
 			m_Inventory.Debug_PrintInventory();
 		}
+
+		// Flaslight
+		else if( FStrEq( pcmd, "bliink_flashlight" ) )
+		{
+			if ( FlashlightIsOn() )
+			{
+				FlashlightTurnOff( );
+			}
+			else 
+			{
+				FlashlightTurnOn( );
+			}
+		}
 	}
 
 	return BaseClass::ClientCommand( args );

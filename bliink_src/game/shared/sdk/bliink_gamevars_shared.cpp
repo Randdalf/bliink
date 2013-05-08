@@ -70,6 +70,8 @@ ConCommand Bliink_DevAddExp( "bliink_debug_exp", send_f, "", FCVAR_CLIENTCMD_CAN
 ConCommand Bliink_DevGiveSlow( "bliink_debug_slow", send_f, "", FCVAR_CLIENTCMD_CAN_EXECUTE | FCVAR_CHEAT );
 ConCommand Bliink_DevGiveBurn( "bliink_debug_burn", send_f, "", FCVAR_CLIENTCMD_CAN_EXECUTE | FCVAR_CHEAT );
 
+ConCommand Bliink_Flashlight( "bliink_flashlight", send_f, "", FCVAR_CLIENTCMD_CAN_EXECUTE );
+
 // INVENTORY COMMANDS
 ConCommand Bliink_InventoryPrint( "bliink_inventory_print", send_f, "", FCVAR_CLIENTCMD_CAN_EXECUTE);
 
