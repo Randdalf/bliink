@@ -1,0 +1,7 @@
+"WorldVertexTransition"
+{
+    "$baseTexture" "bliink/bliink_grass"
+    "$basetexture2" "bliink/bliink_dirt"
+    "$surfaceprop" "dirt"
+    "%keywords" "blend" 
+}

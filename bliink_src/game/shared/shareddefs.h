@@ -378,6 +378,7 @@ enum PLAYER_ANIM
 
 // Bliink
 #define DMG_BLIINKSELF		(1<<30)		// used when damaged to update stats with CBliinkPlayerStats
+
 #define DMG_BLIINKHIT		(1<<31)		// bliink teleport attack
 
 // NOTE: DO NOT ADD ANY MORE CUSTOM DMG_ TYPES. MODS USE THE DMG_LASTGENERICFLAG BELOW, AND

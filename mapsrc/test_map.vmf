@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "5032"
-	"mapversion" "83"
+	"mapversion" "84"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "83"
+	"mapversion" "167"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -4161,6 +4161,16 @@ world
 			"visgroupautoshown" "1"
 		}
 	}
+	group
+	{
+		"id" "1667"
+		editor
+		{
+			"color" "226 175 0"
+			"visgroupshown" "1"
+			"visgroupautoshown" "1"
+		}
+	}
 }
 entity
 {
@@ -4899,129 +4909,6 @@ entity
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 		"logicalpos" "[500 12000]"
-	}
-}
-entity
-{
-	"id" "536"
-	"classname" "logic_auto"
-	"hammerid" "30987"
-	"spawnflags" "1"
-	connections
-	{
-		"OnMapSpawn" "tonemap_globalSetBloomScale.50-1"
-		"OnMapSpawn" "tonemap_globalSetAutoExposureMax.80-1"
-		"OnMapSpawn" "tonemap_globalSetAutoExposureMin.50-1"
-	}
-	"origin" "112 368 504"
-	editor
-	{
-		"color" "220 30 220"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[1000 13500]"
-	}
-}
-entity
-{
-	"id" "538"
-	"classname" "env_tonemap_controller"
-	"hammerid" "30991"
-	"targetname" "tonemap_global"
-	"origin" "112 336 504"
-	editor
-	{
-		"color" "220 30 220"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[1000 14000]"
-	}
-}
-entity
-{
-	"id" "540"
-	"classname" "shadow_control"
-	"angles" "66 315 0"
-	"color" "67 72 80"
-	"distance" "75"
-	"hammerid" "583476"
-	"targetname" "shadow_control"
-	"origin" "144 336 504"
-	editor
-	{
-		"color" "220 30 220"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[2500 11000]"
-	}
-}
-entity
-{
-	"id" "542"
-	"classname" "water_lod_control"
-	"cheapwaterenddistance" "2300"
-	"cheapwaterstartdistance" "2000"
-	"hammerid" "583474"
-	"targetname" "water_controller"
-	"origin" "144 368 504"
-	editor
-	{
-		"color" "220 30 220"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[2500 10500]"
-	}
-}
-entity
-{
-	"id" "544"
-	"classname" "env_fog_controller"
-	"angles" "0 263 0"
-	"farz" "-1"
-	"fogblend" "1"
-	"fogcolor" "72 72 72"
-	"fogcolor2" "53 60 56"
-	"fogdir" "0 270 0"
-	"fogenable" "1"
-	"fogend" "5120"
-	"foglerptime" "2"
-	"fogmaxdensity" "1"
-	"fogstart" "128"
-	"hammerid" "583472"
-	"maxdxlevel" "0"
-	"mindxlevel" "0"
-	"targetname" "fog_controller"
-	"use_angles" "1"
-	"origin" "144 400 504"
-	editor
-	{
-		"color" "255 255 255"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[2500 10000]"
-	}
-}
-entity
-{
-	"id" "546"
-	"classname" "light_environment"
-	"_ambient" "92 107 114 400"
-	"_ambientHDR" "92 107 114 500"
-	"_AmbientScaleHDR" "1"
-	"_light" "170 188 193 650"
-	"_lightHDR" "170 188 193 600"
-	"_lightscaleHDR" "1"
-	"angles" "0 315 0"
-	"hammerid" "583498"
-	"pitch" "-65"
-	"SunSpreadAngle" "15"
-	"origin" "112 400 504"
-	editor
-	{
-		"color" "220 30 220"
-		"visgroupshown" "1"
-		"visgroupautoshown" "1"
-		"logicalpos" "[2500 11500]"
 	}
 }
 entity
@@ -10081,6 +9968,135 @@ entity
 		"visgroupshown" "1"
 		"visgroupautoshown" "1"
 		"logicalpos" "[0 0]"
+	}
+}
+entity
+{
+	"id" "542"
+	"classname" "water_lod_control"
+	"cheapwaterenddistance" "2300"
+	"cheapwaterstartdistance" "2000"
+	"hammerid" "583474"
+	"targetname" "water_controller"
+	"origin" "144 368 504"
+	editor
+	{
+		"color" "226 175 0"
+		"groupid" "1667"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2500 10500]"
+	}
+}
+entity
+{
+	"id" "540"
+	"classname" "shadow_control"
+	"angles" "66 315 0"
+	"color" "67 72 80"
+	"distance" "75"
+	"hammerid" "583476"
+	"targetname" "shadow_control"
+	"origin" "144 336 504"
+	editor
+	{
+		"color" "226 175 0"
+		"groupid" "1667"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2500 11000]"
+	}
+}
+entity
+{
+	"id" "538"
+	"classname" "env_tonemap_controller"
+	"hammerid" "30991"
+	"targetname" "tonemap_global"
+	"origin" "112 336 504"
+	editor
+	{
+		"color" "226 175 0"
+		"groupid" "1667"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[1000 14000]"
+	}
+}
+entity
+{
+	"id" "536"
+	"classname" "logic_auto"
+	"hammerid" "30987"
+	"spawnflags" "1"
+	connections
+	{
+		"OnMapSpawn" "tonemap_globalSetBloomScale.50-1"
+		"OnMapSpawn" "tonemap_globalSetAutoExposureMax.80-1"
+		"OnMapSpawn" "tonemap_globalSetAutoExposureMin.50-1"
+	}
+	"origin" "112 368 504"
+	editor
+	{
+		"color" "226 175 0"
+		"groupid" "1667"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[1000 13500]"
+	}
+}
+entity
+{
+	"id" "546"
+	"classname" "light_environment"
+	"_ambient" "92 107 114 400"
+	"_ambientHDR" "92 107 114 500"
+	"_AmbientScaleHDR" "1"
+	"_light" "170 188 193 650"
+	"_lightHDR" "170 188 193 600"
+	"_lightscaleHDR" "1"
+	"angles" "0 315 0"
+	"hammerid" "583498"
+	"pitch" "-65"
+	"SunSpreadAngle" "15"
+	"origin" "112 400 504"
+	editor
+	{
+		"color" "226 175 0"
+		"groupid" "1667"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2500 11500]"
+	}
+}
+entity
+{
+	"id" "544"
+	"classname" "env_fog_controller"
+	"angles" "0 263 0"
+	"farz" "-1"
+	"fogblend" "1"
+	"fogcolor" "72 72 72"
+	"fogcolor2" "53 60 56"
+	"fogdir" "0 270 0"
+	"fogenable" "1"
+	"fogend" "5120"
+	"foglerptime" "2"
+	"fogmaxdensity" "1"
+	"fogstart" "128"
+	"hammerid" "583472"
+	"maxdxlevel" "0"
+	"mindxlevel" "0"
+	"targetname" "fog_controller"
+	"use_angles" "1"
+	"origin" "144 400 504"
+	editor
+	{
+		"color" "226 175 0"
+		"groupid" "1667"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[2500 10000]"
 	}
 }
 cameras

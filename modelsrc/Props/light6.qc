@@ -1,6 +1,6 @@
 $modelname	"props\light6.mdl"
 $cdmaterials	"models\props\"
-$scale 50
+$scale 80
 $body mybody	"light6.smd"
 $staticprop
 $surfaceprop	combine_metal

@@ -1027,6 +1027,9 @@ void CBasePlayer::DamageEffect(float flDamage, int fDamageType)
 	{
 		EmitSound( "Flesh.BulletImpact" );
 	}
+	else if ( fDamageType & DMG_BLIINKHIT ) {
+		
+	}
 }
 
 /*

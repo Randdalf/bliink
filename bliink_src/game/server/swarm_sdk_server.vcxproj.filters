@@ -1614,6 +1614,12 @@
     <ClCompile Include="..\shared\sdk\bliink_player_stats.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
+    <ClCompile Include="bliink_ai_robbler.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="bliink_ai_bliinker.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
     <ClCompile Include="sdk\bliink_fog.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>

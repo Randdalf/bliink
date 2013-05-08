@@ -31,6 +31,8 @@ static const char *s_pPrecacheResourceTypeName[] =
 	"game_material_decals",
 	"physics_gamesounds",
 	"shared",
+	"bliink_item_list",
+	"bliink_craft_list"
 };
 
 //-----------------------------------------------------------------------------
