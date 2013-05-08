@@ -4255,6 +4255,8 @@ int CAI_BaseNPC::MeleeAttack1Conditions ( float flDot, float flDist )
 		return 0;
 	}
 
+	//Msg("%f %f check\n", flDot, flDist);
+
 	// Decent fix to keep folks from kicking/punching hornets and snarks is to check the onground flag(sjb)
 	if ( GetEnemy()->GetFlags() & FL_ONGROUND )
 	{
