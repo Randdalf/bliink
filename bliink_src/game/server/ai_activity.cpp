@@ -1752,6 +1752,10 @@ void CAI_BaseNPC::InitDefaultActivitySR(void)
 	// Boomer
 	ADD_ACTIVITY_TO_SR( ACT_PREP_EXPLODE );
 	ADD_ACTIVITY_TO_SR( ACT_EXPLODE );
+	// Bliink 
+	ADD_ACTIVITY_TO_SR( ACT_DOTA_IDLE );
+	ADD_ACTIVITY_TO_SR( ACT_DOTA_RUN );
+	ADD_ACTIVITY_TO_SR( ACT_DOTA_ATTACK );
 
 	AssertMsg( m_iNumActivities == LAST_SHARED_ACTIVITY + 1, "Not all activities from ai_activity.h registered in ai_activity.cpp" ); 
 }

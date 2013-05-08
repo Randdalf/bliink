@@ -524,8 +524,16 @@ int CBliinkPlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 		return 0;
 
 	float flDamage = info.GetDamage();
+	int fDamageType = info.GetDamageType();
 
-	Msg("Taking damage %f!\n", flDamage);
+	Msg("DAMAGE EFFECT TIME OHHHH YEAAAAA\n");
+	if (fDamageType & DMG_BLIINKHIT) {
+		Vector origin = vec3_origin;
+		QAngle angles = QAngle(random->RandomInt(-0.1,0.1), random->RandomInt(-0.1,0.1), random->RandomInt(-0.1,0.1));
+		JumptoPosition(origin, angles);
+	}
+
+	//Msg("Taking damage %f!\n", flDamage);
 
 	if ( 0 /*pInflictor == this ||	info.GetAttacker() == this*/ )
 	{
@@ -1822,4 +1830,14 @@ int	CBliinkPlayer::GetAmmoCount( int iAmmoIndex ) const
 void CBliinkPlayer::RemoveAmmo( int iCount, int iAmmoIndex )
 {
 	m_Inventory.UseAmmoClip( iAmmoIndex, iCount );
+}
+
+//
+// ID's player as such.
+//
+Class_T  CBliinkPlayer::Classify ( void )
+{
+	if ( State_Get() == STATE_BLIINK_STALKER )
+		return CLASS_NONE;
+	return CLASS_PLAYER;
 }
