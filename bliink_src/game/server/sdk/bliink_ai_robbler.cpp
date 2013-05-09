@@ -38,6 +38,7 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
+
 //=========================================================
 // Private activities
 //=========================================================
@@ -81,6 +82,8 @@ public:
 	void	Spawn( void );
 	Class_T Classify( void );
 	int		SelectSchedule( void );
+	void	OnChangeActivity( Activity eNewActivity );
+	void	NPCThink( void );
 
 	Activity	NPC_TranslateActivity( Activity eNewActivity );
 
@@ -93,6 +96,7 @@ public:
 	// character.
 	int		m_iDeleteThisField;
 	int justSpawned;
+	float attackTime;
 
 	DEFINE_CUSTOM_AI;
 };
@@ -135,7 +139,7 @@ END_DATADESC()
 //-----------------------------------------------------------------------------
 void CBliinkRobbler::Precache( void )
 {
-	PrecacheModel( "models/player/blue_player.mdl" );
+	PrecacheModel("models/creeps/neutral_creeps/n_creeps_forest_troll/n_creep_forest_troll_high_priest.mdl");
 
 	BaseClass::Precache();
 }
@@ -178,13 +182,17 @@ int CBliinkRobbler::SelectSchedule( void )
 {
 	if (justSpawned == 0) {
 		justSpawned = 1;
-		Msg("location stored");
+		//Msg("location stored");
 		return SCHED_RECORD_HOME;
 	} else if (HasCondition(COND_SEE_ENEMY)) {
-		/*Msg("I SEE YOUUUUU");*/
+		//Msg("I SEE YOUUUUU\n");
+		if ( HasCondition(COND_CAN_MELEE_ATTACK1) ) {
+			Msg("HIIIIIIIIIIIIYA!!!\n");
+			return SCHED_MELEE_ATTACK1;
+		}
 		return SCHED_CHASE_ENEMY;
 	}
-	Msg("going home");
+	//Msg("going home");
 	return SCHED_RETURN_TO_SPAWN;
 }
 
@@ -197,7 +205,7 @@ void CBliinkRobbler::Spawn( void )
 {
 	Precache();
 
-	SetModel( "models/player/blue_player.mdl" );
+	SetModel( "models/creeps/neutral_creeps/n_creeps_forest_troll/n_creep_forest_troll_high_priest.mdl" );
 	SetHullType(HULL_HUMAN);
 	SetHullSizeNormal();
 
@@ -210,23 +218,55 @@ void CBliinkRobbler::Spawn( void )
 	m_NPCState			= NPC_STATE_NONE;
 
 	CapabilitiesClear();
-	CapabilitiesAdd( bits_CAP_MOVE_GROUND );
+	CapabilitiesAdd( bits_CAP_MOVE_GROUND | bits_CAP_INNATE_MELEE_ATTACK1 );
 
 	NPCInit();
 	justSpawned = 0;
 }
 
-// Overriding activities with DOD activities
+// Overriding activities with DOTA activities
 Activity	CBliinkRobbler::NPC_TranslateActivity( Activity eNewActivity )
 {
 	eNewActivity = BaseClass::NPC_TranslateActivity( eNewActivity );
 
 	if ( eNewActivity == ACT_IDLE )
-		return ACT_DOD_STAND_IDLE_PISTOL;
+		return ACT_DOTA_IDLE;
 	else if ( eNewActivity == ACT_RUN || eNewActivity == ACT_WALK )
-		return ACT_DOD_PRONEWALK_IDLE_RIFLE;
+		return ACT_DOTA_RUN;
+	else if ( eNewActivity == ACT_MELEE_ATTACK1 )
+		return ACT_DOTA_ATTACK;
 
 	return eNewActivity;
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
+void CBliinkRobbler::OnChangeActivity( Activity eNewActivity )
+{
+	if (eNewActivity == ACT_MELEE_ATTACK1) {
+		attackTime = gpGlobals->curtime + 0.25;
+		//Msg("%f KK\n", attackTime);
+	}
+
+	BaseClass::OnChangeActivity( eNewActivity );
+}
+
+
+void CBliinkRobbler::NPCThink( void ) {
+	if (gpGlobals->curtime > attackTime && attackTime > 0) {
+		CBaseEntity *pHurt = NULL;
+		// Try to hit them with a trace
+		Vector vecMins = GetHullMins();
+		Vector vecMaxs = GetHullMaxs();
+		vecMins.z = vecMins.x;
+		vecMaxs.z = vecMaxs.x;
+		pHurt = CheckTraceHullAttack( 64, vecMins, vecMaxs, 15, DMG_CLUB );
+		attackTime = -1;
+		//Msg("HAAATTTAAAACKKKK!!!\n");
+	}
+
+	BaseClass::NPCThink();
 }
 
 
