@@ -4261,3 +4261,468 @@ Reduced 894 texinfos to 693
 Reduced 33 texdatas to 31 (790 bytes to 719)
 Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
 2 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...10**** leaked ****
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (7168.0 6656.0 516.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (6656.0 7168.0 516.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (5632.0 7168.0 516.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (7168.0 5632.0 516.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (4608.0 7168.0 516.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (3584.0 7168.0 516.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (2560.0 7168.0 516.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (1536.0 7168.0 516.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+*** Suppressing further FindPortalSide errors.... ***
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 1276 detail faces...done (1)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (43712 bytes)
+Static prop models/props/campfire.mdl outside the map (2040.00, 256.00, 98.24)
+Static prop models/props/campfire.mdl outside the map (2008.00, -560.00, 256.00)
+Static prop models/props/campfire.mdl outside the map (1392.00, 1712.00, 224.00)
+Static prop models/props/campfire.mdl outside the map (736.00, -2496.00, 416.00)
+Static prop models/props/crate.mdl outside the map (116.67, -2915.86, 424.25)
+Static prop models/props/crate.mdl outside the map (172.25, -2923.31, 424.25)
+Static prop models/props/crate.mdl outside the map (166.77, -2868.33, 424.25)
+Static prop models/props/crate.mdl outside the map (109.76, -2866.51, 424.25)
+Static prop models/props/crate.mdl outside the map (137.26, -2920.83, 472.00)
+Static prop models/props/crate.mdl outside the map (134.76, -2868.11, 472.00)
+Static prop models/props/crate.mdl outside the map (143.45, -2816.84, 424.25)
+Static prop models/props/crate.mdl outside the map (138.24, -2973.31, 424.25)
+Static prop models/props/campfire.mdl outside the map (2120.00, -2216.00, 348.00)
+Static prop models/props/campfire.mdl outside the map (3239.74, 432.00, 412.89)
+Static prop models/props/campfire.mdl outside the map (-215.78, 3120.00, 346.38)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 891 texinfos to 85
+Reduced 32 texdatas to 11 (771 bytes to 237)
+Writing C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+2 seconds elapsed
+
+
+
+4 threads
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...10**** leaked ****
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (7168.0 6656.0 516.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (6656.0 7168.0 516.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (5632.0 7168.0 516.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (7168.0 5632.0 516.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (4608.0 7168.0 516.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (3584.0 7168.0 516.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (2560.0 7168.0 516.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+
+FindPortalSide: Couldn't find a good match for which brush to assign to a portal near (1536.0 7168.0 516.0)
+Leaf 0 contents: 
+Leaf 1 contents: CONTENTS_SOLID 
+viscontents (node 0 contents ^ node 1 contents): CONTENTS_SOLID 
+This means that none of the brushes in leaf 0 or 1 that touches the portal has CONTENTS_SOLID 
+Check for a huge brush enclosing the coordinates above that has contents CONTENTS_SOLID 
+Candidate brush IDs: 
+
+*** Suppressing further FindPortalSide errors.... ***
+Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 1276 detail faces...done (1)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (43712 bytes)
+Static prop models/props/campfire.mdl outside the map (2040.00, 256.00, 98.24)
+Static prop models/props/campfire.mdl outside the map (2008.00, -560.00, 256.00)
+Static prop models/props/campfire.mdl outside the map (1392.00, 1712.00, 224.00)
+Static prop models/props/campfire.mdl outside the map (736.00, -2496.00, 416.00)
+Static prop models/props/crate.mdl outside the map (116.67, -2915.86, 424.25)
+Static prop models/props/crate.mdl outside the map (172.25, -2923.31, 424.25)
+Static prop models/props/crate.mdl outside the map (166.77, -2868.33, 424.25)
+Static prop models/props/crate.mdl outside the map (109.76, -2866.51, 424.25)
+Static prop models/props/crate.mdl outside the map (137.26, -2920.83, 472.00)
+Static prop models/props/crate.mdl outside the map (134.76, -2868.11, 472.00)
+Static prop models/props/crate.mdl outside the map (143.45, -2816.84, 424.25)
+Static prop models/props/crate.mdl outside the map (138.24, -2973.31, 424.25)
+Static prop models/props/campfire.mdl outside the map (2120.00, -2216.00, 348.00)
+Static prop models/props/campfire.mdl outside the map (3239.74, 432.00, 412.89)
+Static prop models/props/campfire.mdl outside the map (-215.78, 3120.00, 346.38)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 891 texinfos to 85
+Reduced 32 texdatas to 11 (771 bytes to 237)
+Writing C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+2 seconds elapsed
+
+
+
+4 threads
+reading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+reading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt
+LoadPortals: couldn't read c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 102 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (467546 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 891 texinfos to 690
+Reduced 32 texdatas to 30 (771 bytes to 700)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+2 seconds elapsed
+
+
+
+4 threads
+reading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+reading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt
+ 769 portalclusters
+2002 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 853 visible clusters (0.00%)
+Total clusters visible: 83984
+Average clusters visible: 109
+Building PAS...
+Average clusters audible: 376
+visdatasize:96484  compressed from 159952
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+11 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 102 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (467546 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 891 texinfos to 690
+Reduced 32 texdatas to 30 (771 bytes to 700)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+2 seconds elapsed
+
+
+
+4 threads
+reading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+reading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt
+ 769 portalclusters
+2002 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 853 visible clusters (0.00%)
+Total clusters visible: 83984
+Average clusters visible: 109
+Building PAS...
+Average clusters audible: 376
+visdatasize:96484  compressed from 159952
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+12 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 102 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (467546 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 891 texinfos to 690
+Reduced 32 texdatas to 30 (771 bytes to 700)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+2 seconds elapsed
+
+
+
+4 threads
+reading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+reading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt
+ 769 portalclusters
+2002 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 853 visible clusters (0.00%)
+Total clusters visible: 83984
+Average clusters visible: 109
+Building PAS...
+Average clusters audible: 376
+visdatasize:96484  compressed from 159952
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+12 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+3740 faces
+1 degenerate faces
+753561 square feet [108512872.00 square inches]
+6 Displacements
+10340 Square Feet [1488975.38 Square Inches]
+3739 patches before subdivision
+86411 patches after subdivision
+2 direct lights
+0...1...2...3...4...5
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 102 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (467546 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 891 texinfos to 690
+Reduced 32 texdatas to 30 (771 bytes to 700)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+2 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 102 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (467546 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 891 texinfos to 690
+Reduced 32 texdatas to 30 (771 bytes to 700)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+2 seconds elapsed
