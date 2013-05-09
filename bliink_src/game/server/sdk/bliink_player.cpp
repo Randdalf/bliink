@@ -392,7 +392,7 @@ void CBliinkPlayer::Spawn()
 bool CBliinkPlayer::SelectSpawnSpot( const char *pEntClassName, CBaseEntity* &pSpot )
 {
 	// Fog
-	CBaseEntity* pBaseFog = gEntList.FindEntityByClassname( NULL, "info_bliinker_teleport" );
+	CBaseEntity* pBaseFog = gEntList.FindEntityByClassname( NULL, "func_bliink_fog" );
 
 	// Find the next spawn spot.
 	pSpot = gEntList.FindEntityByClassname( pSpot, pEntClassName );
