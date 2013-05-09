@@ -418,7 +418,7 @@ bool CBliinkPlayer::SelectSpawnSpot( const char *pEntClassName, CBaseEntity* &pS
 			// check if pSpot is valid
 			if ( g_pGameRules->IsSpawnPointValid( pSpot, this ) && bValidStalkerPoint)
 			{
-				if ( pSpot->GetAbsOrigin() == Vector( 0, 0, 0 ) )
+				if ( pSpot && pSpot->GetAbsOrigin() == Vector( 0, 0, 0 ) )
 				{
 					pSpot = gEntList.FindEntityByClassname( pSpot, pEntClassName );
 					continue;
@@ -1630,7 +1630,8 @@ void CBliinkPlayer::State_Enter_BLIINK_STALKER_RESPAWN()
 
 void CBliinkPlayer::State_PreThink_BLIINK_STALKER_RESPAWN()
 {	
-	Msg("testing respawn %d %d\n", (int)gpGlobals->curtime, (int)m_flDeathTime);
+	Msg("testing respawn %d %d %d\n", (int)gpGlobals->curtime, (int)m_flDeathTime, (int)(m_flDeathTime + BLIINK_STALKER_RESPAWN_TIME));
+
 	if ( gpGlobals->curtime >= (m_flDeathTime + BLIINK_STALKER_RESPAWN_TIME ) )
 	{
 		State_Transition( STATE_BLIINK_STALKER );
