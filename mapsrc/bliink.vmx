@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "5032"
-	"mapversion" "310"
+	"mapversion" "311"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "310"
+	"mapversion" "311"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -95997,7 +95997,7 @@ entity
 	"item_min_quantity" "1"
 	"item_spawn_chance_1" "1"
 	"item_spawn_chance_2" "5"
-	"item_type_1" "test_item"
+	"item_type_1" "bliink_machete"
 	"item_type_2" "test_item_2"
 	"spawner_distance_x" "16"
 	"spawner_distance_y" "16"
@@ -96024,7 +96024,7 @@ entity
 	"item_min_quantity" "1"
 	"item_spawn_chance_1" "1"
 	"item_spawn_chance_2" "5"
-	"item_type_1" "test_item"
+	"item_type_1" "bliink_machete"
 	"item_type_2" "test_item_2"
 	"spawner_distance_x" "16"
 	"spawner_distance_y" "16"
@@ -96051,7 +96051,7 @@ entity
 	"item_min_quantity" "1"
 	"item_spawn_chance_1" "1"
 	"item_spawn_chance_2" "5"
-	"item_type_1" "test_item"
+	"item_type_1" "bliink_machete"
 	"item_type_2" "test_item_2"
 	"spawner_distance_x" "16"
 	"spawner_distance_y" "16"
@@ -106367,8 +106367,8 @@ cameras
 	"activecamera" "0"
 	camera
 	{
-		"position" "[1791.79 416.609 581.976]"
-		"look" "[6049.72 3.11197 -4663.32]"
+		"position" "[-136.675 -47.6588 612.044]"
+		"look" "[4549.77 -1785.58 -3952.04]"
 	}
 }
 cordons
