@@ -2532,7 +2532,12 @@ void CAI_BaseNPC::StartTask( const Task_t *pTask )
 	case TASK_ITEM_RUN_PATH:
 		GetNavigator()->SetMovementActivity(ACT_RUN);
 		break;
-
+	case TASK_JUMP_PATH:
+		//CAI_Path* pPath = GetNavigator()->GetPath();
+		//Vector jumpTo = pPath->NextWaypointPos();
+		//SetAbsOrigin(jumpTo);
+		TaskComplete();
+		break;
 	case TASK_RUN_PATH:
 		{
 			// UNDONE: This is in some default AI and some NPCs can't run? -- walk instead?

@@ -1,6 +1,6 @@
 $modelname	"props\pipe_straight.mdl"
 $cdmaterials	"models\props\"
-$scale 20
+$scale 100
 $body mybody	"pipe_straight.smd"
 $staticprop
 $surfaceprop	combine_metal

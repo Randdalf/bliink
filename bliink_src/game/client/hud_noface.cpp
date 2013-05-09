@@ -46,7 +46,6 @@ void CHudNoFace::Paint()
 	surface()->DrawSetTextPos( 10,10);
 	surface()->DrawPrintText( pNumberText, wcslen(pNumberText) );
 
-
   //  surface()->DrawSetTexture( m_nImport );
  //  surface()->DrawTexturedRect( 0, 0, 1200, 1200 );
 }

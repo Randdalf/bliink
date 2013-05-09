@@ -1088,6 +1088,8 @@ int CBasePlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 
 	CTakeDamageInfo info = inputInfo;
 
+	Msg("OUCH\n");
+
 	IServerVehicle *pVehicle = GetVehicle();
 	if ( pVehicle )
 	{

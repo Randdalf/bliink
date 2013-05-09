@@ -1985,8 +1985,13 @@
     <ClCompile Include="hud_noface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="sdk\bliink_inventory_ui.cpp">
       <Filter>Source Files\SDK</Filter>
+=======
+    <ClCompile Include="weapon_machete.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
+>>>>>>> a9efbad292507b982435ed657969618c3be1cb9c
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

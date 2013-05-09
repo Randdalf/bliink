@@ -392,7 +392,7 @@ void CBliinkPlayer::Spawn()
 bool CBliinkPlayer::SelectSpawnSpot( const char *pEntClassName, CBaseEntity* &pSpot )
 {
 	// Fog
-	CBaseEntity* pBaseFog = gEntList.FindEntityByClassname( NULL, "func_bliink_fog" );
+	CBaseEntity* pBaseFog = gEntList.FindEntityByClassname( NULL, "info_bliinker_teleport" );
 
 	// Find the next spawn spot.
 	pSpot = gEntList.FindEntityByClassname( pSpot, pEntClassName );
@@ -511,6 +511,35 @@ void CBliinkPlayer::TraceAttack( const CTakeDamageInfo &inputInfo, const Vector 
 	CDisablePredictionFiltering disabler;
 	BaseClass::TraceAttack( inputInfo, vecDir, ptr );
 }
+
+Vector CBliinkPlayer::findBliinkerTeleportSpot( void )
+{
+	CBaseEntity* pEntity = gEntList.FindEntityByClassname( NULL, "info_bliinker_teleport" );
+	CBaseEntity* pStartEntity = pEntity;
+	CBaseEntity* pPicked = pEntity;
+
+	int i = 1;
+
+	while( pEntity )
+	{
+		i++;
+		pEntity = gEntList.FindEntityByClassname( pEntity, "info_bliinker_teleport" );
+
+		if( pEntity == pStartEntity || !pEntity )
+			break;
+
+		if( RandomFloat(0, 1) < 1/((float)i) )
+		{
+			pPicked = pEntity;
+		}
+	}
+
+	if( pPicked == NULL )
+		return this->GetAbsOrigin();
+	else
+		return pPicked->GetAbsOrigin();	
+}
+
 int CBliinkPlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 {
 	CTakeDamageInfo info = inputInfo;
@@ -524,8 +553,15 @@ int CBliinkPlayer::OnTakeDamage( const CTakeDamageInfo &inputInfo )
 		return 0;
 
 	float flDamage = info.GetDamage();
+	int fDamageType = info.GetDamageType();
 
-	Msg("Taking damage %f!\n", flDamage);
+	//Msg("DAMAGE EFFECT TIME OHHHH YEAAAAA\n");
+	if (fDamageType & DMG_BLIINKHIT)
+	{
+		JumptoPosition(findBliinkerTeleportSpot(), this->GetAbsAngles());
+	}
+
+	//Msg("Taking damage %f!\n", flDamage);
 
 	if ( 0 /*pInflictor == this ||	info.GetAttacker() == this*/ )
 	{
@@ -1049,6 +1085,16 @@ bool CBliinkPlayer::ClientCommand( const CCommand &args )
 		else if( FStrEq( pcmd, "bliink_inventory_print" ) )
 		{
 			m_Inventory.Debug_PrintInventory();
+		}
+
+		// Blink
+		else if( FStrEq( pcmd, "bliink_blink_on" ) )
+		{
+			setBlinking( true );
+		}
+		else if( FStrEq( pcmd, "bliink_blink_off" ) )
+		{
+			setBlinking( false );
 		}
 
 		// Flaslight
@@ -1822,6 +1868,19 @@ void CBliinkPlayer::Think()
 		m_BliinkStats.UpdateHealth();
 	}
 
+	// Blinking
+	static float fBlinkTime = 0.0f;
+
+	if( blinking && fBlinkTime == 0.0f )
+	{
+		fBlinkTime = gpGlobals->curtime + 0.3f;
+	} else if (blinking) {
+		if (fBlinkTime == gpGlobals->curtime) {
+			blinking = false;
+			fBlinkTime = 0.0f;
+		}
+	}
+
 	SetNextThink(gpGlobals->frametime);
 }
 
@@ -1835,4 +1894,14 @@ int	CBliinkPlayer::GetAmmoCount( int iAmmoIndex ) const
 void CBliinkPlayer::RemoveAmmo( int iCount, int iAmmoIndex )
 {
 	m_Inventory.UseAmmoClip( iAmmoIndex, iCount );
+}
+
+//
+// ID's player as such.
+//
+Class_T  CBliinkPlayer::Classify ( void )
+{
+	if ( State_Get() == STATE_BLIINK_STALKER )
+		return CLASS_NONE;
+	return CLASS_PLAYER;
 }

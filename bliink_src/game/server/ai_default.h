@@ -111,6 +111,7 @@ enum
 	SCHED_INTERACTION_WAIT_FOR_PARTNER,
 
 	SCHED_SLEEP,
+	SCHED_JUMP_FORWARD,
 
 	// ======================================
 	// IMPORTANT: This must be the last enum

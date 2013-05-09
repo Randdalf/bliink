@@ -19,6 +19,10 @@
 	"This entity marks the start point for stalkers to spawn."
 [
 ]
+@PointClass base(Angles,Targetname,EnableDisable) studio("models/editor/playerstart.mdl") = info_bliinker_teleport :
+	"This entity marks the start point for bliinkers to teleport to."
+[
+]
 
 @PointClass base(Angles,Targetname,EnableDisable) studio("models/weapons/w_smg_mp5.mdl") = weapon_mp5 :
 	"MP5 test!"
@@ -68,7 +72,11 @@
 	output OnOpenCages(void) : "Fires when cages should open"
 ]
 
-@NPCClass base(BaseNPC) studio("models/player/red_player.mdl") = npc_bliink_simple : "Freded"
+@NPCClass base(BaseNPC) studio("models/player/red_player.mdl") = npc_bliink_robbler : ""
+[
+]
+
+@NPCClass base(BaseNPC) studio("models/player/red_player.mdl") = npc_bliink_bliinker : ""
 [
 ]
 

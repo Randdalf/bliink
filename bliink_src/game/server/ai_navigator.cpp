@@ -491,28 +491,28 @@ bool CAI_Navigator::SetGoal( const AI_NavGoal_t &goal, unsigned flags )
 	
 	if ( result == false )
 	{
-		DbgNavMsg(  GetOuter(), "Failed to pathfind to nav goal:\n" );
-		DbgNavMsg1( GetOuter(), "   Type:      %s\n", AIGetGoalTypeText( goal.type) );
-		DbgNavMsg1( GetOuter(), "   Dest:      %s\n", NavVecToString( goal.dest ) );
-		DbgNavMsg1( GetOuter(), "   Dest node: %d\n", goal.destNode );
-		DbgNavMsg1( GetOuter(), "   Target:    %#x\n", goal.pTarget );
+		/*Msg(   "Failed to pathfind to nav goal:\n" );
+		Msg( "   Type:      %s\n", AIGetGoalTypeText( goal.type) );
+		Msg( "   Dest:      %s\n", NavVecToString( goal.dest ) );
+		Msg(  "   Dest node: %d\n", goal.destNode );
+		Msg( "   Target:    %#x\n", goal.pTarget );*/
 
 		if ( flags & AIN_DISCARD_IF_FAIL )
 			ClearPath();
 	}
 	else
 	{
-		DbgNavMsg(  GetOuter(), "New goal set:\n" );
-		DbgNavMsg1( GetOuter(), "   Type:         %s\n", AIGetGoalTypeText( goal.type) );
-		DbgNavMsg1( GetOuter(), "   Dest:         %s\n", NavVecToString( goal.dest ) );
-		DbgNavMsg1( GetOuter(), "   Dest node:    %d\n", goal.destNode );
-		DbgNavMsg1( GetOuter(), "   Target:       %#x\n", goal.pTarget );
-		DbgNavMsg1( GetOuter(), "   Tolerance:    %.1f\n", GetPath()->GetGoalTolerance() );
-		DbgNavMsg1( GetOuter(), "   Waypoint tol: %.1f\n", GetPath()->GetWaypointTolerance() );
-		DbgNavMsg1( GetOuter(), "   Activity:     %s\n", GetOuter()->GetActivityName(GetPath()->GetMovementActivity()) );
-		DbgNavMsg1( GetOuter(), "   Arrival act:  %s\n", GetOuter()->GetActivityName(GetPath()->GetArrivalActivity()) );
-		DbgNavMsg1( GetOuter(), "   Arrival seq:  %d\n", GetPath()->GetArrivalSequence() );
-		DbgNavMsg1( GetOuter(), "   Goal dir:     %s\n", NavVecToString( GetPath()->GetGoalDirection(GetAbsOrigin())) );
+		/*Msg(  "New goal set:\n" );
+		Msg( "   Type:         %s\n", AIGetGoalTypeText( goal.type) );
+		Msg( "   Dest:         %s\n", NavVecToString( goal.dest ) );
+		Msg( "   Dest node:    %d\n", goal.destNode );
+		Msg( "   Target:       %#x\n", goal.pTarget );
+		Msg( "   Tolerance:    %.1f\n", GetPath()->GetGoalTolerance() );
+		Msg( "   Waypoint tol: %.1f\n", GetPath()->GetWaypointTolerance() );
+		Msg( "   Activity:     %s\n", GetOuter()->GetActivityName(GetPath()->GetMovementActivity()) );
+		Msg( "   Arrival act:  %s\n", GetOuter()->GetActivityName(GetPath()->GetArrivalActivity()) );
+		Msg( "   Arrival seq:  %d\n", GetPath()->GetArrivalSequence() );
+		Msg( "   Goal dir:     %s\n", NavVecToString( GetPath()->GetGoalDirection(GetAbsOrigin())) );*/
 	
 		// Set our ideal yaw. This has to be done *after* finding the path, 
 		// because the goal position may not be set until then
@@ -3297,6 +3297,10 @@ bool CAI_Navigator::SimplifyFlyPath(  const AI_ProgressFlyPathParams_t &params )
 	}
 
 	return false;
+}
+
+Vector CAI_Navigator::NextWaypointPos() {
+	return GetPath()->GetGoalDirection(GetAbsOrigin());
 }
 
 //-----------------------------------------------------------------------------

@@ -65,6 +65,7 @@ END_DATADESC();
 
 LINK_ENTITY_TO_CLASS( info_player_spawn, CSpawnPoint );
 LINK_ENTITY_TO_CLASS( info_stalker_spawn, CSpawnPoint );
+LINK_ENTITY_TO_CLASS( info_bliinker_teleport, CSpawnPoint );
 
 // Defining the cage opener
 class CCageOpener : public CLogicalEntity

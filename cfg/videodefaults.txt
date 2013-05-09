@@ -1,7 +1,12 @@
 "config"
 {
+<<<<<<< HEAD
 	"VendorID"		"4318"
 	"DeviceID"		"3569"
+=======
+	"VendorID"		"32902"
+	"DeviceID"		"278"
+>>>>>>> a9efbad292507b982435ed657969618c3be1cb9c
 	"setting.fullscreen"		"1"
 	"setting.nowindowborder"		"0"
 	"setting.aspectratiomode"		"-1"

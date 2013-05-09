@@ -38,7 +38,7 @@ typedef int AI_TaskFailureCode_t;
 #define DEBUG_AI_NAVIGATION 1
 #ifdef DEBUG_AI_NAVIGATION
 extern ConVar ai_debug_nav;
-#define DbgNav() ai_debug_nav.GetBool()
+#define	DbgNav() ai_debug_nav.GetBool()
 #define DbgNavMsg( pAI, pszMsg ) \
 	do \
 	{ \
@@ -417,9 +417,11 @@ public:
 	CAI_Network *		GetNetwork()						{ return m_pAINetwork; }
 	const CAI_Network *	GetNetwork() const					{ return m_pAINetwork; }
 	void 				SetNetwork( CAI_Network *pNetwork ) { m_pAINetwork = pNetwork; }
-	
+
 	CAI_Path *			GetPath()							{ return m_pPath; }
 	const CAI_Path *	GetPath() const						{ return m_pPath; }
+
+	Vector				NextWaypointPos( void );
 
 	void				AdvancePath();
 
