@@ -6,7 +6,7 @@ WeaponData
 	"Damage"			"50"
 
 	// Weapon data is loaded by both the Game and Client DLLs.
-	"printname"			"#SDK_Weapon_Crowbar"
+	"printname"			"#SDK_Weapon_Bliink-Machete"
 	"viewmodel"			"models/weapons/v_crowbar.mdl"
 	"playermodel"			"models/weapons/w_bliink_machete.mdl"
 	"PlayerAnimationExtension"	"crowbar"

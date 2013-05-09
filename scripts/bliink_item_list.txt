@@ -51,8 +51,43 @@ BliinkItemList
 		// world model
 		"world_model"	"models/weapons/w_pist_deagle.mdl"
 	}
-	"test_item_3"
+	"bliink_pistol"
 	{
+		// key properties
+		"description"	"pistol"
+		"item_type"		"ITEM_TYPE_WEAPON"
+		"item_subtype"	"ITEM_STYPE_EMPTY"
+
+		// behaviours
+		"can_stack"		"0"
+
+		// weapon-specific
+		"weapon_name"	"weapon_pistol"
+
+		// ammo-specific
+		"ammo_name"		"none"
+
+		// world model
+		"world_model"	"models/weapons/w_bliink_pistol.mdl"
+	}
+	"bliink_machete"
+	{
+		// key properties
+		"description"	"machete"
+		"item_type"		"ITEM_TYPE_WEAPON"
+		"item_subtype"	"ITEM_STYPE_EMPTY"
+
+		// behaviours
+		"can_stack"		"0"
+
+		// weapon-specific
+		"weapon_name"	"weapon_crowbar"
+
+		// ammo-specific
+		"ammo_name"		"none"
+
+		// world model
+		"world_model"	"models/weapons/w_bliink_bat.mdl"
 	}
 
 	// NORMAL AMMO
