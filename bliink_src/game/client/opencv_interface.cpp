@@ -239,7 +239,7 @@ void OpenCVController::derivatives (cv::Mat &Ix, cv::Mat &Iy, cv::Mat &It, cv::M
  
 void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::Mat &It)
 {
-	Msg("yay -werwerwe\n");
+	//Msg("yay -werwerwe\n");
 	C_BasePlayer *pLocalPlayer = C_BasePlayer::GetLocalPlayer();
         cv::Mat A = cv::Mat(2, 2, CV_64FC1);
         cv::Mat invA = cv::Mat(2, 2, CV_64FC1);
@@ -662,7 +662,7 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
 			engine->ClientCmd( "NoFaceGUIOn\n" );
 			seeface = false;
 			loopcount++;
-			Msg("loopcount = %d!\n",loopcount);
+		//	Msg("loopcount = %d!\n",loopcount);
 			if (loopcount > 20) {
 				blink = true;
 			engine->ClientCmd( "BlinkGUIOn\n" );
