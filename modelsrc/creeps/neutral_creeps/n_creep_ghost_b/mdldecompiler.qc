@@ -1,3 +1,4 @@
+$origin 0 0 50
 $includemodel "creeps/neutral_creeps/n_creep_ghost_b/n_creep_ghost_b.mdl"
 $cd "C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\modelsrc\creeps\neutral_creeps\n_creep_ghost_b"
 $modelname "creeps/neutral_creeps/n_creep_ghost_b/bliink_creep_ghost_b.mdl"
