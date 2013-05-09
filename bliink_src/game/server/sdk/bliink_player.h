@@ -43,6 +43,8 @@ public:
 	CBliinkPlayer();
 	~CBliinkPlayer();
 
+	Class_T Classify( void );
+
 	static CBliinkPlayer *CreatePlayer( const char *className, edict_t *ed );
 	static CBliinkPlayer* Instance( int iEnt );
 
@@ -272,9 +274,12 @@ public:
 	// Fog
 private:
 	CNetworkVar( bool, m_bIsInFog );
+	bool blinking;
 
 public:
 	bool IsInFog() { return m_bIsInFog; }
+	bool isBlinking( void ) {return blinking;}
+	void setBlinking( bool blink ) {blinking = blink;}
 };
 
 

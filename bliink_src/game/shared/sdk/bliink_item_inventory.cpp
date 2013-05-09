@@ -228,7 +228,7 @@ void CBliinkItemInventory::Command_Drop(int iFromSlot)
 
 	// Check we are dropping an item.
 	if( hFromSlot == hItemLocked || hFromSlot == hItemEmpty )
-		return;
+		return;z
 
 #ifndef CLIENT_DLL	
 	// Drop item(s) and deal with weapons if necessary.

@@ -114,6 +114,9 @@ enum SCOND_t
 
 	COND_BEHAVIOR_PARAMETERS_CHANGED,
 
+	COND_CAN_BE_SEEN,
+	COND_JUMP_FORWARD,
+
 	// ======================================
 	// IMPORTANT: This must be the last enum
 	// ======================================
