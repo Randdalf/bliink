@@ -139,7 +139,7 @@ void CBliinkBliinker::InitCustomSchedules(void)
 //-----------------------------------------------------------------------------
 void CBliinkBliinker::Precache( void )
 {
-	PrecacheModel( "models/creeps/neutral_creeps/n_creep_ghost_a/n_creep_ghost_a.mdl" );
+	PrecacheModel( "models/creeps/neutral_creeps/n_creep_ghost_b/n_creep_ghost_b.mdl" );
 
 	BaseClass::Precache();
 }
@@ -208,7 +208,7 @@ void CBliinkBliinker::Spawn( void )
 	CapabilitiesClear();
 	CapabilitiesAdd( bits_CAP_MOVE_GROUND | bits_CAP_INNATE_MELEE_ATTACK1 );
 
-	SetModel( "models/creeps/neutral_creeps/n_creep_ghost_a/n_creep_ghost_a.mdl" );
+	SetModel( "models/creeps/neutral_creeps/n_creep_ghost_b/n_creep_ghost_b.mdl" );
 	SetHullType(HULL_HUMAN);
 	SetHullSizeNormal();
 

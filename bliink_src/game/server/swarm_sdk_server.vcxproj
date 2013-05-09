@@ -365,8 +365,6 @@ exit 1
     <ClCompile Include="baseviewmodel.cpp" />
     <ClCompile Include="..\shared\baseviewmodel_shared.cpp" />
     <ClCompile Include="..\shared\beam_shared.cpp" />
-    <ClCompile Include="bliink_ai_bliinker.cpp" />
-    <ClCompile Include="bliink_ai_robbler.cpp" />
     <ClCompile Include="bliink_simple_npc.cpp" />
     <ClCompile Include="beamspotlight.cpp" />
     <ClCompile Include="bitstring.cpp" />
