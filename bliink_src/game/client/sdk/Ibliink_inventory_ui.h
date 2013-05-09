@@ -1,7 +1,6 @@
 
-#ifdef _WIN32
-#pragma once
-#endif
+#ifndef IBLIINK_INVENTORY_UI
+#define IBLIINK_INVENTORY_UI
 
 class Ibliink_inventory_ui
 {
@@ -12,3 +11,5 @@ public:
 };
  
 extern Ibliink_inventory_ui* InventoryPanel;
+
+#endif

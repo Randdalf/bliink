@@ -1985,6 +1985,9 @@
     <ClCompile Include="hud_noface.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sdk\bliink_inventory_ui.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="achievement_notification_panel.h">
@@ -4236,6 +4239,12 @@
     </ClInclude>
     <ClInclude Include="hud_noface.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\bliink_inventory_ui.h">
+      <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\Ibliink_inventory_ui.h">
+      <Filter>Source Files\SDK</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

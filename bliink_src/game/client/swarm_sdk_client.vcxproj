@@ -711,6 +711,7 @@ exit 1
     <ClCompile Include="sdk\bliink_hud_player_states.cpp" />
     <ClCompile Include="sdk\bliink_hud_respawn_timer.cpp" />
     <ClCompile Include="sdk\bliink_hud_status.cpp" />
+    <ClCompile Include="sdk\bliink_inventory_ui.cpp" />
     <ClCompile Include="sdk\clientmode_sdk.cpp" />
     <ClCompile Include="sdk\c_bliink_exp_orb.cpp" />
     <ClCompile Include="sdk\c_bliink_fog.cpp" />
@@ -1608,10 +1609,12 @@ exit 1
     <ClInclude Include="..\shared\sharedvar.h" />
     <ClInclude Include="noface.h" />
     <ClInclude Include="opencv_interface.h" />
+    <ClInclude Include="sdk\bliink_inventory_ui.h" />
     <ClInclude Include="sdk\clientmode_sdk.h" />
     <ClInclude Include="sdk\c_bliink_player.h" />
     <ClInclude Include="sdk\c_bliink_player_resource.h" />
     <ClInclude Include="sdk\c_bliink_team.h" />
+    <ClInclude Include="sdk\Ibliink_inventory_ui.h" />
     <ClInclude Include="sdk\sdk_backgroundpanel.h" />
     <ClInclude Include="sdk\sdk_hud_chat.h" />
     <ClInclude Include="sdk\vcreditspage.h" />

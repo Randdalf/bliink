@@ -13,6 +13,36 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
+
+char* CBliinkItemInventory::GetItemName (int iFromSlot) 
+{
+	BLIINK_ITEM_INFO_HANDLE slot =	m_iItemTypes[iFromSlot];
+	BLIINK_ITEM_INFO_HANDLE lock =  GetItemHandle( "locked_item" );
+	BLIINK_ITEM_INFO_HANDLE empty =  GetItemHandle( "empty_item" );
+	if ( GetItemInfo( m_iItemTypes.Get(iFromSlot) ) != NULL && slot != empty && slot != lock )
+		return  GetItemInfo( m_iItemTypes.Get(iFromSlot) ) -> szItemName;
+	return NULL;
+}
+
+int CBliinkItemInventory::GetItemStackCounts (int iFromSlot) 
+{
+	BLIINK_ITEM_INFO_HANDLE slot =	m_iItemTypes[iFromSlot];
+	BLIINK_ITEM_INFO_HANDLE empty =  GetItemHandle( "empty_item" );
+	BLIINK_ITEM_INFO_HANDLE lock =  GetItemHandle( "locked_item" );
+	if ( GetItemInfo( m_iItemTypes.Get(iFromSlot) ) != NULL && slot != empty && slot != lock )
+		return  m_iStackCounts[iFromSlot];
+	return NULL;
+}
+
+bool CBliinkItemInventory::IsEmpty ()
+{
+	BLIINK_ITEM_INFO_HANDLE slot =	m_iItemTypes[0];
+	BLIINK_ITEM_INFO_HANDLE empty =  GetItemHandle( "empty_item" );
+	if ( slot == empty )
+		return true;
+	else return false;
+}
+
 CBliinkItemInventory::CBliinkItemInventory()
 {
 	BLIINK_ITEM_INFO_HANDLE hItemLocked = GetItemHandle( "locked_item" );
@@ -217,6 +247,7 @@ void CBliinkItemInventory::Command_Craft(int iFromSlot, int iToSlot)
 // Attempts to drop an item from your inventory.
 void CBliinkItemInventory::Command_Drop(int iFromSlot)
 {
+	//Msg( " slot passed here %d !!!!!\n", iFromSlot );
 	// Check slot is valid.
 	if( !(iFromSlot >=0 && iFromSlot < INVENTORY_MAX_SLOTS ) )
 		return;
@@ -772,3 +803,4 @@ int CBliinkItemInventory::GetAmmoClipCount( int iAmmoSlot ) const
 		return 0;
 #endif
 }
+
