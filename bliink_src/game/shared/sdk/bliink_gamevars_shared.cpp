@@ -72,6 +72,9 @@ ConCommand Bliink_DevGiveBurn( "bliink_debug_burn", send_f, "", FCVAR_CLIENTCMD_
 
 ConCommand Bliink_Flashlight( "bliink_flashlight", send_f, "", FCVAR_CLIENTCMD_CAN_EXECUTE );
 
+ConCommand Bliink_BlinkOn( "bliink_blink_on", send_f, "", FCVAR_CLIENTCMD_CAN_EXECUTE );
+ConCommand Bliink_BlinkOff( "bliink_blink_off", send_f, "", FCVAR_CLIENTCMD_CAN_EXECUTE );
+
 // INVENTORY COMMANDS
 ConCommand Bliink_InventoryPrint( "bliink_inventory_print", send_f, "", FCVAR_CLIENTCMD_CAN_EXECUTE);
 

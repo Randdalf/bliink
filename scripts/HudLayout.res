@@ -38,8 +38,8 @@
       "fieldName" "HudBliink"
       "xpos" "0"
       "ypos" "0"
-      "wide" "1200"
-      "tall" "1200"
+      "wide" "2400"
+      "tall" "2400"
       "visible" "0"
       "enabled" "1"
       

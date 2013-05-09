@@ -35,6 +35,7 @@
 #include "ai_basenpc.h"
 #include "engine/IEngineSound.h"
 #include "bliink_player.h"
+#include "bliink_exp_orb.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -83,6 +84,7 @@ public:
 	int		SelectSchedule( void );
 	void	OnChangeActivity( Activity eNewActivity );
 	void	NPCThink( void );
+	void	Event_Killed( const CTakeDamageInfo &info );
 
 	void GatherConditions ( void );
 
@@ -153,11 +155,11 @@ int CBliinkBliinker::SelectSchedule( void )
 {
 	//return BaseClass::SelectCombatSchedule();
 	if (HasCondition(COND_CAN_BE_SEEN)) {
-		Msg("YOU CAN SEE MEEEEEEE\n");
+		//Msg("YOU CAN SEE MEEEEEEE\n");
 		return SCHED_SLEEP;
 	}
 	if (HasCondition(COND_SEE_ENEMY)) {
-		Msg("I SEE YOUUUUU");
+		//Msg("I SEE YOUUUUU");
 		if ( HasCondition(COND_CAN_MELEE_ATTACK1) ) {
 			//Msg("HIIIIIIIIIIIIYA!!!");
 			return SCHED_MELEE_ATTACK1;
@@ -174,23 +176,36 @@ int CBliinkBliinker::SelectSchedule( void )
 
 void CBliinkBliinker::GatherConditions( void ) {
 	int seen = 0;
-	bool blinking = false;
+	bool blinking = true;
+	CBliinkPlayer* bPlayer;
 	for(int i=1; i<=gpGlobals->maxClients; i++) {
 		CBliinkPlayer* pPlayer = ToBliinkPlayer(UTIL_PlayerByIndex(i));
 
 		if( !pPlayer || !pPlayer->IsPlayer() ) continue;
 
-		if (pPlayer->MyCombatCharacterPointer() && pPlayer->MyCombatCharacterPointer()->FInViewCone ( this )) {
-			SetCondition ( COND_CAN_BE_SEEN );
-			if (!blinking) blinking = pPlayer->isBlinking();
-			//Msg("BADUGI\n");
-			seen++;
+		if (pPlayer->MyCombatCharacterPointer() && pPlayer->MyCombatCharacterPointer()->FInViewCone ( this ))
+		{
+			if (pPlayer->Classify() == CLASS_PLAYER)
+			{
+				SetCondition ( COND_CAN_BE_SEEN );
+				blinking = blinking && pPlayer->isBlinking();
+				if (blinking) bPlayer = pPlayer;
+				seen++;
+			}
 		}
 	}
 	if(seen==0) ClearCondition( COND_CAN_BE_SEEN );
-	if(seen==1 && blinking) {
-		SetCondition( COND_JUMP_FORWARD );
-		Vector targetPos = GetNavigator()->NextWaypointPos();
+	if(seen>=1 && blinking)
+	{
+		CBaseEntity *pEnemy = GetEnemy();
+		if ( !pEnemy ) ;//do nothing
+		else {
+			ChainStartTask( TASK_GET_PATH_TO_ENEMY );
+			SetCondition( COND_JUMP_FORWARD );
+			Vector targetPos = GetNavigator()->NextWaypointPos();
+			SetAbsOrigin(GetAbsOrigin() + 128.0f*targetPos);
+			bPlayer->setBlinking(false);
+		}
 	}
 	BaseClass::GatherConditions();
 }
@@ -204,7 +219,7 @@ void CBliinkBliinker::GatherConditions( void ) {
 void CBliinkBliinker::Spawn( void )
 {
 	Precache();
-	
+
 	CapabilitiesClear();
 	CapabilitiesAdd( bits_CAP_MOVE_GROUND | bits_CAP_INNATE_MELEE_ATTACK1 );
 
@@ -278,4 +293,14 @@ void CBliinkBliinker::NPCThink( void ) {
 Class_T	CBliinkBliinker::Classify( void )
 {
 	return	CLASS_NONE;
+}
+
+
+void CBliinkBliinker::Event_Killed( const CTakeDamageInfo &info )
+{
+	BaseClass::Event_Killed( info );
+
+	spawnRandomOrbs( GetAbsOrigin() + Vector(0,0,32.0f), 640.0f, 4, 8, 6, 13 );
+	
+	Remove();
 }

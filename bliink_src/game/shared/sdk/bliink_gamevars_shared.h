@@ -14,6 +14,11 @@ extern ConVar Bliink_FogBaseTime;
 extern ConVar Bliink_FogPlayerTime;
 
 #ifdef CLIENT_DLL
+extern ConCommand Bliink_BlinkOn;
+extern ConCommand Bliink_BlinkOff;
+
+extern ConCommand Bliink_Flashlight;
+
 extern ConCommand Bliink_WelcomePlay;
 extern ConCommand Bliink_SpectatePregameWelcome;
 extern ConCommand Bliink_CancelReady;

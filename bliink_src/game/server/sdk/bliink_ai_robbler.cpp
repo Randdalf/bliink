@@ -34,6 +34,7 @@
 #include "activitylist.h"
 #include "ai_basenpc.h"
 #include "engine/IEngineSound.h"
+#include "bliink_exp_orb.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -84,6 +85,7 @@ public:
 	int		SelectSchedule( void );
 	void	OnChangeActivity( Activity eNewActivity );
 	void	NPCThink( void );
+	void	Event_Killed( const CTakeDamageInfo &info );
 
 	Activity	NPC_TranslateActivity( Activity eNewActivity );
 
@@ -279,4 +281,14 @@ void CBliinkRobbler::NPCThink( void ) {
 Class_T	CBliinkRobbler::Classify( void )
 {
 	return	CLASS_NONE;
+}
+
+
+void CBliinkRobbler::Event_Killed( const CTakeDamageInfo &info )
+{
+	BaseClass::Event_Killed( info );
+
+	spawnRandomOrbs( GetAbsOrigin() + Vector(0,0,32.0f), 640.0f, 3, 5, 3, 17 );
+	
+	Remove();
 }

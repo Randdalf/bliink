@@ -38,7 +38,7 @@ typedef int AI_TaskFailureCode_t;
 #define DEBUG_AI_NAVIGATION 1
 #ifdef DEBUG_AI_NAVIGATION
 extern ConVar ai_debug_nav;
-#define DbgNav() ai_debug_nav.GetBool()
+#define	DbgNav() ai_debug_nav.GetBool()
 #define DbgNavMsg( pAI, pszMsg ) \
 	do \
 	{ \

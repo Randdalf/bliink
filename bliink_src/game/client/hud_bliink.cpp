@@ -31,7 +31,7 @@ void CHudBliink::Paint()
 {
 	SetPaintBorderEnabled(false);
 	surface()->DrawSetColor(0,0,0,255);
-	surface()->DrawFilledRect(0,0,1200,1200);
+	surface()->DrawFilledRect(0,0,4000,2400);
   //  surface()->DrawSetTexture( m_nImport );
  //  surface()->DrawTexturedRect( 0, 0, 1200, 1200 );
 }

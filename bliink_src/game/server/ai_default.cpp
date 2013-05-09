@@ -2189,6 +2189,7 @@ AI_DEFINE_SCHEDULE
 	"		COND_HEAR_DANGER"
 	"		COND_NEW_ENEMY"
 	"		COND_SEE_ENEMY"
+	"		COND_CAN_BE_SEEN"
 );
 
 //=========================================================
