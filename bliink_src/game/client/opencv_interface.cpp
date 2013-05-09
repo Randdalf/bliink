@@ -663,7 +663,7 @@ void OpenCVController::LKTracker (cv::Mat image, cv::Mat &Ix, cv::Mat &Iy, cv::M
 			engine->ClientCmd( "NoFaceGUIOn\n" );
 			seeface = false;
 			loopcount++;
-			Msg("loopcount = %d!\n",loopcount);
+		//	Msg("loopcount = %d!\n",loopcount);
 			if (loopcount > 20) {
 				blink = true;
 			engine->ServerCmd( "bliink_blink_on" );
