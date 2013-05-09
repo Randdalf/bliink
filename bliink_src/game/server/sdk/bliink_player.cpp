@@ -1621,14 +1621,16 @@ void CBliinkPlayer::State_PreThink_BLIINK_STALKER_DEATH_ANIM()
 
 void CBliinkPlayer::State_Enter_BLIINK_STALKER_RESPAWN()
 {	
-	SetMoveType( MOVETYPE_OBSERVER );
+	Msg("entering bliink stalker respawn\n");
+	SetMoveType( MOVETYPE_NONE );
 	MoveToNextIntroCamera();
 	StartObserverMode( OBS_MODE_ROAMING );
 	PhysObjectSleep();
 }
 
 void CBliinkPlayer::State_PreThink_BLIINK_STALKER_RESPAWN()
-{
+{	
+	Msg("testing respawn %d %d\n", (int)gpGlobals->curtime, (int)m_flDeathTime);
 	if ( gpGlobals->curtime >= (m_flDeathTime + BLIINK_STALKER_RESPAWN_TIME ) )
 	{
 		State_Transition( STATE_BLIINK_STALKER );
