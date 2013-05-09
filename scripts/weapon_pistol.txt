@@ -1,37 +1,39 @@
+// Crowbar
+
 WeaponData
 {
-	// Weapon characteristics:
-	"Damage"			"54"		// damage per bullet
-	"Bullets"			"1"		// bullets per shoot
-	"CycleTime"			"0.225"		// time between shoots
+	"CycleTime"			"0.4"
+	"Damage"			"50"
 
-	"BuiltRightHanded"		"0"
-	
 	// Weapon data is loaded by both the Game and Client DLLs.
-	"printname"			"#SDK_Weapon_Pistol"
-	"viewmodel"			"models/weapons/v_pist_deagle.mdl"
-	"playermodel"			"models/weapons/w_pist_deagle.mdl"
-	"PlayerAnimationExtension"	"mp5"
-	
-	"bucket"			"0"
+	"printname"			"#SDK_Weapon_Crowbar"
+	"viewmodel"			"models/weapons/v_bliink_bat.mdl"
+	"playermodel"			"models/weapons/wv_bliink_bat.mdl"
+	"PlayerAnimationExtension"	"crowbar"
+
+	"fov"				"54"	//Tony; HL2 weapons use 54 fov.
+
+
+	"bucket"			"2"
 	"bucket_position"		"0"
+	"bucket_360"			"2"
+	"bucket_position_360"		"0"
 
-	"clip_size"			"8"
-	"NumClips"			"3"
-
-	
-	"primary_ammo"			"pistol"
+	"clip_size"			"-1"
+	"primary_ammo"			"None"
 	"secondary_ammo"		"None"
 
-	"weight"			"25"
+	"weight"			"0"
 	"item_flags"			"0"
+
+	"MeleeWeapon"			"1"
 
 	// Sounds for the weapon. There is a max of 16 sounds per category (i.e. max 16 "single_shot" sounds)
 	SoundData
 	{
-		//"reload"			"Default.Reload"
-		//"empty"			"Default.ClipEmpty_Rifle"
-		"single_shot"			"Weapon_DEagle.Single"
+		"single_shot"		"Weapon_Crowbar.Single"
+		"melee_hit"		"Weapon_Crowbar.Melee_Hit"
+		"melee_hit_world"	"Weapon_Crowbar.Melee_HitWorld"
 	}
 
 	// Weapon Sprite data is loaded by the Client DLL.
@@ -40,46 +42,30 @@ WeaponData
 		"weapon"
 		{
 				"font"		"WeaponIcons"
-				"character"	"a"
+				"character"	"c"
 		}
 		"weapon_s"
 		{	
 				"font"		"WeaponIconsSelected"
-				"character"	"a"
+				"character"	"c"
 		}
 		"ammo"
 		{
 				"font"		"WeaponIcons"
-				"character"	"r"
+				"character"	"c"
 		}
 		"crosshair"
 		{
-				"file"		"sprites/crosshairs"
-				"x"		"0"
-				"y"		"0"
-				"width"		"24"
-				"height"	"24"
+				"font"		"Crosshairs"
+				"character"	"Q"
 		}
 		"autoaim"
 		{
-				"file"		"sprites/crosshairs"
-				"x"			"0"
-				"y"			"48"
-				"width"		"24"
-				"height"	"24"
-		}
-	}
-	ModelBounds
-	{
-		Viewmodel
-		{
-			Mins	"-10 -4 -13"
-			Maxs	"21 9 -1"
-		}
-		World
-		{
-			Mins	"-10 -7 -6"
-			Maxs	"22 8 9"
+			"file"		"sprites/crosshairs"
+			"x"			"0"
+			"y"			"48"
+			"width"		"24"
+			"height"	"24"
 		}
 	}
 }

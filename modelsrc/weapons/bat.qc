@@ -1,6 +1,7 @@
 $modelname	"weapons\w_bliink_bat.mdl"
 $cdmaterials	"models\weapons\w_models\w_bliink_bat\"
 $scale 4.0
+$origin 0 10 -60
 
 $body mybody	"bat.smd"
 $staticprop
