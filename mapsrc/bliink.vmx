@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "5032"
-	"mapversion" "311"
+	"mapversion" "313"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "311"
+	"mapversion" "313"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -106362,13 +106362,130 @@ entity
 		"logicalpos" "[0 2000]"
 	}
 }
+entity
+{
+	"id" "21834"
+	"classname" "func_bliink_fog"
+	"Alpha" "255"
+	"Color" "128 128 128"
+	"DistMax" "1024"
+	"FogHeightDown" "0"
+	"FogHeightUp" "768"
+	"Frozen" "0"
+	"LifetimeMax" "60"
+	"LifetimeMin" "35"
+	"MaxFogRadius" "2048"
+	"MinFogRadius" "512"
+	"SizeMax" "100"
+	"SizeMin" "50"
+	"SpawnRate" "1500"
+	"SpeedMax" "3"
+	"StartDisabled" "0"
+	solid
+	{
+		"id" "21835"
+		side
+		{
+			"id" "26678"
+			"plane" "(-2528 -3504 1168) (-2528 3808 1168) (3792 3808 1168)"
+			"material" "TOOLS/TOOLSTRIGGER"
+			"uaxis" "[1 0 0 57.625] 0.25"
+			"vaxis" "[0 -1 0 -6.63989] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "26677"
+			"plane" "(-2528 3808 80) (-2528 -3504 80) (3792 -3504 80)"
+			"material" "TOOLS/TOOLSTRIGGER"
+			"uaxis" "[1 0 0 57.625] 0.25"
+			"vaxis" "[0 -1 0 -6.63989] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "26676"
+			"plane" "(-2528 -3504 80) (-2528 3808 80) (-2528 3808 1168)"
+			"material" "TOOLS/TOOLSTRIGGER"
+			"uaxis" "[0 1 0 6.63989] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "26675"
+			"plane" "(3792 3808 80) (3792 -3504 80) (3792 -3504 1168)"
+			"material" "TOOLS/TOOLSTRIGGER"
+			"uaxis" "[0 1 0 6.63989] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "26674"
+			"plane" "(-2528 3808 80) (3792 3808 80) (3792 3808 1168)"
+			"material" "TOOLS/TOOLSTRIGGER"
+			"uaxis" "[1 0 0 57.625] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		side
+		{
+			"id" "26673"
+			"plane" "(3792 -3504 80) (-2528 -3504 80) (-2528 -3504 1168)"
+			"material" "TOOLS/TOOLSTRIGGER"
+			"uaxis" "[1 0 0 57.625] 0.25"
+			"vaxis" "[0 0 -1 0] 0.25"
+			"rotation" "0"
+			"lightmapscale" "16"
+			"smoothing_groups" "0"
+		}
+		editor
+		{
+			"color" "220 30 220"
+			"visgroupshown" "1"
+			"visgroupautoshown" "1"
+		}
+	}
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 500]"
+	}
+}
+entity
+{
+	"id" "21852"
+	"classname" "info_bliinker_teleport"
+	"angles" "0 90 0"
+	"origin" "136 -3600 736"
+	editor
+	{
+		"color" "220 30 220"
+		"visgroupshown" "1"
+		"visgroupautoshown" "1"
+		"logicalpos" "[0 0]"
+	}
+}
 cameras
 {
 	"activecamera" "0"
 	camera
 	{
-		"position" "[-136.675 -47.6588 612.044]"
-		"look" "[4549.77 -1785.58 -3952.04]"
+		"position" "[138.813 -3523.27 833.943]"
+		"look" "[-1102.84 -9391.72 -2301.92]"
 	}
 }
 cordons
