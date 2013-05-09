@@ -713,6 +713,8 @@ exit 1
     </ClCompile>
     <ClCompile Include="scripted.cpp" />
     <ClCompile Include="scriptedtarget.cpp" />
+    <ClCompile Include="sdk\bliink_ai_bliinker.cpp" />
+    <ClCompile Include="sdk\bliink_ai_robbler.cpp" />
     <ClCompile Include="sdk\bliink_exp_orb.cpp" />
     <ClCompile Include="sdk\bliink_fog.cpp" />
     <ClCompile Include="SDK\bliink_item_base.cpp" />

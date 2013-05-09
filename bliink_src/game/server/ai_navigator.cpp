@@ -3299,6 +3299,8 @@ bool CAI_Navigator::SimplifyFlyPath(  const AI_ProgressFlyPathParams_t &params )
 	return false;
 }
 
+Vector CAI_Navigator::NextWaypointPos() { return GetPath()->NextWaypointPos(); }
+
 //-----------------------------------------------------------------------------
 // Purpose:
 // Input  :
