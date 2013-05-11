@@ -1,9 +1,9 @@
-// Crowbar
+// Machete
 
 WeaponData
 {
 	"CycleTime"			"0.4"
-	"Damage"			"50"
+	"Damage"			"10"
 
 	// Weapon data is loaded by both the Game and Client DLLs.
 	"printname"			"#SDK_Weapon_Machete"

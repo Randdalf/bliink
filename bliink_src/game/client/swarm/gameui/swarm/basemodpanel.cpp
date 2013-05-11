@@ -1851,8 +1851,8 @@ void CBaseModPanel::ApplySchemeSettings(IScheme *pScheme)
 	m_iBackgroundImageID = surface()->CreateNewTextureID();
 	surface()->DrawSetTextureFile( m_iBackgroundImageID, filename, true, false );
 
-	m_iProductImageID = surface()->CreateNewTextureID();
-	surface()->DrawSetTextureFile( m_iProductImageID, "console/startup_loading", true, false );
+	//m_iProductImageID = surface()->CreateNewTextureID();
+	//surface()->DrawSetTextureFile( m_iProductImageID, "console/startup_loading", true, false );
 
 	// need these to be anchored now, can't come into existence during load
 	PrecacheLoadingTipIcons();
@@ -2460,7 +2460,7 @@ bool CBaseModPanel::StartBackgroundMusic( float fVol )
 	if ( !soundemitterbase->GetParametersForSound( m_backgroundMusic.Get(), params, GENDER_NONE ) )
 		return false;
 
-	enginesound->EmitAmbientSound( params.soundname, params.volume * fVol, params.pitch );
+	enginesound->EmitAmbientSound( "common/Ambient_1a.wav", params.volume * fVol, params.pitch );
 	m_nBackgroundMusicGUID = enginesound->GetGuidForLastSoundEmitted();
 		
 	return ( m_nBackgroundMusicGUID != 0 );
