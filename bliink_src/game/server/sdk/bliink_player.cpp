@@ -25,6 +25,8 @@
 #include "weapon_sdkbase.h"
 #include "engine/ienginesound.h"
 #include "bliink_fog.h"
+#include "recipientfilter.h"
+
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -1476,7 +1478,11 @@ void CBliinkPlayer::State_Enter_BLIINK_SURVIVOR()
 	RemoveSolidFlags( FSOLID_NOT_SOLID );
     m_Local.m_iHideHUD = 0;
 	PhysObjectWake();
-
+	//CRecipientFilter filter;
+	//filter.AddRecipientsByPVS( GetAbsOrigin() );	// Clients within the entity's PVS will be added.
+	//filter.MakeReliable();
+	//EmitAmbientSound(entindex(),GetAbsOrigin(), "common/Cage_Opening.wav" );
+	//EmitSound( filter, entindex(), "common/Cage_Opening.wav" );
 	Spawn();
 }
 
@@ -1492,6 +1498,10 @@ void CBliinkPlayer::State_Enter_BLIINK_SURVIVOR_DEATH_ANIM()
 		// will sometimes crash coming back from CBasePlayer::Killed() if they kill their owner because the
 		// player class sometimes is freed. It's safer to manipulate the weapons once we know
 		// we aren't calling into any of their code anymore through the player pointer.
+
+
+		//CSingleUserRecipientFilter( this );
+
 		PackDeadPlayerItems();
 	}
 

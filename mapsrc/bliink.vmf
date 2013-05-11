@@ -2,7 +2,7 @@ versioninfo
 {
 	"editorversion" "400"
 	"editorbuild" "5032"
-	"mapversion" "315"
+	"mapversion" "316"
 	"formatversion" "100"
 	"prefab" "0"
 }
@@ -20,7 +20,7 @@ viewsettings
 world
 {
 	"id" "1"
-	"mapversion" "315"
+	"mapversion" "316"
 	"classname" "worldspawn"
 	"detailmaterial" "detail/detailsprites"
 	"detailvbsp" "detail.vbsp"
@@ -93110,12 +93110,12 @@ entity
 {
 	"id" "1422"
 	"classname" "bliink_cage_opener"
-	"origin" "-84 369 595"
 	connections
 	{
 		"OnOpenCages" "lr_open_cagesTrigger5-1"
 		"OnOpenCages" "item_spawnerBeginSpawning0-1"
 	}
+	"origin" "-84 369 595"
 	editor
 	{
 		"color" "220 30 220"
@@ -95998,7 +95998,8 @@ entity
 	"item_spawn_chance_1" "1"
 	"item_spawn_chance_2" "5"
 	"item_type_1" "bliink_machete"
-	"item_type_2" "test_item_2"
+	"item_type_2" "bliink_bat"
+	"item_type_3" "bliink_pistol"
 	"spawner_distance_x" "16"
 	"spawner_distance_y" "16"
 	"spawner_distance_z" "0.0"
@@ -96025,7 +96026,8 @@ entity
 	"item_spawn_chance_1" "1"
 	"item_spawn_chance_2" "5"
 	"item_type_1" "bliink_machete"
-	"item_type_2" "test_item_2"
+	"item_type_2" "bliink_bat"
+	"item_type_3" "bliink_pistol"
 	"spawner_distance_x" "16"
 	"spawner_distance_y" "16"
 	"spawner_distance_z" "0.0"
@@ -96052,7 +96054,8 @@ entity
 	"item_spawn_chance_1" "1"
 	"item_spawn_chance_2" "5"
 	"item_type_1" "bliink_machete"
-	"item_type_2" "test_item_2"
+	"item_type_2" "bliink_bat"
+	"item_type_3" "bliink_pistol"
 	"spawner_distance_x" "16"
 	"spawner_distance_y" "16"
 	"spawner_distance_z" "0.0"
@@ -106399,8 +106402,8 @@ cameras
 	"activecamera" "0"
 	camera
 	{
-		"position" "[1711.08 -1500.04 204.404]"
-		"look" "[-2419.29 -6721.26 -1017.46]"
+		"position" "[-34.7854 -59.6718 503.594]"
+		"look" "[-5747.22 2621.91 -1944.11]"
 	}
 }
 cordons

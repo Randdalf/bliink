@@ -8,7 +8,7 @@
 
 CASW_Logo_Panel::CASW_Logo_Panel(vgui::Panel *parent, const char *name) : vgui::ImagePanel(parent, name)
 {
-	SetImage( "../console/startup_loading" );
+	SetImage( "../vgui/black" );
 	SetShouldScaleImage(true);
 }
 
@@ -25,5 +25,5 @@ void CASW_Logo_Panel::PerformLayout()
 	vgui::surface()->GetScreenSize(wide, tall);
 
 	float LogoWidth = wide * 0.8f;
-	SetBounds( (wide - LogoWidth) * 0.5f,tall * 0.12f, LogoWidth, LogoWidth * 0.25f );
+	SetBounds( (wide - LogoWidth) * 0.0f,tall * 0.0f, LogoWidth, LogoWidth * 0.0f );
 }

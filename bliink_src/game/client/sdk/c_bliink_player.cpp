@@ -37,11 +37,16 @@ ConVar cl_ragdoll_physics_enable( "cl_ragdoll_physics_enable", "1", 0, "Enable/d
 bool inFog = false;
 bool soundPlaying = false;
 int mainThemeID = NULL;
+int cagesThemeID = NULL;
 int fogThemeID = NULL;
 bool fadeToSmoke = false;
 bool fadeToNorm = false;
 float smokeVol;
 float normVol;
+int state = -1;
+bool surviver = false;
+bool cagesPlaying = false;
+
 
 // -------------------------------------------------------------------------------- //
 // Player animation event. Sent to the client when a player fires, jumps, reloads, etc..
@@ -868,14 +873,39 @@ void C_BliinkPlayer::ClientThink()
 	Vector vForward;
 	AngleVectors( GetLocalAngles(), &vForward );
 
-	if(!soundPlaying){
+	C_BliinkPlayer* pPlayer = ToBliinkPlayer( C_BasePlayer::GetLocalPlayer() );
+
+	state = pPlayer->State_Get();
+
+	if(!enginesound->IsSoundStillPlaying(mainThemeID) && !soundPlaying){
 		CLocalPlayerFilter filter;
 		enginesound->SetRoomType( filter, 1 );
 		normVol = 1.0f;
-		enginesound->EmitAmbientSound( "common/bliink_main_theme.wav", normVol );
+		enginesound->EmitAmbientSound( "common/ambient_1a.wav", normVol );
 		mainThemeID = enginesound->GetGuidForLastSoundEmitted();
-		//Msg( "Starting bliink_main_theme\n");
+		Msg( "Starting bliink_main_theme %d\n",enginesound->IsLoopingSound("common/ambient_1a.wav"));
 		soundPlaying = true;
+	}
+
+	if(!surviver && state == STATE_BLIINK_SURVIVOR){
+		normVol = 0.1f;
+		enginesound->StopSoundByGuid(mainThemeID);
+		enginesound->EmitAmbientSound( "common/ambient_1b.wav", normVol );
+		mainThemeID = enginesound->GetGuidForLastSoundEmitted();
+		CLocalPlayerFilter filter;
+		filter.AddRecipientsByPVS( GetAbsOrigin() );	// Clients within the entity's PVS will be added.
+		filter.MakeReliable();
+		enginesound->EmitSound(filter,-1,1,"common/Cage_Opening.wav",1.0f,75);
+		cagesThemeID = enginesound->GetGuidForLastSoundEmitted();
+		cagesPlaying = true;
+		surviver = true;
+	}
+
+	if(!enginesound->IsSoundStillPlaying(cagesThemeID) && cagesPlaying){
+		normVol += 0.01f;
+		enginesound->SetVolumeByGuid(mainThemeID, normVol);
+		Msg( "normVol - %g\n",normVol);
+		if(normVol >= 1.0f) cagesPlaying = false;
 	}
 
 	bool inFogNow = GetBliinkPlayerStats().GetStatus() == BLIINK_STATUS_FOGGED;
@@ -889,9 +919,11 @@ void C_BliinkPlayer::ClientThink()
 			//enginesound->SetVolumeByGuid(mainThemeID, 0.0f);
 			//enginesound->SetVolumeByGuid(fogThemeID, 1.0f);
 			smokeVol = 0.0f;
-			enginesound->EmitAmbientSound( "common/bliink_fog_theme.wav", smokeVol );
+			enginesound->SetVolumeByGuid(fogThemeID, smokeVol);
+			enginesound->StopSoundByGuid(fogThemeID);
+			enginesound->EmitAmbientSound( "common/Fog.wav", smokeVol );
 			fogThemeID = enginesound->GetGuidForLastSoundEmitted();
-			//Msg( "Swiching from bliink_main_theme to bliink_fog_theme\n");
+			Msg( "Swiching from bliink_main_theme to bliink_fog_theme\n");
 		}
 	}else{
 		if(inFog){
@@ -901,14 +933,14 @@ void C_BliinkPlayer::ClientThink()
 			//switch from smoke to normal theme
 			//enginesound->SetVolumeByGuid(fogThemeID, 0.0f);
 			//enginesound->SetVolumeByGuid(mainThemeID, 1.0f);
-			//Msg( "Switching from bliink_fog_theme to bliink_main_theme\n");
+			Msg( "Switching from bliink_fog_theme to bliink_main_theme\n");
 		}
 	}
 
 	if(fadeToNorm){
 		normVol += 0.01f;
 		smokeVol -= 0.01f;
-		//Msg( "normVol - %g , smokeVol - %g\n",normVol,smokeVol);
+		Msg( "normVol - %g , smokeVol - %g\n",normVol,smokeVol);
 		enginesound->SetVolumeByGuid(mainThemeID, normVol);
 		enginesound->SetVolumeByGuid(fogThemeID, smokeVol);
 		if(normVol >= 1.0f) fadeToNorm = false;
@@ -917,7 +949,7 @@ void C_BliinkPlayer::ClientThink()
 	if(fadeToSmoke){
 		normVol -= 0.01f;
 		smokeVol += 0.01f;
-		//Msg( "normVol - %g , smokeVol - %g\n",normVol,smokeVol);
+		Msg( "normVol - %g , smokeVol - %g\n",normVol,smokeVol);
 		enginesound->SetVolumeByGuid(mainThemeID, normVol);
 		enginesound->SetVolumeByGuid(fogThemeID, smokeVol);
 		if(smokeVol >= 1.0f) fadeToSmoke = false;
@@ -965,8 +997,6 @@ void C_BliinkPlayer::ClientThink()
 
 	// Glowing
 	m_GlowObject.SetRenderFlags( false, false );
-
-	C_BliinkPlayer* pPlayer = ToBliinkPlayer( C_BasePlayer::GetLocalPlayer() );
 
 	if( pPlayer->State_Get() == STATE_BLIINK_STALKER ||
 		pPlayer->State_Get() == STATE_BLIINK_STALKER_RESPAWN ||

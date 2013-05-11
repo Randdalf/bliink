@@ -752,6 +752,7 @@ exit 1
     <ClCompile Include="..\shared\SoundEmitterSystem.cpp" />
     <ClCompile Include="..\shared\soundenvelope.cpp" />
     <ClCompile Include="..\..\public\SoundParametersInternal.cpp" />
+    <ClCompile Include="weapon_bat.cpp" />
     <ClCompile Include="spatialentitymgr.cpp" />
     <ClCompile Include="splinepatch.cpp" />
     <ClCompile Include="..\shared\Sprite.cpp" />

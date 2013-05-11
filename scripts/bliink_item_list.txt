@@ -13,29 +13,10 @@ BliinkItemList
 	}
 
 	// ADD NEW ITEMS BELOW THIS LINE
-	"test_item"
+	"bliink_pistol"
 	{
 		// key properties
-		"description"	"a test item"
-		"item_type"		"ITEM_TYPE_WEAPON"
-		"item_subtype"	"ITEM_STYPE_EMPTY"
-
-		// behaviours
-		"can_stack"		"0"
-
-		// weapon-specific
-		"weapon_name"	"weapon_mp5"
-
-		// ammo-specific
-		"ammo_name"		"none"
-
-		// world model
-		"world_model"	"models/weapons/w_smg_mp5.mdl"
-	}
-	"test_item_2"
-	{
-		// key properties
-		"description"	"another test item"
+		"description"	"machete"
 		"item_type"		"ITEM_TYPE_WEAPON"
 		"item_subtype"	"ITEM_STYPE_EMPTY"
 
@@ -51,7 +32,7 @@ BliinkItemList
 		// world model
 		"world_model"	"models/weapons/w_pist_deagle.mdl"
 	}
-	"bliink_pistol"
+	"bliink_machete"
 	{
 		// key properties
 		"description"	"machete"
@@ -70,10 +51,10 @@ BliinkItemList
 		// world model
 		"world_model"	"models/weapons/w_bliink_machete.mdl"
 	}
-	"bliink_machete"
+	"bliink_bat"
 	{
 		// key properties
-		"description"	"crowbar"
+		"description"	"bat"
 		"item_type"		"ITEM_TYPE_WEAPON"
 		"item_subtype"	"ITEM_STYPE_EMPTY"
 
@@ -81,7 +62,7 @@ BliinkItemList
 		"can_stack"		"0"
 
 		// weapon-specific
-		"weapon_name"	"weapon_crowbar"
+		"weapon_name"	"weapon_bat"
 
 		// ammo-specific
 		"ammo_name"		"none"
