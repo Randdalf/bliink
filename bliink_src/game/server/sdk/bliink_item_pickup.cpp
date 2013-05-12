@@ -13,12 +13,14 @@ LINK_ENTITY_TO_CLASS( bliink_item_pickup, CBliinkItemPickup );
 
 // Networked so it glows on client side.
 IMPLEMENT_SERVERCLASS_ST( CBliinkItemPickup, DT_BliinkItemPickup )
-	// ...
+	SendPropInt( SENDINFO(m_hInfoHandle), 0, SPROP_NOSCALE ),
 END_SEND_TABLE()
 
 CBliinkItemPickup::CBliinkItemPickup( ) : CItem()
 {
 	pItem = NULL;
+
+	m_hInfoHandle = GetItemHandle( "item_empty" );
 }
 
 void CBliinkItemPickup::Spawn( void )
@@ -62,10 +64,15 @@ void CBliinkItemPickup::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_
 void CBliinkItemPickup::SetItem( BLIINK_ITEM_INFO_HANDLE hItemType )
 {
 	pItem = CreateItemByHandle( hItemType );
+
+	m_hInfoHandle = hItemType;
 }
 
 void CBliinkItemPickup::SetItem( IBliinkItem* pItemToSet )
 {
 	if( pItemToSet )
+	{
 		pItem = pItemToSet;
+		m_hInfoHandle = pItemToSet->GetInfoHandle();
+	}
 }

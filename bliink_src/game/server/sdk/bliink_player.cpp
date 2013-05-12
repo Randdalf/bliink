@@ -1586,6 +1586,9 @@ void CBliinkPlayer::State_Enter_BLIINK_STALKER_DEATH_ANIM()
 	m_flDeathTime = gpGlobals->curtime;
 
 	StartObserverMode( OBS_MODE_DEATHCAM );	// go to observer mode
+	SetMoveType( MOVETYPE_NONE );
+	AddSolidFlags( FSOLID_NOT_SOLID );
+	PhysObjectSleep();
 
 	RemoveEffects( EF_NODRAW );	// still draw player body
 }
@@ -1640,7 +1643,7 @@ void CBliinkPlayer::State_Enter_BLIINK_STALKER_RESPAWN()
 
 void CBliinkPlayer::State_PreThink_BLIINK_STALKER_RESPAWN()
 {	
-	Msg("testing respawn %d %d %d\n", (int)gpGlobals->curtime, (int)m_flDeathTime, (int)(m_flDeathTime + BLIINK_STALKER_RESPAWN_TIME));
+	//Msg("testing respawn %d %d %d\n", (int)gpGlobals->curtime, (int)m_flDeathTime, (int)(m_flDeathTime + BLIINK_STALKER_RESPAWN_TIME));
 
 	if ( gpGlobals->curtime >= (m_flDeathTime + BLIINK_STALKER_RESPAWN_TIME ) )
 	{

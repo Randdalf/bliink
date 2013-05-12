@@ -998,16 +998,41 @@ void C_BliinkPlayer::ClientThink()
 	// Glowing
 	m_GlowObject.SetRenderFlags( false, false );
 
-	if( pPlayer->State_Get() == STATE_BLIINK_STALKER ||
-		pPlayer->State_Get() == STATE_BLIINK_STALKER_RESPAWN ||
-		pPlayer->State_Get() == STATE_BLIINK_STALKER_DEATH_ANIM
-		)
+	// Only render when player is fogged.
+	if( State_Get() == STATE_BLIINK_SURVIVOR )
 	{
-		// Only render when player is fogged.
-		if( State_Get() == STATE_BLIINK_SURVIVOR &&
-			m_BliinkStats.GetStatus() == BLIINK_STATUS_FOGGED )
+		if( m_BliinkStats.GetStatus() == BLIINK_STATUS_FOGGED )
 		{
-			m_GlowObject.SetRenderFlags( true, true );
+			m_GlowObject.SetColor( Vector(0.9f, 0.9f, 0.9f) );
+
+			if( pPlayer->State_Get() == STATE_BLIINK_STALKER ||
+			pPlayer->State_Get() == STATE_BLIINK_STALKER_RESPAWN ||
+			pPlayer->State_Get() == STATE_BLIINK_STALKER_DEATH_ANIM )
+			{
+				m_GlowObject.SetRenderFlags( true, true );
+			}
+			else
+			{
+				m_GlowObject.SetRenderFlags( false, true );
+			}
+		}
+		else
+		if( m_BliinkStats.GetStatus() == BLIINK_STATUS_POISONED )
+		{
+			m_GlowObject.SetColor( Vector( 0.3f, 0.1f, 0.6f ) );
+			m_GlowObject.SetRenderFlags( false, true );
+		}
+		else
+		if( m_BliinkStats.GetStatus() == BLIINK_STATUS_BURNING )
+		{
+			m_GlowObject.SetColor( Vector( 0.8f, 0.1f, 0.1f ) );
+			m_GlowObject.SetRenderFlags( false, true );
+		}
+		else
+		if( m_BliinkStats.GetStatus() == BLIINK_STATUS_SLOWED )
+		{
+			m_GlowObject.SetColor( Vector( 0.1f, 0.8f, 0.1f ) );
+			m_GlowObject.SetRenderFlags( false, true );
 		}
 	}
 }

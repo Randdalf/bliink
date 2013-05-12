@@ -18,6 +18,7 @@
 #define BASE_HUNGER_DEGEN_RATE_PER_SECOND 0.1f
 #define BASE_HEATH_REGEN_RATE_PER_SECOND 5.0f
 #define BASE_HEATH_DEGEN_RATE_PER_SECOND 0.5f
+#define BASE_DAMAGE_PERCENT 1.0
 
 #define FATIGUE_SPRINT_LOSS 20.0f
 #define FATIGUE_INIT_SPRINT_LOSS 10.0f
@@ -28,6 +29,7 @@
 
 #define UPGRADE_FATIGUE_REGEN_RATE 1.7f
 #define UPGRADE_MAX_FATIGUE 10.0f
+#define UPGRADE_DAMAGE_PERCENT 0.1
 
 #define HEALTH_REGEN_DAMAGE_COOLDOWN 5.0f
 #define HEALTH_PER_SEGMENT 20.0f
@@ -101,6 +103,7 @@ public:
 	int GetUpgradePoints() { return m_iUpgradePoints; }
 	int GetStatus() { return m_iStatusEffect; }
 	float GetStatusDuration() { return m_fStatusEndTime; }
+	float GetDamagePercent() { return m_fDamagePercent; }
 
 	// Interface functions
 	bool UseFatigue(float fFatigueAmount, bool limit = false);
@@ -137,6 +140,7 @@ private:
 	float m_fMaxFatigue;
 	int m_iMaxExperience;
 	float m_fFatigueRegenRate;
+	float m_fDamagePercent;
 #else
 	// Stat values
 	CNetworkVar( float, m_fHealth );
@@ -153,6 +157,7 @@ private:
 	CNetworkVar( float, m_fMaxFatigue );
 	CNetworkVar( int, m_iMaxExperience );
 	CNetworkVar( float, m_fFatigueRegenRate );
+	CNetworkVar( float, m_fDamagePercent );
 
 	float m_fLastDamageTime;
 
