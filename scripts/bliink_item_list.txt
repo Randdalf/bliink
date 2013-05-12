@@ -70,6 +70,25 @@ BliinkItemList
 		// world model
 		"world_model"	"models/weapons/w_bliink_bat.mdl"
 	}
+	"bliink_stick"
+	{
+		// key properties
+		"description"	"Stick (weapon)"
+		"item_type"		"ITEM_TYPE_WEAPON"
+		"item_subtype"	"ITEM_STYPE_EMPTY"
+
+		// behaviours
+		"can_stack"		"0"
+
+		// weapon-specific
+		"weapon_name"	"weapon_stick"
+
+		// ammo-specific
+		"ammo_name"		"none"
+
+		// world model
+		"world_model"	"models/weapons/w_bliink_stick.mdl"
+	}
 
 	// NORMAL AMMO
 	"ammo_pistol_normal"
