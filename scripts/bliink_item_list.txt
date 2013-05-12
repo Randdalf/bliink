@@ -16,7 +16,7 @@ BliinkItemList
 	"bliink_pistol"
 	{
 		// key properties
-		"description"	"machete"
+		"description"	"Pistol (weapon)"
 		"item_type"		"ITEM_TYPE_WEAPON"
 		"item_subtype"	"ITEM_STYPE_EMPTY"
 
@@ -35,7 +35,7 @@ BliinkItemList
 	"bliink_machete"
 	{
 		// key properties
-		"description"	"machete"
+		"description"	"Machete (weapon)"
 		"item_type"		"ITEM_TYPE_WEAPON"
 		"item_subtype"	"ITEM_STYPE_EMPTY"
 
@@ -54,7 +54,7 @@ BliinkItemList
 	"bliink_bat"
 	{
 		// key properties
-		"description"	"bat"
+		"description"	"Cricket Bat (weapon)"
 		"item_type"		"ITEM_TYPE_WEAPON"
 		"item_subtype"	"ITEM_STYPE_EMPTY"
 
@@ -70,12 +70,31 @@ BliinkItemList
 		// world model
 		"world_model"	"models/weapons/w_bliink_bat.mdl"
 	}
+	"bliink_stick"
+	{
+		// key properties
+		"description"	"Stick (weapon)"
+		"item_type"		"ITEM_TYPE_WEAPON"
+		"item_subtype"	"ITEM_STYPE_EMPTY"
+
+		// behaviours
+		"can_stack"		"0"
+
+		// weapon-specific
+		"weapon_name"	"weapon_stick"
+
+		// ammo-specific
+		"ammo_name"		"none"
+
+		// world model
+		"world_model"	"models/weapons/w_bliink_stick.mdl"
+	}
 
 	// NORMAL AMMO
 	"ammo_pistol_normal"
 	{
 		// key properties
-		"description"	"Normal ammo"
+		"description"	"Pistol ammunition"
 		"item_type"		"ITEM_TYPE_AMMO"
 		"item_subtype"	"ITEM_STYPE_AMMO_NORMAL"
 
@@ -93,7 +112,7 @@ BliinkItemList
 	"ammo_revolver_normal"
 	{
 		// key properties
-		"description"	"Normal ammo"
+		"description"	"Revolver ammunition"
 		"item_type"		"ITEM_TYPE_AMMO"
 		"item_subtype"	"ITEM_STYPE_AMMO_NORMAL"
 
@@ -111,7 +130,7 @@ BliinkItemList
 	"ammo_smg_normal"
 	{
 		// key properties
-		"description"	"Normal ammo"
+		"description"	"SMG ammunition"
 		"item_type"		"ITEM_TYPE_AMMO"
 		"item_subtype"	"ITEM_STYPE_AMMO_NORMAL"
 
@@ -129,7 +148,7 @@ BliinkItemList
 	"ammo_rifle_normal"
 	{
 		// key properties
-		"description"	"Normal ammo"
+		"description"	"Rifle ammunition"
 		"item_type"		"ITEM_TYPE_AMMO"
 		"item_subtype"	"ITEM_STYPE_AMMO_NORMAL"
 
@@ -147,7 +166,7 @@ BliinkItemList
 	"ammo_shotgun_normal"
 	{
 		// key properties
-		"description"	"Normal ammo"
+		"description"	"Shotgun ammunition"
 		"item_type"		"ITEM_TYPE_AMMO"
 		"item_subtype"	"ITEM_STYPE_AMMO_NORMAL"
 
@@ -185,7 +204,7 @@ BliinkItemList
 	"ammo_pistol_poison"
 	{
 		// key properties
-		"description"	"Poison ammo ammo"
+		"description"	"Poisoned pistol ammunition"
 		"item_type"		"ITEM_TYPE_AMMO"
 		"item_subtype"	"ITEM_STYPE_AMMO_POISON"
 
@@ -239,7 +258,7 @@ BliinkItemList
 	"consumable_booster"
 	{
 		// key properties
-		"description"	"Hunger restore melon"
+		"description"	"Melon (booster lol)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
 
@@ -257,7 +276,7 @@ BliinkItemList
 	"melon"
 	{
 		// key properties
-		"description"	"Hunger restore melon"
+		"description"	"Melon (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
@@ -275,7 +294,7 @@ BliinkItemList
 "banana"
 	{
 		// key properties
-		"description"	"Hunger restore banana"
+		"description"	"Banana (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
@@ -293,7 +312,7 @@ BliinkItemList
 "orange"
 	{
 		// key properties
-		"description"	"Hunger restore orange"
+		"description"	"Orange (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
@@ -311,7 +330,7 @@ BliinkItemList
 "soup"
 	{
 		// key properties
-		"description"	"Hunger restore soup"
+		"description"	"Soup (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
@@ -329,7 +348,7 @@ BliinkItemList
 "corn"
 	{
 		// key properties
-		"description"	"Hunger restore corn"
+		"description"	"Corn-on-the-cob (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
@@ -347,7 +366,7 @@ BliinkItemList
 "sandwich"
 	{
 		// key properties
-		"description"	"Hunger restore sandwich"
+		"description"	"Sandwich (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
@@ -365,7 +384,7 @@ BliinkItemList
 "chicken"
 	{
 		// key properties
-		"description"	"Hunger restore chicken"
+		"description"	"Chicken (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
@@ -384,7 +403,7 @@ BliinkItemList
 "pizza"
 	{
 		// key properties
-		"description"	"Hunger restore pizza"
+		"description"	"Pizza (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
@@ -402,7 +421,7 @@ BliinkItemList
 "fish"
 	{
 		// key properties
-		"description"	"Hunger restore fish"
+		"description"	"Fish (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
@@ -421,7 +440,7 @@ BliinkItemList
 "breakfast"
 	{
 		// key properties
-		"description"	"Hunger restore breakfast"
+		"description"	"Full english (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
@@ -439,7 +458,7 @@ BliinkItemList
 "healthsmall"
 	{
 		// key properties
-		"description"	"Health restore small"
+		"description"	"Small health kit"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_HEALTH"
 
@@ -457,7 +476,7 @@ BliinkItemList
 "healthmedium"
 	{
 		// key properties
-		"description"	"Health restore medium"
+		"description"	"Medium health kit"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_HEALTH"
 
@@ -475,7 +494,7 @@ BliinkItemList
 "healthlarge"
 	{
 		// key properties
-		"description"	"Health restore large"
+		"description"	"Large health kit"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_HEALTH"
 

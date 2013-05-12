@@ -67,6 +67,7 @@ typedef enum
 	SDK_WEAPON_CROWBAR,
 	SDK_WEAPON_MACHETE,
 	SDK_WEAPON_BAT,
+	SDK_WEAPON_STICK,
 
 	SDK_WEAPON_MAX,		// number of weapons weapon index
 } SDKWeaponID;

@@ -1991,6 +1991,14 @@
     <ClCompile Include="weapon_bat.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="sdk\bliink_hud_item_name.cpp">
+      <Filter>Source Files\SDK</Filter>
+=======
+    <ClCompile Include="weapon_stick.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
+>>>>>>> Added weapons
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="achievement_notification_panel.h">
@@ -4242,6 +4250,9 @@
     </ClInclude>
     <ClInclude Include="hud_noface.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\c_bliink_item_pickup.h">
+      <Filter>Source Files\SDK</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

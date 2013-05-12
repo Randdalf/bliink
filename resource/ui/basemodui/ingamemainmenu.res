@@ -53,79 +53,6 @@
 		"command"				"ReturnToGame"
 		"ActivationType"			"1"
 	}
-	
-	"BtnMute"
-	{
-		"ControlName"			"BaseModHybridButton"
-		"fieldName"				"BtnMute"
-		"xpos"				"100"
-		"ypos"				"185"
-		"wide"				"220"	[$WIN32]
-		"wide"				"180"	[$X360]
-		"tall"				"20"
-		"autoResize"			"1"
-		"pinCorner"				"0"
-		"visible"				"1"
-		"enabled"				"1"
-		"tabPosition"			"0"
-		"navUp"				"BtnGoIdle"
-		"navDown"				"BtnFindServers"
-		"labelText"				"#L4D360UI_PlayerList"
-		"tooltiptext"			"#L4D360UI_PlayerList"
-		"disabled_tooltiptext" 		"#L4D360UI_PlayerList"
-		"style"				"MainMenuButton"
-		"command" 				"OpenMutePlayers"
-		"ActivationType"			"1"
-	}
-	
-	"BtnFindServers" [$WIN32]
-	{
-		"ControlName"			"BaseModHybridButton"
-		"fieldName"				"BtnFindServers"
-		"xpos"				"100"
-		"ypos"				"210"
-		"wide"				"220"
-		"tall"				"20"
-		"autoResize"			"1"
-		"pinCorner"				"0"
-		"visible"				"1"
-		"enabled"				"1"
-		"tabPosition"			"0"
-		"navUp"				"BtnMute"
-		"navDown"				"BtnStatsAndAchievements"
-		"labelText"				"#GameUI_GameMenu_FindServers"
-		"tooltiptext"			"#GameUI_GameMenu_FindServers"
-		"disabled_tooltiptext"		"#GameUI_GameMenu_FindServers"
-		"style"				"MainMenuButton"
-		"ActivationType"			"1"
-		"command"				"OpenServerBrowser"
-	}
-
-	"BtnStatsAndAchievements"
-	{
-		"ControlName"			"BaseModHybridButton"
-		"fieldName"				"BtnStatsAndAchievements"
-		"xpos"				"100"
-		"ypos"				"235"
-		"wide"				"220"	[$WIN32]
-		"wide"				"180"	[$X360]
-		"tall"				"20"
-		"autoResize"			"1"
-		"pinCorner"				"0"
-		"visible"				"1"
-		"enabled"				"1"		[!$X360GUEST]
-		"enabled"				"0"		[$X360GUEST]
-		"tabPosition"			"0"
-		"navUp"				"BtnLeaderboard"
-		"navDown"				"BtnOptions"
-		"labelText"				"#L4D360UI_MainMenu_StatsAndAchievements"
-		"tooltiptext"			"#L4D360UI_MainMenu_PCStatsAndAchievements_Tip"	[$WIN32]
-		"tooltiptext"			"#L4D360UI_MainMenu_StatsAndAchievements_Tip"	[$X360]
-		"style"				"MainMenuButton"
-		"command"				"StatsAndAchievements"
-		"ActivationType"			"1"
-		"EnableCondition"			"Never" [$DEMO]
-	}
 
 	"BtnOptions"
 	{
@@ -155,7 +82,7 @@
 		"ControlName"			"BaseModHybridButton"
 		"fieldName"				"BtnExitToMainMenu"
 		"xpos"				"100"
-		"ypos"				"297"
+		"ypos"				"282"
 		"wide"				"220"	[$WIN32]
 		"wide"				"180"	[$X360]
 		"tall"				"20"
@@ -197,17 +124,5 @@
 		"zpos"				"3"
 		"InitialFocus"			"BtnAudioVideo"
 		"ResourceFile"			"resource/UI/basemodui/OptionsGuestFlyout.res"
-	}
-
-	"FlmVoteFlyout"
-	{
-		"ControlName"			"FlyoutMenu"
-		"fieldName"				"FlmVoteFlyout"
-		"visible"				"0"
-		"wide"				"0"
-		"tall"				"0"
-		"zpos"				"3"
-		"InitialFocus"			"BtnReturnToLobby"
-		"ResourceFile"			"resource/UI/basemodui/InGameVoteFlyout.res"
 	}
 }

@@ -27,7 +27,8 @@ public:
 	void SetItem( IBliinkItem* pItemToSet );
 
 private:
-	IBliinkItem*	pItem;
+	IBliinkItem*			pItem;
+	CNetworkVar( BLIINK_ITEM_INFO_HANDLE, m_hInfoHandle );
 };
 
 #endif // BLIINK_ITEM_PICKUP_H
