@@ -259,7 +259,7 @@ BliinkItemList
 		// key properties
 		"description"	"Melon (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
-		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
 		// behaviours
 		"can_stack"		"1"
@@ -277,7 +277,7 @@ BliinkItemList
 		// key properties
 		"description"	"Banana (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
-		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
 		// behaviours
 		"can_stack"		"1"
@@ -295,7 +295,7 @@ BliinkItemList
 		// key properties
 		"description"	"Orange (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
-		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
 		// behaviours
 		"can_stack"		"1"
@@ -313,7 +313,7 @@ BliinkItemList
 		// key properties
 		"description"	"Soup (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
-		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
 		// behaviours
 		"can_stack"		"1"
@@ -331,7 +331,7 @@ BliinkItemList
 		// key properties
 		"description"	"Corn-on-the-cob (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
-		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
 		// behaviours
 		"can_stack"		"1"
@@ -349,7 +349,7 @@ BliinkItemList
 		// key properties
 		"description"	"Sandwich (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
-		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
 		// behaviours
 		"can_stack"		"1"
@@ -367,7 +367,7 @@ BliinkItemList
 		// key properties
 		"description"	"Chicken (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
-		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
 		// behaviours
 		"can_stack"		"1"
@@ -386,7 +386,7 @@ BliinkItemList
 		// key properties
 		"description"	"Pizza (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
-		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
 		// behaviours
 		"can_stack"		"1"
@@ -404,7 +404,7 @@ BliinkItemList
 		// key properties
 		"description"	"Fish (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
-		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
 		// behaviours
 		"can_stack"		"1"
@@ -423,7 +423,7 @@ BliinkItemList
 		// key properties
 		"description"	"Full english (food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
-		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
+		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 
 		// behaviours
 		"can_stack"		"1"

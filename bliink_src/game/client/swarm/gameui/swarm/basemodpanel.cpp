@@ -413,10 +413,12 @@ CBaseModFrame* CBaseModPanel::OpenWindow(const WINDOW_TYPE & wt, CBaseModFrame *
 
 		case WT_LOADINGPROGRESSBKGND:
 			m_Frames[wt] = new LoadingProgress( this, "LoadingProgress", LoadingProgress::LWT_BKGNDSCREEN );
+			//m_Frames[wt] = new MainMenu(this, "MainMenu");
 			break;
 
 		case WT_LOADINGPROGRESS:
 			m_Frames[wt] = new LoadingProgress( this, "LoadingProgress", LoadingProgress::LWT_LOADINGPLAQUE );
+			//m_Frames[wt] = new MainMenu(this, "MainMenu");
 			break;
 
 		case WT_MAINMENU:
