@@ -1,6 +1,5 @@
-$cd "C:\Users\Adam\Desktop"
-$modelname "creeps/lane_creeps/creep_bad_ranged_diretide/creep_bad_ranged_"
-$model "default" "creep_bad_ranged_diretide_model.dmx.smd"
+$modelname "creeps/lane_creeps/creep_bad_ranged.mdl"
+$model "default" "bliink_crawler.smd"
 
 $poseparameter turn -1.00 1.00
 $cdmaterials ""
