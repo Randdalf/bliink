@@ -305,6 +305,7 @@ exit 1
     <ClCompile Include="..\..\public\bone_accessor.cpp" />
     <ClCompile Include="bliink_hud_level.cpp" />
     <ClCompile Include="bliink_hud_upgrade_notice.cpp" />
+    <ClCompile Include="bliink_inventory_slot.cpp" />
     <ClCompile Include="blink_panel.cpp" />
     <ClCompile Include="bone_merge_cache.cpp" />
     <ClCompile Include="c_ai_basehumanoid.cpp" />
@@ -1577,6 +1578,7 @@ exit 1
     <ClInclude Include="..\shared\ai_speechconcept.h" />
     <ClInclude Include="..\shared\baseachievement.h" />
     <ClInclude Include="..\..\common\blackbox_helper.h" />
+    <ClInclude Include="bliink_inventory_slot.h" />
     <ClInclude Include="blink_panel.h" />
     <ClInclude Include="c_baselesson.h" />
     <ClInclude Include="c_basetoggle.h" />

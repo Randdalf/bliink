@@ -1,18 +1,15 @@
 
-#include <vgui_controls/Frame.h>
+ #include <vgui_controls/Frame.h>
  #include <vgui_controls/Button.h>
- #include <vgui_controls/Scrollbar.h>
- #include <vgui_controls/EditablePanel.h>
  #include <vgui_controls/ImagePanel.h>
- #include <vgui_controls/ListPanel.h>
- #include <vgui_controls/SectionedListPanel.h>
- #include <vgui_controls/Menu.h>
+
  #include <KeyValues.h>
  #include <vgui/IVGui.h>
 
-
  #include "c_bliink_player.h"
  #include "Ibliink_inventory_ui.h"
+ #include "bliink_inventory_slot.h"
+
  using namespace vgui;
 
 class bliink_inventory_ui  : public vgui::Frame
@@ -31,23 +28,15 @@ class bliink_inventory_ui  : public vgui::Frame
 
 		C_BliinkPlayer *pPlayer;
 
-        Button *DropB;
-		Button *AmmoB;
-		Button *WeaponsB;
-		Button *ConsumablesB;
-		Button *Consume;
-
-		SectionedListPanel *ConsumablesL;
-		SectionedListPanel *WeaponsL;	
-		SectionedListPanel *AmmoL;
-
-		//ListPanel *NewList;
-
+		///Button *UpdateInventory;
 
 		bool Updated;
 
+		bliink_inventory_slot* InventorySlots[20];
+
  public :
 
-		void add();
+		void Init(void);
+		void Add();
  
  };

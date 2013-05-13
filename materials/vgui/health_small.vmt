@@ -1,0 +1,6 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "vgui/health_small"
+	"$translucent" 1
+	"$transparent" 1
+}

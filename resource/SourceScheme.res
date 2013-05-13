@@ -814,6 +814,16 @@ Scheme
 				"weight"	"500"
 			}
 		}
+		
+		"ConsoleTextSmall"
+		{
+			"1"
+			{
+				"name"		"Lucida Console"
+				"tall"		"7"
+				"weight"	"500"
+			}
+		}
 
 		// this is the symbol font
 		"Marlett"

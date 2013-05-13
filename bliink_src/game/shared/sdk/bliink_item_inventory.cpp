@@ -19,7 +19,7 @@ char* CBliinkItemInventory::GetItemName (int iFromSlot)
 	BLIINK_ITEM_INFO_HANDLE slot =	m_iItemTypes[iFromSlot];
 	BLIINK_ITEM_INFO_HANDLE lock =  GetItemHandle( "locked_item" );
 	BLIINK_ITEM_INFO_HANDLE empty =  GetItemHandle( "empty_item" );
-	if ( GetItemInfo( m_iItemTypes.Get(iFromSlot) ) != NULL && slot != empty && slot != lock )
+	if ( GetItemInfo( m_iItemTypes.Get(iFromSlot) ) != NULL/* && slot != empty && slot != lock*/ )
 		return  GetItemInfo( m_iItemTypes.Get(iFromSlot) ) -> szItemName;
 	return NULL;
 }

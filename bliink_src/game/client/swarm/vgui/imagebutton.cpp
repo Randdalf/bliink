@@ -60,7 +60,6 @@ void ImageButton::SetBorders(const char* szBorder, const char *szBorderDisabled)
 	UpdateColors();
 }
 
-
 ImageButton::~ImageButton()
 {
 	

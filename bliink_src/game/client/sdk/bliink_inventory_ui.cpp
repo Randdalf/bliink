@@ -8,10 +8,8 @@
 bliink_inventory_ui::bliink_inventory_ui(vgui::VPANEL parent)
 : BaseClass(NULL, "bliink_inventory_ui")
 {
-	//Color panel_color = Color(1,1,1);
 
 	this->SetParent( parent );
-
 	this->SetTitle("Inventory",true);
 
 	this->SetPos(100,100);
@@ -21,8 +19,8 @@ bliink_inventory_ui::bliink_inventory_ui(vgui::VPANEL parent)
 	this->SetKeyBoardInputEnabled( true );
 	this->SetMouseInputEnabled( true );
 
-	this->SetProportional( true );
-	this->SetTitleBarVisible( true );
+	this->SetProportional( false );
+	this->SetTitleBarVisible( false );
 	this->SetMinimizeButtonVisible( false );
 	this->SetMaximizeButtonVisible( false );
 	this->SetCloseButtonVisible( false );
@@ -30,49 +28,65 @@ bliink_inventory_ui::bliink_inventory_ui(vgui::VPANEL parent)
 	this->SetMoveable( false );
 	this->SetVisible( false );
 
-	ConsumablesL = new SectionedListPanel(this,"ConsumablesL"); 
-	ConsumablesL->AddSection(0, "ConsumablesL");
-	ConsumablesL->AddColumnToSection(0, "Name", "Name", 0, 80);
-	ConsumablesL->AddColumnToSection(0, "Amount", "Amount", 0, 40);
-	ConsumablesL->SetVisible(true);
-	
-	//NewList = new ListPanel(this, "NewList");
-	//NewList->AddColumnHeader(0, "Header" ,"ColumnText", 50);
+	Init();
 
-	AmmoL = new SectionedListPanel(this,"AmmoL"); 
-	AmmoL->AddSection(0, "AmmoL"); 
-	AmmoL->AddColumnToSection(0, "Name", "Name", 0, 80);
-	AmmoL->AddColumnToSection(0, "Amount", "Amount", 0, 40);
-	AmmoL->SetVisible(true);
-
-	WeaponsL = new SectionedListPanel(this,"WeaponsL"); 
-	WeaponsL->AddSection(0, "WeaponsL"); 
-	WeaponsL->AddColumnToSection(0, "Name", "Name", 0, 80);
-	WeaponsL->AddColumnToSection(0, "Amount", "Amount", 0, 40); 
-	WeaponsL->SetVisible(true);
-
-	DropB = new Button(this,"Drop","Drop"); 
-	DropB->SetCommand("dropitem");
-
-	ConsumablesB = new Button(this,"Consumables","Consumables"); 
-	ConsumablesB->SetCommand("Consumables");
-
-	WeaponsB = new Button(this,"Weapons","Weapons"); 
-	WeaponsB->SetCommand("Consumables");
-	
-	AmmoB = new Button(this,"Ammo","Ammo"); 
-	AmmoB->SetCommand("Ammo");
-	
-	Consume = new Button(this,"Consume","Consume"); 
-	Consume->SetCommand("Consume");
- 
 	SetScheme(vgui::scheme()->LoadSchemeFromFile("resource/SourceScheme.res", "SourceScheme"));
  
-	LoadControlSettings("resource/UI/InventoryPanel.res");
+	LoadControlSettings("resource/UI/NewInventoryPanel.res");
  
 	vgui::ivgui()->AddTickSignal( GetVPanel(), 100 );
  
 	DevMsg("InventoryPanel has been constructed\n");
+
+}
+
+void bliink_inventory_ui::Init(void) 
+{
+	for ( int i = 0 ; i< 20 ; i++ )
+	{
+		if ( i == 0)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_0", "empty", "Img_0", "Name_0", "Nr_0");
+		if ( i == 1)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_1", "empty", "Img_1", "Name_1", "Nr_1");
+		if ( i == 2)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_2", "empty", "Img_2", "Name_2", "Nr_2");
+		if ( i == 3)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_3", "empty", "Img_3", "Name_3", "Nr_3");
+		if ( i == 4)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_4", "empty", "Img_4", "Name_4", "Nr_4");
+		if ( i == 5)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_5", "empty", "Img_5", "Name_5", "Nr_5");
+		if ( i == 6)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_6", "empty", "Img_6", "Name_6", "Nr_6");
+		if ( i == 7)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_7", "empty", "Img_7", "Name_7", "Nr_7");
+		if ( i == 8)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_8", "empty", "Img_8", "Name_8", "Nr_8");
+		if ( i == 9)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_9", "empty", "Img_9", "Name_9", "Nr_9");
+		if ( i == 10)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_10", "empty", "Img_10", "Name_10", "Nr_10");
+		if ( i == 11)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_11", "empty", "Img_11", "Name_11", "Nr_11");
+		if ( i == 12)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_12", "empty", "Img_12", "Name_12", "Nr_12");
+		if ( i == 13)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_13", "empty", "Img_13", "Name_13", "Nr_13");
+		if ( i == 14)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_14", "empty", "Img_14", "Name_14", "Nr_14");
+		if ( i == 15)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_15", "empty", "Img_15", "Name_15", "Nr_15");
+		if ( i == 16)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_16", "empty", "Img_16", "Name_16", "Nr_16");
+		if ( i == 17)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_17", "empty", "Img_17", "Name_17", "Nr_17");
+		if ( i == 18)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_18", "empty", "Img_18", "Name_18", "Nr_18");
+		if ( i == 19)
+			InventorySlots[i] = new bliink_inventory_slot(this, "Slot_19", "empty", "Img_19", "Name_0", "Nr_0");
+	}
+
+
 }
 
 class InventoryInterface : public Ibliink_inventory_ui
@@ -84,6 +98,7 @@ private:
 public:
 
 	InventoryInterface() { InventoryPanel = NULL; }
+
 	void Create(vgui::VPANEL parent) 
 	{ 
 		InventoryPanel = new bliink_inventory_ui(parent); 
@@ -133,7 +148,7 @@ CON_COMMAND(UpdateInventory,"Updates the inventory")
 void bliink_inventory_ui::OnTick()
 {
 	BaseClass::OnTick();
-	
+	bliink_updateInventory.SetValue(1);
 	pPlayer = ToBliinkPlayer( C_BasePlayer::GetLocalPlayer() );
 	
 	if(pPlayer)
@@ -143,9 +158,6 @@ void bliink_inventory_ui::OnTick()
 		SetVisible(bliink_inventory.GetBool()); 
 		if(bliink_updateInventory.GetBool()) 
 		{
-			ConsumablesL->RemoveAll();
-			AmmoL->RemoveAll(); 
-			WeaponsL->RemoveAll(); 
 			Updated = false; 
 			bliink_updateInventory.SetValue(0); 
 		}
@@ -157,128 +169,74 @@ void bliink_inventory_ui::OnTick()
 				int amount = inv.GetItemStackCounts(i);
 				if( name != NULL ) 
 				{	
-					KeyValues *kv = new KeyValues("data"); 
-					kv->SetString("Name", name);
-					char buffer[20];
-					kv->SetString("Amount", itoa(amount,buffer,10) );
+					char b[2];
+					char* c = itoa(amount,b,10);
+					InventorySlots[i]->SetText(name);
+					InventorySlots[i]->SetAmount(c);
+					InventorySlots[i]->id = i ;
+					InventorySlots[i]->name = name;
+					InventorySlots[i]->amount = amount;
+					if ( i > 5 )
+						InventorySlots[i]->type = "consumable";
+					else
+						InventorySlots[i]->type = "weapon";
 
-					if ( i >= 5)
-						ConsumablesL->AddItem(0,kv);
-					if ( i < 5 )
-						WeaponsL->AddItem(0,kv);
-					//AmmoL->AddItem(0,kv);
+					InventorySlots[i]->m_pLabel->SetVisible(false);
+				
+					if( i < 5 ) 
+						InventorySlots[i]->m_pImage->SetImage("empty");
+					if ( i == 5 )
+						InventorySlots[i]->m_pImage->SetImage("banana");
+					if ( i == 6 )
+						InventorySlots[i]->m_pImage->SetImage("pistol_ammo");
+					if ( i == 7 )
+						InventorySlots[i]->m_pImage->SetImage("rifle_ammo");
+					if ( i == 8 )
+						InventorySlots[i]->m_pImage->SetImage("shotgun_ammo");
+					if ( i == 9 )
+						InventorySlots[i]->m_pImage->SetImage("breakfast");
+					if ( i == 10 )
+						InventorySlots[i]->m_pImage->SetImage("fish");
+					if ( i == 11 )
+						InventorySlots[i]->m_pImage->SetImage("corn");
+					if ( i == 12 )
+						InventorySlots[i]->m_pImage->SetImage("health_large");
+					if ( i == 13 )
+						InventorySlots[i]->m_pImage->SetImage("health_medium");
+					if ( i == 14 )
+						InventorySlots[i]->m_pImage->SetImage("health_small");
+					if ( i > 14 )
+						InventorySlots[i]->m_pImage->SetImage("empty");
 
-					//NewList->AddItem(kv,0,false,false);
 					
-					kv->Clear(); 
-					kv->deleteThis(); 
+					InventorySlots[i]->m_pImage->Paint();
+
+					// empty - empty slot
+					// fix sizes
+					// locked - lock slot
+					// get rid of buttons / header
+					// make all the images.
+					// mouseover 
+					// different ammo types
+
 				}
 			}
+
 			Updated = true;
-		
+
 		}
+
 	} else 
 		SetVisible(0);
 
 	SetVisible(bliink_inventory.GetBool());
-}
 
+}
 
 void bliink_inventory_ui::OnCommand(const char* cmd)
 {
 	if(!Q_stricmp(cmd, "turnoff")) 
 		bliink_inventory.SetValue(0); 
-
-	if(!Q_stricmp(cmd, "dropitem"))
-	{
-		
-		pPlayer = ToBliinkPlayer( C_BasePlayer::GetLocalPlayer() );
-		CBliinkItemInventory inv = pPlayer->GetBliinkInventory() ;
-
-		int idc = ConsumablesL->GetSelectedItem();
-		int idw = WeaponsL->GetSelectedItem();
-
-		char* comand;
-		
-
-		if ( idc != -1) 
-		{
-			//sprintf(comand, "bliink_inventory_drop 5" /*, idc + 5*/ );
-			engine->ServerCmd(  "bliink_inventory_drop 5" );
-		}
-		if ( idw != -1)
-		{
-			//sprintf(comand, "bliink_inventory_drop 0" ,/* idw*/ );
-			engine->ServerCmd( "bliink_inventory_drop 0" );
-		}
-		
-		//inv.Command_Drop( id );
-		
-		//char* name = (char*) ConsumablesL->GetColumnTextBySection(0,id);
-		//char* a = (char*) ConsumablesL->GetColumnTextBySection(1,id);
-		//int amount = atoi(a);
-		//if ( amount > 0 ) {
-
-			//DevMsg ( "Drop!");
-		
-		
-
-		//	amount -- ;
-		//}
-		
-		/*
-		ConsumablesL->RemoveItem(id);
-		KeyValues *kv = new KeyValues("data"); 
-		kv->SetString("Name", name);
-		char buffer[20];
-		kv->SetString("Amount", itoa(amount,buffer,10) ); 
-		ConsumablesL->AddItem(0,kv);
-		*/
-
+	if(!Q_stricmp(cmd, "update")) 
 		bliink_updateInventory.SetValue(1);
-		
-	}
-
-	if(!Q_stricmp(cmd, "moveitem"))
-	{
-		
-	}
-	if(!Q_stricmp(cmd, "Consume"))
-	{
-
-
-		int idc = ConsumablesL->GetSelectedItem();
-		if ( idc != -1 )
-		{
-			char* comand;
-			//sprintf(comand, "bliink_inventory_drop 1"/* , idc + 5*/ );
-			engine->ServerCmd( "bliink_inventory_consume 0" );
-		}
-
-	}
-	if(!Q_stricmp(cmd, "craftitems"))
-	{
-
-	}
-	if(!Q_stricmp(cmd, "Ammo"))
-	{
-		bliink_updateInventory.SetValue(1);
-		//AmmoL->SetVisible(true);
-		//ConsumablesL->SetVisible(false);
-		//WeaponsL->SetVisible(false);
-	}
-	if(!Q_stricmp(cmd, "Consumables"))
-	{
-		bliink_updateInventory.SetValue(1);
-		//AmmoL->SetVisible(false);
-		//ConsumablesL->SetVisible(true);
-		//WeaponsL->SetVisible(false);
-	}
-	if(!Q_stricmp(cmd, "Weapons"))
-	{
-		bliink_updateInventory.SetValue(1);
-		//AmmoL->SetVisible(false);
-		//ConsumablesL->SetVisible(false);
-		//WeaponsL->SetVisible(true);
-	}
 }
