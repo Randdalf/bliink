@@ -1,5 +1,6 @@
-$modelname "creeps/lane_creeps/creep_bad_ranged.mdl"
-$model "default" "bliink_crawler.smd"
+$modelname "creeps/lane_creeps/creep_bad_ranged_diretide/creep_bad_ranged_"
+$model "default" "Cube.smd"
+$origin 0 200 0
 
 $poseparameter turn -1.00 1.00
 $cdmaterials ""
@@ -10,16 +11,11 @@ $hbox 0 "bicep_R" -31.220  -4.298  -13.298  5.519  8.686  4.892
 $hbox 0 "wrist_L" -2.470  -5.240  -15.468  26.296  8.993  8.164
 $hbox 0 "elbow_L" 0.401  -6.786  -5.854  25.538  4.827  5.547
 $hbox 0 "bicep_L" -5.524  -8.685  -4.895  31.216  4.293  13.296
-$hbox 0 "head" -5.426  -10.159  -25.127  16.981  10.158  13.555
 $hbox 0 "spine2" 4.544  -5.551  19.140  12.989  5.553  22.754
 $hbox 0 "spine1" -7.608  -17.374  -15.478  22.403  17.369  18.183
-$hbox 0 "leg_L_thigh" 6.553  -6.400  -7.510  38.978  6.368  8.346
-$hbox 0 "hip1_0" -8.827  -14.545  -17.308  13.406  13.773  10.354
 $hboxset "hands"
 $hbox 0 "wrist_R" -26.297  -8.993  -8.158  2.471  5.239  15.472
 $hbox 0 "wrist_L" -2.470  -5.240  -15.468  26.296  8.993  8.164
-$hboxset "head"
-$hbox 0 "head" -5.426  -10.159  -25.127  16.981  10.158  13.555
 $hboxset "select_low"
 $hbox 0 "root" -28.771  -32.568  -21.600  31.494  32.570  61.220
 $hboxset "select_high"
@@ -59,7 +55,7 @@ $sequence bad_ranged_diretide_turns_lookFrame_0 "bad_ranged_diretide_turns_lookF
 $sequence bad_ranged_diretide_turns_lookFrame_1 "bad_ranged_diretide_turns_lookFrame_1" fps 30.00
 $sequence bad_ranged_diretide_turns_lookFrame_2 "bad_ranged_diretide_turns_lookFrame_2" fps 30.00
 $sequence bad_ranged_diretide_turns "bad_ranged_diretide_turns_lookFrame_0" fps 30.00 {
-  blendwidth 3
+  blendwidth 4
   blend turn -1.000000 1.000000
   delta
  bad_ranged_diretide_turns_lookFrame_0 bad_ranged_diretide_turns_lookFrame_1 bad_ranged_diretide_turns_lookFrame_2
