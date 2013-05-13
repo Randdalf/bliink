@@ -33,6 +33,7 @@ CBliinkPlayerStats::CBliinkPlayerStats()
 	m_iMaxExperience = BASE_MAX_EXPERIENCE;
 	m_iStatusEffect = BLIINK_STATUS_NORMAL;
 	m_fStatusEndTime = gpGlobals->curtime;
+	m_fDamagePercent = BASE_DAMAGE_PERCENT;
 
 #ifndef CLIENT_DLL
 	m_fLastDamageTime = 0;
@@ -105,6 +106,9 @@ bool CBliinkPlayerStats::UseUpgrade(BLIINK_UPGRADE type)
 		// Increase the max fatigue.
 		m_fMaxFatigue += UPGRADE_MAX_FATIGUE;
 
+		// Increase damage.
+		m_fDamagePercent += UPGRADE_DAMAGE_PERCENT;
+
 		break;
 	}
 
@@ -128,6 +132,7 @@ void CBliinkPlayerStats::Reset()
 	m_iMaxExperience = BASE_MAX_EXPERIENCE;
 	m_iStatusEffect = BLIINK_STATUS_NORMAL;
 	m_fStatusEndTime = gpGlobals->curtime;
+	m_fDamagePercent = BASE_DAMAGE_PERCENT;
 
 	UpdateMaxHealth();
 	UpdateHealth();

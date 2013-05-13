@@ -308,7 +308,7 @@ void CBliinkBliinker::Event_Killed( const CTakeDamageInfo &info )
 {
 	BaseClass::Event_Killed( info );
 
-	spawnRandomOrbs( GetAbsOrigin() + Vector(0,0,32.0f), 640.0f, 4, 8, 6, 13 );
+	spawnRandomOrbs( GetAbsOrigin() + Vector(0,0,32.0f), 64.0f, 4, 8, 6, 13 );
 	
 	Remove();
 }

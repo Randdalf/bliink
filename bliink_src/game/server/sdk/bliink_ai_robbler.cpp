@@ -297,7 +297,7 @@ void CBliinkRobbler::Event_Killed( const CTakeDamageInfo &info )
 {
 	BaseClass::Event_Killed( info );
 
-	spawnRandomOrbs( GetAbsOrigin() + Vector(0,0,32.0f), 640.0f, 3, 5, 3, 17 );
+	spawnRandomOrbs( GetAbsOrigin() + Vector(0,0,32.0f), 64.0f, 3, 5, 3, 17 );
 	
 	Remove();
 }

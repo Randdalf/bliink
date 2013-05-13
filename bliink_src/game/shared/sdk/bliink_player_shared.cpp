@@ -56,6 +56,9 @@ void CBliinkPlayer::FireBullet(
         float fCurrentDamage = iDamage;   // damage of the bullet at it's current trajectory
         float flCurrentDistance = 0.0;  //distance that the bullet has traveled so far
 
+		// Increasing damage based on the player's stats.
+		fCurrentDamage *= GetBliinkPlayerStats().GetDamagePercent();
+
         Vector vecDirShooting, vecRight, vecUp;
         AngleVectors( shootAngles, &vecDirShooting, &vecRight, &vecUp );
 

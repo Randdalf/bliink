@@ -8,7 +8,8 @@ $model "body" "blue_player_reference.smd"
 $poseparameter body_pitch -45.00 45.00
 $poseparameter body_yaw -45.00 45.00
 $poseparameter body_height 28.00 58.00
-$cdmaterials "models\player\bliink\"
+$cdmaterials "models\player\bliink\"$cd "C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\modelsrc\player\"
+
 $hboxset "sdk"
 $hbox 2 "ValveBiped.Bip01_Pelvis" -7.750  -3.000  -6.600  7.750  3.000  4.900
 $hbox 6 "ValveBiped.Bip01_L_Thigh" 3.500  -3.900  -3.900  19.500  3.100  3.100
@@ -51,6 +52,7 @@ $attachment "weapon_bone" "ValveBiped.weapon_bone" 0.00 0.00 -0.00 rotate -0.00 
 $attachment "weapon_bone_left" "ValveBiped.weapon_bone_left" 0.00 0.00 0.00 rotate 0.00 0.00 -0.00
 $attachment "2" "ValveBiped.Bip01_Head1" -0.00 0.00 0.00 rotate -0.00 0.00 0.00
 $attachment "head" "ValveBiped.Bip01_Head1" -0.00 0.00 0.00 rotate -0.00 0.00 0.00
+$includemodel "player/sdk_player_shared.mdl"
 $surfaceprop "flesh"
 $illumposition -2.946 -0.318 36.149
 $sequence ragdoll "ragdoll" ACT_DIERAGDOLL 1 fps 30.00

@@ -39,7 +39,7 @@ bool CBliinkExpOrb::CreateVPhysics()
 
 	// Collision bounds
 	SetCollisionBounds( -Vector(R,R,R), Vector(R,R,R) );
-	SetCollisionGroup( COLLISION_GROUP_WEAPON );
+	SetCollisionGroup( COLLISION_GROUP_DEBRIS );
 
 	// VPhysics
 	objectparams_t params = g_PhysDefaultObjectParams;
