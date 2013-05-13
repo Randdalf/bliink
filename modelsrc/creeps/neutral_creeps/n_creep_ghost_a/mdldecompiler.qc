@@ -1,8 +1,9 @@
-$includemodel "creeps/neutral_creeps/n_creep_ghost_a/n_creep_ghost_a.mdl"
 $cd "C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\modelsrc\creeps\neutral_creeps\n_creep_ghost_a"
 $modelname "creeps/neutral_creeps/n_creep_ghost_a/bliink_creep_ghost_a.mdl"
 
-$model "default" "n_creep_ghost_a_model.smd"
+$scale 0.5
+
+$model "default" "n_creep_ghost_a_model.dmx.smd"
 
 $cdmaterials ""
 $hboxset "default"
@@ -35,4 +36,17 @@ $hbox 0 "root" -95.219  -36.280  -43.851  87.341  62.339  43.658
 $attachment "attach_attack1" "wrist_R" 0.00 0.00 0.00 rotate 0.00 -0.00 -0.00
 $attachment "attach_hitloc" "spine3" 0.00 0.00 -0.00 rotate 0.00 -0.00 0.00
 $surfaceprop "default"
+$keyvalues  {  } 
 $illumposition -26.317 0.000 107.270
+$sequence BindPose "BindPose" fps 30.00
+$sequence ghost_a_death "ghost_a_death" ACT_DOTA_DIE 1 fps 30.00 {
+  { event AE_CL_PLAYSOUND 1 "n_creep_ghost.Death" }
+}
+
+$sequence ghost_a_hit "ghost_a_hit" ACT_DOTA_ATTACK 1 fps 30.00
+$sequence ghost_a_idle "ghost_a_idle" loop ACT_DOTA_IDLE 1 fps 30.00
+$sequence ghost_a_run "ghost_a_run" walkframe 64 LX loop ACT_DOTA_RUN 1 fps 30.00
+$sequence ghost_a_flail "ghost_a_flail" loop ACT_DOTA_FLAIL 1 fps 30.00
+$sequence ghost_a_stun "ghost_a_stun" loop ACT_DOTA_DISABLED 1 fps 30.00
+$sequence ghost_a_portrait "ghost_a_portrait" loop ACT_DOTA_CAPTURE 1 fps 30.00
+$sequence ghost_a_intro "ghost_a_intro" loop ACT_DOTA_INTRO 1 fps 30.00

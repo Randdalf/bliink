@@ -421,7 +421,8 @@ public:
 	CAI_Path *			GetPath()							{ return m_pPath; }
 	const CAI_Path *	GetPath() const						{ return m_pPath; }
 
-	Vector				NextWaypointPos( void );
+	Vector				GetGoalDirection( void );
+	QAngle				GetGoalAngle( void );
 
 	void				AdvancePath();
 
