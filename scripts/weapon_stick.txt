@@ -1,4 +1,4 @@
-// Bat
+// Stick
 
 WeaponData
 {
@@ -8,7 +8,7 @@ WeaponData
 	// Weapon data is loaded by both the Game and Client DLLs.
 	"printname"			"#SDK_Weapon_Stick"
 	"viewmodel"			"models/weapons/v_bliink_stick.mdl"
-	"playermodel"			"models/weapons/v_bliink_stick.mdl"
+	"playermodel"			"models/weapons/wv_bliink_stick.mdl"
 	"PlayerAnimationExtension"	"stick"
 
 	"fov"				"54"	//Tony; HL2 weapons use 54 fov.

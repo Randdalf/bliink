@@ -20,7 +20,7 @@ sampler _Sampler_02		: register( s2 );
 sampler _Sampler_03		: register( s3 );
 
 // Constants
-const float2 g_cData_Random330		: register( c16 ); 		// Random gen
+const float2 g_cData_Random1432		: register( c16 ); 		// Random gen
 const float _g_Time		: register( c17 );
 
 // Semantic structures
@@ -39,15 +39,15 @@ struct PS_OUTPUT
 PS_OUTPUT main( const PS_INPUT In )
 {
 	PS_OUTPUT Out;
-	float2 _var0 = float2( g_cData_Random330.x, 0.000000 );
+	float2 _var0 = float2( g_cData_Random1432.x, 0.000000 );
 	float _var1 = In.vTexCoord_0.y;
 	float _var2 = _g_Time * float( 0.750000 );
 	float _var3 = In.vTexCoord_0.y;
-	float _var4 = g_cData_Random330.y;
+	float _var4 = g_cData_Random1432.y;
 	float2 _var5 = In.vTexCoord_0 * float( 5.000000 );
 	float2 _var6 = In.vTexCoord_0 * In.vTexCoord_2;
-	float2 _var7 = g_cData_Random330 * float( 10.000000 );
-	float2 _var8 = float2( g_cData_Random330.y, 0.000000 );
+	float2 _var7 = g_cData_Random1432 * float( 10.000000 );
+	float2 _var8 = float2( g_cData_Random1432.y, 0.000000 );
 	float _var9 = In.vTexCoord_0.x;
 	float _var10 = frac( _g_Time );
 	float _var11 = In.vTexCoord_0.x;
