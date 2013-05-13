@@ -1,14 +1,10 @@
 "config"
 {
 	"preview_visible"		"1"
-<<<<<<< HEAD
-	"p_x"		"917"
-=======
-	"p_x"		"911"
->>>>>>> 3c3bc5c45a81bed25e65b12321145f056cd3c615
-	"p_y"		"390"
-	"p_sx"		"449"
-	"p_sy"		"378"
+	"p_x"		"-207"
+	"p_y"		"-239"
+	"p_sx"		"615"
+	"p_sy"		"986"
 	"draw_datatypes"		"1"
 	"draw_shadows"		"1"
 	"draw_all_limits"		"0"
@@ -18,8 +14,8 @@
 	"compile_auto_publish_to_materials"		"1"
 	"precache_auto_reload"		"1"
 	"warn_unsaved_changes"		"1"
-	"cedit_x"		"95"
-	"cedit_y"		"195"
-	"cedit_sx"		"918"
-	"cedit_sy"		"585"
+	"cedit_x"		"-1"
+	"cedit_y"		"-1"
+	"cedit_sx"		"-1"
+	"cedit_sy"		"-1"
 }

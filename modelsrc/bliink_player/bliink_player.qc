@@ -3,7 +3,7 @@ $includemodel "player/sdk_player_shared.mdl"
 $cd "C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\modelsrc\bliink_player\"
 $modelname "player\bliink_player.mdl"
 
-$model "body" "blue_player_reference.smd"
+$model "body" "bliink_play1.smd"
 
 $poseparameter body_pitch -45.00 45.00
 $poseparameter body_yaw -45.00 45.00
