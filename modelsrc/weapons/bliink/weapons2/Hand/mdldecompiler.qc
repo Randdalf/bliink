@@ -1,16 +1,12 @@
 
-$modelname "Weapons/v_bliink_stick.mdl"
-$model "default" "Stick.smd"
-$scale 0.75
+$modelname "Weapons/v_bliink_machete.mdl"
+$model "default" "crowbar_reference.001.smd"
+$scale 1.0
 $origin 150 200 20
 
 $cdmaterials "models\Weapons\V_hand\"
-$cdmaterials "models\Weapons\bliink_stick\"
+$cdmaterials "models\Weapons\bliink_machete\"
 $hboxset "default"
-$hbox 0 "ValveBiped.Bip01_Spine4" 0.000  0.000  -1.938  2.033  1.001  0.000
-$hbox 0 "ValveBiped.Bip01_R_UpperArm" -1.763  -2.283  -2.700  11.693  4.552  3.363
-$hbox 0 "ValveBiped.Bip01_R_Forearm" -1.958  -3.135  -2.804  11.482  2.550  3.047
-$hbox 0 "ValveBiped.Bip01_R_Hand" 0.000  -3.141  -19.575  10.937  0.794  14.726
 $hbox 0 "ValveBiped.HandControlRotR" 0.000  -1.935  -15.150  11.123  0.000  0.000
 $attachment "0" "ValveBiped.Tip" 0.00 -0.00 -0.00 rotate -0.00 -0.00 0.00
 $surfaceprop "default"

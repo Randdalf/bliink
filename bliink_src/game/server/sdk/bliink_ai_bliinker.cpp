@@ -141,7 +141,7 @@ void CBliinkBliinker::InitCustomSchedules(void)
 //-----------------------------------------------------------------------------
 void CBliinkBliinker::Precache( void )
 {
-	PrecacheModel( "models/creeps/neutral_creeps/n_creep_ghost_b/n_creep_ghost_b.mdl" );
+	PrecacheModel( "models/creeps/neutral_creeps/n_creep_ghost_a/bliink_creep_ghost_a.mdl" );
 
 	BaseClass::Precache();
 }
@@ -202,8 +202,16 @@ void CBliinkBliinker::GatherConditions( void ) {
 		else {
 			ChainStartTask( TASK_GET_PATH_TO_ENEMY );
 			SetCondition( COND_JUMP_FORWARD );
-			Vector targetPos = GetNavigator()->NextWaypointPos();
-			SetAbsOrigin(GetAbsOrigin() + 128.0f*targetPos);
+			Vector targetDir = GetNavigator()->GetGoalDirection();
+			targetDir = 150.0f*targetDir;
+			Vector vecToEnemy = pEnemy->GetAbsOrigin()-GetAbsOrigin();
+			if (targetDir.Length() > vecToEnemy.Length()) {
+				CTakeDamageInfo info( this, this, vec3_origin, GetAbsOrigin(), 15, DMG_BLIINKHIT );
+				pEnemy->TakeDamage( info );
+			} else {
+				//Need to update angles
+				SetAbsOrigin(GetAbsOrigin() + targetDir);
+			}
 			bPlayer->setBlinking(false);
 		}
 	}
@@ -223,7 +231,7 @@ void CBliinkBliinker::Spawn( void )
 	CapabilitiesClear();
 	CapabilitiesAdd( bits_CAP_MOVE_GROUND | bits_CAP_INNATE_MELEE_ATTACK1 );
 
-	SetModel( "models/creeps/neutral_creeps/n_creep_ghost_b/n_creep_ghost_b.mdl" );
+	SetModel( "models/creeps/neutral_creeps/n_creep_ghost_a/bliink_creep_ghost_a.mdl" );
 	SetHullType(HULL_HUMAN);
 	SetHullSizeNormal();
 
@@ -231,8 +239,8 @@ void CBliinkBliinker::Spawn( void )
 	AddSolidFlags( FSOLID_NOT_STANDABLE );
 	SetMoveType( MOVETYPE_STEP );
 	SetBloodColor( BLOOD_COLOR_RED );
-	m_iHealth			= 20;
-	m_flFieldOfView		= 0.5;
+	m_iHealth			= 100;
+	m_flFieldOfView		= 0.1;
 	m_NPCState			= NPC_STATE_NONE;
 	attackTime			= -1;
 
@@ -275,7 +283,7 @@ void CBliinkBliinker::NPCThink( void ) {
 		Vector vecMaxs = GetHullMaxs();
 		vecMins.z = vecMins.x;
 		vecMaxs.z = vecMaxs.x;
-		pHurt = CheckTraceHullAttack( 64, vecMins, vecMaxs, 5, DMG_BLIINKHIT );
+		pHurt = CheckTraceHullAttack( 64, vecMins, vecMaxs, 15, DMG_BLIINKHIT );
 		attackTime = -1;
 		//Msg("HAAATTTAAAACKKKK!!!\n");
 	}

@@ -232,11 +232,13 @@ bool CAI_BaseNPC::ValidateNavGoal()
 
 			if (!IsCoverPosition( GetEnemy()->EyePosition(), vEyePos ) )
 			{
+				//Msg("BADUGI\n");
 				TaskFail(FAIL_BAD_PATH_GOAL);
 				return false;
 			}
 		}
 	}
+	//Msg("BADUGI\n");
 	return true;
 }
 

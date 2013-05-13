@@ -44,7 +44,6 @@ END_RECV_TABLE()
 
 C_BliinkFog::C_BliinkFog()
 {
-	Msg("yo!\n");
 }
 
 C_BliinkFog::~C_BliinkFog()

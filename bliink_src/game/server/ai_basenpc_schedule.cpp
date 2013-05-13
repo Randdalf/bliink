@@ -1515,6 +1515,7 @@ void CAI_BaseNPC::StartTask( const Task_t *pTask )
 	case TASK_FIND_NODE_COVER_FROM_ENEMY:
 	case TASK_FIND_COVER_FROM_ENEMY:
 		{	
+			//Msg("FAILY WAILY");
 			bool 	bNodeCover 		= ( task != TASK_FIND_COVER_FROM_ENEMY );
 			float 	flMinDistance 	= ( task == TASK_FIND_FAR_NODE_COVER_FROM_ENEMY ) ? pTask->flTaskData : 0.0;
 			float 	flMaxDistance 	= ( task == TASK_FIND_NEAR_NODE_COVER_FROM_ENEMY ) ? pTask->flTaskData : FLT_MAX;
@@ -2550,6 +2551,7 @@ void CAI_BaseNPC::StartTask( const Task_t *pTask )
 				GetNavigator()->SetMovementActivity(ACT_WALK);
 			}
 			// Cover is void once I move
+			//Msg("FINISHED\n");
 			Forget( bits_MEMORY_INCOVER );
 			TaskComplete();
 			break;
@@ -2685,21 +2687,25 @@ void CAI_BaseNPC::StartTask( const Task_t *pTask )
 		{
 			if ( IsMovementFrozen() )
 			{
+				//Msg("Movement frozen\n");
 				TaskFail(FAIL_FROZEN);
 				break;
 			}
 
 			if (GetNavigator()->GetGoalType() == GOALTYPE_NONE)
 			{
+				//Msg("Goal type none\n");
 				TaskComplete();
 				GetNavigator()->ClearGoal();		// Clear residual state
 			}
 			else if (!GetNavigator()->IsGoalActive())
 			{
+				//Msg("Goal is not active?\n");
 				SetIdealActivity( GetStoppedActivity() );
 			}
 			else
 			{
+				//Msg("Validate nav goal\n");
 				// Check validity of goal type
 				ValidateNavGoal();
 			}

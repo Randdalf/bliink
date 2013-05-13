@@ -7,8 +7,8 @@
 		"rt_sizemode"		"7"
 		"rt_depthmode"		"0"
 		"rt_flags"		"32780"
-		"rt_size_x"		"800"
-		"rt_size_y"		"450"
+		"rt_size_x"		"680"
+		"rt_size_y"		"384"
 	}
 	"rt_01"
 	{
@@ -17,8 +17,8 @@
 		"rt_sizemode"		"7"
 		"rt_depthmode"		"0"
 		"rt_flags"		"32780"
-		"rt_size_x"		"800"
-		"rt_size_y"		"450"
+		"rt_size_x"		"680"
+		"rt_size_y"		"384"
 	}
 	"rt_02"
 	{
@@ -27,8 +27,8 @@
 		"rt_sizemode"		"7"
 		"rt_depthmode"		"2"
 		"rt_flags"		"32780"
-		"rt_size_x"		"800"
-		"rt_size_y"		"450"
+		"rt_size_x"		"680"
+		"rt_size_y"		"384"
 	}
 	"rt_03"
 	{
@@ -57,8 +57,8 @@
 		"rt_sizemode"		"7"
 		"rt_depthmode"		"2"
 		"rt_flags"		"32780"
-		"rt_size_x"		"800"
-		"rt_size_y"		"450"
+		"rt_size_x"		"680"
+		"rt_size_y"		"384"
 	}
 	"rt_06"
 	{
@@ -67,7 +67,7 @@
 		"rt_sizemode"		"7"
 		"rt_depthmode"		"2"
 		"rt_flags"		"32780"
-		"rt_size_x"		"800"
-		"rt_size_y"		"450"
+		"rt_size_x"		"680"
+		"rt_size_y"		"384"
 	}
 }
