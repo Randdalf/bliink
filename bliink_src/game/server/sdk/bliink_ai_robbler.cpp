@@ -86,6 +86,7 @@ public:
 	void	OnChangeActivity( Activity eNewActivity );
 	void	NPCThink( void );
 	void	Event_Killed( const CTakeDamageInfo &info );
+	virtual float GetIdealSpeed( void ) const;
 
 	Activity	NPC_TranslateActivity( Activity eNewActivity );
 
@@ -141,7 +142,7 @@ END_DATADESC()
 //-----------------------------------------------------------------------------
 void CBliinkRobbler::Precache( void )
 {
-	PrecacheModel("models/creeps/neutral_creeps/n_creeps_forest_troll/n_creep_forest_troll_high_priest.mdl");
+	PrecacheModel("models/creeps/neutral_creeps/n_creeps_forest_troll/bliink_creep_forest_troll.mdl");
 
 	BaseClass::Precache();
 }
@@ -207,7 +208,7 @@ void CBliinkRobbler::Spawn( void )
 {
 	Precache();
 
-	SetModel( "models/creeps/neutral_creeps/n_creeps_forest_troll/n_creep_forest_troll_high_priest.mdl" );
+	SetModel( "models/creeps/neutral_creeps/n_creeps_forest_troll/bliink_creep_forest_troll.mdl" );
 	SetHullType(HULL_HUMAN);
 	SetHullSizeNormal();
 
@@ -215,8 +216,8 @@ void CBliinkRobbler::Spawn( void )
 	AddSolidFlags( FSOLID_NOT_STANDABLE );
 	SetMoveType( MOVETYPE_STEP );
 	SetBloodColor( BLOOD_COLOR_RED );
-	m_iHealth			= 20;
-	m_flFieldOfView		= 0.5;
+	m_iHealth			= 100;
+	m_flFieldOfView		= 0.1;
 	m_NPCState			= NPC_STATE_NONE;
 
 	CapabilitiesClear();
@@ -283,12 +284,20 @@ Class_T	CBliinkRobbler::Classify( void )
 	return	CLASS_NONE;
 }
 
+float CBliinkRobbler::GetIdealSpeed( void ) const
+{
+	//Msg("GETTING SPEEEEEEEEEEED\n");
+	//BaseClass::GetIdealSpeed();
+	return 195.0;
+	//return BaseClass::GetIdealSpeed();
+}
+
 
 void CBliinkRobbler::Event_Killed( const CTakeDamageInfo &info )
 {
 	BaseClass::Event_Killed( info );
 
-	spawnRandomOrbs( GetAbsOrigin() + Vector(0,0,32.0f), 640.0f, 3, 5, 3, 17 );
+	spawnRandomOrbs( GetAbsOrigin() + Vector(0,0,32.0f), 64.0f, 3, 5, 3, 17 );
 	
 	Remove();
 }

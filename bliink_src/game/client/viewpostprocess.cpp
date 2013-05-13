@@ -20,6 +20,8 @@
 #include "ProxyEntity.h"
 #include "imaterialproxydict.h"
 #include "model_types.h"
+#include "c_bliink_player.h"
+#include "bliink_player_stats.h"
 
 
 
@@ -1941,6 +1943,25 @@ void DoEnginePostProcessing( int x, int y, int w, int h, bool bFlashlightIsOn, b
 	#if defined( _X360 )
 		pRenderContext->PopVertexShaderGPRAllocation();
 	#endif
+
+	C_BliinkPlayer* pPlayer = ToBliinkPlayer( C_BasePlayer::GetLocalPlayer() );
+	static IMaterial *pMat;
+	if(pPlayer->GetBliinkPlayerStats().GetStatus() == BLIINK_STATUS_FOGGED){
+		pMat = materials->FindMaterial( "fogged", TEXTURE_GROUP_OTHER );
+	}else if(pPlayer->State_Get() == STATE_BLIINK_SPECTATE_PREGAME || pPlayer->State_Get() == STATE_BLIINK_WAITING_FOR_PLAYERS || pPlayer->State_Get() == STATE_BLIINK_SPECTATE ){
+		pMat = materials->FindMaterial( "spectate", TEXTURE_GROUP_OTHER );
+	}else if(pPlayer->State_Get() == STATE_BLIINK_STALKER || pPlayer->State_Get() == STATE_BLIINK_STALKER_DEATH_ANIM || pPlayer->State_Get() == STATE_BLIINK_STALKER_RESPAWN){
+		pMat = materials->FindMaterial( "stalker", TEXTURE_GROUP_OTHER );
+	}else{
+		pMat = NULL;
+	}
+	if ( pMat )
+	{
+		UpdateScreenEffectTexture();
+		pRenderContext->DrawScreenSpaceRectangle( pMat, 0, 0, w, h,
+												0, 0, w - 1, h - 1,
+												w, h );
+	}
 }
 
 void DoBlurFade( float flStrength, float flDesaturate, int x, int y, int w, int h )

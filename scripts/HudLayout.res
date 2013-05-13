@@ -73,9 +73,20 @@
 	
 	BliinkHudRespawnTimer
 	{
-	  "fieldName" BliinkHudRespawnTimer
+	  "fieldName" "BliinkHudRespawnTimer"
 	  "xpos" "c-128"
 	  "ypos" "32"
+	  "wide" "392"
+	  "tall" "48"
+	  "visible" "1"
+	  "enabled" "1"
+	}
+	
+	BliinkHudItemName
+	{
+	  "fieldName" "BliinkHudItemName"
+	  "xpos" "c-128"
+	  "ypos" "r54"
 	  "wide" "392"
 	  "tall" "48"
 	  "visible" "1"

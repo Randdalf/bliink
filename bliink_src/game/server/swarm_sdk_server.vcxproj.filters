@@ -1626,6 +1626,15 @@
     <ClCompile Include="sdk\bliink_ai_robbler.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
+    <ClCompile Include="..\client\weapon_bat.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\client\weapon_machete.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="..\client\weapon_stick.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\shared\achievement_saverestore.h">

@@ -694,7 +694,7 @@ void MainMenu::OnCommand( const char *command )
 	else if( !Q_strcmp( command, "BliinkStartGame" ) )
 	{
 		// Alex; Bliink default map
-		engine->ClientCmd("map test_map");
+		engine->ClientCmd("map bliink; bliink_min_survivors -1; bliink_min_players 0; sv_cheats 1");
 	}
 	else if( !Q_strcmp( command, "OpenCreditsPage" ) )
 	{

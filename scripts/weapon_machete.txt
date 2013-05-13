@@ -1,14 +1,14 @@
-// Crowbar
+// Machete
 
 WeaponData
 {
 	"CycleTime"			"0.4"
-	"Damage"			"50"
+	"Damage"			"10"
 
 	// Weapon data is loaded by both the Game and Client DLLs.
 	"printname"			"#SDK_Weapon_Machete"
-	"viewmodel"			"models/weapons/v_bliink_bat.mdl"
-	"playermodel"			"models/weapons/wv_bliink_bat.mdl"
+	"viewmodel"			"models/weapons/v_bliink_machete.mdl"
+	"playermodel"			"models/weapons/v_bliink_machete.mdl"
 	"PlayerAnimationExtension"	"machete"
 
 	"fov"				"54"	//Tony; HL2 weapons use 54 fov.

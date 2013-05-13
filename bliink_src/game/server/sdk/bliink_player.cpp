@@ -25,6 +25,8 @@
 #include "weapon_sdkbase.h"
 #include "engine/ienginesound.h"
 #include "bliink_fog.h"
+#include "recipientfilter.h"
+
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -392,7 +394,7 @@ void CBliinkPlayer::Spawn()
 bool CBliinkPlayer::SelectSpawnSpot( const char *pEntClassName, CBaseEntity* &pSpot )
 {
 	// Fog
-	CBaseEntity* pBaseFog = gEntList.FindEntityByClassname( NULL, "info_bliinker_teleport" );
+	CBaseEntity* pBaseFog = gEntList.FindEntityByClassname( NULL, "func_bliink_fog" );
 
 	// Find the next spawn spot.
 	pSpot = gEntList.FindEntityByClassname( pSpot, pEntClassName );
@@ -418,7 +420,7 @@ bool CBliinkPlayer::SelectSpawnSpot( const char *pEntClassName, CBaseEntity* &pS
 			// check if pSpot is valid
 			if ( g_pGameRules->IsSpawnPointValid( pSpot, this ) && bValidStalkerPoint)
 			{
-				if ( pSpot->GetAbsOrigin() == Vector( 0, 0, 0 ) )
+				if ( pSpot && pSpot->GetAbsOrigin() == Vector( 0, 0, 0 ) )
 				{
 					pSpot = gEntList.FindEntityByClassname( pSpot, pEntClassName );
 					continue;
@@ -1476,7 +1478,11 @@ void CBliinkPlayer::State_Enter_BLIINK_SURVIVOR()
 	RemoveSolidFlags( FSOLID_NOT_SOLID );
     m_Local.m_iHideHUD = 0;
 	PhysObjectWake();
-
+	//CRecipientFilter filter;
+	//filter.AddRecipientsByPVS( GetAbsOrigin() );	// Clients within the entity's PVS will be added.
+	//filter.MakeReliable();
+	//EmitAmbientSound(entindex(),GetAbsOrigin(), "common/Cage_Opening.wav" );
+	//EmitSound( filter, entindex(), "common/Cage_Opening.wav" );
 	Spawn();
 }
 
@@ -1492,6 +1498,10 @@ void CBliinkPlayer::State_Enter_BLIINK_SURVIVOR_DEATH_ANIM()
 		// will sometimes crash coming back from CBasePlayer::Killed() if they kill their owner because the
 		// player class sometimes is freed. It's safer to manipulate the weapons once we know
 		// we aren't calling into any of their code anymore through the player pointer.
+
+
+		//CSingleUserRecipientFilter( this );
+
 		PackDeadPlayerItems();
 	}
 
@@ -1576,6 +1586,9 @@ void CBliinkPlayer::State_Enter_BLIINK_STALKER_DEATH_ANIM()
 	m_flDeathTime = gpGlobals->curtime;
 
 	StartObserverMode( OBS_MODE_DEATHCAM );	// go to observer mode
+	SetMoveType( MOVETYPE_NONE );
+	AddSolidFlags( FSOLID_NOT_SOLID );
+	PhysObjectSleep();
 
 	RemoveEffects( EF_NODRAW );	// still draw player body
 }
@@ -1621,14 +1634,17 @@ void CBliinkPlayer::State_PreThink_BLIINK_STALKER_DEATH_ANIM()
 
 void CBliinkPlayer::State_Enter_BLIINK_STALKER_RESPAWN()
 {	
-	SetMoveType( MOVETYPE_OBSERVER );
+	Msg("entering bliink stalker respawn\n");
+	SetMoveType( MOVETYPE_NONE );
 	MoveToNextIntroCamera();
 	StartObserverMode( OBS_MODE_ROAMING );
 	PhysObjectSleep();
 }
 
 void CBliinkPlayer::State_PreThink_BLIINK_STALKER_RESPAWN()
-{
+{	
+	//Msg("testing respawn %d %d %d\n", (int)gpGlobals->curtime, (int)m_flDeathTime, (int)(m_flDeathTime + BLIINK_STALKER_RESPAWN_TIME));
+
 	if ( gpGlobals->curtime >= (m_flDeathTime + BLIINK_STALKER_RESPAWN_TIME ) )
 	{
 		State_Transition( STATE_BLIINK_STALKER );

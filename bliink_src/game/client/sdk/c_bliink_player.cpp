@@ -35,13 +35,25 @@ ConVar cl_ragdoll_physics_enable( "cl_ragdoll_physics_enable", "1", 0, "Enable/d
 #endif
 
 bool inFog = false;
-bool soundPlaying = false;
+bool waitingSoundPlaying = false;
+bool deathSoundPlaying = false;
+int waitingMainThemeID = NULL;
 int mainThemeID = NULL;
+int main2ThemeID = NULL;
+int main3ThemeID = NULL;
+int cagesThemeID = NULL;
+int deathThemeID = NULL;
 int fogThemeID = NULL;
 bool fadeToSmoke = false;
 bool fadeToNorm = false;
 float smokeVol;
 float normVol;
+float deadVol;
+int state = -1;
+int theme = 0;
+bool surviver = false;
+bool cagesPlaying = false;
+
 
 // -------------------------------------------------------------------------------- //
 // Player animation event. Sent to the client when a player fires, jumps, reloads, etc..
@@ -868,14 +880,46 @@ void C_BliinkPlayer::ClientThink()
 	Vector vForward;
 	AngleVectors( GetLocalAngles(), &vForward );
 
-	if(!soundPlaying){
+	C_BliinkPlayer* pPlayer = ToBliinkPlayer( C_BasePlayer::GetLocalPlayer() );
+
+	state = pPlayer->State_Get();
+
+	if(state == STATE_BLIINK_SPECTATE_PREGAME || state == STATE_BLIINK_WAITING_FOR_PLAYERS || state == STATE_BLIINK_SPECTATE || state == STATE_BLIINK_WELCOME)
+		theme = 0;
+
+	if(!enginesound->IsSoundStillPlaying(waitingMainThemeID) && !waitingSoundPlaying && theme == 0){
 		CLocalPlayerFilter filter;
 		enginesound->SetRoomType( filter, 1 );
 		normVol = 1.0f;
-		enginesound->EmitAmbientSound( "common/bliink_main_theme.wav", normVol );
+		enginesound->EmitAmbientSound( "common/ambient_1a.wav", normVol );
+		waitingMainThemeID = enginesound->GetGuidForLastSoundEmitted();
+		Msg( "Starting bliink_main_theme %d\n",enginesound->IsLoopingSound("common/ambient_1a.wav"));
+		waitingSoundPlaying = true;
+		theme = 0;
+	}
+
+	if(!surviver && state == STATE_BLIINK_SURVIVOR){
+		normVol = 0.1f;
+		enginesound->StopSoundByGuid(waitingMainThemeID);
+		enginesound->EmitAmbientSound( "common/ambient_1b.wav", normVol );
 		mainThemeID = enginesound->GetGuidForLastSoundEmitted();
-		//Msg( "Starting bliink_main_theme\n");
-		soundPlaying = true;
+		CLocalPlayerFilter filter;
+		filter.AddRecipientsByPVS( GetAbsOrigin() );	// Clients within the entity's PVS will be added.
+		filter.MakeReliable();
+		enginesound->EmitSound(filter,-1,1,"common/Cage_Opening.wav",1.0f,75);
+		cagesThemeID = enginesound->GetGuidForLastSoundEmitted();
+		cagesPlaying = true;
+		surviver = true;
+		theme = 1;
+		Msg("Theme = 1\n");
+		waitingSoundPlaying = false;
+	}
+
+	if(!enginesound->IsSoundStillPlaying(cagesThemeID) && cagesPlaying){
+		normVol += 0.01f;
+		enginesound->SetVolumeByGuid(mainThemeID, normVol);
+		Msg( "normVol - %g\n",normVol);
+		if(normVol >= 1.0f) cagesPlaying = false;
 	}
 
 	bool inFogNow = GetBliinkPlayerStats().GetStatus() == BLIINK_STATUS_FOGGED;
@@ -889,9 +933,11 @@ void C_BliinkPlayer::ClientThink()
 			//enginesound->SetVolumeByGuid(mainThemeID, 0.0f);
 			//enginesound->SetVolumeByGuid(fogThemeID, 1.0f);
 			smokeVol = 0.0f;
-			enginesound->EmitAmbientSound( "common/bliink_fog_theme.wav", smokeVol );
+			enginesound->SetVolumeByGuid(fogThemeID, smokeVol);
+			enginesound->StopSoundByGuid(fogThemeID);
+			enginesound->EmitAmbientSound( "common/Fog.wav", smokeVol );
 			fogThemeID = enginesound->GetGuidForLastSoundEmitted();
-			//Msg( "Swiching from bliink_main_theme to bliink_fog_theme\n");
+			Msg( "Swiching from bliink_main_theme to bliink_fog_theme\n");
 		}
 	}else{
 		if(inFog){
@@ -901,15 +947,17 @@ void C_BliinkPlayer::ClientThink()
 			//switch from smoke to normal theme
 			//enginesound->SetVolumeByGuid(fogThemeID, 0.0f);
 			//enginesound->SetVolumeByGuid(mainThemeID, 1.0f);
-			//Msg( "Switching from bliink_fog_theme to bliink_main_theme\n");
+			Msg( "Switching from bliink_fog_theme to bliink_main_theme\n");
 		}
 	}
 
 	if(fadeToNorm){
 		normVol += 0.01f;
 		smokeVol -= 0.01f;
-		//Msg( "normVol - %g , smokeVol - %g\n",normVol,smokeVol);
-		enginesound->SetVolumeByGuid(mainThemeID, normVol);
+		Msg( "normVol - %g , smokeVol - %g\n",normVol,smokeVol);
+		if(theme == 1) enginesound->SetVolumeByGuid(mainThemeID, normVol);
+		if(theme == 2) enginesound->SetVolumeByGuid(main2ThemeID, normVol);
+		if(theme == 3) enginesound->SetVolumeByGuid(main3ThemeID, normVol);
 		enginesound->SetVolumeByGuid(fogThemeID, smokeVol);
 		if(normVol >= 1.0f) fadeToNorm = false;
 	}
@@ -917,11 +965,78 @@ void C_BliinkPlayer::ClientThink()
 	if(fadeToSmoke){
 		normVol -= 0.01f;
 		smokeVol += 0.01f;
-		//Msg( "normVol - %g , smokeVol - %g\n",normVol,smokeVol);
-		enginesound->SetVolumeByGuid(mainThemeID, normVol);
+		Msg( "normVol - %g , smokeVol - %g\n",normVol,smokeVol);
+		if(theme == 1) enginesound->SetVolumeByGuid(mainThemeID, normVol);
+		if(theme == 2) enginesound->SetVolumeByGuid(main2ThemeID, normVol);
+		if(theme == 3) enginesound->SetVolumeByGuid(main3ThemeID, normVol);
 		enginesound->SetVolumeByGuid(fogThemeID, smokeVol);
 		if(smokeVol >= 1.0f) fadeToSmoke = false;
 	}
+
+	int total = 0;
+
+	for(int i=1; i<=gpGlobals->maxClients; i++)
+	{
+		C_BliinkPlayer* pPlayer = ToBliinkPlayer(UTIL_PlayerByIndex(i));
+
+		if( !pPlayer || !pPlayer->IsPlayer() )
+			continue;
+		
+		if( pPlayer->State_Get() == STATE_BLIINK_SURVIVOR )
+			total += 1;
+	}
+
+	if((total <= 2) && theme == 1 && cagesPlaying == false){
+		Msg( "Theme = 2\n");
+		normVol = 0.01f;
+		theme = 2;
+		enginesound->EmitAmbientSound( "common/ambient_2b.wav", normVol );
+		main2ThemeID = enginesound->GetGuidForLastSoundEmitted();
+	}
+	else if((total <= 4) && theme == 2 && !enginesound->IsSoundStillPlaying(mainThemeID)){
+		Msg( "Theme = 3\n");
+		normVol = 0.01f;
+		theme = 3;
+		enginesound->EmitAmbientSound( "common/ambient_3b.wav", normVol );
+		main3ThemeID = enginesound->GetGuidForLastSoundEmitted();
+	}
+
+	if(enginesound->IsSoundStillPlaying(mainThemeID) && theme == 2){
+		normVol += 0.0025f;
+		enginesound->SetVolumeByGuid(mainThemeID, 1.0f - normVol);
+		enginesound->SetVolumeByGuid(main2ThemeID, normVol);
+		Msg( "normVol - %g\n",normVol);
+		if(normVol >= 1.0f) {
+			enginesound->StopSoundByGuid(mainThemeID);
+		}
+	}
+
+	if(enginesound->IsSoundStillPlaying(main2ThemeID) && theme == 3){
+		normVol += 0.0025f;
+		enginesound->SetVolumeByGuid(main2ThemeID, 1.0f - normVol);
+		enginesound->SetVolumeByGuid(main3ThemeID, normVol);
+		Msg( "normVol - %g\n",normVol);
+		if(normVol >= 1.0f) {
+			enginesound->StopSoundByGuid(main2ThemeID);
+		}
+	}
+
+	if(state == STATE_BLIINK_SURVIVOR_DEATH_ANIM && surviver == true){
+		Msg("DEATH SOUND\n");
+		surviver = false;
+		deathSoundPlaying = true;
+		theme = 0;
+		deadVol = 1.0f;
+		enginesound->StopAllSounds(false);
+		enginesound->EmitAmbientSound( "common/Loser.wav", deadVol);
+		deathThemeID = enginesound->GetGuidForLastSoundEmitted();
+		CLocalPlayerFilter filter;
+		filter.AddAllPlayers();	// Clients within the entity's PVS will be added.
+		filter.RemoveRecipient(pPlayer);
+		filter.MakeReliable();
+		enginesound->EmitSound(filter,-1,1,"common/bass.wav",1.0f,250);
+	}
+
 	for( int iClient = 1; iClient <= gpGlobals->maxClients; ++iClient )
 	{
 		CBaseEntity *pEnt = UTIL_PlayerByIndex( iClient );
@@ -966,18 +1081,41 @@ void C_BliinkPlayer::ClientThink()
 	// Glowing
 	m_GlowObject.SetRenderFlags( false, false );
 
-	C_BliinkPlayer* pPlayer = ToBliinkPlayer( C_BasePlayer::GetLocalPlayer() );
-
-	if( pPlayer->State_Get() == STATE_BLIINK_STALKER ||
-		pPlayer->State_Get() == STATE_BLIINK_STALKER_RESPAWN ||
-		pPlayer->State_Get() == STATE_BLIINK_STALKER_DEATH_ANIM
-		)
+	// Only render when player is fogged.
+	if( State_Get() == STATE_BLIINK_SURVIVOR )
 	{
-		// Only render when player is fogged.
-		if( State_Get() == STATE_BLIINK_SURVIVOR &&
-			m_BliinkStats.GetStatus() == BLIINK_STATUS_FOGGED )
+		if( m_BliinkStats.GetStatus() == BLIINK_STATUS_FOGGED )
 		{
-			m_GlowObject.SetRenderFlags( true, true );
+			m_GlowObject.SetColor( Vector(0.9f, 0.9f, 0.9f) );
+
+			if( pPlayer->State_Get() == STATE_BLIINK_STALKER ||
+			pPlayer->State_Get() == STATE_BLIINK_STALKER_RESPAWN ||
+			pPlayer->State_Get() == STATE_BLIINK_STALKER_DEATH_ANIM )
+			{
+				m_GlowObject.SetRenderFlags( true, true );
+			}
+			else
+			{
+				m_GlowObject.SetRenderFlags( false, true );
+			}
+		}
+		else
+		if( m_BliinkStats.GetStatus() == BLIINK_STATUS_POISONED )
+		{
+			m_GlowObject.SetColor( Vector( 0.3f, 0.1f, 0.6f ) );
+			m_GlowObject.SetRenderFlags( false, true );
+		}
+		else
+		if( m_BliinkStats.GetStatus() == BLIINK_STATUS_BURNING )
+		{
+			m_GlowObject.SetColor( Vector( 0.8f, 0.1f, 0.1f ) );
+			m_GlowObject.SetRenderFlags( false, true );
+		}
+		else
+		if( m_BliinkStats.GetStatus() == BLIINK_STATUS_SLOWED )
+		{
+			m_GlowObject.SetColor( Vector( 0.1f, 0.8f, 0.1f ) );
+			m_GlowObject.SetRenderFlags( false, true );
 		}
 	}
 }

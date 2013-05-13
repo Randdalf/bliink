@@ -67,32 +67,6 @@
 		"style"				"AlienSwarmMenuButton"
 		"command"				"BliinkStartGame"	
 		"ActivationType"			"1"
-	}	
-		
-	"BtnStatsAndAchievements"
-	{
-		"ControlName"			"BaseModHybridButton"
-		"fieldName"				"BtnStatsAndAchievements"
-		"xpos"				"100"
-		"ypos"				"300"
-		"wide"				"180"
-		"tall"				"13"
-		"autoResize"			"1"
-		"pinCorner"				"0"
-		"visible"				"0"		[$X360GUEST]
-		"enabled"				"0"		[$X360GUEST]
-		"visible"				"1"		[!$X360GUEST]		// jms: TEMP disabled
-		"enabled"				"1"		[!$X360GUEST]
-		"tabPosition"			"0"
-		"navUp"				"BtnMultiplayer"
-		"navDown"				"BtnOptions"
-		"labelText"				"#L4D360UI_MainMenu_StatsAndAchievements"
-		"tooltiptext"			"#L4D360UI_MainMenu_StatsAndAchievements_Tip"	[$X360]
-		"tooltiptext"			"#L4D360UI_MainMenu_PCStatsAndAchievements_Tip"	[$WIN32]
-		"style"				"AlienSwarmMenuButtonSmall"
-		"command"				"StatsAndAchievements"
-		"ActivationType"			"1"
-		"EnableCondition"			"Never" [$DEMO]
 	}
 	
 	"BtnOptions"
@@ -100,7 +74,7 @@
 		"ControlName"			"BaseModHybridButton"
 		"fieldName"				"BtnOptions"
 		"xpos"				"100"
-		"ypos"				"315"
+		"ypos"				"290"
 		"wide"				"180"
 		"tall"				"13"
 		"autoResize"			"1"
@@ -117,36 +91,14 @@
 		"command"				"FlmOptionsGuestFlyout"		[$X360GUEST]	
 		"ActivationType"			"1"
 	}
-	
-	"BtnExtras"
-	{
-		"ControlName"			"BaseModHybridButton"
-		"fieldName"				"BtnExtras"
-		"xpos"				"100"
-		"ypos"				"330" 
-		"wide"				"180"
-		"tall"				"13"
-		"autoResize"			"1"
-		"pinCorner"				"0"
-		"visible"				"1"
-		"enabled"				"1"
-		"tabPosition"			"0"
-		"navUp"				"BtnOptions"
-		"navDown"				"BtnQuit"
-		"style"				"AlienSwarmMenuButtonSmall"
-		"ActivationType"			"1"
-		"labelText"				"#L4D360UI_MainMenu_Extras"
-		"tooltiptext"			"#L4D360UI_MainMenu_Extras_Tip"
-		"command"				"FlmExtrasFlyoutCheck"
-	}
 
 	"BtnQuit"
 	{
 		"ControlName"			"BaseModHybridButton"
 		"fieldName"				"BtnQuit"
 		"xpos"				"100"
-		"ypos"				"345" [$X360]
-		"ypos"				"345"	[$WIN32]
+		"ypos"				"305" [$X360]
+		"ypos"				"305"	[$WIN32]
 		"wide"				"180"
 		"tall"				"13"
 		"autoResize"			"1"

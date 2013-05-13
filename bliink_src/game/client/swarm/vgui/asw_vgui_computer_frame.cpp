@@ -176,7 +176,7 @@ void CASW_VGUI_Computer_Frame::PerformLayout()
 
 	m_pLogoffLabel->SetSize(128 * m_fScale, 28 * m_fScale);
 	//m_pLogoffLabel->SetPos(w*0.05, h*0.9);
-	m_pLogoffLabel->SetPos( w * 0.75, h*0.9 );
+	m_pLogoffLabel->SetPos( w * 1.5, h*1.9 );
 	m_pLogoffLabel->SetZPos(200);
 }
 

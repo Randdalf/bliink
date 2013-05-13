@@ -708,6 +708,7 @@ exit 1
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="sdk\bliink_hud_ammo.cpp" />
+    <ClCompile Include="sdk\bliink_hud_item_name.cpp" />
     <ClCompile Include="sdk\bliink_hud_meters.cpp" />
     <ClCompile Include="sdk\bliink_hud_player_states.cpp" />
     <ClCompile Include="sdk\bliink_hud_respawn_timer.cpp" />
@@ -754,6 +755,7 @@ exit 1
     <ClCompile Include="..\shared\SoundEmitterSystem.cpp" />
     <ClCompile Include="..\shared\soundenvelope.cpp" />
     <ClCompile Include="..\..\public\SoundParametersInternal.cpp" />
+    <ClCompile Include="weapon_bat.cpp" />
     <ClCompile Include="spatialentitymgr.cpp" />
     <ClCompile Include="splinepatch.cpp" />
     <ClCompile Include="..\shared\Sprite.cpp" />
@@ -843,6 +845,7 @@ exit 1
     <ClCompile Include="weapon_machete.cpp" />
     <ClCompile Include="weapon_selection.cpp" />
     <ClCompile Include="weapons_resource.cpp" />
+    <ClCompile Include="weapon_stick.cpp" />
     <ClCompile Include="WorldDimsProxy.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -1614,6 +1617,7 @@ exit 1
     <ClInclude Include="opencv_interface.h" />
     <ClInclude Include="sdk\bliink_inventory_ui.h" />
     <ClInclude Include="sdk\clientmode_sdk.h" />
+    <ClInclude Include="sdk\c_bliink_item_pickup.h" />
     <ClInclude Include="sdk\c_bliink_player.h" />
     <ClInclude Include="sdk\c_bliink_player_resource.h" />
     <ClInclude Include="sdk\c_bliink_team.h" />

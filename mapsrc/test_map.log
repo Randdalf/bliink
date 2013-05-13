@@ -7011,3 +7011,542 @@ Level flags = 2
 Total triangle count: 1695
 Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
 1 minute, 3 seconds elapsed
+
+
+
+materialPath: C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.vmf
+Could not locate GameData file projectbliink.fgd
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 24 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (40351 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 247 texinfos to 204
+Reduced 11 texdatas to 11 (199 bytes to 199)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
+No vis information, direct lighting only.
+727 faces
+913707 square feet [131573920.00 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+5 direct lights
+0...1...2...3...4...5...6...7...8...9...10Build Patch/Sample Hash Table(s).....Done<0.0101 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   2/1024           96/49152    ( 0.2%) 
+brushes                121/8192         1452/98304    ( 1.5%) 
+brushsides             761/65536        6088/524288   ( 1.2%) 
+planes                 422/65536        8440/1310720  ( 0.6%) 
+vertexes              1015/65536       12180/786432   ( 1.5%) 
+nodes                  221/65536        7072/2097152  ( 0.3%) 
+texinfos               204/12288       14688/884736   ( 1.7%) 
+texdata                 11/2048          352/65536    ( 0.5%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_multiblend          0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                  727/65536       40712/3670016  ( 1.1%) 
+hdr faces              727/65536       40712/3670016  ( 1.1%) 
+origfaces              396/65536       22176/3670016  ( 0.6%) 
+leaves                 224/65536        7168/2097152  ( 0.3%) 
+leaffaces              853/65536        1706/131072   ( 1.3%) 
+leafbrushes            266/65536         532/131072   ( 0.4%) 
+areas                    3/256            24/2048     ( 1.2%) 
+surfedges             4719/512000      18876/2048000  ( 0.9%) 
+edges                 2746/256000      10984/1024000  ( 1.1%) 
+LDR worldlights          0/8192            0/819200   ( 0.0%) 
+HDR worldlights          5/8192          500/819200   ( 0.1%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips             17/32768         170/327680   ( 0.1%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices           306/65536         612/131072   ( 0.5%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 1/512           352/180224   ( 0.2%) 
+LDR lightdata         [variable]           0/0        ( 0.0%) 
+HDR lightdata         [variable]      622584/0        ( 0.0%) 
+visdata               [variable]           0/16777216 ( 0.0%) 
+entdata               [variable]        3877/393216   ( 1.0%) 
+LDR ambient table      224/65536         896/262144   ( 0.3%) 
+HDR ambient table      224/65536         896/262144   ( 0.3%) 
+LDR leaf ambient       224/65536        6272/1835008  ( 0.3%) 
+HDR leaf ambient      1366/65536       38248/1835008  ( 2.1%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+Prop Hull Verts          0/0               0/0        ( 0.0%) 
+Prop Hull Blob           0/0               0/0        ( 0.0%) 
+Prop Hull Lists          0/0               0/0        ( 0.0%) 
+Prop Hulls               0/0               0/0        ( 0.0%) 
+Prop Hull trilist        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/12       ( 8.3%) 
+pakfile               [variable]       74430/0        ( 0.0%) 
+physics               [variable]       40351/4194304  ( 1.0%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 1695
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
+8 seconds elapsed
+
+
+
+materialPath: C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.vmf
+Could not locate GameData file projectbliink.fgd
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 24 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (40351 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 247 texinfos to 204
+Reduced 11 texdatas to 11 (199 bytes to 199)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
+No vis information, direct lighting only.
+727 faces
+913707 square feet [131573920.00 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+5 direct lights
+0...1...2...3...4...5...6...7...8...9...10Build Patch/Sample Hash Table(s).....Done<0.0100 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   2/1024           96/49152    ( 0.2%) 
+brushes                121/8192         1452/98304    ( 1.5%) 
+brushsides             761/65536        6088/524288   ( 1.2%) 
+planes                 422/65536        8440/1310720  ( 0.6%) 
+vertexes              1015/65536       12180/786432   ( 1.5%) 
+nodes                  221/65536        7072/2097152  ( 0.3%) 
+texinfos               204/12288       14688/884736   ( 1.7%) 
+texdata                 11/2048          352/65536    ( 0.5%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_multiblend          0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                  727/65536       40712/3670016  ( 1.1%) 
+hdr faces              727/65536       40712/3670016  ( 1.1%) 
+origfaces              396/65536       22176/3670016  ( 0.6%) 
+leaves                 224/65536        7168/2097152  ( 0.3%) 
+leaffaces              853/65536        1706/131072   ( 1.3%) 
+leafbrushes            266/65536         532/131072   ( 0.4%) 
+areas                    3/256            24/2048     ( 1.2%) 
+surfedges             4719/512000      18876/2048000  ( 0.9%) 
+edges                 2746/256000      10984/1024000  ( 1.1%) 
+LDR worldlights          0/8192            0/819200   ( 0.0%) 
+HDR worldlights          5/8192          500/819200   ( 0.1%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips             17/32768         170/327680   ( 0.1%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices           306/65536         612/131072   ( 0.5%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 1/512           352/180224   ( 0.2%) 
+LDR lightdata         [variable]           0/0        ( 0.0%) 
+HDR lightdata         [variable]      622584/0        ( 0.0%) 
+visdata               [variable]           0/16777216 ( 0.0%) 
+entdata               [variable]        3878/393216   ( 1.0%) 
+LDR ambient table      224/65536         896/262144   ( 0.3%) 
+HDR ambient table      224/65536         896/262144   ( 0.3%) 
+LDR leaf ambient       224/65536        6272/1835008  ( 0.3%) 
+HDR leaf ambient      1366/65536       38248/1835008  ( 2.1%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+Prop Hull Verts          0/0               0/0        ( 0.0%) 
+Prop Hull Blob           0/0               0/0        ( 0.0%) 
+Prop Hull Lists          0/0               0/0        ( 0.0%) 
+Prop Hulls               0/0               0/0        ( 0.0%) 
+Prop Hull trilist        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/12       ( 8.3%) 
+pakfile               [variable]       74430/0        ( 0.0%) 
+physics               [variable]       40351/4194304  ( 1.0%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 1695
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
+8 seconds elapsed
+
+
+
+materialPath: C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.vmf
+Could not locate GameData file projectbliink.fgd
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 24 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (40351 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 247 texinfos to 204
+Reduced 11 texdatas to 11 (199 bytes to 199)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
+No vis information, direct lighting only.
+727 faces
+913707 square feet [131573920.00 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+5 direct lights
+0...1...2...3...4...5...6...7...8...9...10Build Patch/Sample Hash Table(s).....Done<0.0100 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   2/1024           96/49152    ( 0.2%) 
+brushes                121/8192         1452/98304    ( 1.5%) 
+brushsides             761/65536        6088/524288   ( 1.2%) 
+planes                 422/65536        8440/1310720  ( 0.6%) 
+vertexes              1015/65536       12180/786432   ( 1.5%) 
+nodes                  221/65536        7072/2097152  ( 0.3%) 
+texinfos               204/12288       14688/884736   ( 1.7%) 
+texdata                 11/2048          352/65536    ( 0.5%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_multiblend          0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                  727/65536       40712/3670016  ( 1.1%) 
+hdr faces              727/65536       40712/3670016  ( 1.1%) 
+origfaces              396/65536       22176/3670016  ( 0.6%) 
+leaves                 224/65536        7168/2097152  ( 0.3%) 
+leaffaces              853/65536        1706/131072   ( 1.3%) 
+leafbrushes            266/65536         532/131072   ( 0.4%) 
+areas                    3/256            24/2048     ( 1.2%) 
+surfedges             4719/512000      18876/2048000  ( 0.9%) 
+edges                 2746/256000      10984/1024000  ( 1.1%) 
+LDR worldlights          0/8192            0/819200   ( 0.0%) 
+HDR worldlights          5/8192          500/819200   ( 0.1%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips             17/32768         170/327680   ( 0.1%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices           306/65536         612/131072   ( 0.5%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 1/512           352/180224   ( 0.2%) 
+LDR lightdata         [variable]           0/0        ( 0.0%) 
+HDR lightdata         [variable]      622584/0        ( 0.0%) 
+visdata               [variable]           0/16777216 ( 0.0%) 
+entdata               [variable]        3876/393216   ( 1.0%) 
+LDR ambient table      224/65536         896/262144   ( 0.3%) 
+HDR ambient table      224/65536         896/262144   ( 0.3%) 
+LDR leaf ambient       224/65536        6272/1835008  ( 0.3%) 
+HDR leaf ambient      1366/65536       38248/1835008  ( 2.1%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+Prop Hull Verts          0/0               0/0        ( 0.0%) 
+Prop Hull Blob           0/0               0/0        ( 0.0%) 
+Prop Hull Lists          0/0               0/0        ( 0.0%) 
+Prop Hulls               0/0               0/0        ( 0.0%) 
+Prop Hull trilist        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/12       ( 8.3%) 
+pakfile               [variable]       74430/0        ( 0.0%) 
+physics               [variable]       40351/4194304  ( 1.0%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 1695
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
+8 seconds elapsed
+
+
+
+materialPath: C:\Program Files (x86)\Steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.vmf
+Could not locate GameData file projectbliink.fgd
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 24 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (40351 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 247 texinfos to 204
+Reduced 11 texdatas to 11 (199 bytes to 199)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
+No vis information, direct lighting only.
+727 faces
+913707 square feet [131573920.00 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+5 direct lights
+0...1...2...3...4...5...6...7...8...9...10Build Patch/Sample Hash Table(s).....Done<0.0099 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   2/1024           96/49152    ( 0.2%) 
+brushes                121/8192         1452/98304    ( 1.5%) 
+brushsides             761/65536        6088/524288   ( 1.2%) 
+planes                 422/65536        8440/1310720  ( 0.6%) 
+vertexes              1015/65536       12180/786432   ( 1.5%) 
+nodes                  221/65536        7072/2097152  ( 0.3%) 
+texinfos               204/12288       14688/884736   ( 1.7%) 
+texdata                 11/2048          352/65536    ( 0.5%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_multiblend          0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                  727/65536       40712/3670016  ( 1.1%) 
+hdr faces              727/65536       40712/3670016  ( 1.1%) 
+origfaces              396/65536       22176/3670016  ( 0.6%) 
+leaves                 224/65536        7168/2097152  ( 0.3%) 
+leaffaces              853/65536        1706/131072   ( 1.3%) 
+leafbrushes            266/65536         532/131072   ( 0.4%) 
+areas                    3/256            24/2048     ( 1.2%) 
+surfedges             4719/512000      18876/2048000  ( 0.9%) 
+edges                 2746/256000      10984/1024000  ( 1.1%) 
+LDR worldlights          0/8192            0/819200   ( 0.0%) 
+HDR worldlights          5/8192          500/819200   ( 0.1%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips             17/32768         170/327680   ( 0.1%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices           306/65536         612/131072   ( 0.5%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 1/512           352/180224   ( 0.2%) 
+LDR lightdata         [variable]           0/0        ( 0.0%) 
+HDR lightdata         [variable]      622584/0        ( 0.0%) 
+visdata               [variable]           0/16777216 ( 0.0%) 
+entdata               [variable]        3875/393216   ( 1.0%) 
+LDR ambient table      224/65536         896/262144   ( 0.3%) 
+HDR ambient table      224/65536         896/262144   ( 0.3%) 
+LDR leaf ambient       224/65536        6272/1835008  ( 0.3%) 
+HDR leaf ambient      1366/65536       38248/1835008  ( 2.1%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+Prop Hull Verts          0/0               0/0        ( 0.0%) 
+Prop Hull Blob           0/0               0/0        ( 0.0%) 
+Prop Hull Lists          0/0               0/0        ( 0.0%) 
+Prop Hulls               0/0               0/0        ( 0.0%) 
+Prop Hull trilist        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/12       ( 8.3%) 
+pakfile               [variable]       74430/0        ( 0.0%) 
+physics               [variable]       40351/4194304  ( 1.0%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 1695
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
+8 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\common\alien swarm\swarm\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.vmf
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 24 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (0) (40351 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 247 texinfos to 204
+Reduced 11 texdatas to 11 (199 bytes to 199)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
+0 seconds elapsed
+
+
+
+[Reading texlights from 'lights.rad']
+[45 texlights parsed from 'lights.rad']
+
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
+No vis information, direct lighting only.
+727 faces
+1250109 square feet [180015776.00 square inches]
+0 Displacements
+0 Square Feet [0.00 Square Inches]
+5 direct lights
+0...1...2...3...4...5...6...7...8...9...10Build Patch/Sample Hash Table(s).....Done<0.0105 sec>
+0...1...2...3...4...5...6...7...8...9...10FinalLightFace Done
+0 of 0 (0% of) surface lights went in leaf ambient cubes.
+0...1...2...3...4...5...6...7...8...9...10Writing leaf ambient...done
+Ready to Finish
+
+Object names       Objects/Maxobjs  Memory / Maxmem  Fullness 
+------------       ---------------  ---------------  -------- 
+models                   2/1024           96/49152    ( 0.2%) 
+brushes                121/8192         1452/98304    ( 1.5%) 
+brushsides             761/65536        6088/524288   ( 1.2%) 
+planes                 430/65536        8600/1310720  ( 0.7%) 
+vertexes              1015/65536       12180/786432   ( 1.5%) 
+nodes                  221/65536        7072/2097152  ( 0.3%) 
+texinfos               204/12288       14688/884736   ( 1.7%) 
+texdata                 11/2048          352/65536    ( 0.5%) 
+dispinfos                0/0               0/0        ( 0.0%) 
+disp_verts               0/0               0/0        ( 0.0%) 
+disp_tris                0/0               0/0        ( 0.0%) 
+disp_multiblend          0/0               0/0        ( 0.0%) 
+disp_lmsamples           0/0               0/0        ( 0.0%) 
+faces                  727/65536       40712/3670016  ( 1.1%) 
+hdr faces              727/65536       40712/3670016  ( 1.1%) 
+origfaces              396/65536       22176/3670016  ( 0.6%) 
+leaves                 224/65536        7168/2097152  ( 0.3%) 
+leaffaces              853/65536        1706/131072   ( 1.3%) 
+leafbrushes            266/65536         532/131072   ( 0.4%) 
+areas                    3/256            24/2048     ( 1.2%) 
+surfedges             4719/512000      18876/2048000  ( 0.9%) 
+edges                 2746/256000      10984/1024000  ( 1.1%) 
+LDR worldlights          0/8192            0/819200   ( 0.0%) 
+HDR worldlights          5/8192          500/819200   ( 0.1%) 
+leafwaterdata            0/32768           0/393216   ( 0.0%) 
+waterstrips             17/32768         170/327680   ( 0.1%) 
+waterverts               0/65536           0/786432   ( 0.0%) 
+waterindices           306/65536         612/131072   ( 0.5%) 
+cubemapsamples           0/1024            0/16384    ( 0.0%) 
+overlays                 1/512           352/180224   ( 0.2%) 
+LDR lightdata         [variable]           0/0        ( 0.0%) 
+HDR lightdata         [variable]      622584/0        ( 0.0%) 
+visdata               [variable]           0/16777216 ( 0.0%) 
+entdata               [variable]        3875/393216   ( 1.0%) 
+LDR ambient table      224/65536         896/262144   ( 0.3%) 
+HDR ambient table      224/65536         896/262144   ( 0.3%) 
+LDR leaf ambient       224/65536        6272/1835008  ( 0.3%) 
+HDR leaf ambient      1371/65536       38388/1835008  ( 2.1%) 
+occluders                0/0               0/0        ( 0.0%) 
+occluder polygons        0/0               0/0        ( 0.0%) 
+occluder vert ind        0/0               0/0        ( 0.0%) 
+Prop Hull Verts          0/0               0/0        ( 0.0%) 
+Prop Hull Blob           0/0               0/0        ( 0.0%) 
+Prop Hull Lists          0/0               0/0        ( 0.0%) 
+Prop Hulls               0/0               0/0        ( 0.0%) 
+Prop Hull trilist        0/0               0/0        ( 0.0%) 
+detail props          [variable]           1/12       ( 8.3%) 
+static props          [variable]           1/12       ( 8.3%) 
+pakfile               [variable]       74430/0        ( 0.0%) 
+physics               [variable]       40351/4194304  ( 1.0%) 
+physics terrain       [variable]           2/1048576  ( 0.0%) 
+
+Level flags = 0
+
+Total triangle count: 1695
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\test_map.bsp
+8 seconds elapsed
