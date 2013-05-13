@@ -1,11 +1,11 @@
 
-$modelname "Weapons/v_bliink_bat.mdl"
-$model "default" "crowbar_reference.001.smd"
+$modelname "Weapons/v_bliink_stick.mdl"
+$model "default" "Stick.smd"
 $scale 0.75
 $origin 150 200 20
 
 $cdmaterials "models\Weapons\V_hand\"
-$cdmaterials "models\Weapons\V_crowbar\"
+$cdmaterials "models\Weapons\bliink_stick\"
 $hboxset "default"
 $hbox 0 "ValveBiped.Bip01_Spine4" 0.000  0.000  -1.938  2.033  1.001  0.000
 $hbox 0 "ValveBiped.Bip01_R_UpperArm" -1.763  -2.283  -2.700  11.693  4.552  3.363

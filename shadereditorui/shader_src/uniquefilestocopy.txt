@@ -12,6 +12,11 @@ common_flashlight_fxc.h
 common_parallax.h
 ..\..\..\..\common\alien swarm\bin\shadercompile.exe
 ..\..\..\..\common\alien swarm\bin\shadercompile_dll.dll
+<<<<<<< HEAD
 000000_postproc_nightvision_pos_preview_vs30.fxc
 000000_postproc_nightvision_preview_vs30.fxc
 000000_postproc_nightvision_preview_ps30.fxc
+=======
+fogged_vs30.fxc
+fogged_ps30.fxc
+>>>>>>> 3c3bc5c45a81bed25e65b12321145f056cd3c615

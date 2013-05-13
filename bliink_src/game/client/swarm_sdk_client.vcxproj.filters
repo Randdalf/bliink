@@ -1994,6 +1994,9 @@
     <ClCompile Include="sdk\bliink_hud_item_name.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
+    <ClCompile Include="weapon_stick.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="achievement_notification_panel.h">

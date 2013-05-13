@@ -1,7 +1,11 @@
 "config"
 {
 	"preview_visible"		"1"
+<<<<<<< HEAD
 	"p_x"		"917"
+=======
+	"p_x"		"911"
+>>>>>>> 3c3bc5c45a81bed25e65b12321145f056cd3c615
 	"p_y"		"390"
 	"p_sx"		"449"
 	"p_sy"		"378"

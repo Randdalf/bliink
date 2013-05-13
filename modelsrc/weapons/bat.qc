@@ -5,7 +5,7 @@ $origin 0 10 -60
 
 $body mybody	"bat.smd"
 $staticprop
-$surfaceprop	combine_metal
+$surfaceprop	combine_wood
 
 $sequence idle	"bat.smd" fps 30 ACT_IDLE 1
 

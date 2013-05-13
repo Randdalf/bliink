@@ -843,6 +843,7 @@ exit 1
     <ClCompile Include="weapon_machete.cpp" />
     <ClCompile Include="weapon_selection.cpp" />
     <ClCompile Include="weapons_resource.cpp" />
+    <ClCompile Include="weapon_stick.cpp" />
     <ClCompile Include="WorldDimsProxy.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

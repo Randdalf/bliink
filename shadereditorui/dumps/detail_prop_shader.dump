@@ -11,7 +11,7 @@
 	"i_dtest"		"1"
 	"i_dwrite"		"1"
 	"i_srgbw"		"0"
-	"i_vfmt_flags"		"28573959"
+	"i_vfmt_flags"		"57147399"
 	"i_vfmt_texcoords"		"3"
 	"i_vfmt_udata"		"0"
 	"i_vfmt_texcoordDim_0"		"2"
@@ -103,22 +103,6 @@
 			"i_max"		"1"
 			"i_type"		"11"
 		}
-		"combo_3"
-		{
-			"sz_name"		"PIXELFOGTYPE"
-			"i_static"		"0"
-			"i_min"		"0"
-			"i_max"		"1"
-			"i_type"		"7"
-		}
-		"combo_4"
-		{
-			"sz_name"		"WRITEWATERFOGTODESTALPHA"
-			"i_static"		"0"
-			"i_min"		"0"
-			"i_max"		"1"
-			"i_type"		"8"
-		}
 		"econst_0"
 		{
 			"i_envconstidx"		"15"
@@ -204,6 +188,6 @@
 			"i_cubemap"		"0"
 			"i_srgb"		"0"
 		}
-		"i_numdcombos"		"24"
+		"i_numdcombos"		"6"
 	}
 }
