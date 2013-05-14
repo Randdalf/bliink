@@ -435,6 +435,7 @@ bool CBliinkItemInventory::AddItem( IBliinkItem* pNewItem )
 {
 	int iStartSearch = 0;
 	BLIINK_ITEM_INFO_HANDLE hItemEmpty = GetItemHandle( "empty_item" );
+	CBliinkItemWeapon* pItemWeapon;
 
 	// Check if pNewItem is not NULL first
 	if( !pNewItem )
@@ -444,6 +445,11 @@ bool CBliinkItemInventory::AddItem( IBliinkItem* pNewItem )
 	if( !pNewItem->IsWeapon() )
 	{
 		iStartSearch = INVENTORY_WEAPON_SLOTS;
+	}else{
+		pItemWeapon = static_cast< CBliinkItemWeapon* >( pNewItem );
+		if (pOwner->Weapon_BliinkHasWeapon( pItemWeapon->GetWeapon() )){
+			return false; //already own weapon;
+		}
 	}
 
 	// If we can stack our item. Weapons don't stack so no need to worry about them here.
@@ -495,7 +501,6 @@ bool CBliinkItemInventory::AddItem( IBliinkItem* pNewItem )
 			// Creating weapon if we don't have one.
 			if( pNewItem->IsWeapon() )
 			{
-				CBliinkItemWeapon* pItemWeapon = static_cast< CBliinkItemWeapon* >( pNewItem );
 
 				// Creating weapon for item if it doesn't have one.
 				if( !pItemWeapon->HasWeapon() )
@@ -528,11 +533,16 @@ bool CBliinkItemInventory::AddItem( IBliinkItem* pNewItem )
 				// Look for a free slot in the normal inventory if we already hold
 				// a weapon of the same type as ours and we're inserting it
 				// into our weapon slots.
+				//EDIT 
+				//return false, cant pick up weapon we already own
 				if( pItemWeapon->HasWeapon() &&
 					pOwner->Weapon_BliinkHasWeapon( pItemWeapon->GetWeapon() ) )
 				{
-					i = INVENTORY_WEAPON_SLOTS - 1;
-					continue;
+					//i = INVENTORY_WEAPON_SLOTS - 1;
+					//continue;
+					Msg("Already Own Weapon");
+					return false;
+					//return false, cant pick up weapon we already own
 				}
 				else
 				{

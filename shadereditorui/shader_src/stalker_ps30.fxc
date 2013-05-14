@@ -18,7 +18,7 @@ sampler _Sampler_00		: register( s0 );
 sampler _Sampler_01		: register( s1 );
 
 // Constants
-const float2 g_cData_Random1348		: register( c16 ); 		// Random gen
+const float2 g_cData_Random1553		: register( c16 ); 		// Random gen
 
 // Semantic structures
 struct PS_INPUT
@@ -43,7 +43,7 @@ PS_OUTPUT main( const PS_INPUT In )
 	float3 _var4 = tex2D( _Sampler_00, In.vTexCoord_0 ).rgb;
 	float2 _var5 = In.vTexCoord_0 - float( 0.500000 );
 	float _var6 = tex2D( _Sampler_01, _var0 ).g;
-	_var1 = _var1 + g_cData_Random1348;
+	_var1 = _var1 + g_cData_Random1553;
 	float _var7 = length( _var2 );
 	float _var8 = length( _var3 );
 	float2 _var9 = normalize( _var5 );

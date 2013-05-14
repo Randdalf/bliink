@@ -53,7 +53,7 @@
 			"i_normregister"		"0"
 			"i_econstsize"		"1"
 			"i_smartcomps"		"1"
-			"sz_smartname"		"Random330"
+			"sz_smartname"		"Random1432"
 			"fl_smartdefault_00"		"0.000000"
 			"fl_smartdefault_01"		"1.000000"
 			"fl_smartdefault_02"		"0.000000"
@@ -72,6 +72,7 @@
 		}
 		"texsamp_0"
 		{
+			"sz_fallback"		"white"
 			"i_sampidx"		"0"
 			"i_texmode"		"1"
 			"i_cubemap"		"0"
@@ -80,6 +81,7 @@
 		"texsamp_1"
 		{
 			"sz_param"		"noise2"
+			"sz_fallback"		"white"
 			"i_sampidx"		"1"
 			"i_texmode"		"0"
 			"i_cubemap"		"0"
@@ -88,6 +90,7 @@
 		"texsamp_2"
 		{
 			"sz_param"		"noise"
+			"sz_fallback"		"white"
 			"i_sampidx"		"2"
 			"i_texmode"		"0"
 			"i_cubemap"		"0"

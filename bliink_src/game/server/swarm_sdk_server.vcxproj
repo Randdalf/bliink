@@ -248,6 +248,7 @@ exit 1
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\client\weapon_bat.cpp" />
+    <ClCompile Include="..\client\weapon_claw.cpp" />
     <ClCompile Include="..\client\weapon_machete.cpp" />
     <ClCompile Include="..\client\weapon_stick.cpp" />
     <ClCompile Include="..\shared\achievement_saverestore.cpp" />

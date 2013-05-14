@@ -1,10 +1,15 @@
 "VideoConfig"
 {
 	"setting.cpu_level"		"2"
+<<<<<<< HEAD
 	"setting.gpu_level"		"2"
 	"setting.mat_antialias"		"1"
+=======
+	"setting.gpu_level"		"0"
+	"setting.mat_antialias"		"4"
+>>>>>>> c767e7e3289a114fb6448791f59dc1f0c366487b
 	"setting.mat_aaquality"		"0"
-	"setting.mat_forceaniso"		"1"
+	"setting.mat_forceaniso"		"8"
 	"setting.mat_vsync"		"1"
 	"setting.mat_triplebuffered"		"1"
 	"setting.mat_grain_scale_override"		"1"
@@ -12,9 +17,9 @@
 	"setting.gpu_mem_level"		"2"
 	"setting.mem_level"		"2"
 	"setting.mat_queue_mode"		"-1"
-	"setting.defaultres"		"1280"
-	"setting.defaultresheight"		"720"
+	"setting.defaultres"		"1366"
+	"setting.defaultresheight"		"768"
 	"setting.aspectratiomode"		"1"
-	"setting.fullscreen"		"1"
+	"setting.fullscreen"		"0"
 	"setting.nowindowborder"		"0"
 }
