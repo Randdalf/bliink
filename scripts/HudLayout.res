@@ -22,6 +22,18 @@
 	  "enabled" "1"
 	}
 
+	BliinkHudGameState
+	{
+	  "fieldName" "BliinkHudGameState"
+	  "xpos" "c-128"
+	  "ypos" "16"
+	  "wide" "480"
+	  "tall" "104"
+	  "visible" "1"
+	  "enabled" "1"
+	}
+
+
 	BliinkHudLevel
 	{
 	  "fieldName" "BliinkHudLevel"
@@ -32,32 +44,6 @@
 	  "visible" "1"
 	  "enabled" "1"
 	}
-
-	HudBliink
-   {
-      "fieldName" "HudBliink"
-      "xpos" "0"
-      "ypos" "0"
-      "wide" "2400"
-      "tall" "2400"
-      "visible" "0"
-      "enabled" "1"
-      
-      "PaintBackgroundType"   "2"
-   }
-	
-	HudNoFace
-   {
-      "fieldName" "HudNoFace"
-      "xpos" "250"
-      "ypos" "6"
-      "wide" "225"
-      "tall" "50"
-      "visible" "0"
-      "enabled" "1"
-      
-      "PaintBackgroundType"   "2"
-   }
 
 
 	BliinkHudUpgradeNotice
@@ -114,6 +100,32 @@
 	  "visible" "1"
 	  "enabled" "1"
 	}
+
+	HudBliink
+   {
+      "fieldName" "HudBliink"
+      "xpos" "0"
+      "ypos" "0"
+      "wide" "2400"
+      "tall" "2400"
+      "visible" "0"
+      "enabled" "1"
+      
+      "PaintBackgroundType"   "2"
+   }
+	
+	HudNoFace
+   	{
+      "fieldName" "HudNoFace"
+      "xpos" "250"
+      "ypos" "6"
+      "wide" "225"
+      "tall" "50"
+      "visible" "0"
+      "enabled" "1"
+      
+      "PaintBackgroundType"   "2"
+   	}
 
 	HudHealth
 	{

@@ -38,6 +38,8 @@
 #include "tier0/icommandline.h"
 #include "fmtstr.h"
 
+#include "bliink_gamevars_shared.h"
+
 #include "matchmaking/swarm/imatchext_swarm.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
@@ -694,7 +696,11 @@ void MainMenu::OnCommand( const char *command )
 	else if( !Q_strcmp( command, "BliinkStartGame" ) )
 	{
 		// Alex; Bliink default map
-		engine->ClientCmd("map bliink; bliink_min_survivors -1; bliink_min_players 0; sv_cheats 1");
+		//engine->ClientCmd("map bliink; bliink_min_survivors -1; bliink_min_players 0; sv_cheats 1");
+		char execString[64];
+
+		sprintf( execString, "connect %s", Bliink_ConnectIP.GetString() );
+		engine->ClientCmd( execString );
 	}
 	else if( !Q_strcmp( command, "OpenCreditsPage" ) )
 	{

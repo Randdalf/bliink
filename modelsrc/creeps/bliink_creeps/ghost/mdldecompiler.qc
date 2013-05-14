@@ -46,7 +46,7 @@ $sequence ghost_a_death "ghost_a_death" ACT_DOTA_DIE 1 fps 30.00 {
 
 $sequence ghost_a_hit "ghost_a_hit" ACT_DOTA_ATTACK 1 fps 30.00
 $sequence ghost_a_idle "ghost_a_idle" loop ACT_DOTA_IDLE 1 fps 30.00
-$sequence ghost_a_run "ghost_a_run" loop ACT_DOTA_RUN 1 fps 30.00
+$sequence bliink_ghost_run "bliink_ghost_run" walkframe 64 LX loop ACT_DOTA_RUN 1 fps 30.00
 $sequence ghost_a_flail "ghost_a_flail" loop ACT_DOTA_FLAIL 1 fps 30.00
 $sequence ghost_a_stun "ghost_a_stun" loop ACT_DOTA_DISABLED 1 fps 30.00
 $sequence ghost_a_portrait "ghost_a_portrait" loop ACT_DOTA_CAPTURE 1 fps 30.00

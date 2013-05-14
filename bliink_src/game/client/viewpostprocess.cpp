@@ -1948,7 +1948,7 @@ void DoEnginePostProcessing( int x, int y, int w, int h, bool bFlashlightIsOn, b
 	static IMaterial *pMat;
 	if(pPlayer->GetBliinkPlayerStats().GetStatus() == BLIINK_STATUS_FOGGED){
 		pMat = materials->FindMaterial( "fogged", TEXTURE_GROUP_OTHER );
-	}else if(pPlayer->State_Get() == STATE_BLIINK_SPECTATE_PREGAME || pPlayer->State_Get() == STATE_BLIINK_WAITING_FOR_PLAYERS || pPlayer->State_Get() == STATE_BLIINK_SPECTATE ){
+	}else if(pPlayer->State_Get() == STATE_BLIINK_SPECTATE_PREGAME || pPlayer->State_Get() == STATE_BLIINK_WAITING_FOR_PLAYERS || pPlayer->State_Get() == STATE_BLIINK_SPECTATE || pPlayer->State_Get() == STATE_BLIINK_WELCOME ){
 		pMat = materials->FindMaterial( "spectate", TEXTURE_GROUP_OTHER );
 	}else if(pPlayer->State_Get() == STATE_BLIINK_STALKER || pPlayer->State_Get() == STATE_BLIINK_STALKER_DEATH_ANIM || pPlayer->State_Get() == STATE_BLIINK_STALKER_RESPAWN){
 		pMat = materials->FindMaterial( "stalker", TEXTURE_GROUP_OTHER );

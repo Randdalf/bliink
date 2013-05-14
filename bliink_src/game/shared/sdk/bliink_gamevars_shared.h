@@ -39,6 +39,8 @@ extern ConCommand Bliink_InventoryDrop;
 extern ConCommand Bliink_InventoryConsume;
 extern ConCommand Bliink_InventoryDelete;
 extern ConCommand Bliink_InventorySetNextAmmoType;
+
+extern ConVar Bliink_ConnectIP;
 #endif
 
 #endif // BLIINK_GAMEVARS_SHARED_H
