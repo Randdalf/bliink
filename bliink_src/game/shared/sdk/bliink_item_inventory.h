@@ -38,10 +38,11 @@ public:
 	void Command_Consume(int iFromSlot);
 	void Command_Delete(int iFromSlot);
 	void Command_SetNextAmmoType();
-
 	// Other methods
 #ifndef CLIENT_DLL
 	bool AddItem( IBliinkItem* pNewItem );
+
+	void ClearInventory();
 
 	// Upgrade stuff
 	bool	UnlockWeaponSlot( void );

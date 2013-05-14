@@ -9,7 +9,7 @@
 #include "tier0/memdbgon.h"
 
 // Bliink ConVars
-ConVar Bliink_CountdownToLive( "bliink_countdown_to_live", "5.0", FCVAR_REPLICATED );
+ConVar Bliink_CountdownToLive( "bliink_countdown_to_live", "30.0", FCVAR_REPLICATED );
 ConVar Bliink_ResultsTime( "bliink_results_time", "5.0", FCVAR_REPLICATED );
 ConVar Bliink_MinPlayers( "bliink_min_players", "2", FCVAR_REPLICATED );
 ConVar Bliink_MinSurvivors( "bliink_min_survivors", "1", FCVAR_REPLICATED );
@@ -18,6 +18,8 @@ ConVar Bliink_FogPlayerTime( "bliink_fog_playertime", "90.0f", FCVAR_REPLICATED 
 
 // Bliink ConCommands
 #ifdef CLIENT_DLL
+ConVar Bliink_ConnectIP( "bliink_connect_ip", "127.0.0.1", FCVAR_CLIENTDLL | FCVAR_ARCHIVE );
+
 void send_f ( const CCommand & args )
 {
 	engine->ServerCmd( args[ 0 ] );
