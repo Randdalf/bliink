@@ -180,44 +180,26 @@ void bliink_inventory_ui::OnTick()
 						InventorySlots[i]->type = "consumable";
 					else
 						InventorySlots[i]->type = "weapon";
+					//else get type ammo ? 
 
 					InventorySlots[i]->m_pLabel->SetVisible(false);
 				
-					if( i < 5 ) 
-						InventorySlots[i]->m_pImage->SetImage("empty");
-					if ( i == 5 )
-						InventorySlots[i]->m_pImage->SetImage("banana");
-					if ( i == 6 )
-						InventorySlots[i]->m_pImage->SetImage("pistol_ammo");
-					if ( i == 7 )
-						InventorySlots[i]->m_pImage->SetImage("rifle_ammo");
-					if ( i == 8 )
-						InventorySlots[i]->m_pImage->SetImage("shotgun_ammo");
-					if ( i == 9 )
-						InventorySlots[i]->m_pImage->SetImage("breakfast");
-					if ( i == 10 )
-						InventorySlots[i]->m_pImage->SetImage("fish");
-					if ( i == 11 )
-						InventorySlots[i]->m_pImage->SetImage("corn");
-					if ( i == 12 )
-						InventorySlots[i]->m_pImage->SetImage("health_large");
-					if ( i == 13 )
-						InventorySlots[i]->m_pImage->SetImage("health_medium");
-					if ( i == 14 )
-						InventorySlots[i]->m_pImage->SetImage("health_small");
-					if ( i > 14 )
-						InventorySlots[i]->m_pImage->SetImage("empty");
+					if ( amount == 0 )
+						InventorySlots[i]->m_aLabel->SetVisible(false);
+					else
+						InventorySlots[i]->m_aLabel->SetVisible(true);
 
-					
+					InventorySlots[i]->m_pImage->SetImage(name);
+
 					InventorySlots[i]->m_pImage->Paint();
 
-					// empty - empty slot
-					// fix sizes
-					// locked - lock slot
-					// get rid of buttons / header
-					// make all the images.
-					// mouseover 
-					// different ammo types
+					// fix sizes :)
+			
+					// make all the images done 
+
+					// mouseover almost done
+
+					// different ammo types almost done
 
 				}
 			}
