@@ -44,6 +44,7 @@ static const char * s_WeaponAliasInfo[] =
 	"machete",	// SDK_WEAPON_MACHETE
 	"bat",	    // SDK_WEAPON_BAT
 	"stick",	// SDK_WEAPON_STICK
+	"claw",  	// SDK_WEAPON_CLAW
 	NULL,		// WEAPON_NONE
 };
 

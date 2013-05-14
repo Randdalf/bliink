@@ -52,6 +52,7 @@ float deadVol;
 int state = -1;
 int theme = 0;
 bool surviver = false;
+bool stalker = false;
 bool cagesPlaying = false;
 
 
@@ -910,6 +911,7 @@ void C_BliinkPlayer::ClientThink()
 		cagesThemeID = enginesound->GetGuidForLastSoundEmitted();
 		cagesPlaying = true;
 		surviver = true;
+		stalker = false;
 		theme = 1;
 		Msg("Theme = 1\n");
 		waitingSoundPlaying = false;

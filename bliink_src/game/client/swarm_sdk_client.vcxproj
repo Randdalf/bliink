@@ -840,6 +840,7 @@ exit 1
     <ClCompile Include="warp_overlay.cpp" />
     <ClCompile Include="WaterLODMaterialProxy.cpp" />
     <ClCompile Include="..\shared\weapon_parse.cpp" />
+    <ClCompile Include="weapon_claw.cpp" />
     <ClCompile Include="weapon_machete.cpp" />
     <ClCompile Include="weapon_selection.cpp" />
     <ClCompile Include="weapons_resource.cpp" />

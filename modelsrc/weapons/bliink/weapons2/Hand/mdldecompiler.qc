@@ -1,8 +1,8 @@
 
-$modelname "Weapons/v_bliink_machete.mdl"
-$model "default" "machete-V.smd"
-$scale 1.4
-$origin -20 5 -15
+$modelname "Weapons/v_bliink_claw.mdl"
+$model "default" "claw-V.smd"
+$scale 1.0
+$origin -15 2 -10
 
 $cdmaterials "models\Weapons\V_hand\"
 $cdmaterials "models\Weapons\bliink_machete\"
