@@ -27,6 +27,10 @@ class CBliinkItemInventory
 public:
 	CBliinkItemInventory();
 
+	int GetItemStackCounts(int iFromSlot);
+	char* GetItemName(int iFromSlot);
+	bool IsEmpty();
+
 	// Command methods
 	void Command_Move(int iFromSlot, int iToSlot);
 	void Command_Craft(int iFromSlot, int iToSlot);
@@ -49,6 +53,7 @@ public:
 	void	UpdateAmmoCounts( void );
 	int		GetAmmoSubtype( int iAmmoSlot );
 
+	
 	// Crafting stuff
 	// bool CanCraft(from, to)
 

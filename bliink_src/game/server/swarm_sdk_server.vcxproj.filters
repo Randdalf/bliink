@@ -1635,6 +1635,9 @@
     <ClCompile Include="..\client\weapon_stick.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
+    <ClCompile Include="..\client\weapon_claw.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\shared\achievement_saverestore.h">

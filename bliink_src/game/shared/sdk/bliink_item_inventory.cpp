@@ -13,6 +13,36 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
+
+char* CBliinkItemInventory::GetItemName (int iFromSlot) 
+{
+	BLIINK_ITEM_INFO_HANDLE slot =	m_iItemTypes[iFromSlot];
+	BLIINK_ITEM_INFO_HANDLE lock =  GetItemHandle( "locked_item" );
+	BLIINK_ITEM_INFO_HANDLE empty =  GetItemHandle( "empty_item" );
+	if ( GetItemInfo( m_iItemTypes.Get(iFromSlot) ) != NULL/* && slot != empty && slot != lock*/ )
+		return  GetItemInfo( m_iItemTypes.Get(iFromSlot) ) -> szItemName;
+	return NULL;
+}
+
+int CBliinkItemInventory::GetItemStackCounts (int iFromSlot) 
+{
+	BLIINK_ITEM_INFO_HANDLE slot =	m_iItemTypes[iFromSlot];
+	BLIINK_ITEM_INFO_HANDLE empty =  GetItemHandle( "empty_item" );
+	BLIINK_ITEM_INFO_HANDLE lock =  GetItemHandle( "locked_item" );
+	if ( GetItemInfo( m_iItemTypes.Get(iFromSlot) ) != NULL && slot != empty && slot != lock )
+		return  m_iStackCounts[iFromSlot];
+	return NULL;
+}
+
+bool CBliinkItemInventory::IsEmpty ()
+{
+	BLIINK_ITEM_INFO_HANDLE slot =	m_iItemTypes[0];
+	BLIINK_ITEM_INFO_HANDLE empty =  GetItemHandle( "empty_item" );
+	if ( slot == empty )
+		return true;
+	else return false;
+}
+
 CBliinkItemInventory::CBliinkItemInventory()
 {
 	BLIINK_ITEM_INFO_HANDLE hItemLocked = GetItemHandle( "locked_item" );
@@ -217,6 +247,7 @@ void CBliinkItemInventory::Command_Craft(int iFromSlot, int iToSlot)
 // Attempts to drop an item from your inventory.
 void CBliinkItemInventory::Command_Drop(int iFromSlot)
 {
+	//Msg( " slot passed here %d !!!!!\n", iFromSlot );
 	// Check slot is valid.
 	if( !(iFromSlot >=0 && iFromSlot < INVENTORY_MAX_SLOTS ) )
 		return;
@@ -404,6 +435,7 @@ bool CBliinkItemInventory::AddItem( IBliinkItem* pNewItem )
 {
 	int iStartSearch = 0;
 	BLIINK_ITEM_INFO_HANDLE hItemEmpty = GetItemHandle( "empty_item" );
+	CBliinkItemWeapon* pItemWeapon;
 
 	// Check if pNewItem is not NULL first
 	if( !pNewItem )
@@ -413,6 +445,11 @@ bool CBliinkItemInventory::AddItem( IBliinkItem* pNewItem )
 	if( !pNewItem->IsWeapon() )
 	{
 		iStartSearch = INVENTORY_WEAPON_SLOTS;
+	}else{
+		pItemWeapon = static_cast< CBliinkItemWeapon* >( pNewItem );
+		if (pOwner->Weapon_BliinkHasWeapon( pItemWeapon->GetWeapon() )){
+			return false; //already own weapon;
+		}
 	}
 
 	// If we can stack our item. Weapons don't stack so no need to worry about them here.
@@ -464,7 +501,6 @@ bool CBliinkItemInventory::AddItem( IBliinkItem* pNewItem )
 			// Creating weapon if we don't have one.
 			if( pNewItem->IsWeapon() )
 			{
-				CBliinkItemWeapon* pItemWeapon = static_cast< CBliinkItemWeapon* >( pNewItem );
 
 				// Creating weapon for item if it doesn't have one.
 				if( !pItemWeapon->HasWeapon() )
@@ -497,11 +533,16 @@ bool CBliinkItemInventory::AddItem( IBliinkItem* pNewItem )
 				// Look for a free slot in the normal inventory if we already hold
 				// a weapon of the same type as ours and we're inserting it
 				// into our weapon slots.
+				//EDIT 
+				//return false, cant pick up weapon we already own
 				if( pItemWeapon->HasWeapon() &&
 					pOwner->Weapon_BliinkHasWeapon( pItemWeapon->GetWeapon() ) )
 				{
-					i = INVENTORY_WEAPON_SLOTS - 1;
-					continue;
+					//i = INVENTORY_WEAPON_SLOTS - 1;
+					//continue;
+					Msg("Already Own Weapon");
+					return false;
+					//return false, cant pick up weapon we already own
 				}
 				else
 				{

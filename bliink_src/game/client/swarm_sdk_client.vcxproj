@@ -305,6 +305,8 @@ exit 1
     <ClCompile Include="..\..\public\bone_accessor.cpp" />
     <ClCompile Include="bliink_hud_level.cpp" />
     <ClCompile Include="bliink_hud_upgrade_notice.cpp" />
+    <ClCompile Include="bliink_inventory_slot.cpp" />
+    <ClCompile Include="bliink_inventory_ui.cpp" />
     <ClCompile Include="blink_panel.cpp" />
     <ClCompile Include="bone_merge_cache.cpp" />
     <ClCompile Include="c_ai_basehumanoid.cpp" />
@@ -840,6 +842,7 @@ exit 1
     <ClCompile Include="warp_overlay.cpp" />
     <ClCompile Include="WaterLODMaterialProxy.cpp" />
     <ClCompile Include="..\shared\weapon_parse.cpp" />
+    <ClCompile Include="weapon_claw.cpp" />
     <ClCompile Include="weapon_machete.cpp" />
     <ClCompile Include="weapon_selection.cpp" />
     <ClCompile Include="weapons_resource.cpp" />
@@ -1579,6 +1582,8 @@ exit 1
     <ClInclude Include="..\shared\ai_speechconcept.h" />
     <ClInclude Include="..\shared\baseachievement.h" />
     <ClInclude Include="..\..\common\blackbox_helper.h" />
+    <ClInclude Include="bliink_inventory_slot.h" />
+    <ClInclude Include="bliink_inventory_ui.h" />
     <ClInclude Include="blink_panel.h" />
     <ClInclude Include="c_baselesson.h" />
     <ClInclude Include="c_basetoggle.h" />
@@ -1604,6 +1609,7 @@ exit 1
     <ClInclude Include="hud_locator_target.h" />
     <ClInclude Include="..\..\engine\iblackbox.h" />
     <ClInclude Include="hud_noface.h" />
+    <ClInclude Include="Ibliink_inventory_ui.h" />
     <ClInclude Include="modelrendersystem.h" />
     <ClInclude Include="..\shared\particle_parse.h" />
     <ClInclude Include="..\shared\particle_property.h" />

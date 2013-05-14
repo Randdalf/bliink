@@ -1,9 +1,3 @@
-//========= Copyright © 1996-2008, Valve Corporation, All rights reserved. ============//
-//
-// Purpose: 
-//
-//=====================================================================================//
-
 #include "cbase.h"
 #include "weapon_sdkbase.h"
 #include "sdk_weapon_melee.h"

@@ -1997,6 +1997,15 @@
     <ClCompile Include="weapon_stick.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
+    <ClCompile Include="weapon_claw.cpp">
+      <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="bliink_inventory_slot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bliink_inventory_ui.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="achievement_notification_panel.h">
@@ -4250,6 +4259,15 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="sdk\c_bliink_item_pickup.h">
+      <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="bliink_inventory_slot.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bliink_inventory_ui.h">
+      <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Ibliink_inventory_ui.h">
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
   </ItemGroup>

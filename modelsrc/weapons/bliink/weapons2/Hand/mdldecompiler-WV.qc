@@ -1,6 +1,6 @@
 
-$modelname "Weapons/wv_bliink_machete.mdl"
-$model "default" "machete-WV.smd"
+$modelname "Weapons/wv_bliink_claw.mdl"
+$model "default" "claw-WV.smd"
 $scale 1.0
 $origin 0 0 0
 
