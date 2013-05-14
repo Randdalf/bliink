@@ -322,10 +322,7 @@ void CBliinkPlayer::GiveDefaultItems()
 {
 	if ( State_Get() == STATE_BLIINK_SURVIVOR )
 	{
-		IBliinkItem* pItem = CreateItemByHandle( GetItemHandle("bliink_stick") );
 
-		if( pItem )
-			GetBliinkInventory().AddItem( pItem );
 
 		// give me survivory stuff...
 

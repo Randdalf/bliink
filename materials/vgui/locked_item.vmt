@@ -1,0 +1,5 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "vgui/locked_item"
+	"$translucent" 1
+}
