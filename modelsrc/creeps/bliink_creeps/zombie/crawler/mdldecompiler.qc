@@ -1,6 +1,6 @@
 $modelname "creeps/lane_creeps/bliink_crawler"
 $model "default" "bliink_crawler.smd"
-
+$origin 0 200 0
 
 $poseparameter turn -1.00 1.00
 $cdmaterials "models\creeps\neutral_creeps\"
