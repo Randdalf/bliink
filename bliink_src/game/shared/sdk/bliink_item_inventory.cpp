@@ -447,9 +447,6 @@ bool CBliinkItemInventory::AddItem( IBliinkItem* pNewItem )
 		iStartSearch = INVENTORY_WEAPON_SLOTS;
 	}else{
 		pItemWeapon = static_cast< CBliinkItemWeapon* >( pNewItem );
-		if (pOwner->Weapon_BliinkHasWeapon( pItemWeapon->GetWeapon() )){
-			return false; //already own weapon;
-		}
 	}
 
 	// If we can stack our item. Weapons don't stack so no need to worry about them here.
@@ -557,6 +554,11 @@ bool CBliinkItemInventory::AddItem( IBliinkItem* pNewItem )
 
 					return true;
 				}
+			}
+			else if (pNewItem->IsWeapon())
+			{
+				//can only have weapons in our weapon slots
+				return false;
 			}
 			else
 			{

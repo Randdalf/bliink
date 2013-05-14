@@ -345,9 +345,7 @@ void CBliinkPlayer::GiveDefaultItems()
 	}
 	else if ( State_Get() == STATE_BLIINK_STALKER )
 	{
-		IBliinkItem* pItem = CreateItemByHandle( GetItemHandle("bliink_claw") );
-
-		 if( pItem ) GetBliinkInventory().AddItem( pItem );
+		GiveNamedItem( "weapon_claw" );
 	}
 }
 #define SDK_PUSHAWAY_THINK_CONTEXT	"SDKPushawayThink"
