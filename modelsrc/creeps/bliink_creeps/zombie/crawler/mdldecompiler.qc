@@ -1,9 +1,9 @@
-$modelname "creeps/lane_creeps/creep_bad_ranged_diretide/creep_bad_ranged_"
-$model "default" "Cube.smd"
-$origin 0 200 0
+$modelname "creeps/lane_creeps/bliink_crawler"
+$model "default" "bliink_crawler.smd"
+
 
 $poseparameter turn -1.00 1.00
-$cdmaterials ""
+$cdmaterials "models\creeps\neutral_creeps\"
 $hboxset "default"
 $hbox 0 "wrist_R" -26.297  -8.993  -8.158  2.471  5.239  15.472
 $hbox 0 "elbow_R" -25.530  -4.827  -5.551  -0.395  6.788  5.854

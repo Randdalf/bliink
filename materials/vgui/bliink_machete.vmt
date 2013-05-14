@@ -1,0 +1,6 @@
+"LightmappedGeneric"
+{
+	"$basetexture" "vgui/bliink_machete"
+	"$translucent" 1
+	"$transparent" 1
+}

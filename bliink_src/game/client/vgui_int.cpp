@@ -26,6 +26,8 @@
 #include "noface.h"
 #include "matsys_controls/matsyscontrols.h"
 
+#include "Ibliink_inventory_ui.h"
+
 using namespace vgui;
 
 void MP3Player_Create( vgui::VPANEL parent );
@@ -454,6 +456,9 @@ void VGui_CreateGlobalPanels( void )
 	loadingdisc->Create( gameToolParent );
 	messagechars->Create( gameToolParent );
 
+	VPANEL invP = enginevgui->GetPanel( PANEL_INGAMESCREENS );
+	InventoryPanel->Create(invP);
+
 	// Debugging or related tool
 	fps->Create( toolParent );
 #if defined( TRACK_BLOCKING_IO )
@@ -484,6 +489,7 @@ void VGui_Shutdown()
 
 	messagechars->Destroy();
 	loadingdisc->Destroy();
+	InventoryPanel->Destroy();
 	for ( int hh = 0; hh < MAX_SPLITSCREEN_PLAYERS; ++hh )
 	{
 		ACTIVE_SPLITSCREEN_PLAYER_GUARD_VGUI( hh );
