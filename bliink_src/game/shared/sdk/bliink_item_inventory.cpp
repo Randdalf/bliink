@@ -784,6 +784,15 @@ int CBliinkItemInventory::GetAmmoSubtype( int iAmmoSlot )
 
 	return GetItemInfo( m_iItemTypes[iItemSlot] )->m_iSubType;
 }
+
+void CBliinkItemInventory::ClearInventory()
+{
+	for(int i=0; i<INVENTORY_MAX_SLOTS; i++)
+	{
+		Command_Delete(i);
+	}
+}
+
 #endif
 
 // Returns the amount of ammo available for a specific ammo type.
