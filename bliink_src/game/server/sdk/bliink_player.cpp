@@ -339,10 +339,18 @@ void CBliinkPlayer::GiveDefaultItems()
 		GiveNamedItem( "weapon_shotgun" );
 		GiveNamedItem( "weapon_crowbar" );
 		GiveNamedItem( "weapon_grenade" );*/
+		
+		IBliinkItem* pItem = CreateItemByHandle( GetItemHandle("bliink_stick") );
+
+		 if( pItem ) GetBliinkInventory().AddItem( pItem );
+
+
 	}
 	else if ( State_Get() == STATE_BLIINK_STALKER )
 	{
-		// give me stalker stuff
+		IBliinkItem* pItem = CreateItemByHandle( GetItemHandle("bliink_claw") );
+
+		 if( pItem ) GetBliinkInventory().AddItem( pItem );
 	}
 }
 #define SDK_PUSHAWAY_THINK_CONTEXT	"SDKPushawayThink"
@@ -855,7 +863,7 @@ void CBliinkPlayer::PlayerDeathThink()
 }
 void CBliinkPlayer::CreateRagdollEntity()
 {
-	// If we already have a ragdoll, don't make another one.
+	// If we already have a ragdoll, don't make another pone.
 	CSDKRagdoll *pRagdoll = dynamic_cast< CSDKRagdoll* >( m_hRagdoll.Get() );
 
 	if( pRagdoll )
@@ -1564,6 +1572,8 @@ void CBliinkPlayer::State_Enter_BLIINK_STALKER()
 	RemoveSolidFlags( FSOLID_NOT_SOLID );
     m_Local.m_iHideHUD = 0;
 	PhysObjectWake();
+
+	GiveDefaultItems();
 
 	Spawn();
 
