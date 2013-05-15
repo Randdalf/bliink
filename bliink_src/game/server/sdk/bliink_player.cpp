@@ -1102,6 +1102,14 @@ bool CBliinkPlayer::ClientCommand( const CCommand &args )
 		{
 			m_Inventory.Debug_PrintInventory();
 		}
+		else if( FStrEq( pcmd, "bliink_xbox_use_health" ) )
+		{
+			m_Inventory.UseHealthItem();
+		}
+		else if( FStrEq( pcmd, "bliink_xbox_use_food" ) )
+		{
+			m_Inventory.UseFoodItem();
+		}
 
 		// Blink
 		else if( FStrEq( pcmd, "bliink_blink_on" ) )
@@ -1287,7 +1295,7 @@ void CBliinkPlayer::MoveToNextIntroCamera()
 	SnapEyeAngles( m_pIntroCamera->GetAbsAngles() );
 
 	if( pOldCamera != m_pIntroCamera )
-		m_fIntroCamTime = gpGlobals->curtime + 6;
+		m_fIntroCamTime = gpGlobals->curtime + 10;
 }
 
 //**************************************************************************
@@ -1418,7 +1426,12 @@ void CBliinkPlayer::State_Enter_BLIINK_SPECTATE()
 }
 
 void CBliinkPlayer::State_PreThink_BLIINK_SPECTATE()
-{	
+{		
+	// Update whatever intro camera it's at.
+	if( m_pIntroCamera && (gpGlobals->curtime >= m_fIntroCamTime) )
+	{
+		MoveToNextIntroCamera();
+	}
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_SURVIVOR()

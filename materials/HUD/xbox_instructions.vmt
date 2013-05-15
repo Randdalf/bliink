@@ -1,0 +1,7 @@
+"UnlitGeneric"
+{
+      "$basetexture" "HUD/xbox_instructions"
+      "$translucent"   "1"
+      "$translucency" "1"
+      "$ignorez" "1"
+}

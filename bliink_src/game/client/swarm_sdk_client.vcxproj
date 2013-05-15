@@ -710,6 +710,7 @@ exit 1
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="sdk\bliink_hud_ammo.cpp" />
+    <ClCompile Include="sdk\bliink_hud_instructions.cpp" />
     <ClCompile Include="sdk\bliink_hud_item_name.cpp" />
     <ClCompile Include="sdk\bliink_hud_meters.cpp" />
     <ClCompile Include="sdk\bliink_hud_player_states.cpp" />

@@ -54,6 +54,8 @@ public:
 	void	UpdateAmmoCounts( void );
 	int		GetAmmoSubtype( int iAmmoSlot );
 
+	void	UseHealthItem( void );
+	void	UseFoodItem( void );
 	
 	// Crafting stuff
 	// bool CanCraft(from, to)

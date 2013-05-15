@@ -795,6 +795,34 @@ void CBliinkItemInventory::ClearInventory()
 	}
 }
 
+void CBliinkItemInventory::UseHealthItem( void )
+{
+	for(int i=0; i<INVENTORY_MAX_SLOTS; i++)
+	{
+		CBliinkItemInfo* pInfo = GetItemInfo( m_iItemTypes.Get(i) );
+
+		if( pInfo->m_iType == ITEM_TYPE_CONSUMABLE &&
+			pInfo->m_iSubType == ITEM_STYPE_CONSUMABLE_HEALTH )
+		{
+			Command_Consume(i);
+		}
+	}
+}
+
+void CBliinkItemInventory::UseFoodItem( void )
+{
+	for(int i=0; i<INVENTORY_MAX_SLOTS; i++)
+	{
+		CBliinkItemInfo* pInfo = GetItemInfo( m_iItemTypes.Get(i) );
+
+		if( pInfo->m_iType == ITEM_TYPE_CONSUMABLE &&
+			pInfo->m_iSubType == ITEM_STYPE_CONSUMABLE_FOOD )
+		{
+			Command_Consume(i);
+		}
+	}
+}
+
 #endif
 
 // Returns the amount of ammo available for a specific ammo type.
@@ -823,4 +851,5 @@ int CBliinkItemInventory::GetAmmoClipCount( int iAmmoSlot ) const
 	else
 		return 0;
 #endif
+
 }
