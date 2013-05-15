@@ -312,7 +312,7 @@ void FX_Dust( const Vector &vecOrigin, const Vector &vecDirection, float flSize,
 		particle.m_flRoll		= random->RandomInt( 0, 360 );
 		particle.m_flRollDelta	= random->RandomFloat( -0.5f, 0.5f );
 
-		AddSimpleParticle( &particle, g_Mat_DustPuff[random->RandomInt(0,1)] );
+		AddSimpleParticle( &particle, g_Mat_DustPuff[random->RandomInt(0,1)], );
 	}
 }
 

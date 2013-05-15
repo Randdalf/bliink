@@ -75,7 +75,7 @@ void C_BliinkFog::AttemptSpawnNewParticle()
 	{
 		// Calculating point to spawn at around player.
 		Vector pOrigin = pPlayer->GetAbsOrigin();
-		Vector fOrigin = GetAbsOrigin();
+		Vector fOrigin = Vector();//GetAbsOrigin();
 		float x = pOrigin.x;
 		float y = pOrigin.y;
 		float range = 1.5f * ((float) this->m_DistMax);

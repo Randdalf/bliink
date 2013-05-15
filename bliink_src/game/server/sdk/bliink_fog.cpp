@@ -92,6 +92,8 @@ void CBliinkFog::Think()
 
 		m_flFogRadius -= fRadiusPerSec*0.1f;
 	}
+	
+	Msg("%d\n", (int) m_flFogRadius );
 
 	SetNextThink( gpGlobals->curtime + 0.1f );
 }
@@ -102,7 +104,7 @@ bool CBliinkFog::IsInFog( CBaseEntity* pEntity )
 		return false;
 
 	Vector pOrigin = pEntity->GetAbsOrigin();
-	Vector fOrigin = GetAbsOrigin();
+	Vector fOrigin = Vector(0,0,0);//GetAbsOrigin();
 
 	float xOffset = pOrigin.x - fOrigin.x;
 	float yOffset = pOrigin.y - fOrigin.y;
