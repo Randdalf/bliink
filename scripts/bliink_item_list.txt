@@ -24,13 +24,13 @@ BliinkItemList
 		"can_stack"		"0"
 
 		// weapon-specific
-		"weapon_name"	"weapon_pistol"
+		"weapon_name"	"weapon_shotgun"
 
 		// ammo-specific
 		"ammo_name"		"none"
 
 		// world model
-		"world_model"	"models/weapons/w_pist_deagle.mdl"
+		"world_model"	"models/weapons/w_shot_m3super90.mdl"
 	}
 	"bliink_machete"
 	{
