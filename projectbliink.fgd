@@ -29,6 +29,22 @@
 [
 ]
 
+@PointClass base(Targetname,EnableDisable) = bliink_npc_roaming_spawner :
+  "NPC SPAWWWNS!!"
+[
+  input BeginSpawning(void) : "Begin spawning npcs"
+  is_camp(choices) : "Is a camp spawner" : 0 : "Is this a camp spawner?" = 
+    [
+      1 : "True"
+      0 : "False"
+    ]
+  has_legs(choices) : "Has legs" : 0 : "Does this AI have legs" = 
+    [
+      1 : "True"
+      0 : "False"
+    ]
+]
+
 @PointClass base(Targetname,EnableDisable) = bliink_item_spawner :
 	"bliink_item_spawner test!"
 [
