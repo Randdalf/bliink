@@ -1,18 +1,11 @@
-$cd "C:\Users\Adam\Desktop"
 $modelname "creeps/neutral_creeps/n_creep_ghost_a/n_creep_ghost_a.mdl"
-$model "default" "n_creep_ghost_a_model.dmx.smd"
+$model "default" "RigidBodyWorld.smd"
 
-$lod 1
- {
-  replacemodel "n_creep_ghost_a_model.dmx" "lod1_n_creep_ghost_a_model.dmx"
-}
-$cdmaterials ""
+$cdmaterials "models\creeps\"
 $hboxset "default"
 $hbox 0 "wrist_L" -0.951  -8.045  -3.776  21.339  7.441  6.637
 $hbox 0 "elbow_L" 0.025  -3.941  -4.627  18.587  3.340  3.772
 $hbox 0 "bicep_L" -0.935  -7.259  -5.430  27.485  4.541  5.940
-$hbox 0 "hair_R2C0" 6.187  -12.780  -11.415  36.450  9.775  10.019
-$hbox 0 "hair_R1C0" -9.048  -11.529  -15.541  29.617  8.330  17.631
 $hbox 0 "head" -12.890  -15.864  -13.395  20.119  9.016  13.395
 $hbox 0 "wrist_R" -21.339  -7.441  -6.637  0.951  8.045  3.776
 $hbox 0 "elbow_R" -18.587  -3.340  -3.772  -0.025  3.941  4.627
@@ -25,8 +18,6 @@ $hboxset "hands"
 $hbox 0 "wrist_L" -0.951  -8.045  -3.776  21.339  7.441  6.637
 $hbox 0 "wrist_R" -21.339  -7.441  -6.637  0.951  8.045  3.776
 $hboxset "head"
-$hbox 0 "hair_R2C0" 6.187  -12.780  -11.415  36.450  9.775  10.019
-$hbox 0 "hair_R1C0" -9.048  -11.529  -15.541  29.617  8.330  17.631
 $hbox 0 "head" -12.890  -15.864  -13.395  20.119  9.016  13.395
 $hboxset "select_high"
 $hbox 0 "spine1" -1.003  -11.354  -12.899  34.962  11.329  12.741
