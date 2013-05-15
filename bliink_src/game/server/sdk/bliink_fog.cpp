@@ -104,7 +104,7 @@ bool CBliinkFog::IsInFog( CBaseEntity* pEntity )
 		return false;
 
 	Vector pOrigin = pEntity->GetAbsOrigin();
-	Vector fOrigin = Vector(0,0,0);//GetAbsOrigin();
+	Vector fOrigin = GetAbsOrigin();
 
 	float xOffset = pOrigin.x - fOrigin.x;
 	float yOffset = pOrigin.y - fOrigin.y;

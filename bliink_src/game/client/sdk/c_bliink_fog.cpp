@@ -75,7 +75,7 @@ void C_BliinkFog::AttemptSpawnNewParticle()
 	{
 		// Calculating point to spawn at around player.
 		Vector pOrigin = pPlayer->GetAbsOrigin();
-		Vector fOrigin = Vector();//GetAbsOrigin();
+		Vector fOrigin = GetAbsOrigin();
 		float x = pOrigin.x;
 		float y = pOrigin.y;
 		float range = 1.5f * ((float) this->m_DistMax);
@@ -124,13 +124,4 @@ void C_BliinkFog::AttemptSpawnNewParticle()
 void C_BliinkFog::ClientThink()
 {
 	BaseClass::ClientThink();
-
-	// Do bbox based on fog radius.
-	Vector o = GetAbsOrigin();
-	Vector vWorldMins, vWorldMaxs;
-
-	vWorldMins = o - Vector( m_flMaxFogRadius, m_flMaxFogRadius, m_flFogHeightDown );
-	vWorldMaxs = o + Vector( m_flMaxFogRadius, m_flMaxFogRadius, m_flFogHeightDown );
-
-	m_Effect.GetBinding().SetBBox( vWorldMins, vWorldMaxs );
 }
