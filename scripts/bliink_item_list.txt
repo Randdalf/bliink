@@ -13,7 +13,7 @@ BliinkItemList
 	}
 
 	// ADD NEW ITEMS BELOW THIS LINE
-	"bliink_pistol"
+	"zz"
 	{
 		// key properties
 		"description"	"Pistol (weapon)"

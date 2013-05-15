@@ -8513,3 +8513,483 @@ Level flags = 2
 Total triangle count: 18638
 Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
 6 minutes, 35 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+Patching WVT material: maps/bliink/bliink/bliink_soil_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 258 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (860902 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 2331 texinfos to 1863
+Reduced 63 texdatas to 60 (1498 bytes to 1380)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+3 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+Patching WVT material: maps/bliink/bliink/bliink_soil_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 264 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (860694 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 2307 texinfos to 1864
+Reduced 63 texdatas to 60 (1498 bytes to 1380)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+2 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+Patching WVT material: maps/bliink/bliink/bliink_soil_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 264 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (860694 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 2307 texinfos to 1864
+Reduced 63 texdatas to 60 (1498 bytes to 1380)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+2 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+Patching WVT material: maps/bliink/bliink/bliink_soil_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 264 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (860694 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 2307 texinfos to 1864
+Reduced 63 texdatas to 60 (1498 bytes to 1380)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+2 seconds elapsed
+
+
+
+4 threads
+reading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+reading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt
+1038 portalclusters
+2443 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 1167 visible clusters (0.00%)
+Total clusters visible: 119495
+Average clusters visible: 115
+Building PAS...
+Average clusters audible: 450
+visdatasize:162804  compressed from 282336
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+7 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+Patching WVT material: maps/bliink/bliink/bliink_soil_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 264 detail faces...done (1)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (860694 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 2307 texinfos to 1864
+Reduced 63 texdatas to 60 (1498 bytes to 1380)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+4 seconds elapsed
+
+
+
+4 threads
+reading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+reading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt
+1038 portalclusters
+2443 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 1164 visible clusters (0.00%)
+Total clusters visible: 119492
+Average clusters visible: 115
+Building PAS...
+Average clusters audible: 450
+visdatasize:162804  compressed from 282336
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+10 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+Patching WVT material: maps/bliink/bliink/bliink_soil_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (1)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 264 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (860694 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 2307 texinfos to 1864
+Reduced 63 texdatas to 60 (1498 bytes to 1380)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+4 seconds elapsed
+
+
+
+4 threads
+reading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+reading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt
+1038 portalclusters
+2443 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 1162 visible clusters (0.00%)
+Total clusters visible: 119490
+Average clusters visible: 115
+Building PAS...
+Average clusters audible: 450
+visdatasize:162804  compressed from 282336
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+10 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+Patching WVT material: maps/bliink/bliink/bliink_soil_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 264 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (860694 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 2307 texinfos to 1864
+Reduced 63 texdatas to 60 (1498 bytes to 1380)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+3 seconds elapsed
+
+
+
+4 threads
+reading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+reading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt
+1038 portalclusters
+2443 numportals
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Optimized: 1167 visible clusters (0.00%)
+Total clusters visible: 119495
+Average clusters visible: 115
+Building PAS...
+Average clusters audible: 450
+visdatasize:162804  compressed from 282336
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+7 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+Patching WVT material: maps/bliink/bliink/bliink_soil_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 264 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (860694 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 2304 texinfos to 1861
+Reduced 62 texdatas to 59 (1479 bytes to 1361)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+2 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+Patching WVT material: maps/bliink/bliink/bliink_soil_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 264 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (860694 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 2307 texinfos to 1864
+Reduced 63 texdatas to 60 (1498 bytes to 1380)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+2 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+Patching WVT material: maps/bliink/bliink/bliink_soil_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 264 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (860694 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 2307 texinfos to 1864
+Reduced 63 texdatas to 60 (1498 bytes to 1380)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+2 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+Patching WVT material: maps/bliink/bliink/bliink_soil_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 264 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (860694 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 2307 texinfos to 1864
+Reduced 63 texdatas to 60 (1498 bytes to 1380)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+2 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+Patching WVT material: maps/bliink/bliink/bliink_soil_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 264 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (860694 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 2307 texinfos to 1864
+Reduced 63 texdatas to 60 (1498 bytes to 1380)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+2 seconds elapsed
+
+
+
+materialPath: c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\materials
+Loading c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.vmf
+Could not locate GameData file projectbliink.fgd
+Patching WVT material: maps/bliink/bliink/bliink_dirtgrass_blend_wvt_patch
+Patching WVT material: maps/bliink/bliink/bliink_soil_blend_wvt_patch
+fixing up env_cubemap materials on brush sides...
+0...1...2...3...4...5...6...7...8...9...100...1...2...3...4...5...6...7...8...9...10Processing areas...done (0)
+Building Faces...done (0)
+Chop Details...done (0)
+Find Visible Detail Sides...
+Merged 264 detail faces...done (0)
+Merging details...done (0)
+FixTjuncs...
+PruneNodes...
+WriteBSP...
+done (0)
+writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.prt...Building visibility clusters...
+done (0)
+Finding displacement neighbors...
+Finding lightmap sample positions...
+Displacement Alpha : 0...1...2...3...4...5...6...7...8...9...10
+Building Physics collision data...
+done (1) (858734 bytes)
+Placing detail props : 0...1...2...3...4...5...6...7...8...9...10
+Compacting texture/material tables...
+Reduced 2291 texinfos to 1848
+Reduced 62 texdatas to 59 (1475 bytes to 1357)
+Writing c:\program files (x86)\steam\steamapps\sourcemods\projectbliink\mapsrc\bliink.bsp
+2 seconds elapsed

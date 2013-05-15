@@ -159,9 +159,12 @@ void CBliinkItemSpawner::SpawnItems( void )
 		Vector spawnOrigin = GetAbsOrigin() + Vector(dist_x,dist_y,dist_z);
 		QAngle spawnAngles = GetAbsAngles() + QAngle(0, 0, RandomFloat()*360.0f);
 
-		pPickup = (CBliinkItemPickup*) CBaseEntity::CreateNoSpawn( "bliink_item_pickup", spawnOrigin, spawnAngles);
-		pPickup->SetItem( m_iItemInfoType[iSelectedItem] );
-		DispatchSpawn( pPickup );
+		if( m_iItemInfoType[iSelectedItem] != GetItemHandle("empty_item"))
+		{
+			pPickup = (CBliinkItemPickup*) CBaseEntity::CreateNoSpawn( "bliink_item_pickup", spawnOrigin, spawnAngles);
+			pPickup->SetItem( m_iItemInfoType[iSelectedItem] );
+			DispatchSpawn( pPickup );
+		}
 	}
 	
 	m_bHasSpawnedItems = true;
