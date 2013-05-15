@@ -885,8 +885,10 @@ void C_BliinkPlayer::ClientThink()
 
 	state = pPlayer->State_Get();
 
-	if(state == STATE_BLIINK_SPECTATE_PREGAME || state == STATE_BLIINK_WAITING_FOR_PLAYERS || state == STATE_BLIINK_SPECTATE || state == STATE_BLIINK_WELCOME)
+	if(state == STATE_BLIINK_SPECTATE_PREGAME || state == STATE_BLIINK_WAITING_FOR_PLAYERS || state == STATE_BLIINK_SPECTATE || state == STATE_BLIINK_WELCOME){
 		theme = 0;
+		surviver = false;
+	}
 
 	if(!enginesound->IsSoundStillPlaying(waitingMainThemeID) && !waitingSoundPlaying && theme == 0){
 		CLocalPlayerFilter filter;
@@ -904,10 +906,7 @@ void C_BliinkPlayer::ClientThink()
 		enginesound->StopSoundByGuid(waitingMainThemeID);
 		enginesound->EmitAmbientSound( "common/ambient_1b.wav", normVol );
 		mainThemeID = enginesound->GetGuidForLastSoundEmitted();
-		CLocalPlayerFilter filter;
-		filter.AddRecipientsByPVS( GetAbsOrigin() );	// Clients within the entity's PVS will be added.
-		filter.MakeReliable();
-		enginesound->EmitSound(filter,-1,1,"common/Cage_Opening.wav",1.0f,75);
+		enginesound->EmitAmbientSound("common/Cage_Opening.wav",1.0f);
 		cagesThemeID = enginesound->GetGuidForLastSoundEmitted();
 		cagesPlaying = true;
 		surviver = true;
