@@ -10,7 +10,7 @@ WeaponData
 	// Weapon data is loaded by both the Game and Client DLLs.
 	"printname"			"#SDK_Weapon_Pistol"
 	"viewmodel"			"models/weapons/v_bliink_pistol.mdl"
-	"playermodel"			"models/weapons/wv_bliink_pistol.mdl"
+	"playermodel"			"models/weapons/w_pist_deagle.mdl"
 	"PlayerAnimationExtension"	"mp5"
 
 	"bucket"			"1"
