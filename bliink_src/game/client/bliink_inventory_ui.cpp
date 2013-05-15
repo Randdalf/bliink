@@ -14,9 +14,9 @@ bliink_inventory_ui::bliink_inventory_ui(vgui::VPANEL parent)
 
 	this->SetPos(100,100);
 	this->SetSize(500,300);
-	this->SetBuildModeEditable( true );
+	this->SetBuildModeEditable( false );
 	
-	this->SetKeyBoardInputEnabled( true );
+	this->SetKeyBoardInputEnabled( false );
 	this->SetMouseInputEnabled( true );
 
 	this->SetProportional( false );
@@ -30,12 +30,12 @@ bliink_inventory_ui::bliink_inventory_ui(vgui::VPANEL parent)
 
 	Init();
 
-	SetScheme(vgui::scheme()->LoadSchemeFromFile("resource/SourceScheme.res", "SourceScheme"));
+	SetScheme(vgui::scheme()->LoadSchemeFromFile("resource/ClientScheme.res", "ClientScheme"));
  
 	LoadControlSettings("resource/UI/NewInventoryPanel.res");
- 
+
 	vgui::ivgui()->AddTickSignal( GetVPanel(), 100 );
- 
+
 	DevMsg("InventoryPanel has been constructed\n");
 
 }
@@ -91,11 +91,9 @@ void bliink_inventory_ui::Init(void)
 
 class InventoryInterface : public Ibliink_inventory_ui
 {
-private:
-
-	bliink_inventory_ui *InventoryPanel;
 
 public:
+	bliink_inventory_ui *InventoryPanel;
 
 	InventoryInterface() { InventoryPanel = NULL; }
 
@@ -118,7 +116,19 @@ public:
 			InventoryPanel->SetVisible( true );
 		}
 	}
-	
+	int GetFirstEmptySlot( void ) 
+	{
+		for ( int j = 0 ; j < 5 ; j ++ )
+		{
+			int t = InventoryPanel->InventorySlots[j]->amount;
+			if ( t == 0 )
+			{
+				return j;
+			}
+		}
+
+		return -1;
+	}
 };
 
 static InventoryInterface g_MyPanel;
@@ -150,7 +160,7 @@ void bliink_inventory_ui::OnTick()
 	BaseClass::OnTick();
 	bliink_updateInventory.SetValue(1);
 	pPlayer = ToBliinkPlayer( C_BasePlayer::GetLocalPlayer() );
-	
+
 	if(pPlayer)
 	{
 		CBliinkItemInventory inv = pPlayer->GetBliinkInventory();
@@ -165,49 +175,40 @@ void bliink_inventory_ui::OnTick()
 		{	
 			for(int i = 0; i < MAX_INVENTORY; i++)
 			{
+					
 				char *name = inv.GetItemName(i);
 				int amount = inv.GetItemStackCounts(i);
+				char *description = inv.GetItemDescription(i);
 				if( name != NULL ) 
-				{	
-					char b[2];
-					char* c = itoa(amount,b,10);
-					InventorySlots[i]->SetText(name);
-					InventorySlots[i]->SetAmount(c);
-					InventorySlots[i]->id = i ;
+				{
+
+					InventorySlots[i]->SetText(description); 
+					
+					char * text;
+					if ( amount == 0 ) text = "Amount : 0";
+					if ( amount == 1 ) text = "Amount : 1";
+					if ( amount == 2 ) text = "Amount : 2";
+					if ( amount == 3 ) text = "Amount : 3";
+					if ( amount == 4 ) text = "Amount : 4";
+					if ( amount == 5 ) text = "Amount : 5";
+					if ( amount == 6 ) text = "Amount : 6";
+					if ( amount == 7 ) text = "Amount : 7";
+					if ( amount == 8 ) text = "Amount : 8";
+					if ( amount == 9 ) text = "Amount : 9";
+					if ( amount == 10 ) text = "Amount : 10";
+
+					InventorySlots[i]->m_aLabel->SetText(text);
+					InventorySlots[i]->id = i;
 					InventorySlots[i]->name = name;
 					InventorySlots[i]->amount = amount;
-					if ( i > 5 )
-						InventorySlots[i]->type = "consumable";
-					else
-						InventorySlots[i]->type = "weapon";
-					//else get type ammo ? 
 
 					InventorySlots[i]->m_pLabel->SetVisible(false);
-				
-					if ( amount == 0 )
-						InventorySlots[i]->m_aLabel->SetVisible(false);
-					else
-						InventorySlots[i]->m_aLabel->SetVisible(true);
-
 					InventorySlots[i]->m_pImage->SetImage(name);
-
-					InventorySlots[i]->m_pImage->Paint();
-
-					// fix sizes :)
-			
-					// make all the images done 
-
-					// mouseover almost done
-
-					// different ammo types almost done
-
+					//InventorySlots[i]->m_pImage->Paint();
 				}
 			}
-
 			Updated = true;
-
 		}
-
 	} else 
 		SetVisible(0);
 

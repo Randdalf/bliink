@@ -14,12 +14,12 @@ Scheme
 	Colors
 	{
 		// base colors
-		"Orange"			"255 176 0 255"
-		"OrangeDim"			"255 176 0 120"
-		"LightOrange"		"188 112 0 128"
+		"Orange"			"255 176 50 255"
+		"OrangeDim"			"255 176 50 120"
+		"LightOrange"		"188 112 50 128"
 		
 		"Red"				"192 28 0 140"
-		"Black"				"0 0 0 255"
+		"Black"				"0 0 0 128"
 		"TransparentBlack"	"0 0 0 196"
 		"TransparentLightBlack"	"0 0 0 90"
 
@@ -118,7 +118,7 @@ Scheme
 
 		ListPanel.TextColor			"Orange"
 		ListPanel.BgColor			"TransparentBlack"
-		ListPanel.SelectedTextColor		"Black"
+		ListPanel.SelectedTextColor		"TransparentBlack"
 		ListPanel.SelectedBgColor		"Red"
 		ListPanel.SelectedOutOfFocusBgColor	"Red"
 		ListPanel.EmptyListInfoTextColor	"Orange"
@@ -169,6 +169,28 @@ Scheme
 		SectionedListPanel.SelectedBgColor	"Red"
 		SectionedListPanel.OutOfFocusSelectedTextColor	"Black"
 		SectionedListPanel.OutOfFocusSelectedBgColor	"255 255 255 32"
+
+		EditablePanel.HeaderTextColor	"Orange"
+		EditablePanel.HeaderBgColor	"Blank"
+		EditablePanel.DividerColor		"Black"
+		EditablePanel.TextColor		"Orange"
+		EditablePanel.BrightTextColor	"Orange"
+		EditablePanel.BgColor		"TransparentLightBlack"
+		EditablePanel.SelectedTextColor	"Black"
+		EditablePanel.SelectedBgColor	"Red"
+		EditablePanel.OutOfFocusSelectedTextColor	"Black"
+		EditablePanel.OutOfFocusSelectedBgColor	"255 255 255 32"
+
+		ImagePanel.HeaderTextColor	"Orange"
+		ImagePanel.HeaderBgColor	"Blank"
+		ImagePanel.DividerColor		"Black"
+		ImagePanel.TextColor		"Orange"
+		ImagePanel.BrightTextColor	"Orange"
+		ImagePanel.BgColor		"TransparentLightBlack"
+		ImagePanel.SelectedTextColor	"Black"
+		ImagePanel.SelectedBgColor	"Red"
+		ImagePanel.OutOfFocusSelectedTextColor	"Black"
+		ImagePanel.OutOfFocusSelectedBgColor	"255 255 255 32"
 
 		Slider.NobColor				"108 108 108 255"
 		Slider.TextColor			"127 140 127 255"

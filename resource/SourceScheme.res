@@ -513,8 +513,8 @@ Scheme
 			"1"
 			{
 				"name"		"Tahoma"
-				"tall"		"12"
-				"weight"	"0"
+				"tall"		"7"
+				"weight"	"1"
 			}
 		}
 		"DefaultVerySmallBlur"

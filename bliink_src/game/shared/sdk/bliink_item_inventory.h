@@ -29,6 +29,7 @@ public:
 
 	int GetItemStackCounts(int iFromSlot);
 	char* GetItemName(int iFromSlot);
+	char* GetItemDescription(int iFromSlot);
 	bool IsEmpty();
 
 	// Command methods

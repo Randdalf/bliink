@@ -24,6 +24,17 @@ char* CBliinkItemInventory::GetItemName (int iFromSlot)
 	return NULL;
 }
 
+char* CBliinkItemInventory::GetItemDescription(int iFromSlot) 
+{
+	BLIINK_ITEM_INFO_HANDLE slot =	m_iItemTypes[iFromSlot];
+	BLIINK_ITEM_INFO_HANDLE lock =  GetItemHandle( "locked_item" );
+	BLIINK_ITEM_INFO_HANDLE empty =  GetItemHandle( "empty_item" );
+	if ( GetItemInfo( m_iItemTypes.Get(iFromSlot) ) != NULL/* && slot != empty && slot != lock*/ )
+		return  GetItemInfo( m_iItemTypes.Get(iFromSlot) )->szItemDesc;
+	return NULL;
+
+}
+
 int CBliinkItemInventory::GetItemStackCounts (int iFromSlot) 
 {
 	BLIINK_ITEM_INFO_HANDLE slot =	m_iItemTypes[iFromSlot];
