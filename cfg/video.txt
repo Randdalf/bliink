@@ -1,7 +1,11 @@
 "config"
 {
 	"VendorID"		"4098"
+<<<<<<< HEAD
 	"DeviceID"		"26461"
+=======
+	"DeviceID"		"38159"
+>>>>>>> e499f2d257f23a84df1c1d791f5ad6b5514d2d2b
 	"setting.fullscreen"		"1"
 	"setting.nowindowborder"		"0"
 	"setting.aspectratiomode"		"2"
@@ -12,7 +16,16 @@
 	"setting.videoconfig_version"		"1"
 	"setting.mem_level"		"2"
 	"setting.gpu_mem_level"		"2"
+<<<<<<< HEAD
 	"setting.mat_triplebuffered"		"1"
+=======
+	"setting.mat_triplebuffered"		"0"
+	"setting.defaultres"		"1360"
+	"setting.defaultresheight"		"768"
+	"setting.gpu_level"		"3"
+	"setting.mat_antialias"		"2"
+	"setting.mat_forceaniso"		"4"
+>>>>>>> e499f2d257f23a84df1c1d791f5ad6b5514d2d2b
 	"setting.mat_grain_scale_override"		"1"
 	"setting.gpu_level"		"0"
 	"setting.mat_antialias"		"0"
