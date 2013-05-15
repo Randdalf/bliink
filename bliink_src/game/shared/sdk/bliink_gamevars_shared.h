@@ -40,7 +40,11 @@ extern ConCommand Bliink_InventoryConsume;
 extern ConCommand Bliink_InventoryDelete;
 extern ConCommand Bliink_InventorySetNextAmmoType;
 
+extern ConCommand Bliink_XboxUseHealth;
+extern ConCommand Bliink_XboxUseFood;
+
 extern ConVar Bliink_ConnectIP;
+extern ConVar Bliink_UseXboxInstructions;
 #endif
 
 #endif // BLIINK_GAMEVARS_SHARED_H
