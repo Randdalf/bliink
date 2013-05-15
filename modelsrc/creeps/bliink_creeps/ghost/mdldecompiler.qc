@@ -1,4 +1,7 @@
 $modelname "creeps/neutral_creeps/n_creep_ghost_a/n_creep_ghost_a.mdl"
+
+$scale 0.5
+
 $model "default" "RigidBodyWorld.smd"
 
 $cdmaterials "models\creeps\"

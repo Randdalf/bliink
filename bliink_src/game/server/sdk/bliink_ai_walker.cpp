@@ -104,7 +104,7 @@ END_DATADESC()
 //-----------------------------------------------------------------------------
 void CBliinkWalker::Precache( void )
 {
-	PrecacheModel("models/creeps/neutral_creeps/n_creeps_forest_troll/bliink_creep_forest_troll.mdl");
+	PrecacheModel("models/creeps/lane_creeps/bliink_walkerr.mdl");
 
 	BaseClass::Precache();
 }
@@ -173,8 +173,8 @@ int CBliinkWalker::SelectSchedule( void )
 void CBliinkWalker::Spawn( void )
 {
 	Precache();
-	Msg("Waaaaaaaaalk\n");
-	SetModel( "models/creeps/neutral_creeps/n_creeps_forest_troll/bliink_creep_forest_troll.mdl" );
+	//Msg("Waaaaaaaaalk\n");
+	SetModel( "models/creeps/lane_creeps/bliink_walkerr.mdl" );
 	SetHullType(HULL_HUMAN);
 	SetHullSizeNormal();
 

@@ -131,7 +131,6 @@ int CBliinkBliinker::SelectSchedule( void )
 		}
 		return SCHED_CHASE_ENEMY;
 	}
-	if (swap) return SCHED_ALERT_FACE_BESTSOUND;
 	return SCHED_RUN_RANDOM;
 	//return BaseClass::SelectSchedule();
 }
@@ -169,7 +168,7 @@ void CBliinkBliinker::GatherConditions( void ) {
 			GetMotor()->SetIdealYawToTarget( vecEnemyLKP );
 			GetMotor()->SetIdealYaw( CalcReasonableFacing( true ) ); // CalcReasonableFacing() is based on previously set ideal yaw
 			GetMotor()->UpdateYaw(180);
-			targetDir = 150.0f*targetDir;
+			targetDir = 175.0f*targetDir;
 			Vector vecToEnemy = pEnemy->GetAbsOrigin()-GetAbsOrigin();
 			if (targetDir.Length() > vecToEnemy.Length()) {
 				CTakeDamageInfo info( this, this, vec3_origin, GetAbsOrigin(), 15, DMG_BLIINKHIT );

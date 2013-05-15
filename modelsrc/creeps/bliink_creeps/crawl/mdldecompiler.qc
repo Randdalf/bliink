@@ -1,5 +1,7 @@
-
 $modelname "creeps/lane_creeps/bliink_craw.mdl"
+
+$scale 0.5
+
 $model "default" "bliink_craw.smd"
 
 $poseparameter turn -1.00 1.00
@@ -47,16 +49,7 @@ $sequence bad_ranged_diretide_death2 "bad_ranged_diretide_death2" ACT_DOTA_DIE 1
   { event AE_CL_CREATE_PARTICLE_EFFECT 52 "Z_D1 start_at_attachment attach_hitloc" }
 }
 
-$sequence bad_ranged_diretide_run "bad_ranged_diretide_run" loop ACT_DOTA_RUN 1 fps 30.00
+$sequence bad_ranged_diretide_run "bad_ranged_diretide_run" walkframe 19 LX loop ACT_DOTA_RUN 1 fps 30.00
 $sequence bad_ranged_diretide_portrait "bad_ranged_diretide_portrait" loop ACT_DOTA_CAPTURE 1 fps 30.00
 $sequence bad_ranged_diretide_stun "bad_ranged_diretide_stun" loop ACT_DOTA_DISABLED 1 fps 30.00
 $sequence bad_ranged_diretide_flail "bad_ranged_diretide_flail" loop ACT_DOTA_FLAIL 1 fps 30.00
-$sequence bad_ranged_diretide_turns_lookFrame_0 "bad_ranged_diretide_turns_lookFrame_0" fps 30.00
-$sequence bad_ranged_diretide_turns_lookFrame_1 "bad_ranged_diretide_turns_lookFrame_1" fps 30.00
-$sequence bad_ranged_diretide_turns_lookFrame_2 "bad_ranged_diretide_turns_lookFrame_2" fps 30.00
-$sequence bad_ranged_diretide_turns "bad_ranged_diretide_turns_lookFrame_0" fps 30.00 {
-  blendwidth 4
-  blend turn -1.000000 1.000000
-  delta
- bad_ranged_diretide_turns_lookFrame_0 bad_ranged_diretide_turns_lookFrame_1 bad_ranged_diretide_turns_lookFrame_2
-}

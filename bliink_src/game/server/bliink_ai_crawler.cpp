@@ -104,7 +104,7 @@ END_DATADESC()
 //-----------------------------------------------------------------------------
 void CBliinkCrawler::Precache( void )
 {
-	PrecacheModel("models/creeps/neutral_creeps/n_creeps_forest_troll/bliink_creep_forest_troll.mdl");
+	PrecacheModel("models/creeps/lane_creeps/bliink_craw.mdl");
 
 	BaseClass::Precache();
 }
@@ -171,7 +171,7 @@ void CBliinkCrawler::Spawn( void )
 {
 	Precache();
 
-	SetModel( "models/creeps/neutral_creeps/n_creeps_forest_troll/bliink_creep_forest_troll.mdl" );
+	SetModel( "models/creeps/lane_creeps/bliink_craw.mdl" );
 	SetHullType(HULL_HUMAN);
 	SetHullSizeNormal();
 

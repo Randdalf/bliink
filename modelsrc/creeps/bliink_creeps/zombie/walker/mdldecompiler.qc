@@ -1,4 +1,7 @@
-$modelname "creeps/lane_creeps/bliink_walker"
+$modelname "creeps/lane_creeps/bliink_walkerr"
+
+$scale 0.5
+
 $model "default" "bliink_walker.smd"
 
 $poseparameter turn -1.00 1.00
@@ -15,11 +18,6 @@ $sequence BindPose "BindPose" fps 30.00
 $sequence bad_melee_diretide_run "bad_melee_diretide_run" walkframe 27 LX loop ACT_DOTA_RUN 1 fps 30.00 {
   { event AE_CL_PLAYSOUND 3 "Creep_Dire.Footstep" }
   { event AE_CL_PLAYSOUND 15 "Creep_Dire.Footstep" }
-}
-
-$sequence bad_melee_diretide_run_alt "bad_melee_diretide_run_alt" walkframe 21 LX loop ACT_DOTA_RUN 1 fps 30.00 {
-  { event AE_CL_PLAYSOUND 0 "Creep_Dire.Footstep" }
-  { event AE_CL_PLAYSOUND 12 "Creep_Dire.Footstep" }
 }
 
 $sequence bad_melee_diretide_idle "bad_melee_diretide_idle" loop ACT_DOTA_IDLE 1 fps 30.00
