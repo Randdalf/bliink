@@ -1,6 +1,6 @@
 
-$modelname "Weapons/v_bliink_claw.mdl"
-$model "default" "claw-V.smd"
+$modelname "Weapons/v_bliink_pistol.mdl"
+$model "default" "w_pist_deagle.001.smd"
 $scale 1.0
 $origin -15 2 -10
 
@@ -15,7 +15,7 @@ $hbox 0 "ValveBiped.HandControlRotR" 0.000  -1.935  -15.150  11.123  0.000  0.00
 $attachment "0" "ValveBiped.Tip" 0.00 0.00 0.00 rotate 0.00 0.00 0.00
 $surfaceprop "default"
 $illumposition 25.370 -8.644 -15.379
-$sequence idle01 "idle01" loop ACT_VM_IDLE 1 fps 30.00 rotate 90.0
+$sequence idle1 "idle1" loop ACT_VM_IDLE 1 fps 30.00 rotate 90.0
 $sequence draw "draw" ACT_VM_DRAW 1 fps 30.00 rotate 90.0
 $sequence misscenter1 "misscenter1" ACT_VM_MISSCENTER 1 fps 30.00 rotate 90.0
 $sequence misscenter2 "misscenter2" ACT_VM_MISSCENTER 1 fps 30.00 rotate 90.0

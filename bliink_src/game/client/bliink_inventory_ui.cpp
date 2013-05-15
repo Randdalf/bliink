@@ -2,6 +2,7 @@
 
 #include "bliink_inventory_ui.h"
 #include "bliink_gamevars_shared.h"
+#include <vgui/IInput.h>
 
 #define MAX_INVENTORY 20
 

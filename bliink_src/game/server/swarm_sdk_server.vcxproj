@@ -369,6 +369,8 @@ exit 1
     <ClCompile Include="baseviewmodel.cpp" />
     <ClCompile Include="..\shared\baseviewmodel_shared.cpp" />
     <ClCompile Include="..\shared\beam_shared.cpp" />
+    <ClCompile Include="bliink_ai_crawler.cpp" />
+    <ClCompile Include="bliink_npc_roaming_spawner.cpp" />
     <ClCompile Include="bliink_simple_npc.cpp" />
     <ClCompile Include="beamspotlight.cpp" />
     <ClCompile Include="bitstring.cpp" />
@@ -716,7 +718,7 @@ exit 1
     <ClCompile Include="scripted.cpp" />
     <ClCompile Include="scriptedtarget.cpp" />
     <ClCompile Include="sdk\bliink_ai_bliinker.cpp" />
-    <ClCompile Include="sdk\bliink_ai_robbler.cpp" />
+    <ClCompile Include="sdk\bliink_ai_walker.cpp" />
     <ClCompile Include="sdk\bliink_exp_orb.cpp" />
     <ClCompile Include="sdk\bliink_fog.cpp" />
     <ClCompile Include="SDK\bliink_item_base.cpp" />
@@ -1036,6 +1038,10 @@ exit 1
     <ClInclude Include="..\shared\beam_shared.h" />
     <ClInclude Include="bitstring.h" />
     <ClInclude Include="..\..\public\bone_setup.h" />
+    <ClInclude Include="bliink_ai_bliinker.h" />
+    <ClInclude Include="bliink_ai_crawler.h" />
+    <ClInclude Include="bliink_ai_walker.h" />
+    <ClInclude Include="bliink_npc_roaming_spawner.h" />
     <ClInclude Include="buttons.h" />
     <ClInclude Include="cbase.h" />
     <ClInclude Include="cbaseprojectile.h" />

@@ -885,8 +885,10 @@ void C_BliinkPlayer::ClientThink()
 
 	state = pPlayer->State_Get();
 
-	if(state == STATE_BLIINK_SPECTATE_PREGAME || state == STATE_BLIINK_WAITING_FOR_PLAYERS || state == STATE_BLIINK_SPECTATE || state == STATE_BLIINK_WELCOME)
+	if(state == STATE_BLIINK_SPECTATE_PREGAME || state == STATE_BLIINK_WAITING_FOR_PLAYERS || state == STATE_BLIINK_SPECTATE || state == STATE_BLIINK_WELCOME){
 		theme = 0;
+		surviver = false;
+	}
 
 	if(!enginesound->IsSoundStillPlaying(waitingMainThemeID) && !waitingSoundPlaying && theme == 0){
 		CLocalPlayerFilter filter;
@@ -894,7 +896,7 @@ void C_BliinkPlayer::ClientThink()
 		normVol = 1.0f;
 		enginesound->EmitAmbientSound( "common/ambient_1a.wav", normVol );
 		waitingMainThemeID = enginesound->GetGuidForLastSoundEmitted();
-		Msg( "Starting bliink_main_theme %d\n",enginesound->IsLoopingSound("common/ambient_1a.wav"));
+		//Msg( "Starting bliink_main_theme %d\n",enginesound->IsLoopingSound("common/ambient_1a.wav"));
 		waitingSoundPlaying = true;
 		theme = 0;
 	}
@@ -904,23 +906,20 @@ void C_BliinkPlayer::ClientThink()
 		enginesound->StopSoundByGuid(waitingMainThemeID);
 		enginesound->EmitAmbientSound( "common/ambient_1b.wav", normVol );
 		mainThemeID = enginesound->GetGuidForLastSoundEmitted();
-		CLocalPlayerFilter filter;
-		filter.AddRecipientsByPVS( GetAbsOrigin() );	// Clients within the entity's PVS will be added.
-		filter.MakeReliable();
-		enginesound->EmitSound(filter,-1,1,"common/Cage_Opening.wav",1.0f,75);
+		enginesound->EmitAmbientSound("common/Cage_Opening.wav",1.0f);
 		cagesThemeID = enginesound->GetGuidForLastSoundEmitted();
 		cagesPlaying = true;
 		surviver = true;
 		stalker = false;
 		theme = 1;
-		Msg("Theme = 1\n");
+		//Msg("Theme = 1\n");
 		waitingSoundPlaying = false;
 	}
 
 	if(!enginesound->IsSoundStillPlaying(cagesThemeID) && cagesPlaying){
 		normVol += 0.01f;
 		enginesound->SetVolumeByGuid(mainThemeID, normVol);
-		Msg( "normVol - %g\n",normVol);
+		//Msg( "normVol - %g\n",normVol);
 		if(normVol >= 1.0f) cagesPlaying = false;
 	}
 
@@ -939,7 +938,7 @@ void C_BliinkPlayer::ClientThink()
 			enginesound->StopSoundByGuid(fogThemeID);
 			enginesound->EmitAmbientSound( "common/Fog.wav", smokeVol );
 			fogThemeID = enginesound->GetGuidForLastSoundEmitted();
-			Msg( "Swiching from bliink_main_theme to bliink_fog_theme\n");
+			//Msg( "Swiching from bliink_main_theme to bliink_fog_theme\n");
 		}
 	}else{
 		if(inFog){
@@ -949,14 +948,14 @@ void C_BliinkPlayer::ClientThink()
 			//switch from smoke to normal theme
 			//enginesound->SetVolumeByGuid(fogThemeID, 0.0f);
 			//enginesound->SetVolumeByGuid(mainThemeID, 1.0f);
-			Msg( "Switching from bliink_fog_theme to bliink_main_theme\n");
+			//Msg( "Switching from bliink_fog_theme to bliink_main_theme\n");
 		}
 	}
 
 	if(fadeToNorm){
 		normVol += 0.01f;
 		smokeVol -= 0.01f;
-		Msg( "normVol - %g , smokeVol - %g\n",normVol,smokeVol);
+		//Msg( "normVol - %g , smokeVol - %g\n",normVol,smokeVol);
 		if(theme == 1) enginesound->SetVolumeByGuid(mainThemeID, normVol);
 		if(theme == 2) enginesound->SetVolumeByGuid(main2ThemeID, normVol);
 		if(theme == 3) enginesound->SetVolumeByGuid(main3ThemeID, normVol);
@@ -967,7 +966,7 @@ void C_BliinkPlayer::ClientThink()
 	if(fadeToSmoke){
 		normVol -= 0.01f;
 		smokeVol += 0.01f;
-		Msg( "normVol - %g , smokeVol - %g\n",normVol,smokeVol);
+		//Msg( "normVol - %g , smokeVol - %g\n",normVol,smokeVol);
 		if(theme == 1) enginesound->SetVolumeByGuid(mainThemeID, normVol);
 		if(theme == 2) enginesound->SetVolumeByGuid(main2ThemeID, normVol);
 		if(theme == 3) enginesound->SetVolumeByGuid(main3ThemeID, normVol);
@@ -989,14 +988,14 @@ void C_BliinkPlayer::ClientThink()
 	}
 
 	if((total <= 2) && theme == 1 && cagesPlaying == false){
-		Msg( "Theme = 2\n");
+		//Msg( "Theme = 2\n");
 		normVol = 0.01f;
 		theme = 2;
 		enginesound->EmitAmbientSound( "common/ambient_2b.wav", normVol );
 		main2ThemeID = enginesound->GetGuidForLastSoundEmitted();
 	}
 	else if((total <= 4) && theme == 2 && !enginesound->IsSoundStillPlaying(mainThemeID)){
-		Msg( "Theme = 3\n");
+		//Msg( "Theme = 3\n");
 		normVol = 0.01f;
 		theme = 3;
 		enginesound->EmitAmbientSound( "common/ambient_3b.wav", normVol );
@@ -1007,7 +1006,7 @@ void C_BliinkPlayer::ClientThink()
 		normVol += 0.0025f;
 		enginesound->SetVolumeByGuid(mainThemeID, 1.0f - normVol);
 		enginesound->SetVolumeByGuid(main2ThemeID, normVol);
-		Msg( "normVol - %g\n",normVol);
+		//Msg( "normVol - %g\n",normVol);
 		if(normVol >= 1.0f) {
 			enginesound->StopSoundByGuid(mainThemeID);
 		}
@@ -1017,14 +1016,14 @@ void C_BliinkPlayer::ClientThink()
 		normVol += 0.0025f;
 		enginesound->SetVolumeByGuid(main2ThemeID, 1.0f - normVol);
 		enginesound->SetVolumeByGuid(main3ThemeID, normVol);
-		Msg( "normVol - %g\n",normVol);
+		//Msg( "normVol - %g\n",normVol);
 		if(normVol >= 1.0f) {
 			enginesound->StopSoundByGuid(main2ThemeID);
 		}
 	}
 
 	if(state == STATE_BLIINK_SURVIVOR_DEATH_ANIM && surviver == true){
-		Msg("DEATH SOUND\n");
+		//Msg("DEATH SOUND\n");
 		surviver = false;
 		deathSoundPlaying = true;
 		theme = 0;

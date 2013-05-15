@@ -23,19 +23,8 @@
 //
 //=============================================================================//
 #include "cbase.h"
-#include "ai_default.h"
-#include "ai_task.h"
-#include "ai_schedule.h"
-#include "ai_hull.h"
-#include "soundent.h"
-#include "game.h"
-#include "npcevent.h"
-#include "entitylist.h"
-#include "activitylist.h"
-#include "ai_basenpc.h"
-#include "engine/IEngineSound.h"
-#include "bliink_player.h"
-#include "bliink_exp_orb.h"
+#include "bliink_ai_bliinker.h"
+#include "bliink_npc_roaming_spawner.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -70,39 +59,6 @@ enum
 	COND_MYCUSTOMCONDITION = LAST_SHARED_CONDITION,
 };
 
-
-//=========================================================
-//=========================================================
-class CBliinkBliinker : public CAI_BaseNPC
-{
-	DECLARE_CLASS( CBliinkBliinker, CAI_BaseNPC );
-
-public:
-	void	Precache( void );
-	void	Spawn( void );
-	Class_T Classify( void );
-	int		SelectSchedule( void );
-	void	OnChangeActivity( Activity eNewActivity );
-	void	NPCThink( void );
-	void	Event_Killed( const CTakeDamageInfo &info );
-
-	void GatherConditions ( void );
-
-	Activity	NPC_TranslateActivity( Activity eNewActivity );
-
-	DECLARE_DATADESC();
-
-	// This is a dummy field. In order to provide save/restore
-	// code in this file, we must have at least one field
-	// for the code to operate on. Delete this field when
-	// you are ready to do your own save/restore for this
-	// character.
-	int		m_iDeleteThisField;
-	float attackTime;
-
-	DEFINE_CUSTOM_AI;
-};
-
 LINK_ENTITY_TO_CLASS( npc_bliink_bliinker, CBliinkBliinker );
 IMPLEMENT_CUSTOM_AI( npc_citizen,CBliinkBliinker );
 
@@ -115,6 +71,10 @@ BEGIN_DATADESC( CBliinkBliinker )
 	DEFINE_FIELD( m_iDeleteThisField, FIELD_INTEGER ),
 
 END_DATADESC()
+
+void CBliinkBliinker::SetSpawner( CBliinkRoamingSpawner* cbrs) {
+	spawner = cbrs;
+}
 
 //-----------------------------------------------------------------------------
 // Purpose: Initialize the custom schedules
@@ -141,7 +101,7 @@ void CBliinkBliinker::InitCustomSchedules(void)
 //-----------------------------------------------------------------------------
 void CBliinkBliinker::Precache( void )
 {
-	PrecacheModel( "models/creeps/neutral_creeps/n_creep_ghost_a/bliink_creep_ghost_a.mdl" );
+	PrecacheModel( "models/creeps/neutral_creeps/n_creep_ghost_a/n_creep_ghost_a.mdl" );
 
 	BaseClass::Precache();
 }
@@ -153,6 +113,7 @@ void CBliinkBliinker::Precache( void )
 //-----------------------------------------------------------------------------
 int CBliinkBliinker::SelectSchedule( void )
 {
+	swap = !swap;
 	//return BaseClass::SelectCombatSchedule();
 	if (HasCondition(COND_CAN_BE_SEEN)) {
 		//Msg("YOU CAN SEE MEEEEEEE\n");
@@ -170,6 +131,7 @@ int CBliinkBliinker::SelectSchedule( void )
 		}
 		return SCHED_CHASE_ENEMY;
 	}
+	if (swap) return SCHED_ALERT_FACE_BESTSOUND;
 	return SCHED_RUN_RANDOM;
 	//return BaseClass::SelectSchedule();
 }
@@ -177,7 +139,7 @@ int CBliinkBliinker::SelectSchedule( void )
 void CBliinkBliinker::GatherConditions( void ) {
 	int seen = 0;
 	bool blinking = true;
-	CBliinkPlayer* bPlayer;
+	CBliinkPlayer* bPlayer = NULL;
 	for(int i=1; i<=gpGlobals->maxClients; i++) {
 		CBliinkPlayer* pPlayer = ToBliinkPlayer(UTIL_PlayerByIndex(i));
 
@@ -203,6 +165,10 @@ void CBliinkBliinker::GatherConditions( void ) {
 			ChainStartTask( TASK_GET_PATH_TO_ENEMY );
 			SetCondition( COND_JUMP_FORWARD );
 			Vector targetDir = GetNavigator()->GetGoalDirection();
+			Vector vecEnemyLKP = GetEnemyLKP();
+			GetMotor()->SetIdealYawToTarget( vecEnemyLKP );
+			GetMotor()->SetIdealYaw( CalcReasonableFacing( true ) ); // CalcReasonableFacing() is based on previously set ideal yaw
+			GetMotor()->UpdateYaw(180);
 			targetDir = 150.0f*targetDir;
 			Vector vecToEnemy = pEnemy->GetAbsOrigin()-GetAbsOrigin();
 			if (targetDir.Length() > vecToEnemy.Length()) {
@@ -212,7 +178,7 @@ void CBliinkBliinker::GatherConditions( void ) {
 				//Need to update angles
 				SetAbsOrigin(GetAbsOrigin() + targetDir);
 			}
-			bPlayer->setBlinking(false);
+			if (bPlayer != NULL) bPlayer->setBlinking(false);
 		}
 	}
 	BaseClass::GatherConditions();
@@ -227,11 +193,11 @@ void CBliinkBliinker::GatherConditions( void ) {
 void CBliinkBliinker::Spawn( void )
 {
 	Precache();
-
+	spawner = NULL;
 	CapabilitiesClear();
 	CapabilitiesAdd( bits_CAP_MOVE_GROUND | bits_CAP_INNATE_MELEE_ATTACK1 );
 
-	SetModel( "models/creeps/neutral_creeps/n_creep_ghost_a/bliink_creep_ghost_a.mdl" );
+	SetModel( "models/creeps/neutral_creeps/n_creep_ghost_a/n_creep_ghost_a.mdl" );
 	SetHullType(HULL_HUMAN);
 	SetHullSizeNormal();
 
@@ -243,6 +209,7 @@ void CBliinkBliinker::Spawn( void )
 	m_flFieldOfView		= 0.1;
 	m_NPCState			= NPC_STATE_NONE;
 	attackTime			= -1;
+	swap = true;
 
 	NPCInit();
 }
@@ -309,6 +276,7 @@ void CBliinkBliinker::Event_Killed( const CTakeDamageInfo &info )
 	BaseClass::Event_Killed( info );
 
 	spawnRandomOrbs( GetAbsOrigin() + Vector(0,0,32.0f), 64.0f, 4, 8, 6, 13 );
-	
+	if (spawner != NULL) spawner->NPCDied();
+
 	Remove();
 }

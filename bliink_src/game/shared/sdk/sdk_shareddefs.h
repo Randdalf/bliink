@@ -135,6 +135,7 @@ enum BliinkPlayerState
 
 	// Post-game stuff
 	STATE_BLIINK_VIEW_RESULTS,
+	STATE_BLIINK_VIEW_RESULTS_WINNER,
 
 	NUM_PLAYER_STATES
 };

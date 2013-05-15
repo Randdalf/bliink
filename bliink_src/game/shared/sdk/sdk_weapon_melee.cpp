@@ -147,7 +147,10 @@ void CWeaponSDKMelee::Hit( trace_t &traceHit, Activity nHitActivity )
 		VectorNormalize( hitDirection );
 
 #ifndef CLIENT_DLL
-		CTakeDamageInfo info( GetOwner(), GetOwner(), GetDamageForActivity( nHitActivity ), DMG_CLUB );
+
+		float fDamageScale = pPlayer->GetBliinkPlayerStats().GetDamagePercent();
+
+		CTakeDamageInfo info( GetOwner(), GetOwner(), fDamageScale*GetDamageForActivity( nHitActivity ), DMG_CLUB );
 
 		if( pPlayer && pHitEntity->IsNPC() )
 		{

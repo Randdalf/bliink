@@ -62,6 +62,9 @@ void CBliinkHudAmmo::Paint()
 	if( !pWeapon )
 		return;
 
+	if( pWeapon->IsMeleeWeapon() )
+		return;
+
 	int iClipCount = pWeapon->Clip1();
 	int iAmmoCount = pBliinkPlayer->GetAmmoCount( pWeapon->GetPrimaryAmmoType() );
 

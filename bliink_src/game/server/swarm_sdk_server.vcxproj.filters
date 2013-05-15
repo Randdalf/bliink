@@ -1623,9 +1623,6 @@
     <ClCompile Include="sdk\bliink_ai_bliinker.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
-    <ClCompile Include="sdk\bliink_ai_robbler.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
     <ClCompile Include="..\client\weapon_bat.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
     </ClCompile>
@@ -1637,6 +1634,15 @@
     </ClCompile>
     <ClCompile Include="..\client\weapon_claw.cpp">
       <Filter>Source Files\SDK\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="bliink_npc_roaming_spawner.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\bliink_ai_walker.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="bliink_ai_crawler.cpp">
+      <Filter>Source Files\SDK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -3357,6 +3363,18 @@
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
     <ClInclude Include="sdk\bliink_exp_orb.h">
+      <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="bliink_ai_bliinker.h">
+      <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="bliink_npc_roaming_spawner.h">
+      <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="bliink_ai_crawler.h">
+      <Filter>Source Files\SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="bliink_ai_walker.h">
       <Filter>Source Files\SDK</Filter>
     </ClInclude>
   </ItemGroup>

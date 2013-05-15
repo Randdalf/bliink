@@ -2,7 +2,7 @@ $modelname	"weapons\w_bliink_pistol.mdl"
 $cdmaterials	"models\weapons\w_models\w_bliink_pistol\"
 $scale 1.00
 
-$body mybody	"w_pist_deagle.smd"
+$body mybody	"pistol.smd"
 $staticprop
 $surfaceprop	combine_metal
 

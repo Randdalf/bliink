@@ -92,6 +92,8 @@ void CBliinkFog::Think()
 
 		m_flFogRadius -= fRadiusPerSec*0.1f;
 	}
+	
+	Msg("%d\n", (int) m_flFogRadius );
 
 	SetNextThink( gpGlobals->curtime + 0.1f );
 }

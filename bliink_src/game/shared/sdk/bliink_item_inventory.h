@@ -39,10 +39,11 @@ public:
 	void Command_Consume(int iFromSlot);
 	void Command_Delete(int iFromSlot);
 	void Command_SetNextAmmoType();
-
 	// Other methods
 #ifndef CLIENT_DLL
 	bool AddItem( IBliinkItem* pNewItem );
+
+	void ClearInventory();
 
 	// Upgrade stuff
 	bool	UnlockWeaponSlot( void );
@@ -54,6 +55,8 @@ public:
 	void	UpdateAmmoCounts( void );
 	int		GetAmmoSubtype( int iAmmoSlot );
 
+	void	UseHealthItem( void );
+	void	UseFoodItem( void );
 	
 	// Crafting stuff
 	// bool CanCraft(from, to)

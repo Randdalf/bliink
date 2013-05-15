@@ -1775,9 +1775,6 @@
     <ClCompile Include="sdk\sdk_hud_targetid.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
-    <ClCompile Include="sdk\sdk_hud_weaponselection.cpp">
-      <Filter>Source Files\SDK</Filter>
-    </ClCompile>
     <ClCompile Include="sdk\sdk_in_main.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
@@ -2004,6 +2001,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bliink_inventory_ui.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="bliink_hud_game_state.cpp">
+      <Filter>Source Files\SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\bliink_hud_instructions.cpp">
       <Filter>Source Files\SDK</Filter>
     </ClCompile>
   </ItemGroup>
