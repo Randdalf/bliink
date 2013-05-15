@@ -32,10 +32,11 @@ class bliink_inventory_ui  : public vgui::Frame
 
 		bool Updated;
 
-		bliink_inventory_slot* InventorySlots[20];
+		
 
  public :
 
+		bliink_inventory_slot* InventorySlots[20];
 		void Init(void);
 		void Add();
  

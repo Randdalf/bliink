@@ -3,11 +3,13 @@ BliinkItemList
 	// DO NOT DELETE
 	"empty_item"
 	{
+		"description"	"Empty Slot"
 		"item_type"		"ITEM_TYPE_NONE"
 		"item_subtype"	"ITEM_STYPE_EMPTY"
 	}
 	"locked_item"
 	{
+		"description"	"Locked Slot"
 		"item_type"		"ITEM_TYPE_NONE"
 		"item_subtype"	"ITEM_STYPE_LOCKED"
 	}
@@ -16,7 +18,7 @@ BliinkItemList
 	"bliink_pistol"
 	{
 		// key properties
-		"description"	"Pistol (weapon)"
+		"description"	"Pistol"
 		"item_type"		"ITEM_TYPE_WEAPON"
 		"item_subtype"	"ITEM_STYPE_EMPTY"
 
@@ -35,7 +37,7 @@ BliinkItemList
 	"bliink_machete"
 	{
 		// key properties
-		"description"	"Machete (weapon)"
+		"description"	"Machete"
 		"item_type"		"ITEM_TYPE_WEAPON"
 		"item_subtype"	"ITEM_STYPE_EMPTY"
 
@@ -54,7 +56,7 @@ BliinkItemList
 	"bliink_bat"
 	{
 		// key properties
-		"description"	"Cricket Bat (weapon)"
+		"description"	"Cricket Bat"
 		"item_type"		"ITEM_TYPE_WEAPON"
 		"item_subtype"	"ITEM_STYPE_EMPTY"
 
@@ -73,7 +75,7 @@ BliinkItemList
 	"bliink_stick"
 	{
 		// key properties
-		"description"	"Stick (weapon)"
+		"description"	"Stick"
 		"item_type"		"ITEM_TYPE_WEAPON"
 		"item_subtype"	"ITEM_STYPE_EMPTY"
 
@@ -92,7 +94,7 @@ BliinkItemList
 	"bliink_claw"
 	{
 		// key properties
-		"description"	"Stick (weapon)"
+		"description"	"Stick"
 		"item_type"		"ITEM_TYPE_WEAPON"
 		"item_subtype"	"ITEM_STYPE_EMPTY"
 
@@ -113,7 +115,7 @@ BliinkItemList
 	"ammo_pistol_normal"
 	{
 		// key properties
-		"description"	"Pistol ammunition"
+		"description"	"Pistol ammo"
 		"item_type"		"ITEM_TYPE_AMMO"
 		"item_subtype"	"ITEM_STYPE_AMMO_NORMAL"
 
@@ -131,7 +133,7 @@ BliinkItemList
 	"ammo_revolver_normal"
 	{
 		// key properties
-		"description"	"Revolver ammunition"
+		"description"	"Revolver ammo"
 		"item_type"		"ITEM_TYPE_AMMO"
 		"item_subtype"	"ITEM_STYPE_AMMO_NORMAL"
 
@@ -149,7 +151,7 @@ BliinkItemList
 	"ammo_smg_normal"
 	{
 		// key properties
-		"description"	"SMG ammunition"
+		"description"	"SMG ammo"
 		"item_type"		"ITEM_TYPE_AMMO"
 		"item_subtype"	"ITEM_STYPE_AMMO_NORMAL"
 
@@ -167,7 +169,7 @@ BliinkItemList
 	"ammo_rifle_normal"
 	{
 		// key properties
-		"description"	"Rifle ammunition"
+		"description"	"Rifle ammo"
 		"item_type"		"ITEM_TYPE_AMMO"
 		"item_subtype"	"ITEM_STYPE_AMMO_NORMAL"
 
@@ -185,7 +187,7 @@ BliinkItemList
 	"ammo_shotgun_normal"
 	{
 		// key properties
-		"description"	"Shotgun ammunition"
+		"description"	"Shotgun ammo"
 		"item_type"		"ITEM_TYPE_AMMO"
 		"item_subtype"	"ITEM_STYPE_AMMO_NORMAL"
 
@@ -277,7 +279,7 @@ BliinkItemList
 	"consumable_booster"
 	{
 		// key properties
-		"description"	"Melon (booster lol)"
+		"description"	"Melon"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_BOOSTER"
 
@@ -367,7 +369,7 @@ BliinkItemList
 "corn"
 	{
 		// key properties
-		"description"	"Corn-on-the-cob (food)"
+		"description"	"Corn(food)"
 		"item_type"		"ITEM_TYPE_CONSUMABLE"
 		"item_subtype"	"ITEM_STYPE_CONSUMABLE_FOOD"
 

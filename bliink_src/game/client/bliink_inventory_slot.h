@@ -37,6 +37,10 @@ public:
 	
 	virtual void OnMousePressed(vgui::MouseCode code);
 	virtual void OnMouseDoublePressed(vgui::MouseCode code);
+	//virtual void OnCursorEntered();
+	//virtual void OnCursorExited();
+	//virtual void OnCursorMoved();
+	//virtual void OnMouseReleased(vgui::MouseCode code); // or this
 
 	virtual void SetText(const char *text);
 	virtual void SetAmount(const char *text);
@@ -44,11 +48,15 @@ public:
 	virtual void SetButtonEnabled(bool bEnabled);
 	virtual void SetImage(const char *szFilename);
 
+	void executeMove ( int id , int j);
+
 	vgui::ImagePanel *m_pImage;
 	vgui::Label *m_pLabel;
 	vgui::Label *m_aLabel;
+	vgui::EditablePanel *m_ePanel;
 	bool m_bButtonEnabled;
 	vgui::HFont m_Font;
+	vgui::Panel *p;
 
 	int id; // relative inventory id
 	char* type; // weapon , consumable , ammo
