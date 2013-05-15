@@ -9,11 +9,11 @@
 	  "tall" "96"
 	  "visible" "1"
 	  "enabled" "1"
-	}	
+	}
 
 	BliinkHudStatus
 	{
-	  "fieldName" BliinkHudStatus
+	  "fieldName" "BliinkHudStatus"
 	  "xpos" "16"
 	  "ypos" "r124"
 	  "wide" "64"
@@ -25,13 +25,24 @@
 	BliinkHudGameState
 	{
 	  "fieldName" "BliinkHudGameState"
-	  "xpos" "c-128"
+	  "xpos" "c-152"
 	  "ypos" "16"
 	  "wide" "480"
 	  "tall" "104"
 	  "visible" "1"
 	  "enabled" "1"
 	}
+
+	BliinkHudInstructions
+	{
+	  "fieldName" "BliinkHudInstructions"
+	  "xpos" "c-160"
+	  "ypos" "r320"
+	  "wide" "512"
+	  "tall" "512"
+	  "visible" "1"
+	  "enabled" "1"
+	}	
 
 
 	BliinkHudLevel
