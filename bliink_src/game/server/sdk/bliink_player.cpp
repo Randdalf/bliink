@@ -192,6 +192,11 @@ public:
 	DECLARE_CLASS( CSDKRagdoll, CBaseAnimatingOverlay );
 	DECLARE_SERVERCLASS();
 
+	virtual void Spawn()
+	{
+		Remove();
+	}
+
 	// Transmit ragdolls to everyone.
 	virtual int UpdateTransmitState()
 	{
@@ -345,9 +350,7 @@ void CBliinkPlayer::GiveDefaultItems()
 	}
 	else if ( State_Get() == STATE_BLIINK_STALKER )
 	{
-		IBliinkItem* pItem = CreateItemByHandle( GetItemHandle("bliink_claw") );
-
-		 if( pItem ) GetBliinkInventory().AddItem( pItem );
+		GiveNamedItem( "weapon_claw" );
 	}
 }
 #define SDK_PUSHAWAY_THINK_CONTEXT	"SDKPushawayThink"
@@ -709,7 +712,8 @@ ConVar c_server_ragdoll("c_server_ragdoll", "0", FCVAR_CHEAT, "If set, players w
 
 bool CBliinkPlayer::BecomeRagdollOnClient( const Vector &force )
 {
-	if ( !CanBecomeRagdoll() ) 
+	return false;
+	/*if ( !CanBecomeRagdoll() ) 
 		return false;
 
 	// Become server-side ragdoll if we're flagged to do it
@@ -744,12 +748,12 @@ bool CBliinkPlayer::BecomeRagdollOnClient( const Vector &force )
 		return true;
 	}
 
-	return BaseClass::BecomeRagdollOnClient( force );
+	return BaseClass::BecomeRagdollOnClient( force );*/
 }
 
 void CBliinkPlayer::Event_Killed( const CTakeDamageInfo &info )
 {
-	ThrowActiveWeapon();
+	//ThrowActiveWeapon();
 
 	// show killer in death cam mode
 	// chopped down version of SetObserverTarget without the team check
@@ -1098,6 +1102,14 @@ bool CBliinkPlayer::ClientCommand( const CCommand &args )
 		{
 			m_Inventory.Debug_PrintInventory();
 		}
+		else if( FStrEq( pcmd, "bliink_xbox_use_health" ) )
+		{
+			m_Inventory.UseHealthItem();
+		}
+		else if( FStrEq( pcmd, "bliink_xbox_use_food" ) )
+		{
+			m_Inventory.UseFoodItem();
+		}
 
 		// Blink
 		else if( FStrEq( pcmd, "bliink_blink_on" ) )
@@ -1283,7 +1295,7 @@ void CBliinkPlayer::MoveToNextIntroCamera()
 	SnapEyeAngles( m_pIntroCamera->GetAbsAngles() );
 
 	if( pOldCamera != m_pIntroCamera )
-		m_fIntroCamTime = gpGlobals->curtime + 6;
+		m_fIntroCamTime = gpGlobals->curtime + 10;
 }
 
 //**************************************************************************
@@ -1299,7 +1311,7 @@ void CBliinkPlayer::State_Enter_BLIINK_WELCOME()
 	// Show welcome menu
 
 	// TEMPORARY, REPLACE THIS WITH READY BUTTON!!!!!!!!!
-	State_Transition(STATE_BLIINK_WAITING_FOR_PLAYERS);
+	//State_Transition(STATE_BLIINK_WAITING_FOR_PLAYERS);
 }
 
 void CBliinkPlayer::State_PreThink_BLIINK_WELCOME()
@@ -1406,79 +1418,19 @@ void CBliinkPlayer::State_PreThink_BLIINK_WAITING_FOR_PLAYERS()
 }
 
 void CBliinkPlayer::State_Enter_BLIINK_SPECTATE()
-{		
+{	
 	// Movement and physics
-	SetMoveType( MOVETYPE_OBSERVER );
-
-	// Always start a spectator session in roaming mode
-	m_iObserverLastMode = OBS_MODE_ROAMING;
-
-	if( m_hObserverTarget == NULL )
-	{
-		// find a new observer target
-		CheckObserverSettings();
-	}
-
-	// Change our observer target to the nearest teammate
-	CTeam *pTeam = GetGlobalTeam( GetTeamNumber() );
-
-	CBasePlayer *pPlayer;
-	Vector localOrigin = GetAbsOrigin();
-	Vector targetOrigin;
-	float flMinDist = FLT_MAX;
-	float flDist;
-
-	for ( int i=0;i<pTeam->GetNumPlayers();i++ )
-	{
-		pPlayer = pTeam->GetPlayer(i);
-
-		if ( !pPlayer )
-			continue;
-
-		if ( !IsValidObserverTarget(pPlayer) )
-			continue;
-
-		targetOrigin = pPlayer->GetAbsOrigin();
-
-		flDist = ( targetOrigin - localOrigin ).Length();
-
-		if ( flDist < flMinDist )
-		{
-			m_hObserverTarget.Set( pPlayer );
-			flMinDist = flDist;
-		}
-	}
-
-	StartObserverMode( m_iObserverLastMode );
+	SetMoveType( MOVETYPE_NONE );
+	AddSolidFlags( FSOLID_NOT_SOLID );
 	PhysObjectSleep();
 }
 
 void CBliinkPlayer::State_PreThink_BLIINK_SPECTATE()
-{	
-	//Tony; if we're in eye, or chase, validate the target - if it's invalid, find a new one, or go back to roaming
-	if (  m_iObserverMode == OBS_MODE_IN_EYE || m_iObserverMode == OBS_MODE_CHASE )
+{		
+	// Update whatever intro camera it's at.
+	if( m_pIntroCamera && (gpGlobals->curtime >= m_fIntroCamTime) )
 	{
-		//Tony; if they're not on a spectating team use the cbaseplayer validation method.
-		if ( GetTeamNumber() != TEAM_SPECTATOR )
-			ValidateCurrentObserverTarget();
-		else
-		{
-			if ( !IsValidObserverTarget( m_hObserverTarget.Get() ) )
-			{
-				// our target is not valid, try to find new target
-				CBaseEntity * target = FindNextObserverTarget( false );
-				if ( target )
-				{
-					// switch to new valid target
-					SetObserverTarget( target );	
-				}
-				else
-				{
-					// let player roam around
-					ForceObserverMode( OBS_MODE_ROAMING );
-				}
-			}
-		}
+		MoveToNextIntroCamera();
 	}
 }
 
@@ -1569,6 +1521,8 @@ void CBliinkPlayer::State_Enter_BLIINK_STALKER()
 	RemoveSolidFlags( FSOLID_NOT_SOLID );
     m_Local.m_iHideHUD = 0;
 	PhysObjectWake();
+
+	GetBliinkInventory().ClearInventory();
 
 	GiveDefaultItems();
 
@@ -1716,7 +1670,10 @@ void CBliinkPlayer::StartGameTransition( void )
 
 void CBliinkPlayer::EndGameTransition( void )
 {
-	State_Transition( STATE_BLIINK_VIEW_RESULTS );
+	if( State_Get() == STATE_BLIINK_SURVIVOR )
+		State_Transition( STATE_BLIINK_VIEW_RESULTS_WINNER );
+	else
+		State_Transition( STATE_BLIINK_VIEW_RESULTS );
 }
 
 // Handles team joining

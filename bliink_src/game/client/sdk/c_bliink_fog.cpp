@@ -124,13 +124,4 @@ void C_BliinkFog::AttemptSpawnNewParticle()
 void C_BliinkFog::ClientThink()
 {
 	BaseClass::ClientThink();
-
-	// Do bbox based on fog radius.
-	Vector o = GetAbsOrigin();
-	Vector vWorldMins, vWorldMaxs;
-
-	vWorldMins = o - Vector( m_flMaxFogRadius, m_flMaxFogRadius, m_flFogHeightDown );
-	vWorldMaxs = o + Vector( m_flMaxFogRadius, m_flMaxFogRadius, m_flFogHeightDown );
-
-	m_Effect.GetBinding().SetBBox( vWorldMins, vWorldMaxs );
 }

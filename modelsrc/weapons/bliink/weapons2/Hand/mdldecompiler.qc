@@ -1,6 +1,6 @@
 
-$modelname "Weapons/v_bliink_claw.mdl"
-$model "default" "claw-V.smd"
+$modelname "Weapons/v_bliink_bat.mdl"
+$model "default" "bat-V.001.smd"
 $scale 1.0
 $origin -15 2 -10
 

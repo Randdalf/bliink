@@ -9,11 +9,11 @@
 	  "tall" "96"
 	  "visible" "1"
 	  "enabled" "1"
-	}	
+	}
 
 	BliinkHudStatus
 	{
-	  "fieldName" BliinkHudStatus
+	  "fieldName" "BliinkHudStatus"
 	  "xpos" "16"
 	  "ypos" "r124"
 	  "wide" "64"
@@ -21,6 +21,29 @@
 	  "visible" "1"
 	  "enabled" "1"
 	}
+
+	BliinkHudGameState
+	{
+	  "fieldName" "BliinkHudGameState"
+	  "xpos" "c-152"
+	  "ypos" "16"
+	  "wide" "480"
+	  "tall" "104"
+	  "visible" "1"
+	  "enabled" "1"
+	}
+
+	BliinkHudInstructions
+	{
+	  "fieldName" "BliinkHudInstructions"
+	  "xpos" "c-160"
+	  "ypos" "r320"
+	  "wide" "512"
+	  "tall" "512"
+	  "visible" "1"
+	  "enabled" "1"
+	}	
+
 
 	BliinkHudLevel
 	{
@@ -32,32 +55,6 @@
 	  "visible" "1"
 	  "enabled" "1"
 	}
-
-	HudBliink
-   {
-      "fieldName" "HudBliink"
-      "xpos" "0"
-      "ypos" "0"
-      "wide" "2400"
-      "tall" "2400"
-      "visible" "0"
-      "enabled" "1"
-      
-      "PaintBackgroundType"   "2"
-   }
-	
-	HudNoFace
-   {
-      "fieldName" "HudNoFace"
-      "xpos" "250"
-      "ypos" "6"
-      "wide" "225"
-      "tall" "50"
-      "visible" "0"
-      "enabled" "1"
-      
-      "PaintBackgroundType"   "2"
-   }
 
 
 	BliinkHudUpgradeNotice
@@ -114,6 +111,32 @@
 	  "visible" "1"
 	  "enabled" "1"
 	}
+
+	HudBliink
+   {
+      "fieldName" "HudBliink"
+      "xpos" "0"
+      "ypos" "0"
+      "wide" "2400"
+      "tall" "2400"
+      "visible" "0"
+      "enabled" "1"
+      
+      "PaintBackgroundType"   "2"
+   }
+	
+	HudNoFace
+   	{
+      "fieldName" "HudNoFace"
+      "xpos" "250"
+      "ypos" "6"
+      "wide" "225"
+      "tall" "50"
+      "visible" "0"
+      "enabled" "1"
+      
+      "PaintBackgroundType"   "2"
+   	}
 
 	HudHealth
 	{

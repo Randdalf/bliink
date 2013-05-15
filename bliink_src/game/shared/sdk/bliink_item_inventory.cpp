@@ -447,9 +447,6 @@ bool CBliinkItemInventory::AddItem( IBliinkItem* pNewItem )
 		iStartSearch = INVENTORY_WEAPON_SLOTS;
 	}else{
 		pItemWeapon = static_cast< CBliinkItemWeapon* >( pNewItem );
-		if (pOwner->Weapon_BliinkHasWeapon( pItemWeapon->GetWeapon() )){
-			return false; //already own weapon;
-		}
 	}
 
 	// If we can stack our item. Weapons don't stack so no need to worry about them here.
@@ -557,6 +554,11 @@ bool CBliinkItemInventory::AddItem( IBliinkItem* pNewItem )
 
 					return true;
 				}
+			}
+			else if (pNewItem->IsWeapon())
+			{
+				//can only have weapons in our weapon slots
+				return false;
 			}
 			else
 			{
@@ -784,6 +786,43 @@ int CBliinkItemInventory::GetAmmoSubtype( int iAmmoSlot )
 
 	return GetItemInfo( m_iItemTypes[iItemSlot] )->m_iSubType;
 }
+
+void CBliinkItemInventory::ClearInventory()
+{
+	for(int i=0; i<INVENTORY_MAX_SLOTS; i++)
+	{
+		Command_Delete(i);
+	}
+}
+
+void CBliinkItemInventory::UseHealthItem( void )
+{
+	for(int i=0; i<INVENTORY_MAX_SLOTS; i++)
+	{
+		CBliinkItemInfo* pInfo = GetItemInfo( m_iItemTypes.Get(i) );
+
+		if( pInfo->m_iType == ITEM_TYPE_CONSUMABLE &&
+			pInfo->m_iSubType == ITEM_STYPE_CONSUMABLE_HEALTH )
+		{
+			Command_Consume(i);
+		}
+	}
+}
+
+void CBliinkItemInventory::UseFoodItem( void )
+{
+	for(int i=0; i<INVENTORY_MAX_SLOTS; i++)
+	{
+		CBliinkItemInfo* pInfo = GetItemInfo( m_iItemTypes.Get(i) );
+
+		if( pInfo->m_iType == ITEM_TYPE_CONSUMABLE &&
+			pInfo->m_iSubType == ITEM_STYPE_CONSUMABLE_FOOD )
+		{
+			Command_Consume(i);
+		}
+	}
+}
+
 #endif
 
 // Returns the amount of ammo available for a specific ammo type.
@@ -812,4 +851,5 @@ int CBliinkItemInventory::GetAmmoClipCount( int iAmmoSlot ) const
 	else
 		return 0;
 #endif
+
 }

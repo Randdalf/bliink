@@ -9,7 +9,7 @@
 #include "tier0/memdbgon.h"
 
 // Bliink ConVars
-ConVar Bliink_CountdownToLive( "bliink_countdown_to_live", "5.0", FCVAR_REPLICATED );
+ConVar Bliink_CountdownToLive( "bliink_countdown_to_live", "6.0", FCVAR_REPLICATED );
 ConVar Bliink_ResultsTime( "bliink_results_time", "5.0", FCVAR_REPLICATED );
 ConVar Bliink_MinPlayers( "bliink_min_players", "2", FCVAR_REPLICATED );
 ConVar Bliink_MinSurvivors( "bliink_min_survivors", "1", FCVAR_REPLICATED );
@@ -18,6 +18,9 @@ ConVar Bliink_FogPlayerTime( "bliink_fog_playertime", "90.0f", FCVAR_REPLICATED 
 
 // Bliink ConCommands
 #ifdef CLIENT_DLL
+ConVar Bliink_ConnectIP( "bliink_connect_ip", "127.0.0.1", FCVAR_CLIENTDLL | FCVAR_ARCHIVE );
+ConVar Bliink_UseXboxInstructions( "bliink_xbox_instructions", "0", FCVAR_CLIENTDLL | FCVAR_ARCHIVE );
+
 void send_f ( const CCommand & args )
 {
 	engine->ServerCmd( args[ 0 ] );
@@ -74,6 +77,9 @@ ConCommand Bliink_Flashlight( "bliink_flashlight", send_f, "", FCVAR_CLIENTCMD_C
 
 ConCommand Bliink_BlinkOn( "bliink_blink_on", send_f, "", FCVAR_CLIENTCMD_CAN_EXECUTE );
 ConCommand Bliink_BlinkOff( "bliink_blink_off", send_f, "", FCVAR_CLIENTCMD_CAN_EXECUTE );
+
+ConCommand Bliink_XboxUseHealth( "bliink_xbox_use_health", send_f, "", FCVAR_CLIENTCMD_CAN_EXECUTE );
+ConCommand Bliink_XboxUseFood( "bliink_xbox_use_food", send_f, "", FCVAR_CLIENTCMD_CAN_EXECUTE );
 
 // INVENTORY COMMANDS
 ConCommand Bliink_InventoryPrint( "bliink_inventory_print", send_f, "", FCVAR_CLIENTCMD_CAN_EXECUTE);

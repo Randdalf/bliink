@@ -161,6 +161,8 @@ public:
 	bool EnoughPlayersToStart();
 	void StartGame();
 	void EndGame();
+	bool GetCountingDown() { return m_bCountdownToLive; }
+	float GetLiveTime() { return m_fLiveTime; }
 };
 
 //-----------------------------------------------------------------------------

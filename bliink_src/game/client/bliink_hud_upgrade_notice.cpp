@@ -77,18 +77,18 @@ void CBliinkHudUpgradeNotice::UpdateKeys()
 	m_pKeyUpgradeFatigue->SetBounds(48+128+4, 96, 32, 32);
 	m_pKeyUpgradeSlots->SetBounds(48+256+8, 96, 32, 32);
 
-	if( !m_bIsVisible )
-	{
+	//if( !m_bIsVisible )
+	//{
 		m_pKeyUpgradeHealth->SetVisible(false);
 		m_pKeyUpgradeFatigue->SetVisible(false);
 		m_pKeyUpgradeSlots->SetVisible(false);
-	}
-	else
-	{
-		m_pKeyUpgradeHealth->SetVisible(true);
-		m_pKeyUpgradeFatigue->SetVisible(true);
-		m_pKeyUpgradeSlots->SetVisible(true);
-	}
+	//}
+	//else
+	//{
+		//m_pKeyUpgradeHealth->SetVisible(true);
+		//m_pKeyUpgradeFatigue->SetVisible(true);
+		//m_pKeyUpgradeSlots->SetVisible(true);
+	//}
 }
 
 void CBliinkHudUpgradeNotice::OnThink()
